@@ -13,4 +13,5 @@ void gestire_menu_aiuto(){
             stampare_file_di_testo("manuale_gioco.txt");
         }
     } while (scelta == 0);
+    return;
 }
