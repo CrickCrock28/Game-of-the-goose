@@ -1,4 +1,5 @@
 #include "gestire_aiuto.h"
+#include "gestire_file.h"
 
 void gestire_menu_aiuto(){
     int scelta;
