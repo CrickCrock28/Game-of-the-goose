@@ -65,7 +65,7 @@ record_partita applicare_effetto_casella_pozzo(record_partita partita, int indic
     return partita;
 }
 
-record_partita applicare_effetto_casella_pozzo(record_partita partita, int indice_giocatore){
+record_partita applicare_effetto_casella_locanda(record_partita partita, int indice_giocatore){
     record_vet_giocatori vet_giocatori;
     record_giocatore giocatore;
 
@@ -77,4 +77,13 @@ record_partita applicare_effetto_casella_pozzo(record_partita partita, int indic
 
     return partita;
 }
+
+record_partita applicare_effetto_casella_finale(record_partita partita, int indice_giocatore){
+
+    partita = scrivere_terminata_record_partita(partita, VERO);
+
+    return partita;
+}
+
+
 
