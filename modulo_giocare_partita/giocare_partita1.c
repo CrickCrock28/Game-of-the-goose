@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include <funzioni_accesso_da_modificare.h>
 
 #define NUMERO_MINIMO_CASELLE 1
