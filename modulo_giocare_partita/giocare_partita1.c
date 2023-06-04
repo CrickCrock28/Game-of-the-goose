@@ -22,6 +22,11 @@
 #define PRIMA_POSIZIONE_PERCORSO 1
 #define PERCORSO_FILE_MENU_PARTITA "menu_partita.txt"
 
+#define ARRIVO_PRIMO_LANCIO_4_5 2
+#define ARRIVO_PRIMO_LANCIO_3_6 3
+#define NUMERO_MINIMO_DADO 1
+#define NUMERO_MASSIMO_DADO 6
+
 char tipo_casella(record_partita partita, int indice_giocatore) {
     record_vet_giocatori vet_giocatori;
     record_giocatore giocatore;
@@ -129,15 +134,22 @@ record_partita giocare_partita(record_partita partita) {
 }
 
 record_partita lanciare_primi_dadi(record_partita partita, int indice_giocatore) {
-    int dado_1 = generare_numero_casuale(NUMERO_MINIMO_DADO, NUMERO_MASSIMO_DADO);
-    int dado_2 = generare_numero_casuale(NUMERO_MINIMO_DADO, NUMERO_MASSIMO_DADO);
+    
+    int dado_1;
+    int dado_2;
+    record_vet_giocatori vet_giocatori;
+    record_giocatore giocatore;
+    int dimensione_percorso;
+
+    dado_1 = generare_numero_casuale(NUMERO_MINIMO_DADO, NUMERO_MASSIMO_DADO);      //DA RIVEDEREEEEEE
+    dado_2 = generare_numero_casuale(NUMERO_MINIMO_DADO, NUMERO_MASSIMO_DADO);      //DA RIVEDEREEEEEE
     
     partita = scrivere_ultimo_lancio_dado_1_record_partita(partita, dado_1);
     partita = scrivere_ultimo_lancio_dado_2_record_partita(partita, dado_2);
 
-    record_vet_giocatori vet = leggere_record_vet_giocatori_record_partita(partita);
-    record_giocatore giocatore = leggere_record_giocatore_record_vet_giocatori(vet, indice_giocatore);
-    int dimensione_percorso = leggere_dimensione_record_percorso(leggere_record_percorso_record_partita(partita));
+    vet_giocatori = leggere_vet_giocatori_record_partita(partita);
+    giocatore = leggere_giocatore_record_vet_giocatori(vet_giocatori, indice_giocatore);
+    dimensione_percorso = leggere_dimensione_record_percorso(leggere_percorso_record_partita(partita));
 
     if (dado_1 == 5 && dado_2 == 4) {
         giocatore = scrivere_posizione_record_giocatore(giocatore, calcolare_proporzione(ARRIVO_PRIMO_LANCIO_4_5, NUMERO_MASSIMO_CASELLE, dimensione_percorso));
@@ -149,17 +161,19 @@ record_partita lanciare_primi_dadi(record_partita partita, int indice_giocatore)
         giocatore = scrivere_posizione_record_giocatore(giocatore, dado_1 + dado_2);
     }
     
-    vet = scrivere_giocatore_record_vet_giocatori(vet, giocatore);
-    partita = scrivere_record_vet_giocatori_record_partita(partita, vet);
+    vet_giocatori = scrivere_giocatore_record_vet_giocatori(vet_giocatori, indice_giocatore, giocatore);
+    partita = scrivere_vet_giocatori_record_partita(partita, vet_giocatori);
 
     return partita;
 }
 
 record_partita avanzare_turno(record_partita partita) {
-    int indice_successivo = leggere_indice_giocatore_di_turno(partita) + 1;
+    int indice_successivo;
+    
+    indice_successivo = leggere_indice_giocatore_di_turno(partita) + 1;
 
-    if (indice_successivo > leggere_dimensione_record_vet_giocatori(leggere_record_vet_giocatori_record_partita(partita))) {
-        indice_successivo = 1;
+    if (indice_successivo > leggere_dimensione_record_vet_giocatori(leggere_vet_giocatori_record_partita(partita))) {
+        indice_successivo = PRIMO_INDICE_ARRAY;
     }
 
     partita = scrivere_indice_giocatore_di_turno_record_partita(partita, indice_successivo);
@@ -168,15 +182,19 @@ record_partita avanzare_turno(record_partita partita) {
 }
 
 record_partita stabilire_primo_giocatore(record_partita partita) {
-    int massimo_lancio_dadi = dado_1 + dado_2;
-    int indice_inizio = PRIMO_INDICE_ARRAY;
-
+    int dado_1;
+    int dado_2;
+    int massimo_lancio_dadi;
+    int indice_inizio;
+    int i;
+    
+    indice_inizio = PRIMO_INDICE_ARRAY;
     dado_1 = generare_numero_casuale(NUMERO_MINIMO_DADO, NUMERO_MASSIMO_DADO);
     dado_2 = generare_numero_casuale(NUMERO_MINIMO_DADO, NUMERO_MASSIMO_DADO);
+    massimo_lancio_dadi = dado_1 + dado_2;
 
-    int i = PRIMO_INDICE_ARRAY + 1;
-
-    while (i <= leggere_dimensione_record_vet_giocatori(leggere_record_vet_giocatori_record_partita(partita))) {
+    i = PRIMO_INDICE_ARRAY + 1;
+    while (i <= leggere_dimensione_record_vet_giocatori(leggere_vet_giocatori_record_partita(partita))) {
         dado_1 = generare_numero_casuale(NUMERO_MINIMO_DADO, NUMERO_MASSIMO_DADO);
         dado_2 = generare_numero_casuale(NUMERO_MINIMO_DADO, NUMERO_MASSIMO_DADO);
 
@@ -188,7 +206,7 @@ record_partita stabilire_primo_giocatore(record_partita partita) {
         i++;
     }
 
-    partita = scrivere_indice_giocatore_di_turno(partita, indice_inizio);
+    partita = scrivere_indice_giocatore_di_turno_record_partita(partita, indice_inizio);
 
     return partita;
 }
