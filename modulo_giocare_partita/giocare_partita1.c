@@ -212,8 +212,11 @@ record_partita stabilire_primo_giocatore(record_partita partita) {
 }
 
 record_partita gestire_menu_nuova_partita(record_partita partita, char* menu_nuova_partita, char* menu_partita_in_corso, int riprendere_partita) {
-    int nuova_partita = 0;
-    int scelta = -1;
+    int nuova_partita;
+    int scelta;
+
+    nuova_partita = FALSO;
+    scelta = -1;
 
     while (scelta != 0) {
         if (verificare_partita_terminata(partita)) {
