@@ -87,7 +87,7 @@ record_vet_giocatori scrivere_giocatore_record_vet_giocatori(record_vet_giocator
 
 typedef struct {
     int dimensione;
-    char caselle[];
+    char caselle[90];
 } record_percorso;
 
 int leggere_dimensione_record_percorso(record_percorso percorso) {

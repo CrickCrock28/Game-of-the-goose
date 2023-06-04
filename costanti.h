@@ -6,4 +6,5 @@
 #define PRIMO_INDICE_ARRAY 0 // Indice del primo elemento di un generico array
 #define PRIMO_INDICE_STRINGA 0 // Indice del primo elemento di un array di caratteri terminato dal carattere FINE_STRINGA
 
+
 #endif /* COSTANTI_H_ */
