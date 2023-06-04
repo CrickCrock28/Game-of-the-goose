@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include <funzioni accesso da modificare.h>
+#include <funzioni_accesso_da_modificare.h>
 
 #define NUMERO_MINIMO_CASELLE 1
 #define NUMERO_MASSIMO_CASELLE 100
