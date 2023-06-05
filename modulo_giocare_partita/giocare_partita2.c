@@ -143,8 +143,8 @@ record_partita gestire_effetti_caselle_speciali(record_partita partita, int indi
                         partita = applicare_effetto_casella_pozzo(partita, indice_giocatore);
                         }else{
                             if (trovare_tipo_casella_giocatore(partita, indice_giocatore) == CASELLA_PRIGIONE){
-                                
-                                partita = applicare_effetto_casella_prigione(partita, indice_giocatore);}else{  
+                                partita = applicare_effetto_casella_prigione(partita, indice_giocatore);
+                                }else{  
                                     if(trovare_tipo_casella_giocatore(partita, indice_giocatore) == CASELLA_LOCANDA){partita = applicare_effetto_casella_locanda(partita, indice_giocatore);
                                     }else{ 
                                         if(trovare_tipo_casella_giocatore(partita, indice_giocatore) == CASELLA_SCHELETRO){
@@ -157,7 +157,7 @@ record_partita gestire_effetti_caselle_speciali(record_partita partita, int indi
                                             }
                                     }
                                 }
-                        }
+                            }
                     }
             }
     return partita;
