@@ -37,5 +37,7 @@
   "C_Cpp_Runner.showCompilationTime": false,
   "files.associations": {
     "funzioni_accesso_da_modificare.h": "c"
-  }
+  },
+  "C_Cpp.errorSquiggles": "disabled",
+  "cmake.configureOnOpen": false
 }

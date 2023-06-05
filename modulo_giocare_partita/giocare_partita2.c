@@ -5,13 +5,13 @@
 //TUTTE LE COSTANTI SONO DA RIVEDERE
 #define NUMERO_MINIMO_CASELLE 1
 #define NUMERO_MASSIMO_CASELLE 100
-#define CASELLA_OCA '1'
-#define CASELLA_PONTE '1'
-#define CASELLA_LOCANDA '1'
-#define CASELLA_POZZO '1'
-#define CASELLA_LABIRINTO '1'
-#define CASELLA_SCHELETRO '1'
-#define CASELLA_PRIGIONE '1'
+#define CASELLA_OCA '9'
+#define CASELLA_PONTE '6'
+#define CASELLA_LOCANDA '19'
+#define CASELLA_POZZO '31'
+#define CASELLA_LABIRINTO '42'
+#define CASELLA_SCHELETRO '58'
+#define CASELLA_PRIGIONE '52'
 #define CASELLA_FINALE '90'
 #define ARRIVO_LABIRINTO 999
 #define TURNI_BLOCCATO_LOCANDA 999
@@ -166,12 +166,16 @@ record_partita gestire_effetti_caselle_speciali(record_partita partita, int indi
 
 record_partita gestire_scelta_partita(record_partita partita, int scelta){
     record_vet_giocatori vet_giocatori;
-    record_giocatore giocatore;
+    record_giocatore giocatore_di_turno;
     int indice_giocatore_di_turno;
 
     if(scelta == 1){
         // tira i dadi, potrebbe terminare la partita
-        vet_giocatori = scrivere_vet_giocatori_record_partita(partita, vet_giocatori);
+        vet_giocatori = leggere_vet_giocatori_record_partita(partita);
+        giocatore_di_turno = leggere_record_giocatore_vet_giocatori(vet_giocatori, indice_giocatore_di_turno);
+        giocatore_di_turno = scrivere_numero_dadi_lanciati_record_giocatore(leggere_numero_dadi_lanciati_record_giocatore(giocatore_di_turno) + 1);
+        vet_giocatori = scrivere_giocatore_record_vet_giocatori(vet_giocatori, indice_giocatore_di_turno, giocatore_di_turno);
+        partita = scrivere_vet_giocatori_record_partita(partita, vet_giocatori);
     }
 }
 
