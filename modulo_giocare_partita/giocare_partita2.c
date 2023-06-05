@@ -164,6 +164,16 @@ record_partita gestire_effetti_caselle_speciali(record_partita partita, int indi
 }
 
 
+record_partita gestire_scelta_partita(record_partita partita, int scelta){
+    record_vet_giocatori vet_giocatori;
+    record_giocatore giocatore;
+    int indice_giocatore_di_turno;
+
+    if(scelta == 1){
+        // tira i dadi, potrebbe terminare la partita
+        vet_giocatori = scrivere_vet_giocatori_record_partita(partita, vet_giocatori);
+    }
+}
 
 
 
