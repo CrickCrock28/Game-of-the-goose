@@ -5,14 +5,17 @@
 //#include "record_salvataggi.h"
 
 
-#define MENU_NUOVA_PARTITA "menu_nuova_partita.txt\0"
-#define MENU_PRINCIPALE "menu_principale.txt\0"
-#define MENU_CARICA_PARTITA "menu_carica_partita.txt\0"
-#define MENU_AIUTO "menu_aiuto.txt\0"
-#define MENU_CLASSIFICA "menu_classifica.txt\0"
+#define NOME_FILE_MENU_NUOVA_PARTITA "menu_nuova_partita.txt\0"
+#define NOME_FILE_MENU_PRINCIPALE "menu_principale.txt\0"
+#define NOME_FILE_MENU_CARICA_PARTITA "menu_carica_partita.txt\0"
+#define NOME_FILE_MENU_AIUTO "menu_aiuto.txt\0"
+#define NOME_FILE_MENU_NOME_FILE_CLASSIFICA "menu_classifica.txt\0"
 #define MESSAGGIO_INSERIMENTO "Inserire la scelta: \0"
-#define PARTITE_SALVATE "partite_salvate.bin\0"
-#define CLASSIFICA "classifica.bin\0"
+#define NOME_FILE_PARTITE_SALVATE "partite_salvate.bin\0"
+#define NOME_FILE_CLASSIFICA "classifica.bin\0"
+#define NOME_FILE_REGOLE_GIOCO "regole_gioco.txt\0"
+#define NOME_FILE_MANUALE_GIOCO "manuale_gioco.txt\0"
+
 
 int main(void) {
     bool partita_caricata, creare_nuova_partita;
@@ -21,7 +24,7 @@ int main(void) {
     record_salvataggi salvataggi;
 
     do {
-        stampare_file_di_testo(MENU_PRINCIPALE);
+        stampare_file_di_testo(NOME_FILE_MENU_PRINCIPALE);
         scelta = chiedere_intero(MESSAGGIO_INSERIMENTO, 0, 4, 9, 0);
         if (scelta == 1) {
             riprendere_partita = 0;
@@ -31,18 +34,18 @@ int main(void) {
             else {
                 // se l’utente vuole crare una nuova partita, questa viene creata nella funzione gestire_menu_nuova_partita
                 if (creare_nuova_partita == false) {
-                    gestire_menu_nuova_partita(MENU_NUOVA_PARTITA, riprendere_partita, &partita);
+                    gestire_menu_nuova_partita(NOME_FILE_MENU_NUOVA_PARTITA, riprendere_partita, &partita);
                 }
             }
             do {
                 if (leggere_terminata_record_partita(partita) = true) {
                     // aggiorno la classifica
-                    aggiornare_classifica(CLASSIFICA);
+                    aggiornare_classifica(NOME_FILE_CLASSIFICA);
                 }
                 else {
                     if (leggere_salvare_partita_record_partita(partita) = true) {
                         // salvo la partita
-                        salvare_partita(PARTITE_SALVATE, partita);
+                        salvare_partita(NOME_FILE_PARTITE_SALVATE, partita);
                         // chiedo all'utente se vuole continuare la partita
                         riprendere_partita = chiedere_intero(MESSAGGIO_INSERIMENTO, 0, 1);
                     }
@@ -52,7 +55,7 @@ int main(void) {
         }
         else if (scelta == 2) {
             // menu carica partita
-            gestire_menu_partite_salvate(MENU_CARICA_PARTITA, PARTITE_SALVATE, &salvataggi);
+            gestire_menu_partite_salvate(NOME_FILE_MENU_CARICA_PARTITA, NOME_FILE_PARTITE_SALVATE, &salvataggi);
             // leggere_partite_salvate(salvataggi, &partite_salvate); ?
             if (leggere_indice_giocatore_di_turno_record_partita(leggere_partita_opzionale(salvataggi)) == PARTITA_OPZIONALE_INESISTENTE) {
                 leggere_partita_opzionale(salvataggi, &partita);
@@ -61,11 +64,11 @@ int main(void) {
         }
         else if (scelta == 3) {
             // menu classifica
-            gestire_menu_classifica(MENU_CLASSIFICA);
+            gestire_menu_classifica(NOME_FILE_MENU_NOME_FILE_CLASSIFICA);
         }
         else if (scelta == 4) {
             // menu aiuto
-            gestire_menu_aiuto(MENU_AIUTO);
+            gestire_menu_aiuto(NOME_FILE_MENU_AIUTO, NOME_FILE_REGOLE_GIOCO, NOME_FILE_MANUALE_GIOCO);
         }
     } while (scelta != 0);
 
