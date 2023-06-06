@@ -5,16 +5,16 @@
 //#include "record_salvataggi.h"
 
 
-#define NOME_FILE_MENU_NUOVA_PARTITA "menu_nuova_partita.txt\0"
-#define NOME_FILE_MENU_PRINCIPALE "menu_principale.txt\0"
-#define NOME_FILE_MENU_CARICA_PARTITA "menu_carica_partita.txt\0"
-#define NOME_FILE_MENU_AIUTO "menu_aiuto.txt\0"
-#define NOME_FILE_MENU_NOME_FILE_CLASSIFICA "menu_classifica.txt\0"
-#define MESSAGGIO_INSERIMENTO "Inserire la scelta: \0"
-#define NOME_FILE_PARTITE_SALVATE "partite_salvate.bin\0"
-#define NOME_FILE_CLASSIFICA "classifica.bin\0"
-#define NOME_FILE_REGOLE_GIOCO "regole_gioco.txt\0"
-#define NOME_FILE_MANUALE_GIOCO "manuale_gioco.txt\0"
+#define NOME_FILE_MENU_NUOVA_PARTITA "menu_nuova_partita.txt\0" // Nome del file che contiene il menu nuova partita
+#define NOME_FILE_MENU_PRINCIPALE "menu_principale.txt\0" // Nome del file che contiene il menu principale
+#define NOME_FILE_MENU_CARICA_PARTITA "menu_carica_partita.txt\0" // Nome del file che contiene il menu carica partita
+#define NOME_FILE_MENU_AIUTO "menu_aiuto.txt\0" // Nome del file che contiene il menu aiuto
+#define NOME_FILE_MENU_NOME_FILE_CLASSIFICA "menu_classifica.txt\0" // Nome del file che contiene il menu classifica
+#define MESSAGGIO_INSERIMENTO "Inserire la scelta: \0" // Messaggio stampato a schermo per l'inserimento della scelta
+#define NOME_FILE_PARTITE_SALVATE "partite_salvate.bin\0" // Nome del file che contiene le partite salvate
+#define NOME_FILE_CLASSIFICA "classifica.bin\0" // Nome del file che contiene la classifica
+#define NOME_FILE_REGOLE_GIOCO "regole_gioco.txt\0" // Nome del file che contiene le regole di gioco
+#define NOME_FILE_MANUALE_GIOCO "manuale_gioco.txt\0" // Nome del file che contiene il manuale di gioco
 
 
 int main(void) {
