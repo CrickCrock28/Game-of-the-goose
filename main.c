@@ -9,7 +9,7 @@
 #define NOME_FILE_MENU_PRINCIPALE "menu_principale.txt\0"
 #define NOME_FILE_MENU_CARICA_PARTITA "menu_carica_partita.txt\0"
 #define NOME_FILE_MENU_AIUTO "menu_aiuto.txt\0"
-#define NOME_FILE_MENU_NOME_FILE_CLASSIFICA "menu_classifica.txt\0"
+#define NOME_FILE_MENU_CLASSIFICA "menu_classifica.txt\0"
 #define MESSAGGIO_INSERIMENTO "Inserire la scelta: \0"
 #define NOME_FILE_PARTITE_SALVATE "partite_salvate.bin\0"
 #define NOME_FILE_CLASSIFICA "classifica.bin\0"
