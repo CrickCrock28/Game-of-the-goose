@@ -1,0 +1,9 @@
+typedef struct {
+	char nome_giocatore[LUNGHEZZA_NOME+1];
+	int numero_caselle;
+} record_classificato;
+
+int leggere_numero_giocatori_record_dati_nuova_partita(record_dati_nuova_partita dati_nuova_partita);
+void scrivere_numero_giocatori_record_dati_nuova_partita(record_dati_nuova_partita* dati_nuova_partita, int numero_giocatori);
+int leggere_numero_caselle_record_dati_nuova_partita(record_dati_nuova_partita dati_nuova_partita);
+void scrivere_numero_caselle_record_dati_nuova_partita(record_dati_nuova_partita* dati_nuova_partita, int numero_caselle);
