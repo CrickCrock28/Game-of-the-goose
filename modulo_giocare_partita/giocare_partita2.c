@@ -204,12 +204,16 @@ record_partita gestire_scelta_partita(record_partita partita, int scelta){
 }
 
 
-record_partita gestire_scelta_partita(record_partita partita, int scelta){
+record_partita gestire_scelta_partita(int scelta){
     if(scelta==1){
-        record_dati_nuova_partita dati_nuova_partita = chiedere_dati_nuova_partita();
+        record_partita partita;
+        record_dati_nuova_partita dati_nuova_partita;
+
+        dati_nuova_partita = chiedere_dati_nuova_partita();
         partita = creare_partita(dati_nuova_partita);
         partita = giocare_partita(partita);
     }
+    return partita;
 }
 
 
