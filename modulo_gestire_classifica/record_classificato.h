@@ -1,5 +1,7 @@
-typedef struct {
-	char nome_giocatore[LUNGHEZZA_NOME+1];
+#include <costanti.h>
+
+typedef struct record_classificato{
+	char nome_giocatore[LUNGHEZZA_NOME];
 	int numero_caselle;
 } record_classificato;
 

@@ -1,6 +1,6 @@
 #ifndef GESTIRE_CLASSIFICA_H_
 #define GESTIRE_CLASSIFICA_H_
-#include <costanti.h>
+#include <record_classificato.h>
 
 #define NUMERO_CLASSIFICATI 10
 #define TIRI_CLASSIFICATO_FINE -1
@@ -9,7 +9,7 @@
 
 void gestire_menu_classifica(NOME_FILE_MENU_CLASSIFICA, NOME_FILE_CLASSIFICA);
 void aggiornare_classifica(NOME_FILE_CLASSIFICA,record_partita partita);
-void inserire_indice_classificati();
+void inserire_indice_classificati(record_classificato* classificati,int numero_classificati,record_classificato classificato);
 void recuperare_tiri_classificato();
 void stampare_classifica();
 void inserire_record_classificato();
