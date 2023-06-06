@@ -72,4 +72,16 @@ record_partita scrivere_ultimo_lancio_dado_2_record_partita(record_partita parti
 record_partita scrivere_nuova_partita_record_partita(record_partita partita, int nuova_partita);
 record_partita scrivere_abbandona_partita_record_partita(record_partita partita, int abbandona_partita);
 
+//----------------------------------------------------------------------------
+
+typedef struct record_dati_nuova_partita {
+	int numero_giocatori;
+	int numero_caselle;
+} record_dati_nuova_partita;
+
+int leggere_numero_giocatori_record_dati_nuova_partita(record_dati_nuova_partita dati_nuova_partita);
+void scrivere_numero_giocatori_record_dati_nuova_partita(record_dati_nuova_partita* dati_nuova_partita, int numero_giocatori);
+int leggere_numero_caselle_record_dati_nuova_partita(record_dati_nuova_partita dati_nuova_partita);
+void scrivere_numero_caselle_record_dati_nuova_partita(record_dati_nuova_partita* dati_nuova_partita, int numero_caselle);
+
 #endif

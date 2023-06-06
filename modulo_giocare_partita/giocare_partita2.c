@@ -176,6 +176,39 @@ record_partita gestire_scelta_partita(record_partita partita, int scelta){
         giocatore_di_turno = scrivere_numero_dadi_lanciati_record_giocatore(leggere_numero_dadi_lanciati_record_giocatore(giocatore_di_turno) + 1);
         vet_giocatori = scrivere_giocatore_record_vet_giocatori(vet_giocatori, indice_giocatore_di_turno, giocatore_di_turno);
         partita = scrivere_vet_giocatori_record_partita(partita, vet_giocatori);
+        if(leggere_posizione_record_giocatore(giocatore_da_incrementare) == (PRIMA_POSIZIONE_PERCORSO - 1)){
+            partita = lanciare_primi_dadi(partita, indice_giocatore_di_turno);
+            }else{
+                partita = lanciare_dadi(partita, indice_giocatore_di_turno);
+                }
+                while(trovare_tipo_casella_giocatore(partita, indice_giocatore_di_turno) != CASELLA_NORMALE)){
+                partita = gestire_effetti_caselle_speciali(partita, indice_giocatore_di_turno);
+                }
+                partita = avanzare_turno(partita);
+    }else{
+        if(scelta == 2){
+            // CREARE NUOVA PARTITA, metto il flag a vero ed esco
+            partita = scrivere_nuova_partita_record_partita(partita, VERO);
+        }else{
+            if(scelta = 3){
+                // salvare partita 
+                partita = scrivere_salvare_partita_record_partita(partita, VERO);
+            }else{
+                // abbandona partita
+                // metto il flag di abbandona partita a VERO ed esco
+                partita = scrivere_abbandona_partita_record_partita(partita, VERO);
+            }
+        }
+    }
+    return partita;
+}
+
+
+record_partita gestire_scelta_partita(record_partita partita, int scelta){
+    if(scelta==1){
+        record_dati_nuova_partita dati_nuova_partita = chiedere_dati_nuova_partita();
+        partita = creare_partita(dati_nuova_partita);
+        partita = giocare_partita(partita);
     }
 }
 
