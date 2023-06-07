@@ -55,10 +55,9 @@ int leggere_numero_dadi_lanciati_record_giocatore(record_giocatore giocatore) {
 //------------------------------------------------------------------------------------------------
 
 #define NUMERO_GIOCATORI_MAX 4
-
 typedef struct {
-    int dimensione;
     record_giocatore giocatori[NUMERO_GIOCATORI_MAX];
+    int dimensione;
 } record_vet_giocatori;
 
 int leggere_dimensione_record_vet_giocatori(record_vet_giocatori vet_giocatori) {
@@ -237,3 +236,35 @@ void scrivere_numero_caselle_record_dati_nuova_partita(record_dati_nuova_partita
 	dati_nuova_partita->numero_caselle = numero_caselle;
 	return;
 }
+
+//----------------------------------------------------------------------------
+
+#define NUMERO_PARTITE_MAX 
+
+typedef struct record_vettore_partite_salvate {
+	record_partita partite[NUMERO_PARTITE_MAX];
+	int dimensione;
+} record_vettore_partite_salvate;
+
+int leggere_dimensione_record_vettore_partite_salvate(record_vettore_partite_salvate vettore_partite_salvate){
+        int dim= record_vettore_partite_salvate.dimensione;
+        return dim;
+}
+
+record_vettore_partite_salvate scrivere_dimensione_record_vettore_partite_salvate(record_vettore_partite_salvate vettore_partite_salvate, int dim){
+     dimensione.vettore_partite_salvate = dim;
+     return vettore_partite_salvate;
+}
+
+int leggere_partita_record_vettore_partite_salvate(record_vettore_partite_salvate vettore_partite_salvate, int indice){
+        record_partita partita = vettore_partite_salvate.partite[indice];
+        return partita;
+}
+
+record_vettore_partite_salvate scrivere_partita_record_vettore_partite_salvate(record_vettore_partite_salvate vettore_partite_salvate, record_partita partita, int indice){
+        vettore_partite_salvate.partite[indice] = partita;
+        return vettore_partite_salvate;
+}
+
+//----------------------------------------------------------------------------
+
