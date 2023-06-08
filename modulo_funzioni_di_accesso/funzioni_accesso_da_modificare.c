@@ -256,7 +256,7 @@ record_vettore_partite_salvate scrivere_dimensione_record_vettore_partite_salvat
      return vettore_partite_salvate;
 }
 
-int leggere_partita_record_vettore_partite_salvate(record_vettore_partite_salvate vettore_partite_salvate, int indice){
+record_partita leggere_partita_record_vettore_partite_salvate(record_vettore_partite_salvate vettore_partite_salvate, int indice){
         record_partita partita = vettore_partite_salvate.partite[indice];
         return partita;
 }
@@ -269,6 +269,6 @@ record_vettore_partite_salvate scrivere_partita_record_vettore_partite_salvate(r
 //----------------------------------------------------------------------------
 
 typedef struct record_menu_partite_salvate{
-    fb*  partite_salvate;
+    char fb*  menu_partita.txt;
     record_partita partita_opzionale;
-}
+} record_menu_partite_salvate;

@@ -27,7 +27,7 @@
 #define FALSO 0
 #define VERO 1
 
-
+//DA RIVEDERE
 record_menu_partite_salvate gestire_menu_partite_salvate(int scelta, record_menu_partite_salvate partite_salvate, int numero_partita, const char* menu_carica_partita){
 
     int numero_partite_salvate;
@@ -53,5 +53,18 @@ record_menu_partite_salvate gestire_menu_partite_salvate(int scelta, record_menu
     return salvataggi;
 }
 
+//DA RIVEDERE
+record_partita leggere_partita_scelta(int numero_partite){
+    int i;
+    int numero_partite_salvate;
+    record_vettore_partite_salvate vet_partite_salvate;
+    record_partita partita_scelta;
 
-leggere_partita_scelta
+    numero_partite_salvate = leggere_da_file_binario(partite_salvate);
+    i = PRIMO_INDICE_ARRAY;
+    while(i<=numero_partite_salvate){
+    leggere_partita_record_vettore_partite_salvate(vet_partite_salvate, i) = leggere_da_file_binario(partite_salvate);
+    i=i+1;
+    }
+    partita_scelta  = copiare_partita(partita_caricata, leggere_partita_record_vettore_partite_salvate(vet_partite_salvate, numero_partite_salvate);
+}
