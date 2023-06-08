@@ -39,7 +39,9 @@
     "funzioni_accesso_da_modificare.h": "c",
     "record_": "c",
     "gestire_classifica.h": "c",
-    "record_classificato.h": "c"
+    "record_classificato.h": "c",
+    "stdio.h": "c",
+    "gestire_aiuto.h": "c"
   },
   "C_Cpp.errorSquiggles": "disabled",
   "cmake.configureOnOpen": false

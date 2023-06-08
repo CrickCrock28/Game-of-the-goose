@@ -64,7 +64,7 @@ int main(void) {
         }
         else if (scelta == 3) {
             // menu classifica
-            gestire_menu_classifica(NOME_FILE_MENU_NOME_FILE_CLASSIFICA);
+            gestire_menu_classifica(NOME_FILE_MENU_CLASSIFICA);
         }
         else if (scelta == 4) {
             // menu aiuto
