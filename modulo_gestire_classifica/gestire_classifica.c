@@ -22,7 +22,18 @@ void gestire_menu_classifica(char* NOME_FILE_MENU_CLASSIFICA,char* NOME_FILE_CLA
 }
 
 void aggiornare_classifica(char* NOME_FILE_CLASSIFICA, record_partita partita){
-
+    record_classificato classificati[NUMERO_CLASSIFICATI];
+    int dimensione = 0, i = 0;
+    FILE* classifica;
+    classifica = fopen(NOME_FILE_CLASSIFICA, "rb");
+    if(verificare_file_esistente(classifica)){
+        fread(&dimensione, sizeof(int), 1, fd);
+        i = PRIMO_INDICE_ARRAY;
+        while(i < dimensione){
+            fread(&classificati[i], sizeof(int), 1, fd);
+            i = i + 1;
+        }
+    }
 }
 
 void inserire_indice_classificati(record_classificato* classificati, int numero_classificati,record_classificato classificato, int indice_classificato){
