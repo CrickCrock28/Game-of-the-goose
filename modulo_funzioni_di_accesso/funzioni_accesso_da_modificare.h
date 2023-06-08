@@ -84,4 +84,24 @@ void scrivere_numero_giocatori_record_dati_nuova_partita(record_dati_nuova_parti
 int leggere_numero_caselle_record_dati_nuova_partita(record_dati_nuova_partita dati_nuova_partita);
 void scrivere_numero_caselle_record_dati_nuova_partita(record_dati_nuova_partita* dati_nuova_partita, int numero_caselle);
 
+//----------------------------------------------------------------------------
+
+#define NUMERO_PARTITE_MAX 5
+typedef struct record_vettore_partite_salvate {
+	record_partita partite[NUMERO_PARTITE_MAX];
+	int dimensione;
+} record_vettore_partite_salvate;
+
+int leggere_dimensione_record_vettore_partite_salvate(record_vettore_partite_salvate vettore_partite_salvate);
+record_vettore_partite_salvate scrivere_dimensione_record_vettore_partite_salvate(record_vettore_partite_salvate vettore_partite_salvate, int dim);
+int leggere_partita_record_vettore_partite_salvate(record_vettore_partite_salvate vettore_partite_salvate, int indice);
+record_vettore_partite_salvate scrivere_partita_record_vettore_partite_salvate(record_vettore_partite_salvate vettore_partite_salvate, record_partita partita, int indice);
+
+//----------------------------------------------------------------------------
+
+typedef struct record_menu_partite_salvate{
+    char fb*  partite_salvate;
+    record_partita partita_opzionale;
+}
+
 #endif

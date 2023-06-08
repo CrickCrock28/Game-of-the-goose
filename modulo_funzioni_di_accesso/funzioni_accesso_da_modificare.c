@@ -268,7 +268,7 @@ record_vettore_partite_salvate scrivere_partita_record_vettore_partite_salvate(r
 
 //----------------------------------------------------------------------------
 
-struct record_menu_partite_salvate{
+typedef struct record_menu_partite_salvate{
     fb*  partite_salvate;
     record_partita partita_opzionale;
 }
