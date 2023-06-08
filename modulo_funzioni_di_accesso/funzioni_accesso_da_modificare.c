@@ -239,7 +239,7 @@ void scrivere_numero_caselle_record_dati_nuova_partita(record_dati_nuova_partita
 
 //----------------------------------------------------------------------------
 
-#define NUMERO_PARTITE_MAX 
+#define NUMERO_PARTITE_MAX 5
 
 typedef struct record_vettore_partite_salvate {
 	record_partita partite[NUMERO_PARTITE_MAX];
@@ -268,3 +268,7 @@ record_vettore_partite_salvate scrivere_partita_record_vettore_partite_salvate(r
 
 //----------------------------------------------------------------------------
 
+struct record_menu_partite_salvate{
+    fb*  partite_salvate;
+    record_partita partita_opzionale;
+}
