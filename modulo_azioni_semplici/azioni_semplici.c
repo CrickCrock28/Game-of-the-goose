@@ -1,4 +1,4 @@
-#include "stdio.h"
+#include <stdio.h>
 #include "gotoxy.h"
 
 #define NUMERO_COLONNA_MASSIMA 80

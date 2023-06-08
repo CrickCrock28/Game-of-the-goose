@@ -1,7 +1,7 @@
 #ifndef GOTOXY_H_
 #define GOTOXY_H_
 
-#include "windows.h"
+#include <windows.h>
 
 void GotoXY(int x, int y) {
 	COORD CursorPos = {x, y};

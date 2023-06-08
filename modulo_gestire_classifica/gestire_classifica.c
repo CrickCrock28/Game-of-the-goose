@@ -1,8 +1,6 @@
 #include "gestire_classifica.h"
-#include "costanti.h"
-#include "./modulo_record_classificato/record_classificato.h"
 
-void gestire_menu_classifica(NOME_FILE_MENU_CLASSIFICA, NOME_FILE_CLASSIFICA);{
+void gestire_menu_classifica(NOME_FILE_MENU_CLASSIFICA,NOME_FILE_CLASSIFICA){
     int azione_selezionata;
     if(verificare_file_esistente(NOME_FILE_MENU_AIUTO) && verificare_file_esistente(NOME_FILE_CLASSIFICA)){
         do
@@ -14,6 +12,7 @@ void gestire_menu_classifica(NOME_FILE_MENU_CLASSIFICA, NOME_FILE_CLASSIFICA);{
             }
         } while (scelta != 0);
     }
+    return;
 }
 
 void aggiornare_classifica(NOME_FILE_CLASSIFICA, record_partita partita){
