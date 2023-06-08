@@ -29,7 +29,9 @@
 
 
 int stampare_file_di_testo(const char* file_da_stampare){
+
     int i = PRIMO_INDICE_ARRAY;
+    
     while(verificare_file_di_testo_terminato(file_da_stampare) = FALSO){
         stampare_a_video(leggere_riga_file(file_da_stampare, i));
     }

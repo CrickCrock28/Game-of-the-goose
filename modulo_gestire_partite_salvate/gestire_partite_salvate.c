@@ -27,3 +27,27 @@
 #define FALSO 0
 #define VERO 1
 
+
+gestire_menu_partite_salvate(int scelta, record_menu_partite_salvate partite_salvate, int numero_partita, const char* menu_carica_partita){
+
+    record_partita partita_scelta;
+
+    do{
+        stampare_file_di_testo(menu_carica_partita);
+        scelta = chiedere_intero(”Inserisci il numero corrispondente all’azione da eseguire: 0, 2, 8, 0);
+        stampare_partite_salvate(partite_salvate);
+        numero_partite_salvate = leggere_da_file_binario(partite_salvate);
+        
+        if(scelta = 1){
+            numero_partita = chiedere_intero(”Inserisci il numero corrispondente alla partita da cancellare: ”, 0, 2, (numero_partite_salvate*2+1), 0);
+            partite_salvate = cancellare_partita_da_file(partite_salvate, numero_partita);
+            partite_salvate = scrivere_partite_salvate(salvataggi, partite_salvate);
+            }else{}
+            if(scelta = 2)
+            numero_partita = chiedere_intero(”Inserisci il numero corrispondente alla partita da caricare: ”, 0, 2,  (numero_partite_salvate*2+1), 0);
+            partita_scelta = leggere_partita_scelta(partite_salvate, numero_partita);
+            partite_salvate = scrivere_partite_salvate(salvataggi, partite_salvate);
+            }
+    }while(scelta != 0)
+    return partite_salvate;
+}
