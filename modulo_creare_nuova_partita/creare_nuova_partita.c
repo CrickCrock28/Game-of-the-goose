@@ -1,5 +1,5 @@
-#include "creare_nuova_partita.h"
-#include "costanti.h"
+#include <creare_nuova_partita.h>
+#include <costanti.h>
 #include <stdbool.h>
 
 #define NUMERO_MINIMO_GIOCATORI	2 // Numero minimo di giocatori

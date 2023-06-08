@@ -1,4 +1,4 @@
-#include "record_dati_nuova_partita.h"
+#include <record_dati_nuova_partita.h>
 
 int leggere_numero_giocatori_record_dati_nuova_partita(record_dati_nuova_partita dati_nuova_partita) {
 	int numero_giocatori;

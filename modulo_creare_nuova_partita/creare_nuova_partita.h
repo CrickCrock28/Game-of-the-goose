@@ -1,7 +1,7 @@
 #ifndef CREARE_NUOVA_PARTITA_H_
 #define CREARE_NUOVA_PARTITA_H_
 
-#include "record_dati_nuova_partita.h"
+#include <record_dati_nuova_partita.h>
 
 void chiedere_dati_nuova_partita(record_dati_nuova_partita* dati_nuova_partita);
 void creare_nuova_partita(record_dati_nuova_partita dati_nuova_partita, record_partita* partita);

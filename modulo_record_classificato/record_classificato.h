@@ -1,0 +1,15 @@
+#ifndef RECORD_CLASSIFICATO_H
+#define RECORD_CLASSIFICATO_H
+#include <costanti.h>
+
+typedef struct record_classificato{
+	char nome_giocatore[LUNGHEZZA_NOME];
+	int tiri;
+} record_classificato;
+
+void leggere_nome_giocatore_record_classificato(record_classificato classificato);
+record_classificato scrivere_nome_gicoatore_record_classificato(record_classificato classificato, char* nome);
+int leggere_tiri_record_classificato(record_classificato classificato);
+record_classificato scrivere_tiri_record_classificato(record_classificato classificato, int tiri);
+
+#endif /* RECORD_CLASSIFICATO_H */
