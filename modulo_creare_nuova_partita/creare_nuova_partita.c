@@ -1,6 +1,6 @@
-#include <creare_nuova_partita.h>
-#include <costanti.h>
-#include <stdbool.h>
+#include "creare_nuova_partita.h"
+#include "costanti.h"
+#include "stdbool.h"
 
 #define NUMERO_MINIMO_GIOCATORI	2 // Numero minimo di giocatori
 #define NUMERO_MASSIMO_GIOCATORI 4 // Numero massimo di giocatori

@@ -1,6 +1,6 @@
 #ifndef COSTANTI_H_
 #define COSTANTI_H_
-#include <stdio.h>
+#include "stdio.h"
 
 #define LUNGHEZZA_NOME 3 // Lunghezza del nome
 #define FINE_STRINGA '\0' // Carattere terminatore di un array a 1 dimensione di caratteri

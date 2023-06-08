@@ -1,6 +1,6 @@
 #ifndef RECORD_CLASSIFICATO_H
 #define RECORD_CLASSIFICATO_H
-#include <costanti.h>
+#include "costanti.h"
 
 typedef struct record_classificato{
 	char nome_giocatore[LUNGHEZZA_NOME];

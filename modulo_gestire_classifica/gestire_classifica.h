@@ -1,6 +1,6 @@
 #ifndef GESTIRE_CLASSIFICA_H_
 #define GESTIRE_CLASSIFICA_H_
-#include <record_classificato.h>
+#include "record_classificato.h"
 
 #define NUMERO_CLASSIFICATI 10
 #define TIRI_CLASSIFICATO_FINE -1

@@ -1,6 +1,6 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <stdbool.h>
+#include "stdio.h"
+#include "stdlib.h"
+#include "stdbool.h"
 //#include "record_partita.h"
 //#include "record_salvataggi.h"
 

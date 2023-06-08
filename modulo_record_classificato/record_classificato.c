@@ -1,7 +1,9 @@
-#include <record_classificato.h>
+#include "record_classificato.h"
 
-void leggere_nome_giocatore_record_classificato(record_classificato classificato){
-
+void leggere_nome_giocatore_record_classificato(record_classificato classificato, char* nome){
+    copiare_stringa(char* nome[], char* classificato.); 
+    
+     
 }
 
 record_classificato scrivere_nome_gicoatore_record_classificato(record_classificato classificato, char* nome){

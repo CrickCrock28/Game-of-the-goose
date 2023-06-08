@@ -1,5 +1,5 @@
-#include <stdio.h>
-#include <gotoxy.h>
+#include "stdio.h"
+#include "gotoxy.h"
 
 #define NUMERO_COLONNA_MASSIMA 80
 #define FINE_STRINGA '\0'

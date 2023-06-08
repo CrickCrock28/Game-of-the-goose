@@ -1,7 +1,7 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <funzioni_accesso_da_modificare.h>
-#include <gotoxy.h>
+#include "stdio.h"
+#include "stdlib.h"
+#include "funzioni_accesso_da_modificare.h"
+#include "gotoxy.h"
 
 //TUTTE LE COSTANTI SONO DA RIVEDERE
 #define NUMERO_MINIMO_CASELLE 1
