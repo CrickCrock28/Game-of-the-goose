@@ -42,7 +42,15 @@
     "record_classificato.h": "c",
     "stdio.h": "c",
     "gestire_aiuto.h": "c",
-    "costanti.h": "c"
+    "costanti.h": "c",
+    "record_dati_nuova_partita.h": "c",
+    "record_giocatore.h": "c",
+    "record_percorso.h": "c",
+    "record_vet_giocatori.h": "c",
+    "record_vettore_partite_salvate.h": "c",
+    "record_menu_partite_salvate.h": "c",
+    "giocare_partita.h": "c",
+    "gestire_partite_salvate.h": "c"
   },
   "C_Cpp.errorSquiggles": "disabled",
   "cmake.configureOnOpen": false

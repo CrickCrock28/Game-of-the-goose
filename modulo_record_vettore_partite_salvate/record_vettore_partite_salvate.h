@@ -1,0 +1,16 @@
+#ifndef RECORD_VETTORE_PARTITE_SALVATE_H_
+#define RECORD_VETTORE_PARTITE_SALVATE_H_
+
+#define NUMERO_PARTITE_MAX 5
+
+typedef struct record_vettore_partite_salvate {
+	record_partita partite[NUMERO_PARTITE_MAX];
+	int dimensione;
+} record_vettore_partite_salvate;
+
+int leggere_dimensione_record_vettore_partite_salvate(record_vettore_partite_salvate vettore_partite_salvate);
+record_vettore_partite_salvate scrivere_dimensione_record_vettore_partite_salvate(record_vettore_partite_salvate vettore_partite_salvate, int dim);
+record_partita leggere_record_vettore_partite_salvate(record_vettore_partite_salvate vettore_partite_salvate, int indice);
+record_vettore_partite_salvate scrivere_record_vettore_partite_salvate(record_vettore_partite_salvate vettore_partite_salvate, record_partita partita, int indice);
+
+#endif /* RECORD_VET_GIOCATORI */

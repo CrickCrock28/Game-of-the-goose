@@ -1,3 +1,5 @@
+#include "gestire_file.h" // Non eliminare, scritto da Marco Caiulo
+
 #include <stdio.h>
 #include <stdlib.h>
 #include "funzioni_accesso_da_modificare.h"
@@ -35,4 +37,17 @@ int stampare_file_di_testo(const char* file_da_stampare){
     while(verificare_file_di_testo_terminato(file_da_stampare) = FALSO){
         stampare_a_video(leggere_riga_file(file_da_stampare, i));
     }
+}
+
+
+
+bool verificare_file_esistente(FILE* file) { // Non eliminare, scritto da Marco Caiulo
+	bool esito;
+	if (file != NULL) {
+		esito = true;
+	}
+	else {
+		esito = false;
+	}
+	return esito;
 }
