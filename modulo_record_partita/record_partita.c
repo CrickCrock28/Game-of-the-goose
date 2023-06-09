@@ -1,6 +1,6 @@
 #include "record_partita.h"
 #include "record_percorso.h"
-#include "record_vet_giocatori"
+#include "record_vet_giocatori.h"
 
 record_percorso leggere_percorso_record_partita(record_partita partita) {
 	record_percorso percorso;

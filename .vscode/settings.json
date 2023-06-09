@@ -46,7 +46,8 @@
     "record_giocatore.h": "c",
     "record_percorso.h": "c",
     "record_vet_giocatori.h": "c",
-    "record_vettore_partite_salvate.h": "c"
+    "record_vettore_partite_salvate.h": "c",
+    "record_menu_partite_salvate.h": "c"
   },
   "C_Cpp.errorSquiggles": "disabled",
   "cmake.configureOnOpen": false
