@@ -12,7 +12,7 @@ int chiedere_intero(const char* messaggio, int valore_minimo, int valore_massimo
 
     colonna = y;
     while (colonna <= NUMERO_COLONNA_MASSIMA) {
-        stampare_a_video(" ");
+        printf(" ");
         colonna++;
     }
     GotoXY(x, y);
