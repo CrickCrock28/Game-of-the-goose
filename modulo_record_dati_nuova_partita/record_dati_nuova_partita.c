@@ -1,4 +1,11 @@
-#include "record_dati_nuova_partita.h"
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+typedef struct record_dati_nuova_partita {
+	int numero_giocatori;
+	int numero_caselle;
+} record_dati_nuova_partita;
 
 int leggere_numero_giocatori_record_dati_nuova_partita(record_dati_nuova_partita dati_nuova_partita) {
 	int numero_giocatori;
