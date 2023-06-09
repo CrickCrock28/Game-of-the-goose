@@ -23,32 +23,34 @@ void gestire_menu_classifica(char* NOME_FILE_MENU_CLASSIFICA,char* NOME_FILE_CLA
     return;
 }
 
-void aggiornare_classifica(char* NOME_FILE_CLASSIFICA, record_partita partita, char* MESSAGGIO_RICHIESTA_NOME_CLASSIFICATO, int NUMERO_CLASSIFICATI){
-    record_classificato classificati[NUMERO_CLASSIFICATI], classificato;
+void aggiornare_classifica(char* NOME_FILE_CLASSIFICA, record_partita partita, char* MESSAGGIO_RICHIESTA_NOME_CLASSIFICATO, int NUMERO_MASSIMO_CLASSIFICATI){
+    record_classificato classificati[NUMERO_MASSIMO_CLASSIFICATI], classificato;
     int dimensione = 0,//numero di giocatori classificati
         i = 0,//contatore dei giocatori classificati
         tiri,//numero di tiri del giocatore da classificare
         posizione;//posizione del nuovo giocatore nella classifica
-    FILE* classifica;//Puntatore al file della classifica
-    char nome[4];
+    FILE* classifica;//puntatore al file della classifica
+    char nome[LUNGHEZZA_NOME + 1];//nome del giocatore che si deve registrare
     classifica = fopen(NOME_FILE_CLASSIFICA, "rb");
     if(verificare_file_esistente(classifica)){
         fread(&dimensione, sizeof(int), 1, classifica);
-        fread(classificati[], sizeof(record_classificato), dimensione, classifica);
+        fread(classificati, sizeof(record_classificato), dimensione, classifica);
         tiri=recuperare_tiri_classificato(partita);
-        posizione = trovare_posizione_classificato(classificati, tiri, dimensione, NUMERO_CLASSIFICATI);
+        posizione = trovare_posizione_classificato(classificati, tiri, dimensione, NUMERO_MASSIMO_CLASSIFICATI);
         if(posizione != -1){
-            printf("%s",MESSAGGIO_RICHIESTA_NOME_CLASSIFICATO);
-            scanf("%s",nome);
+            printf("%s", MESSAGGIO_RICHIESTA_NOME_CLASSIFICATO);
+            scanf("%s", nome);
             classificato = scrivere_nome_record_classificato(classificato, nome);
             classificato = scrivere_tiri_record_classificato(classificato, tiri);
-            inserire_indice_classificati(classificati, dimensione, classificato, posizione);
-
+            inserire_indice_classificati(classificati, dimensione, classificato, posizione, NUMERO_MASSIMO_CLASSIFICATI);
+            dimensione = aggiornare_dimensione(dimensione, NUMERO_MASSIMO_CLASSIFICATI);
+            fwrite(&dimensione, sizeof(int), 1, classifica);
+            fwrite(classificati, sizeof(record_classificato), dimensione, classifica);
         }
     }
 }
 
-int trovare_posizione_classificato(record_classificato* classificati, int tiri, int dimensione, int NUMERO_CLASSIFICATI){
+int trovare_posizione_classificato(record_classificato* classificati, int tiri, int dimensione, int NUMERO_MASSIMO_CLASSIFICATI){
     bool posizione_trovata = false;
     int posizione = PRIMO_INDICE_ARRAY;
     while(posizione < dimensione && posizione_trovata == false){
@@ -58,14 +60,21 @@ int trovare_posizione_classificato(record_classificato* classificati, int tiri, 
             posizione_trovata = true;
         }
     }
-    if(posizione == NUMERO_CLASSIFICATI){
+    if(posizione == NUMERO_MASSIMO_CLASSIFICATI){
         posizione = -1;
     }
     return posizione;
 }
 
-void inserire_indice_classificati(record_classificato* classificati, int numero_classificati,record_classificato classificato, int indice_classificato){
+int aggiornare_dimensione(int dimensione,int NUMERO_MASSIMO_CLASSIFICATI){
+    if(dimensione < NUMERO_MASSIMO_CLASSIFICATI - 1){
+        dimensione = dimensione + 1;
+    }
+    return dimensione;
+}
 
+void inserire_indice_classificati(record_classificato* classificati, int numero_classificati,record_classificato classificato, int indice_classificato, int NUMERO_MASSIMO_CLASSIFICATI){
+    
 }
 
 int recuperare_tiri_classificato(record_partita partita){
