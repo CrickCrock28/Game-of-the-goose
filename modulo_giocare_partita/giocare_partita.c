@@ -1,5 +1,5 @@
-#include <stdio.h>
-#include <stdlib.h>
+#include "record_partita.h"
+
 #include "funzioni_accesso_da_modificare.h"
 #include "gotoxy.h"
 

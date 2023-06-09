@@ -1,13 +1,4 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-
-typedef struct {
-    int posizione;
-    int numero_turni_bloccato;
-    int bloccato;
-    int numero_dadi_lanciati;
-} record_giocatore;
+#include "record_giocatore.h"
 
 record_giocatore scrivere_posizione_record_giocatore(record_giocatore giocatore, int nuova_posizione) {
     giocatore.posizione = nuova_posizione;

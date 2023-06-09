@@ -1,11 +1,4 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-
-typedef struct {
-    int dimensione;
-    char caselle[90];
-} record_percorso;
+#include "record_percorso.h"
 
 int leggere_dimensione_record_percorso(record_percorso percorso) {
     int dimensione;

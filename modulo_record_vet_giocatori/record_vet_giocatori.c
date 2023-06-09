@@ -1,12 +1,5 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-
-#define NUMERO_GIOCATORI_MAX 4
-typedef struct {
-    record_giocatore giocatori[NUMERO_GIOCATORI_MAX];
-    int dimensione;
-} record_vet_giocatori;
+#include "record_vet_giocatori.h"
+#include "record_giocatore.h"
 
 int leggere_dimensione_record_vet_giocatori(record_vet_giocatori vet_giocatori) {
     int dimensione;

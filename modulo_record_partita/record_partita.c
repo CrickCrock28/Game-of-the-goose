@@ -1,19 +1,6 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-
+#include "record_partita.h"
 #include "record_percorso.h"
 #include "record_vet_giocatori"
-typedef struct {
-    record_percorso percorso;
-    record_vet_giocatori vet_giocatori;
-    int indice_giocatore_di_turno;
-    int terminata;
-    int ultimo_lancio_dado_1;
-    int ultimo_lancio_dado_2;
-    int nuova_partita;
-    int abbandona_partita;
-} record_partita;
 
 record_percorso leggere_percorso_record_partita(record_partita partita) {
 	record_percorso percorso;
