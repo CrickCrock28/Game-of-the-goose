@@ -1,3 +1,5 @@
+#include <stdbool.h>
+#include <stdio.h>
 #include "gestire_classifica.h"
 #include "../modulo_gestire_file/gestire_file.h"
 #include "../costanti.h"
@@ -21,19 +23,45 @@ void gestire_menu_classifica(char* NOME_FILE_MENU_CLASSIFICA,char* NOME_FILE_CLA
     return;
 }
 
-void aggiornare_classifica(char* NOME_FILE_CLASSIFICA, record_partita partita){
-    record_classificato classificati[NUMERO_CLASSIFICATI];
-    int dimensione = 0, i = 0;
-    FILE* classifica;
+void aggiornare_classifica(char* NOME_FILE_CLASSIFICA, record_partita partita, char* MESSAGGIO_RICHIESTA_NOME_CLASSIFICATO, int NUMERO_CLASSIFICATI){
+    record_classificato classificati[NUMERO_CLASSIFICATI], classificato;
+    int dimensione = 0,//numero di giocatori classificati
+        i = 0,//contatore dei giocatori classificati
+        tiri,//numero di tiri del giocatore da classificare
+        posizione;//posizione del nuovo giocatore nella classifica
+    FILE* classifica;//Puntatore al file della classifica
+    char nome[4];
     classifica = fopen(NOME_FILE_CLASSIFICA, "rb");
     if(verificare_file_esistente(classifica)){
-        fread(&dimensione, sizeof(int), 1, fd);
-        i = PRIMO_INDICE_ARRAY;
-        while(i < dimensione){
-            fread(&classificati[i], sizeof(int), 1, fd);
-            i = i + 1;
+        fread(&dimensione, sizeof(int), 1, classifica);
+        fread(classificati[], sizeof(record_classificato), dimensione, classifica);
+        tiri=recuperare_tiri_classificato(partita);
+        posizione = trovare_posizione_classificato(classificati, tiri, dimensione, NUMERO_CLASSIFICATI);
+        if(posizione != -1){
+            printf("%s",MESSAGGIO_RICHIESTA_NOME_CLASSIFICATO);
+            scanf("%s",nome);
+            classificato = scrivere_nome_record_classificato(classificato, nome);
+            classificato = scrivere_tiri_record_classificato(classificato, tiri);
+            inserire_indice_classificati(classificati, dimensione, classificato, posizione);
+
         }
     }
+}
+
+int trovare_posizione_classificato(record_classificato* classificati, int tiri, int dimensione, int NUMERO_CLASSIFICATI){
+    bool posizione_trovata = false;
+    int posizione = PRIMO_INDICE_ARRAY;
+    while(posizione < dimensione && posizione_trovata == false){
+        if(tiri > leggere_tiri_record_classificato(classificati[posizione])){
+            posizione = posizione + 1;
+        } else {
+            posizione_trovata = true;
+        }
+    }
+    if(posizione == NUMERO_CLASSIFICATI){
+        posizione = -1;
+    }
+    return posizione;
 }
 
 void inserire_indice_classificati(record_classificato* classificati, int numero_classificati,record_classificato classificato, int indice_classificato){
