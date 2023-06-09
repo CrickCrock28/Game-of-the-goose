@@ -1,4 +1,4 @@
-#include "record_partita.h"
+#include "giocare_partita.h"
 
 #include "funzioni_accesso_da_modificare.h"
 #include "gotoxy.h"
