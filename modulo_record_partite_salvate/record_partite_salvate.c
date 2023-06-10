@@ -1,5 +1,5 @@
-#include "record_menu_partite_salvate.h"
-#include "modulo_record_partita"
+#include "record_partite_salvate.h"
+#include "record_partita.h"
 
 FILE* leggere_file_partite_salvate(record_partite_salvate salvataggi){
     FILE* file_salvataggi;
