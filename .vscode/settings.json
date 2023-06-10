@@ -50,7 +50,8 @@
     "record_vettore_partite_salvate.h": "c",
     "record_menu_partite_salvate.h": "c",
     "giocare_partita.h": "c",
-    "gestire_partite_salvate.h": "c"
+    "gestire_partite_salvate.h": "c",
+    "record_partite_salvate.h": "c"
   },
   "C_Cpp.errorSquiggles": "disabled",
   "cmake.configureOnOpen": false

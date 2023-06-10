@@ -3,6 +3,7 @@
 #include "funzioni_accesso_da_modificare.h"
 #include "gestire_partite_salvate.h" 
 #include "record_vettore_partite_salvate.h"
+#include "record_partite_salvate.h"
 #include "gotoxy.h"
 
 //TUTTE LE COSTANTI SONO DA RIVEDERE
