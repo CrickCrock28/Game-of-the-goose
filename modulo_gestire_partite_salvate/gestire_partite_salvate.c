@@ -2,33 +2,6 @@
 #include <stdlib.h>
 #include "funzioni_accesso_da_modificare.h"
 #include "gestire_partite_salvate.h" 
-#include "record_vettore_partite_salvate.h"
-#include "gotoxy.h"
-
-//TUTTE LE COSTANTI SONO DA RIVEDERE
-#define NUMERO_MINIMO_CASELLE 1
-#define NUMERO_MASSIMO_CASELLE 100
-#define CASELLA_OCA '9'
-#define CASELLA_PONTE '6'
-#define CASELLA_LOCANDA '19'
-#define CASELLA_POZZO '31'
-#define CASELLA_LABIRINTO '42'
-#define CASELLA_SCHELETRO '58'
-#define CASELLA_PRIGIONE '52'
-#define CASELLA_FINALE '90'
-#define ARRIVO_LABIRINTO 999
-#define TURNI_BLOCCATO_LOCANDA 999
-#define NUMERO_MASSIMO_GIOCATORI 4
-#define PRIMO_INDICE_ARRAY 0
-#define PRIMA_POSIZIONE_PERCORSO 1
-#define PERCORSO_FILE_MENU_PARTITA "menu_partita.txt"
-#define ARRIVO_PRIMO_LANCIO_4_5 2
-#define ARRIVO_PRIMO_LANCIO_3_6 3
-#define NUMERO_MINIMO_DADO 1
-#define NUMERO_MASSIMO_DADO 6
-#define MASSIMO_PARTITE_SALVATE //DA SCRIVERE 
-#define FALSO 0
-#define VERO 1
 
 //DA RIVEDERE
 record_menu_partite_salvate gestire_menu_partite_salvate(int scelta, record_partite_salvate salvataggi, int numero_partita, const char* menu_carica_partita){
@@ -81,7 +54,7 @@ FILE* salvare_partita(FILE* file_partite_salvate, record_partita partita){
     int numero_partita_da_cancellare;
     numero_partite_salvate = leggere_da_file_binario(file_partite_salvate);
 
-if(numero_partite_salvate == MASSIMO_PARTITE_SALVATE){
+if(numero_partite_salvate == NUMERO_MASSIMO_PARTITE_SALVATE){
     stampare_partite_salvate(file_partite_salvate);
     numero_partita_da_cancellare = richiedere_intero(”Inserisci il numero della partita da cancellare per poter salvare la partita corrente (oppure 0 se non vuoi salvare): ”, 0, 5, (numero_partite_salvate*2+1), 0);
     if(numero_partita_da_cancellare != 0){
@@ -108,13 +81,13 @@ int stampare_partite_salvate(FILE* file_partite_salvate){
     i = PRIMO_INDICE_ARRAY;
     
     while(i<=numero_partite_salvate){
-        elemento di vet_partite_salvate in posizione i = leggere_da_file_binario(file_partite_salvate);
+        leggere_partita_record_vettore_partite_salvate(file_partite_salvate, i)= leggere_da_file_binario(file_partite_salvate);
         i=i+1;
         }
         
     numero_partita = PRIMO_INDICE_ARRAY;
     
-    while(numero_partita ≤ NUMERO_MASSIMO_PARTITE_SALVATE){
+    while(numero_partita <= NUMERO_MASSIMO_PARTITE_SALVATE){
         stampare_a_video(”Partita “);
         stampare_a_video(numero_partita);
         stampare_a_video(”:\n”);
