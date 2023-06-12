@@ -44,12 +44,14 @@ void gestire_menu_classifica(char* NOME_FILE_MENU_CLASSIFICA,char* NOME_FILE_CLA
 
 void aggiornare_classifica(char* NOME_FILE_CLASSIFICA, record_partita partita, char* MESSAGGIO_RICHIESTA_NOME_CLASSIFICATO, int NUMERO_MASSIMO_CLASSIFICATI){
     record_classificato classificati[NUMERO_MASSIMO_CLASSIFICATI], classificato;
-    int dimensione = 0,//numero di giocatori classificati
-        i = 0,//contatore dei giocatori classificati
+    int dimensione,//numero di giocatori classificati
+        i,//contatore dei giocatori classificati
         tiri,//numero di tiri del giocatore da classificare
         posizione;//posizione del nuovo giocatore nella classifica
     FILE* classifica;//puntatore al file contenente la classifica
     char nome[LUNGHEZZA_NOME + 1];//nome del giocatore che si deve registrare
+    dimensione = 0;
+    i = 0;
     //aprire il file binario in modalità lettura
     classifica = fopen(NOME_FILE_CLASSIFICA, "rb");
     if (verificare_file_esistente(classifica) == true){
