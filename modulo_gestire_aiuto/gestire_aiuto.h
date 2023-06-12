@@ -1,5 +1,6 @@
 #ifndef GESTIRE_AIUTO_H_
 #define GESTIRE_AIUTO_H_
+
 #include "../costanti.h"
 #include "../modulo_gestire_file/gestire_file.h"
 #define STAMPARE_REGOLE 1
