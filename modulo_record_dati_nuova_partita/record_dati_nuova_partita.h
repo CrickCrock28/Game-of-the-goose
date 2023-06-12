@@ -7,8 +7,8 @@ typedef struct record_dati_nuova_partita {
 } record_dati_nuova_partita;
 
 int leggere_numero_giocatori_record_dati_nuova_partita(record_dati_nuova_partita dati_nuova_partita);
-void scrivere_numero_giocatori_record_dati_nuova_partita(record_dati_nuova_partita* dati_nuova_partita, int numero_giocatori);
+record_dati_nuova_partita scrivere_numero_giocatori_record_dati_nuova_partita(record_dati_nuova_partita dati_nuova_partita, int numero_giocatori);
 int leggere_numero_caselle_record_dati_nuova_partita(record_dati_nuova_partita dati_nuova_partita);
-void scrivere_numero_caselle_record_dati_nuova_partita(record_dati_nuova_partita* dati_nuova_partita, int numero_caselle);
+record_dati_nuova_partita scrivere_numero_caselle_record_dati_nuova_partita(record_dati_nuova_partita dati_nuova_partita, int numero_caselle);
 
 #endif /* RECORD_DATI_NUOVA_PARTITA_H_ */
