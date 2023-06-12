@@ -88,8 +88,10 @@ void aggiornare_classifica(char* NOME_FILE_CLASSIFICA, record_partita partita, c
 }
 
 int trovare_posizione_vincitore(record_classificato* classificati, int tiri, int dimensione, int NUMERO_MASSIMO_CLASSIFICATI){
-    bool posizione_trovata = false;//posizione in cui inserire il vincitore nella classifica trovata
-    int posizione = PRIMO_INDICE_ARRAY;//posizione in cui si verifica se il vincitore può essere inserito
+    bool posizione_trovata;//posizione in cui inserire il vincitore nella classifica trovata
+    int posizione;//posizione in cui si verifica se il vincitore può essere inserito
+    posizione_trovata = false;
+    posizione = PRIMO_INDICE_ARRAY;
     while (posizione < dimensione && posizione_trovata == false){
         //controllare se i tiri del vincitore sono maggiori dei tiri del classificato in una posizione
         if (tiri > leggere_tiri_record_classificato(classificati[posizione])){
@@ -136,9 +138,11 @@ void inserire_vincitore_in_classifica(record_classificato* classificati, int num
 }
 
 int recuperare_tiri_vincitore(record_partita partita){
-    int i = PRIMO_INDICE_ARRAY,//contatore del numero di giocatori analizzati
+    int i,//contatore del numero di giocatori analizzati
     tiri;//tiri effettuati dal vincitore
-    bool trovato = false;//indica se il gicoatore vincitore è stato trovato
+    bool trovato;//indica se il gicoatore vincitore è stato trovato
+    trovato = false;
+    i = PRIMO_INDICE_ARRAY;
     while (i < NUMERO_MASSIMO_GIOCATORI && trovato == false){
         //controllare se la posizione del giocatore è uguale a quella della casella finale del percorso
         if (leggere_posizione_record_giocatore(leggere_giocatore_record_vet_giocatori(leggere_vet_giocatori_record_partita(partita), i)) 
@@ -166,10 +170,10 @@ record_classificato copiare_record_classificato(record_classificato classificato
 
 void stampare_classifica(char* NOME_FILE_CLASSIFICA,char* TITOLO_STAMPA_CLASSIFICA,char* NUMERO_POSTO_CLASSIFICA){
     record_classificato classificati[NUMERO_MASSIMO_CLASSIFICATI], classificato;
-    int i = PRIMO_INDICE_ARRAY,//contatore dei giocatori classificati
+    int i,//contatore dei giocatori classificati
     numero_classificati;//numero di giocatori classificati
     FILE* classifica;//puntatore al file contenente la classifica
-
+    i = PRIMO_INDICE_ARRAY;
     //aprire il file binario in modalità lettura
     classifica = fopen(NOME_FILE_CLASSIFICA, "rb");
 
