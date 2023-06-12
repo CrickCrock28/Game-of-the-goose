@@ -7,7 +7,7 @@ typedef struct record_classificato{
 } record_classificato;
 
 void leggere_nome_giocatore_record_classificato(record_classificato classificato);
-record_classificato scrivere_nome_gicoatore_record_classificato(record_classificato classificato, char* nome);
+record_classificato scrivere_nome_giocatore_record_classificato(record_classificato classificato, char* nome);
 int leggere_tiri_record_classificato(record_classificato classificato);
 record_classificato scrivere_tiri_record_classificato(record_classificato classificato, int tiri);
 
