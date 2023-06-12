@@ -26,7 +26,7 @@ void gestire_menu_classifica(char* NOME_FILE_MENU_CLASSIFICA,char* NOME_FILE_CLA
             stampare_file_di_testo(menu_classifica);
             //chiedere e attendere l'inserimento della scelta tra le opzioni del menù
             scelta = chiedere_intero(MESSAGGIO_SCELTA, 0, 1, 7, 0);
-            if(scelta = 1){
+            if(scelta == 1){
                 //stampare a video la classifica
                 stampare_classifica(classifica);
             }
@@ -46,7 +46,7 @@ void aggiornare_classifica(char* NOME_FILE_CLASSIFICA, record_partita partita, c
     char nome[LUNGHEZZA_NOME + 1];//nome del giocatore che si deve registrare
     //aprire il file binario in modalità lettura
     classifica = fopen(NOME_FILE_CLASSIFICA, "rb");
-    if(verificare_file_esistente(classifica)){
+    if(verificare_file_esistente(classifica) == true){
         // leggere dal file la classifica
         fread(&dimensione, sizeof(int), 1, classifica);
         fread(classificati, sizeof(record_classificato), dimensione, classifica);
@@ -130,12 +130,13 @@ int recuperare_tiri_vincitore(record_partita partita){
     int i = PRIMO_INDICE_ARRAY,//contatore del numero di giocatori analizzati
     tiri;//tiri effettuati dal vincitore
     bool trovato = false;//indica se il gicoatore vincitore è stato trovato
-    while(i < NUMERO_MASSIMO_GIOCATORI && trovato == false){
+    while (i < NUMERO_MASSIMO_GIOCATORI && trovato == false){
         //controllare se la posizione del giocatore è uguale a quella della casella finale del percorso
-        if(leggere_posizione_record_giocatore(leggere_giocatore_record_vet_giocatori(leggere_vet_giocatori_record_partita(partita), i)) 
+        if (leggere_posizione_record_giocatore(leggere_giocatore_record_vet_giocatori(leggere_vet_giocatori_record_partita(partita), i)) 
         == leggere_dimensione_record_percorso(leggere_percorso_record_partita(partita))){
             trovato = true;
-        } else {
+        }
+        else {
             i = i + 1;
         }
     }
@@ -163,7 +164,7 @@ void stampare_classifica(char* NOME_FILE_CLASSIFICA){
     //aprire il file binario in modalità lettura
     classifica = fopen(NOME_FILE_CLASSIFICA, "rb");
 
-    if(verificare_file_esistente(classifica)){
+    if(verificare_file_esistente(classifica) == true){
         // leggere dal file la classifica
         fread(&numero_classificati, sizeof(int), 1, classifica);
         fread(classificati, sizeof(record_classificato), numero_classificati, classifica);
