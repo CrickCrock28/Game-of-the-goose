@@ -1,13 +1,6 @@
 #include <stdbool.h>
 #include <stdio.h>
 #include "gestire_classifica.h"
-#include "../modulo_gestire_file/gestire_file.h"
-#include "../costanti.h"
-#include "../modulo_creare_nuova_partita/creare_nuova_partita.h"
-#include "../modulo_record_giocatore/record_giocatore.h"
-#include "../modulo_record_vet_giocatori/record_vet_giocatori.h"
-#include "../modulo_record_partita/record_partita.h"
-#include "../modulo_record_percorso/record_percorso.h"
 #define NUMERO_MASSIMO_CLASSIFICATI 10
 #define TIRI_CLASSIFICATO_FINE -1
 #define TITOLO_STAMPA_CLASSIFICA "Giocatori classificati:\n\0"
@@ -15,85 +8,88 @@
 #define NOME "nome: \0"
 #define TIRI "tiri: \0"
 
-void gestire_menu_classifica(char* NOME_FILE_MENU_CLASSIFICA,char* NOME_FILE_CLASSIFICA,char* STAMPARE_CLASSIFICA,char* USCIRE) {
-    int scelta;//scelta dell'utente tra le opzioni del menù
-    FILE* classifica,//puntatore al file binario contenente la classifica
-    *menu_classifica;//puntatore al file di testo contenente il menù relativo alla classifica
+void gestire_menu_classifica(char* NOME_FILE_MENU_CLASSIFICA, char* NOME_FILE_CLASSIFICA) {
+    int scelta; // scelta dell'utente tra le opzioni del menù
+    FILE* classifica, // puntatore al file binario contenente la classifica
+    *menu_classifica; // puntatore al file di testo contenente il menù relativo alla classifica
 
-    //apertura del file binario contenente la classifica in modalità lettura
+    // apertura del file binario contenente la classifica in modalità lettura
     classifica = fopen(NOME_FILE_CLASSIFICA, "rb");
-    //apertura del file di testo contenente il menù relativo alla classifica in modalità lettura
+    // apertura del file di testo contenente il menù relativo alla classifica in modalità lettura
     menu_classifica = fopen(NOME_FILE_MENU_CLASSIFICA, "r");
 
     if (verificare_file_esistente(classifica) == true && verificare_file_esistente(menu_classifica) == true) {
         do
         {
-            //stampare il menù
+            // stampare il menù
             stampare_file_di_testo(menu_classifica);
-            //chiedere e attendere l'inserimento della scelta tra le opzioni del menù
+            // chiedere e attendere l'inserimento della scelta tra le opzioni del menù
             scelta = chiedere_intero(MESSAGGIO_SCELTA, 0, 1, 7, 0);
             if (scelta == STAMPARE_CLASSIFICA) {
-                //stampare a video la classifica
+                // stampare a video la classifica
                 stampare_classifica(classifica);
             }
+            rewind(classifica);
+            rewind(menu_classifica);
         } while (scelta != USCIRE);
     }
-
+    fclose(classifica);
+    fclose(menu_classifica);
     return;
 }
 
-void aggiornare_classifica(char* NOME_FILE_CLASSIFICA, record_partita partita, char* MESSAGGIO_RICHIESTA_NOME_CLASSIFICATO, int NUMERO_MASSIMO_CLASSIFICATI) {
+void aggiornare_classifica(char* NOME_FILE_CLASSIFICA, record_partita partita) {
     record_classificato classificati[NUMERO_MASSIMO_CLASSIFICATI], classificato;
-    int dimensione,//numero di giocatori classificati
-        i,//contatore dei giocatori classificati
-        tiri,//numero di tiri del giocatore da classificare
-        posizione;//posizione del nuovo giocatore nella classifica
-    FILE* classifica;//puntatore al file contenente la classifica
-    char nome[LUNGHEZZA_NOME + 1];//nome del giocatore che si deve registrare
+    int dimensione, // numero di giocatori classificati
+        i, // contatore dei giocatori classificati
+        tiri, // numero di tiri del giocatore da classificare
+        posizione; // posizione del nuovo giocatore nella classifica
+    FILE* classifica; // puntatore al file contenente la classifica
+    char nome[LUNGHEZZA_NOME + 1]; // nome del giocatore che si deve registrare
     dimensione = 0;
     i = 0;
-    //aprire il file binario in modalità lettura
+    // aprire il file binario in modalità lettura
     classifica = fopen(NOME_FILE_CLASSIFICA, "rb");
     if (verificare_file_esistente(classifica) == true) {
-        // leggere dal file la classifica
+        //  leggere dal file la classifica
         fread(&dimensione, sizeof(int), 1, classifica);
         fread(classificati, sizeof(record_classificato), dimensione, classifica);
-        // chiudere il file
+        //  chiudere il file
         fclose(classifica);
-        // recuperare il numero di tiri del vincitore potenzialmente classificato
+        //  recuperare il numero di tiri del vincitore potenzialmente classificato
         tiri=recuperare_tiri_vincitore(partita);
-        //controllare se il vincitore ha eseguito un numero di tiri tale che possa entrare nella classifica
-        posizione = trovare_posizione_vincitore(classificati, tiri, dimensione, NUMERO_MASSIMO_CLASSIFICATI);
+        // controllare se il vincitore ha eseguito un numero di tiri tale che possa entrare nella classifica
+        posizione = trovare_posizione_vincitore(classificati, tiri, dimensione);
 
         if (posizione != -1) {
-            //chiedere il nome del nuovo classificato
+            // chiedere il nome del nuovo classificato
             printf("%s", MESSAGGIO_RICHIESTA_NOME_CLASSIFICATO);
             scanf("%s", nome);
-            // scrivere il giocatore classificato come giocatore
+            //  scrivere il giocatore classificato come giocatore
             classificato = scrivere_nome_record_classificato(classificato, nome);
             classificato = scrivere_tiri_record_classificato(classificato, tiri);
-            //inserire il giocatore nella classifica
-            inserire_vincitore_in_classifica(classificati, dimensione, classificato, posizione, NUMERO_MASSIMO_CLASSIFICATI);
-            //aggiornare il numero di classificati
-            dimensione = aggiornare_dimensione_classifica(dimensione, NUMERO_MASSIMO_CLASSIFICATI);
-            //aprire il file binario in modalità scrittura
+            // inserire il giocatore nella classifica
+            inserire_vincitore_in_classifica(classificati, dimensione, classificato, posizione);
+            // aggiornare il numero di classificati
+            dimensione = aggiornare_dimensione_classifica(dimensione);
+            // aprire il file binario in modalità scrittura
             classifica = fopen(NOME_FILE_CLASSIFICA, "wb");
-            // scrivere il numero di classificati nel file
+            //  scrivere il numero di classificati nel file
             fwrite(&dimensione, sizeof(int), 1, classifica);
             fwrite(classificati, sizeof(record_classificato), dimensione, classifica);
         }
     }
-
+    fclose(classifica);
     return;
 }
 
-int trovare_posizione_vincitore(record_classificato* classificati, int tiri, int dimensione, int NUMERO_MASSIMO_CLASSIFICATI) {
-    bool posizione_trovata;//posizione in cui inserire il vincitore nella classifica trovata
-    int posizione;//posizione in cui si verifica se il vincitore può essere inserito
+int trovare_posizione_vincitore(record_classificato* classificati, int tiri, int dimensione) {
+    bool posizione_trovata; // posizione in cui inserire il vincitore nella classifica trovata
+    int posizione; // posizione in cui si verifica se il vincitore può essere inserito
     posizione_trovata = false;
     posizione = PRIMO_INDICE_ARRAY;
     while (posizione < dimensione && posizione_trovata == false) {
-        //controllare se i tiri del vincitore sono maggiori dei tiri del classificato in una posizione
+        // controllare se i tiri del vincitore sono maggiori dei tiri del classificato in una posizione
         if (tiri > leggere_tiri_record_classificato(classificati[posizione])) {
             posizione = posizione + 1;
         } 
@@ -107,8 +103,8 @@ int trovare_posizione_vincitore(record_classificato* classificati, int tiri, int
     return posizione;
 }
 
-int aggiornare_dimensione_classifica(int dimensione,int NUMERO_MASSIMO_CLASSIFICATI) {
-    //controllare se il numero dei classificati è inferiore a 10
+int aggiornare_dimensione_classifica(int dimensione) {
+    // controllare se il numero dei classificati è inferiore a 10
     if (dimensione < NUMERO_MASSIMO_CLASSIFICATI - 1) {
         dimensione = dimensione + 1;
     }
@@ -116,9 +112,9 @@ int aggiornare_dimensione_classifica(int dimensione,int NUMERO_MASSIMO_CLASSIFIC
     return dimensione;
 }
 
-void inserire_vincitore_in_classifica(record_classificato* classificati, int numero_classificati,record_classificato classificato, int indice_classificato, int NUMERO_MASSIMO_CLASSIFICATI) {
-        int i;//contatore del numero di giocatori classificati
-        //controllare se il numero dei classificati è già di 10
+void inserire_vincitore_in_classifica(record_classificato* classificati, int numero_classificati, record_classificato classificato, int indice_classificato, int NUMERO_MASSIMO_CLASSIFICATI) {
+        int i; // contatore del numero di giocatori classificati
+        // controllare se il numero dei classificati è già di 10
         if (numero_classificati == NUMERO_MASSIMO_CLASSIFICATI - 1) {
             i = numero_classificati
         } 
@@ -127,24 +123,24 @@ void inserire_vincitore_in_classifica(record_classificato* classificati, int num
         }
 
         while (i > indice_classificato) {
-            //copiare il classificato di un posto in classifica e lo inserisce nel posto subito inferiore
+            // copiare il classificato di un posto in classifica e lo inserisce nel posto subito inferiore
             classificati[i] = inserire_record_classificato(classificati[i], classificati[i - 1]);
             i = i - 1;
         }
-        //inserire il vincitore nella classifica
+        // inserire il vincitore nella classifica
         classificati[i] = inserire_record_classificato(classificati[i], classificato);
 
         return;
 }
 
 int recuperare_tiri_vincitore(record_partita partita) {
-    int i,//contatore del numero di giocatori analizzati
-    tiri;//tiri effettuati dal vincitore
-    bool trovato;//indica se il gicoatore vincitore è stato trovato
+    int i, // contatore del numero di giocatori analizzati
+    tiri; // tiri effettuati dal vincitore
+    bool trovato; // indica se il gicoatore vincitore è stato trovato
     trovato = false;
     i = PRIMO_INDICE_ARRAY;
     while (i < NUMERO_MASSIMO_GIOCATORI && trovato == false) {
-        //controllare se la posizione del giocatore è uguale a quella della casella finale del percorso
+        // controllare se la posizione del giocatore è uguale a quella della casella finale del percorso
         if (leggere_posizione_record_giocatore(leggere_giocatore_record_vet_giocatori(leggere_vet_giocatori_record_partita(partita), i)) 
         == leggere_dimensione_record_percorso(leggere_percorso_record_partita(partita))) {
             trovato = true;
@@ -153,51 +149,48 @@ int recuperare_tiri_vincitore(record_partita partita) {
             i = i + 1;
         }
     }
-    //copiare il numero dei tiri del giocatore vincitore
+    // copiare il numero dei tiri del giocatore vincitore
     tiri = leggere_numero_dadi_lanciati_record_giocatore(leggere_giocatore_record_vet_giocatori(leggere_vet_giocatori_record_partita(partita), i));
     
     return tiri;
 }
 
 record_classificato copiare_record_classificato(record_classificato classificato_con_dati_da_copiare, record_classificato classificato_con_dati_da_inserire) {
-    //copia il nome di un classificato nell'altro classificato
+    // copia il nome di un classificato nell'altro classificato
     classificato_con_dati_da_copiare = scrivere_nome_giocatore_record_classificato(classificato_con_dati_da_copiare, leggere_nome_giocatore_record_classifica (classificato_con_dati_da_inserire));
-    //copia il numero di tiri di un classificato
+    // copia il numero di tiri di un classificato
     classificato_con_dati_da_copiare = scrivere_tiri_record_classifica(classificato_con_dati_da_copiare, leggere_tiri_record_classifica (classificato_con_dati_da_inserire));
 
     return classificato_con_dati_da_copiare;
 }
 
-void stampare_classifica(char* NOME_FILE_CLASSIFICA,char* TITOLO_STAMPA_CLASSIFICA,char* NUMERO_POSTO_CLASSIFICA) {
+void stampare_classifica(FILE* classifica) {
     record_classificato classificati[NUMERO_MASSIMO_CLASSIFICATI], classificato;
-    int i,//contatore dei giocatori classificati
-    numero_classificati;//numero di giocatori classificati
-    FILE* classifica;//puntatore al file contenente la classifica
+    int i, // contatore dei giocatori classificati
+    numero_classificati; // numero di giocatori classificati
+    FILE* classifica; // puntatore al file contenente la classifica
     i = PRIMO_INDICE_ARRAY;
-    //aprire il file binario in modalità lettura
-    classifica = fopen(NOME_FILE_CLASSIFICA, "rb");
 
     if (verificare_file_esistente(classifica) == true) {
-        // leggere dal file la classifica
+        //  leggere dal file la classifica
         fread(&numero_classificati, sizeof(int), 1, classifica);
         fread(classificati, sizeof(record_classificato), numero_classificati, classifica);
-        
         printf("%s", TITOLO_STAMPA_CLASSIFICA);
         while (i < numero_classificati) {
-            //stampare un giocatore di una posizione della classifica
+            // stampare un giocatore di una posizione della classifica
             printf("%s%d: ", NUMERO_POSTO_CLASSIFICA, i + 1);
             stampare_giocatore_classificato(classificati[i]);
             i = i + 1;
         }
     }
-
+    fclose(classifica);
     return;
 }
 
-void stampare_giocatore_classificato(record_classificato giocatore_classificato,char* NOME,char* TIRI) {
-    //stampare il nome di un classificato
+void stampare_giocatore_classificato(record_classificato giocatore_classificato) {
+    // stampare il nome di un classificato
     printf("%s%s ,", NOME, leggere_nome_giocatore_record_classificato(giocatore_classificato));
-    //stampare il numero di tiri di un classificato
+    // stampare il numero di tiri di un classificato
     printf("%s%d\n", TIRI, leggere_tiri_record_classificato(giocatore_classificato));
 
     return;
