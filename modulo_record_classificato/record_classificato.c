@@ -5,7 +5,7 @@ void leggere_nome_giocatore_record_classificato(record_classificato classificato
     return;
 }
 
-record_classificato scrivere_nome_gicoatore_record_classificato(record_classificato classificato, char* nome){
+record_classificato scrivere_nome_giocatore_record_classificato(record_classificato classificato, char* nome){
 
 }
 
