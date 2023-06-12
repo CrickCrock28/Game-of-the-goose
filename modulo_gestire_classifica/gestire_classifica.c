@@ -11,7 +11,7 @@
 #define NUMERO_MASSIMO_CLASSIFICATI 10
 #define TIRI_CLASSIFICATO_FINE -1
 #define TITOLO_STAMPA_CLASSIFICA "Giocatori classificati:\n\0"
-#define NUMERO_POSTO_CLASSIFICA "“Posto numero\0”"
+#define NUMERO_POSTO_CLASSIFICA "Posto numero\0"
 #define NOME "nome: \0"
 #define TIRI "tiri: \0"
 
