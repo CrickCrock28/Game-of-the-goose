@@ -29,7 +29,7 @@
 #define FALSO 0
 #define VERO 1
 
-record_menu_partite_salvate gestire_menu_partite_salvate(int scelta, record_partite_salvate salvataggi, int numero_partita, const char* menu_carica_partita);
+record_partite_salvate gestire_menu_partite_salvate(int scelta, record_partite_salvate salvataggi, int numero_partita, const char* menu_carica_partita);
 record_partita leggere_partita_scelta(FILE* file_partite_salvate, int numero_partite);
 FILE* salvare_partita(FILE* file_partite_salvate, record_partita partita);
 int stampare_partite_salvate(FILE* file_partite_salvate); 

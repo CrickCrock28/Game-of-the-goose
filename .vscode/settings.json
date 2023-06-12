@@ -51,7 +51,11 @@
     "record_menu_partite_salvate.h": "c",
     "giocare_partita.h": "c",
     "gestire_partite_salvate.h": "c",
+<<<<<<< Updated upstream
     "record_partite_salvate.h": "c"
+=======
+    "record_partita.h": "c"
+>>>>>>> Stashed changes
   },
   "C_Cpp.errorSquiggles": "disabled",
   "cmake.configureOnOpen": false

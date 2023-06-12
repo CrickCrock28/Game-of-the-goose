@@ -1,10 +1,9 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "funzioni_accesso_da_modificare.h"
 #include "gestire_partite_salvate.h" 
 
 //DA RIVEDERE
-record_menu_partite_salvate gestire_menu_partite_salvate(int scelta, record_partite_salvate salvataggi, int numero_partita, const char* menu_carica_partita){
+record_partite_salvate gestire_menu_partite_salvate(int scelta, record_partite_salvate salvataggi, int numero_partita, const char* menu_carica_partita){
     int numero_partite_salvate;
     record_partita partita_scelta;
     FILE* file_partite_salvate;
@@ -92,7 +91,7 @@ int stampare_partite_salvate(FILE* file_partite_salvate){
         stampare_a_video(numero_partita);
         stampare_a_video(”:\n”);
         stampare_a_video(”Dimensione del percorso: ”);
-        stampare_a_video(leggere_dimensione_record_percorso(leggere_percorso_record_partita(elemento di vet_partite salvate in posizione numero_partita)));
+        stampare_a_video(leggere_dimensione_record_percorso(leggere_percorso_record_partita(leggere_partita_record_vettore_partite_salvate(file_partite_salvate, numero_partita))));
         stampare_a_video(”\n”);
         numero_giocatore = PRIMO_INDICE_ARRAY;
         
@@ -122,11 +121,11 @@ FILE* cancellare_partita_da_file(FILE* file_partite_salvate, int numero_partita)
     i = PRIMO_INDICE_ARRAY;
     
     while(i<=numero_partite_salvate){
-    elemento di vet_partite_salvate in posizione i = leggere_da_file_binario(file_partite_salvate);
+    leggere_partita_record_vettore_partite_salvate(file_partite_salvate, i) = leggere_da_file_binario(file_partite_salvate);
     i=i+1;
     }
     
-    vet_partite_salvate = rimuovere_partita_da_vettore(vet_partite_salvate, NUMERO_MASSIMO_PARTITE_SALVATE, numero_partita);
+    file_partite_salvate = rimuovere_partita_da_vettore(vet_partite_salvate, NUMERO_MASSIMO_PARTITE_SALVATE, numero_partita);
     i = PRIMO_INDICE_ARRAY;
     
     while(i<=numero_partite_salvate){
