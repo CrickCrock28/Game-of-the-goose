@@ -25,7 +25,7 @@ void gestire_menu_classifica(char* NOME_FILE_MENU_CLASSIFICA,char* NOME_FILE_CLA
     //apertura del file di testo contenente il menù relativo alla classifica in modalità lettura
     menu_classifica = fopen(NOME_FILE_MENU_CLASSIFICA, "r");
 
-    if (verificare_file_esistente(classifica) && verificare_file_esistente(menu_classifica)){
+    if (verificare_file_esistente(classifica) == true && verificare_file_esistente(menu_classifica) == true){
         do
         {
             //stampare il menù
