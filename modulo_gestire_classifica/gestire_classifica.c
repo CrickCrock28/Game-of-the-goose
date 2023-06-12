@@ -122,8 +122,7 @@ void inserire_vincitore_in_classifica(record_classificato* classificati, int num
             i = numero_classificati + 1;
         }
 
-        while (i > indice_classificato)
-        {
+        while (i > indice_classificato){
             //copiare il classificato di un posto in classifica e lo inserisce nel posto subito inferiore
             classificati[i] = inserire_record_classificato(classificati[i], classificati[i - 1]);
             i = i - 1;
@@ -178,8 +177,7 @@ void stampare_classifica(char* NOME_FILE_CLASSIFICA,char* TITOLO_STAMPA_CLASSIFI
         fread(classificati, sizeof(record_classificato), numero_classificati, classifica);
         
         printf("%s", TITOLO_STAMPA_CLASSIFICA);
-        while (i < numero_classificati)
-        {
+        while (i < numero_classificati){
             //stampare un giocatore di una posizione della classifica
             printf("%s%d: ", NUMERO_POSTO_CLASSIFICA, i + 1);
             stampare_giocatore_classificato(classificati[i]);
