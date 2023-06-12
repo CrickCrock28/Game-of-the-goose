@@ -3,12 +3,12 @@
 
 #include "../costanti.h"
 #include "../modulo_record_classificato/record_classificato.h"
-#define NUMERO_MASSIMO_CLASSIFICATI 10
-#define TIRI_CLASSIFICATO_FINE -1
 #define MESSAGGIO_RICHIESTA_NOME_CLASSIFICATO "Inserire il nome del nuovo classificato(3 caratteri)\nInserisci:\0"
+#define STAMPARE_CLASSIFICA 1
+#define USCIRE 2
 
 //gestisce il menù della classifica 
-void gestire_menu_classifica(char* NOME_FILE_MENU_CLASSIFICA,char* NOME_FILE_CLASSIFICA);
+void gestire_menu_classifica(char* NOME_FILE_MENU_CLASSIFICA,char* NOME_FILE_CLASSIFICA,char* STAMPARE_CLASSIFICA,char* USCIRE);
 //aggiorna la classifica successivamente al termine di una partita
 void aggiornare_classifica(char* NOME_FILE_CLASSIFICA, record_partita partita, char* MESSAGGIO_RICHIESTA_NOME_CLASSIFICATO, int NUMERO_MASSIMO_CLASSIFICATI);
 //trova la posizione (se cè) nella quale il giocatore che ha appena vinto la partita può essere inserito
@@ -22,8 +22,8 @@ int recuperare_tiri_vincitore(record_partita partita);
 //copia un record classificato in un altro
 record_classificato copiare_record_classificato(record_classificato classificato_con_dati_da_copiare, record_classificato classificato_con_dati_da_inserire);
 //stampa la classifica
-void stampare_classifica(char* NOME_FILE_CLASSIFICA);
+void stampare_classifica(char* NOME_FILE_CLASSIFICA,char* TITOLO_STAMPA_CLASSIFICA,char* NUMERO_POSTO_CLASSIFICA);
 //stampa i dati di un singolo giocatore della classifica 
-void stampare_giocatore_classificato(record_classificato giocatore_classificato);
+void stampare_giocatore_classificato(record_classificato giocatore_classificato,char* NOME,char* TIRI);
 
 #endif /* GESTIRE_CLASSIFICA_H_ */
