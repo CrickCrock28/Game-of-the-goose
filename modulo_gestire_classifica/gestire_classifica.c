@@ -33,6 +33,7 @@ void gestire_menu_classifica(char* NOME_FILE_MENU_CLASSIFICA, char* NOME_FILE_CL
             rewind(menu_classifica);
         } while (scelta != USCIRE);
     }
+    // Chiudere i file precedentemente aperti
     fclose(classifica);
     fclose(menu_classifica);
     return;
@@ -79,6 +80,7 @@ void aggiornare_classifica(char* NOME_FILE_CLASSIFICA, record_partita partita) {
             fwrite(classificati, sizeof(record_classificato), dimensione, classifica);
         }
     }
+    // Chiudere il file binario della classifica precedentemente aperto
     fclose(classifica);
     return;
 }
@@ -183,6 +185,7 @@ void stampare_classifica(FILE* classifica) {
             i = i + 1;
         }
     }
+    // Chiudere il file binario della classifica precedentemente aperto
     fclose(classifica);
     return;
 }

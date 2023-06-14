@@ -29,6 +29,7 @@ void gestire_menu_aiuto(char* NOME_FILE_MENU_AIUTO, char* NOME_FILE_REGOLE_GIOCO
             rewind(manuale_gioco);
         } while (scelta != USCIRE);
     }
+    //Chiudere i file di testo precedentemente aperti
     fclose(menu_aiuto);
     fclose(manuale_gioco);
     fclose(regole_gioco);
