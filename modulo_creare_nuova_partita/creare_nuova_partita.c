@@ -3,7 +3,6 @@
 #include <stdbool.h>
 
 #define NUMERO_MINIMO_GIOCATORI	2 // Numero minimo di giocatori
-#define NUMERO_MASSIMO_GIOCATORI 4 // Numero massimo di giocatori
 #define NUMERO_MINIMO_CASELLE 50 // Numero minimo di caselle
 #define NUMERO_MASSIMO_CASELLE 90 // Numero massimo di caselle
 #define NUMERO_PREDEFINITO_GIOCATORI 2 // Numero di giocatori scelto dal programma per la nuova partita

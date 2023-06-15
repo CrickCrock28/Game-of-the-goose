@@ -2,6 +2,7 @@
 #define CREARE_NUOVA_PARTITA_H_
 
 #include "record_dati_nuova_partita.h"
+#define NUMERO_MASSIMO_GIOCATORI 4 // Numero massimo di giocatori
 
 void chiedere_dati_nuova_partita(record_dati_nuova_partita* dati_nuova_partita);
 void creare_nuova_partita(record_dati_nuova_partita dati_nuova_partita, record_partita* partita);

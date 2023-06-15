@@ -1,8 +1,6 @@
 #ifndef GIOCARE_PARTITA_H
 #define GIOCARE_PARTITA_H
 
-#define NUMERO_MASSIMO_GIOCATORI 4
-
 char tipo_casella(record_partita partita, int indice_giocatore);
 record_partita applicare_effetto_casella_labirinto(record_partita partita, int indice_giocatore);
 record_partita applicare_effetto_casella_prigione(record_partita partita, int indice_giocatore);
