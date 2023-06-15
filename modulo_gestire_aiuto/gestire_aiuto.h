@@ -3,6 +3,7 @@
 
 #include "../costanti.h"
 #include "../modulo_gestire_file/gestire_file.h"
+#include "../modulo_azioni_semplici/azioni_semplici.h"
 #define STAMPARE_REGOLE 1
 #define STAMPARE_MANUALE 2
 
