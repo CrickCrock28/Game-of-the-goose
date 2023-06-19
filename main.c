@@ -12,6 +12,8 @@
 #include "gestire_file.h"
 #include "gestire_partite_salvate.h"
 #include "giocare_partita.h"
+#include "stdlib.h"
+#include "stdio.h"
 
 
 #define NOME_FILE_MENU_NUOVA_PARTITA "menu_nuova_partita.txt\0"
