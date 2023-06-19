@@ -2,6 +2,8 @@
 #define RECORD_PARTITE_SALVATE_H_
 
 #include "record_partita.h"
+#include "stdio.h"
+#include "stdlib.h"
 
 typedef struct record_partite_salvate{
     FILE* file_partite_salvate;

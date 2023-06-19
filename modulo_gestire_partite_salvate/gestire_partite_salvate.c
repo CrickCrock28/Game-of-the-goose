@@ -1,6 +1,6 @@
 #include "gestire_partite_salvate.h" 
 
-//DA RIVEDERE
+
 record_partite_salvate gestire_menu_partite_salvate(int scelta, record_partite_salvate salvataggi, int numero_partita, const char* menu_carica_partita){
     int numero_partite_salvate;
     record_partita partita_scelta;

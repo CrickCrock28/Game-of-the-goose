@@ -6,7 +6,7 @@ FILE* leggere_file_partite_salvate(record_partite_salvate salvataggi){
     return file_salvataggi;
 }
 
-void scrivere_file_partite_salvate(record_partite_salvate* salvataggi, FILE file_salvataggi){
+void scrivere_file_partite_salvate(record_partite_salvate* salvataggi, FILE* file_salvataggi){
     salvataggi.file_partite_salvate = file_salvataggi;
 }
 
