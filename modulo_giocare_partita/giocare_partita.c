@@ -1,25 +1,5 @@
 #include "giocare_partita.h"
 
-#define PERCORSO_FILE_MENU_PARTITA "menu_partita.txt" //DA RIVEDEREEEEEEEE
-#define NUMERO_MASSIMO_CASELLE 90
-#define CASELLA_OCA	'O'
-#define CASELLA_PONTE 'T'
-#define CASELLA_LOCANDA	'D'
-#define CASELLA_POZZO 'Z'
-#define CASELLA_LABIRINTO 'L'
-#define CASELLA_SCHELETRO 'S'
-#define CASELLA_PRIGIONE 'P'
-#define CASELLA_FINE 'F'
-#define ARRIVO_LABIRINTO 33
-#define TURNI_BLOCCATO_LOCANDA 999 //DA RIVEDEREEEEEEEE
-#define NUMERO_MASSIMO_GIOCATORI 4
-#define PRIMO_INDICE_ARRAY 0
-#define PRIMA_POSIZIONE_PERCORSO 1
-#define ARRIVO_PRIMO_LANCIO_4_5 53
-#define ARRIVO_PRIMO_LANCIO_3_6 26
-#define NUMERO_MINIMO_DADO 1
-#define NUMERO_MASSIMO_DADO 6
-
 char tipo_casella(record_partita partita, int indice_giocatore){
     record_vet_giocatori vet_giocatori;
     record_giocatore giocatore;
