@@ -16,7 +16,7 @@
 void gestire_menu_classifica(char* NOME_FILE_MENU_CLASSIFICA, char* NOME_FILE_CLASSIFICA);
 // Aggiorna la classifica successivamente al termine di una partita
 void aggiornare_classifica(char* NOME_FILE_CLASSIFICA, record_partita partita);
-// Trova la posizione (se cè) nella quale il giocatore che ha appena vinto la partita può essere inserito
+// Trova la posizione (se c'è) nella quale il giocatore che ha appena vinto la partita può essere inserito
 int trovare_posizione_vincitore(record_classificato* classificati, int tiri, int dimensione);
 // Aggiorna la dimensione della classifica se necessario
 int aggiornare_dimensione_classifica(int dimensione);

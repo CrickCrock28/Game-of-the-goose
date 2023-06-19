@@ -1,32 +1,24 @@
 #include "giocare_partita.h"
 
-#include "funzioni_accesso_da_modificare.h"
-#include "gotoxy.h"
-
-//TUTTE LE COSTANTI SONO DA RIVEDERE
-#define NUMERO_MINIMO_CASELLE 1
-#define NUMERO_MASSIMO_CASELLE 100
-#define CASELLA_OCA '9'
-#define CASELLA_PONTE '6'
-#define CASELLA_LOCANDA '19'
-#define CASELLA_POZZO '31'
-#define CASELLA_LABIRINTO '42'
-#define CASELLA_SCHELETRO '58'
-#define CASELLA_PRIGIONE '52'
-#define CASELLA_FINALE '90'
-#define ARRIVO_LABIRINTO 999
-#define TURNI_BLOCCATO_LOCANDA 999
+#define PERCORSO_FILE_MENU_PARTITA "menu_partita.txt" //DA RIVEDEREEEEEEEE
+#define NUMERO_MASSIMO_CASELLE 90
+#define CASELLA_OCA	'O'
+#define CASELLA_PONTE 'T'
+#define CASELLA_LOCANDA	'D'
+#define CASELLA_POZZO 'Z'
+#define CASELLA_LABIRINTO 'L'
+#define CASELLA_SCHELETRO 'S'
+#define CASELLA_PRIGIONE 'P'
+#define CASELLA_FINE 'F'
+#define ARRIVO_LABIRINTO 33
+#define TURNI_BLOCCATO_LOCANDA 999 //DA RIVEDEREEEEEEEE
 #define NUMERO_MASSIMO_GIOCATORI 4
 #define PRIMO_INDICE_ARRAY 0
 #define PRIMA_POSIZIONE_PERCORSO 1
-#define PERCORSO_FILE_MENU_PARTITA "menu_partita.txt"
-#define ARRIVO_PRIMO_LANCIO_4_5 2
-#define ARRIVO_PRIMO_LANCIO_3_6 3
+#define ARRIVO_PRIMO_LANCIO_4_5 53
+#define ARRIVO_PRIMO_LANCIO_3_6 26
 #define NUMERO_MINIMO_DADO 1
 #define NUMERO_MASSIMO_DADO 6
-#define FALSO 0
-#define VERO 1
-
 
 char tipo_casella(record_partita partita, int indice_giocatore){
     record_vet_giocatori vet_giocatori;
@@ -74,22 +66,22 @@ record_partita applicare_effetto_casella_prigione(record_partita partita, int in
     record_giocatore giocatore;
     
     vet_giocatori = leggere_vet_giocatori_record_partita(partita);
-    trovato = FALSO;
+    trovato = false;
     i = PRIMO_INDICE_ARRAY;
     while(i < NUMERO_MASSIMO_GIOCATORI && !trovato){
         giocatore = leggere_giocatore_record_vet_giocatori(vet_giocatori, i);
 
         if(trovare_tipo_casella_giocatore(giocatore) == CASELLA_PRIGIONE && leggere_bloccato_record_giocatore(giocatore)){
-            giocatore = scrivere_bloccato_record_giocatore(giocatore, FALSO);
+            giocatore = scrivere_bloccato_record_giocatore(giocatore, false);
             vet_giocatori = scrivere_giocatore_record_vet_giocatori(vet_giocatori, i, giocatore);
-            trovato = VERO;
+            trovato = true;
         }
 
         i++;
     }
 
     giocatore = leggere_giocatore_record_vet_giocatori(vet_giocatori, indice_giocatore);
-    giocatore = scrivere_bloccato_record_giocatore(giocatore, VERO);
+    giocatore = scrivere_bloccato_record_giocatore(giocatore, true);
     vet_giocatori = scrivere_giocatore_record_vet_giocatori(vet_giocatori, indice_giocatore, giocatore);
 
     partita = scrivere_vet_giocatori_record_partita(partita, vet_giocatori);
@@ -275,7 +267,7 @@ record_partita gestire_menu_nuova_partita(const char* menu_nuova_partita, const 
     int scelta;
     record_partita partita;
     
-    nuova_partita = FALSO;
+    nuova_partita = false;
     do {
         if(nuova_partita){
             partita = gestire_scelta_nuova_partita(scelta); //DA RIVEDERE
@@ -290,9 +282,9 @@ record_partita gestire_menu_nuova_partita(const char* menu_nuova_partita, const 
         }
 
         if(leggere_nuova_partita_record_partita(partita)){
-            nuova_partita = VERO;
+            nuova_partita = true;
         } else {
-            if(leggere_abbandona_partita_record_partita(partita) == FALSO){
+            if(leggere_abbandona_partita_record_partita(partita) == false){
                 scelta = 0;
             }
         }
@@ -322,23 +314,23 @@ record_partita applicare_effetto_casella_oca_ponte(record_partita partita, int i
 
 
 record_partita applicare_effetto_casella_pozzo(record_partita partita, int indice_giocatore){
-    int trovato = FALSO;
+    int trovato = false;
     int i = PRIMO_INDICE_ARRAY;
 
     record_vet_giocatori vet_giocatori;
     record_giocatore giocatore;
 
-    while(i<=NUMERO_MASSIMO_GIOCATORI && trovato == FALSO){
+    while(i<=NUMERO_MASSIMO_GIOCATORI && trovato == false){
         giocatore = leggere_giocatore_record_vet_giocatori(vet_giocatori, i);
-        if(trovare_tipo_casella_giocatore(giocatore) == CASELLA_POZZO && leggere_bloccato_record_giocatore(giocatore) = VERO){
-            giocatore = scrivere_bloccato_record_giocatore(giocatore, FALSO);
+        if(trovare_tipo_casella_giocatore(giocatore) == CASELLA_POZZO && leggere_bloccato_record_giocatore(giocatore) = true){
+            giocatore = scrivere_bloccato_record_giocatore(giocatore, false);
             vet_giocatori = scrivere_giocatore_record_vet_giocatori(vet_giocatori, i, giocatore);
-            trovato = VERO;
+            trovato = true;
         }
         i=i+1;
     }
     giocatore = leggere_giocatore_record_vet_giocatori(vet_giocatori, indice_giocatore);
-    giocatore = scrivere_bloccato_record_giocatore(giocatore, VERO);
+    giocatore = scrivere_bloccato_record_giocatore(giocatore, true);
     vet_giocatori = scrivere_giocatore_record_vet_giocatori(vet_giocatori, indice_giocatore, giocatore);
     partita = scrivere_vet_giocatori_record_partita(partita, vet_giocatori);
 
@@ -361,7 +353,7 @@ record_partita applicare_effetto_casella_locanda(record_partita partita, int ind
 
 
 record_partita applicare_effetto_casella_finale(record_partita partita, int indice_giocatore){
-    partita = scrivere_terminata_record_partita(partita, VERO);
+    partita = scrivere_terminata_record_partita(partita, true);
 
     return partita;
 }
@@ -383,7 +375,7 @@ record_partita lanciare_dadi(record_partita partita, int indice_giocatore){
     vet_giocatori = leggere_vet_giocatori_record_partita(partita);
     giocatore = leggere_giocatore_record_vet_giocatori(vet_giocatori, indice_giocatore);
     
-    if((leggere_bloccato_record_giocatore(giocatore) == FALSO) || (leggere_bloccato_record_giocatore(giocatore) == VERO && ( somma_dadi== 5 || somma_dadi= = 7))){
+    if((leggere_bloccato_record_giocatore(giocatore) == false) || (leggere_bloccato_record_giocatore(giocatore) == true && ( somma_dadi== 5 || somma_dadi= = 7))){
         dimensione_percorso = leggere_dimensione_record_percorso(leggere_percorso_record_partita(partita));
         vecchia_posizione = leggere_posizione_record_giocatore(giocatore);
         nuova_posizione = vecchia_posizione + dado_1 + dado_2;
@@ -463,16 +455,16 @@ record_partita gestire_scelta_partita(record_partita partita, int scelta){
                 partita = avanzare_turno(partita);
     }else{
         if(scelta == 2){
-            // CREARE NUOVA PARTITA, metto il flag a vero ed esco
-            partita = scrivere_nuova_partita_record_partita(partita, VERO);
+            // CREARE NUOVA PARTITA, metto il flag a true ed esco
+            partita = scrivere_nuova_partita_record_partita(partita, true);
         }else{
             if(scelta = 3){
                 // salvare partita 
-                partita = scrivere_salvare_partita_record_partita(partita, VERO);
+                partita = scrivere_salvare_partita_record_partita(partita, true);
             }else{
                 // abbandona partita
-                // metto il flag di abbandona partita a VERO ed esco
-                partita = scrivere_abbandona_partita_record_partita(partita, VERO);
+                // metto il flag di abbandona partita a true ed esco
+                partita = scrivere_abbandona_partita_record_partita(partita, true);
             }
         }
     }
