@@ -3,6 +3,9 @@
 
 #include "record_vettore_partite_salvate.h"
 #include "record_partite_salvate.h"
+#include "record_partita.h"
+#include <stdlib.h>
+#include <stdio.h>
 
 //TUTTE LE COSTANTI SONO DA RIVEDERE
 #define NUMERO_MINIMO_CASELLE 1
@@ -26,8 +29,7 @@
 #define NUMERO_MINIMO_DADO 1
 #define NUMERO_MASSIMO_DADO 6
 #define NUMERO_MASSIMO_PARTITE_SALVATE //DA SCRIVERE 
-#define FALSO 0
-#define VERO 1
+
 
 record_partite_salvate gestire_menu_partite_salvate(int scelta, record_partite_salvate salvataggi, int numero_partita, const char* menu_carica_partita);
 record_partita leggere_partita_scelta(FILE* file_partite_salvate, int numero_partite);
