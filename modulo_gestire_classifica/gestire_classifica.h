@@ -9,8 +9,18 @@
 #include "../modulo_record_vet_giocatori/record_vet_giocatori.h"
 #include "../modulo_record_partita/record_partita.h"
 #include "../modulo_record_percorso/record_percorso.h"
+#include <stdbool.h>
+#include <stdio.h>
+
 #define MESSAGGIO_RICHIESTA_NOME_CLASSIFICATO "Inserire il nome del nuovo classificato(3 caratteri)\nInserisci:\0"
 #define STAMPARE_CLASSIFICA 1
+#define NUMERO_MASSIMO_CLASSIFICATI 10
+#define TIRI_CLASSIFICATO_FINE -1
+#define GIOCATORE_NON_CLASSIFICATO -1
+#define TITOLO_STAMPA_CLASSIFICA "Giocatori classificati:\n\0"
+#define NUMERO_POSTO_CLASSIFICA "Posto numero\0"
+#define NOME "nome: \0"
+#define TIRI "tiri: \0"
 
 // Gestisce il menù della classifica 
 void gestire_menu_classifica(char* NOME_FILE_MENU_CLASSIFICA, char* NOME_FILE_CLASSIFICA);
