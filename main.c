@@ -1,8 +1,17 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <stdbool.h>
-//#include "record_partita.h"
-//#include "record_salvataggi.h"
+#include "record_classificato.h"
+#include "record_giocatore.h"
+#include "record_partita.h"
+#include "record_partite_salvate.h"
+#include "record_percorso.h"
+#include "vet_giocatori.h"
+#include "vettore_partite_salvate.h"
+#include "azioni_semplici.h"
+#include "creare_nuova_partita.h"
+#include "gestire_aiuto.h"
+#include "gestire_classifica.h"
+#include "gestire_file.h"
+#include "gestire_partite_salvate.h"
+#include "giocare_partita.h"
 
 
 #define NOME_FILE_MENU_NUOVA_PARTITA "menu_nuova_partita.txt\0"
