@@ -1,5 +1,3 @@
-#include <stdio.h>
-#include <stdlib.h>
 #include "gestire_partite_salvate.h" 
 
 //DA RIVEDERE
@@ -30,12 +28,11 @@ record_partite_salvate gestire_menu_partite_salvate(int scelta, record_partite_s
 }
 
 
-//DA RIVEDERE
 record_partita leggere_partita_scelta(FILE* file_partite_salvate, int numero_partite){
     int i;
     int numero_partite_salvate;
     record_vettore_partite_salvate vet_partite_salvate;
-    record_partita partita_scelta;
+    record_partita partita_scelta, partita_caricata;
 
     numero_partite_salvate = leggere_da_file_binario(file_partite_salvate);
     i = PRIMO_INDICE_ARRAY;
@@ -43,7 +40,7 @@ record_partita leggere_partita_scelta(FILE* file_partite_salvate, int numero_par
     leggere_partita_record_vettore_partite_salvate(vet_partite_salvate, i) = leggere_da_file_binario(file_partite_salvate);
     i=i+1;
     }
-    partita_scelta  = copiare_partita(partita_caricata, leggere_partita_record_vettore_partite_salvate(vet_partite_salvate, numero_partite_salvate);
+    partita_scelta  = copiare_partita(partita_caricata, leggere_partita_record_vettore_partite_salvate(vet_partite_salvate, numero_partite_salvate));
     return partita_scelta;
 }
 
@@ -67,7 +64,6 @@ if(numero_partite_salvate == NUMERO_MASSIMO_PARTITE_SALVATE){
 }
 
 
-//DA RIVEDERE
 int stampare_partite_salvate(FILE* file_partite_salvate){
     int i;
     int posizione_giocatore;
@@ -112,7 +108,7 @@ int stampare_partite_salvate(FILE* file_partite_salvate){
     return numero_partite_salvate;
 }
 
-//DA RIVEDERE 
+
 FILE* cancellare_partita_da_file(FILE* file_partite_salvate, int numero_partita){
     int i;
     int numero_partite_salvate;
@@ -125,11 +121,11 @@ FILE* cancellare_partita_da_file(FILE* file_partite_salvate, int numero_partita)
     i=i+1;
     }
     
-    file_partite_salvate = rimuovere_partita_da_vettore(vet_partite_salvate, NUMERO_MASSIMO_PARTITE_SALVATE, numero_partita);
+    file_partite_salvate = rimuovere_partita_da_vettore(file_partite_salvate, NUMERO_MASSIMO_PARTITE_SALVATE, numero_partita);
     i = PRIMO_INDICE_ARRAY;
     
     while(i<=numero_partite_salvate){
-    scrivere_su_file_binario(partite_salvate, elemento di vet_partite_salvate in posizione i);
+    scrivere_su_file_binario(file_partite_salvate, leggere_record_vettore_partite_salvate(file_partite_salvate, i));
     i=i+1;
     }
     return file_partite_salvate;
