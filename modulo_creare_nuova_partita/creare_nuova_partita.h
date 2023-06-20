@@ -38,9 +38,9 @@
 #define LANCIO_NON_EFFETTUATO -1 // Indica che non è stato ancora effettuato alcun lancio
 #define POSIZIONE_GIOCATORE_NON_PARTECIPANTE -1 // Indica che il giocatore non sta giocando la partita
 #define POSIZIONE_INIZIO (PRIMO_INDICE_ARRAY - 1) // Indica la posizione del giocatore all’inizio della partita
-//#define MESSAGGIO_DATI_NUOVA_PARTITA "Parametri di default (1) o li scegli tu (2): "    
 #define MESSAGGIO_NUMERO_GIOCATORI "Inserisci il numero di giocatori (2 a 4): \0"
 #define MESSAGGIO_NUMERO_CASELLE "Inserisci il numero di caselle (50 a 90): \0"
+//#define MESSAGGIO_DATI_NUOVA_PARTITA "Parametri di default (1) o li scegli tu (2): "    
 
 record_dati_nuova_partita chiedere_dati_nuova_partita(void);
 record_partita creare_nuova_partita(record_dati_nuova_partita dati_nuova_partita);
