@@ -27,7 +27,11 @@
 #define NOME_FILE_CLASSIFICA "classifica.bin\0"
 #define NOME_FILE_REGOLE_GIOCO "regole_gioco.txt\0"
 #define NOME_FILE_MANUALE_GIOCO "manuale_gioco.txt\0"
-
+#define MENU_NUOVA_PARTITA 1 // Scelta corrispondende al menu nuova partita
+#define MENU_CARICA_PARTITA 2 // Scelta corrispondende al menu carica partita
+#define MENU_CLASSIFICA 3 // Scelta corrispondende al menu classifica
+#define MENU_AIUTO 4 // Scelta corrispondende al menu aiuto
+#define CONTINUARE_PARTITA 1 // Indica che l'utente vuole continuare la partita appena salvata
 
 int main(void) {
     bool partita_caricata, creare_nuova_partita;
@@ -38,7 +42,7 @@ int main(void) {
     do {
         stampare_file_di_testo(NOME_FILE_MENU_PRINCIPALE);
         scelta = chiedere_intero(MESSAGGIO_INSERIMENTO, 0, 4, 9, 0);
-        if (scelta == 1) {
+        if (scelta == MENU_NUOVA_PARTITA) {
             riprendere_partita = 0;
             if (partita_caricata == true) {
                 giocare_partita(&partita);
@@ -63,10 +67,9 @@ int main(void) {
                     }
 
                 }
-            } while (riprendere_partita == 1);
+            } while (riprendere_partita == CONTINUARE_PARTITA);
         }
-        else if (scelta == 2) {
-            // menu carica partita
+        else if (scelta == MENU_CARICA_PARTITA) {
             gestire_menu_partite_salvate(NOME_FILE_MENU_CARICA_PARTITA, NOME_FILE_PARTITE_SALVATE, &salvataggi);
             // leggere_partite_salvate(salvataggi, &partite_salvate); ?
             if (leggere_indice_giocatore_di_turno_record_partita(leggere_partita_opzionale(salvataggi)) == PARTITA_OPZIONALE_INESISTENTE) {
@@ -74,12 +77,10 @@ int main(void) {
                 partita_caricata = true;
             }
         }
-        else if (scelta == 3) {
-            // menu classifica
+        else if (scelta == MENU_CLASSIFICA) {
             gestire_menu_classifica(NOME_FILE_MENU_CLASSIFICA);
         }
-        else if (scelta == 4) {
-            // menu aiuto
+        else if (scelta == MENU_AIUTO) {
             gestire_menu_aiuto(NOME_FILE_MENU_AIUTO, NOME_FILE_REGOLE_GIOCO, NOME_FILE_MANUALE_GIOCO);
         }
     } while (scelta != 0);
