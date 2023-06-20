@@ -4,7 +4,7 @@
 #include "record_dati_nuova_partita.h"
 #include "record_percorso.h"
 #include "record_vet_giocatori.h"
-#include "record_parita.h"
+#include "record_partita.h"
 #include "record_giocatore.h"
 
 #define PRIMO_INDICE_ARRAY 0 // Indice del primo elemento di un generico array
