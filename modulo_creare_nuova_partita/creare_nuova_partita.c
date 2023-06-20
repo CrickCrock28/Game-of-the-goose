@@ -2,7 +2,7 @@
 #include "costanti.h"
 #include <stdbool.h>
 
-void chiedere_dati_nuova_partita(record_dati_nuova_partita* dati_nuova_partita) {
+record_dati_nuova_partita chiedere_dati_nuova_partita(void) {
 	int scelta, num_gioc, num_caselle;
 
 	system("cls");
@@ -19,7 +19,7 @@ void chiedere_dati_nuova_partita(record_dati_nuova_partita* dati_nuova_partita) 
 		scrivere_numero_caselle_record_dati_nuova_partita(dati_nuova_partita, num_caselle);
 	}
 }
-void creare_nuova_partita(record_dati_nuova_partita dati_nuova_partita, record_partita* partita) {
+record_partita creare_nuova_partita(record_dati_nuova_partita dati_nuova_partita, record_partita* partita) {
 	record_percorso percorso;
 	record_vet_giocatori vet_gioc;
 
@@ -41,7 +41,7 @@ void creare_nuova_partita(record_dati_nuova_partita dati_nuova_partita, record_p
 	scrivere_nuova_partita_record_partita(partita, false);
 	scrivere_abbandona_partita_record_partita(partita, false);
 }
-void inizializzare_percorso(record_percorso* percorso) {
+record_percorso inizializzare_percorso(record_percorso percorso) {
 	int i;
 
 	i = PRIMO_INDICE_ARRAY;
@@ -54,7 +54,7 @@ void inizializzare_percorso(record_percorso* percorso) {
 		i = i + 1;
 	}
 }
-void inserire_caselle_oche(record_percorso* percorso) {
+record_percorso inserire_caselle_oche(record_percorso percorso) {
 	int i;
 
 	i = FREQUENZA_OCA;
@@ -63,13 +63,13 @@ void inserire_caselle_oche(record_percorso* percorso) {
 		i = i + FREQUENZA_OCA;
 	}
 }
-void inserire_casella_speciale(record_percorso* percorso, int posizione_casella_speciale, char carattere_casella_speciale) {
+record_percorso inserire_casella_speciale(record_percorso percorso, int posizione_casella_speciale, char carattere_casella_speciale) {
 	while (leggere_casella_record_percorso(*percorso, posizione_casella_speciale) != CASELLA_NORMALE) {
 		posizione_casella_speciale = posizione_casella_speciale + 1;
 	}
 	scrivere_casella_record_percorso(percorso, posizione_casella_speciale, carattere_casella_speciale);
 }
-void inserire_caselle_speciali(record_percorso* percorso) {
+record_percorso inserire_caselle_speciali(record_percorso percorso) {
 	int pos_ponte,
 		pos_locanda,
 		pos_pozzo,
@@ -105,7 +105,7 @@ int calcolare_proporzione(int n_1, int d_1, int d_2) {
 
 	return n_2;
 }
-void inizializzare_record_vet_giocatori(record_vet_giocatori* vet) {
+record_vet_giocatori inizializzare_record_vet_giocatori(record_vet_giocatori vet) {
 	int i;
 	record_giocatore giocatore;
 

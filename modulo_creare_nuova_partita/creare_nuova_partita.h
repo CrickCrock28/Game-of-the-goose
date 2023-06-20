@@ -42,13 +42,13 @@
 #define MESSAGGIO_NUMERO_GIOCATORI "Inserisci il numero di giocatori (2 a 4): \0"
 #define MESSAGGIO_NUMERO_CASELLE "Inserisci il numero di caselle (50 a 90): \0"
 
-void chiedere_dati_nuova_partita(record_dati_nuova_partita* dati_nuova_partita);
-void creare_nuova_partita(record_dati_nuova_partita dati_nuova_partita, record_partita* partita);
-void inizializzare_percorso(record_percorso* percorso);
-void inserire_caselle_oche(record_percorso* percorso);
-void inserire_casella_speciale(record_percorso* percorso, int posizione_casella_speciale, char carattere_casella_speciale);
-void inserire_caselle_speciali(record_percorso* percorso);
+record_dati_nuova_partita chiedere_dati_nuova_partita(void);
+record_partita creare_nuova_partita(record_dati_nuova_partita dati_nuova_partita);
+record_percorso inizializzare_percorso(record_percorso percorso);
+record_percorso inserire_caselle_oche(record_percorso percorso);
+record_percorso inserire_casella_speciale(record_percorso percorso, int posizione_casella_speciale, char carattere_casella_speciale);
+record_percorso inserire_caselle_speciali(record_percorso percorso);
 int calcolare_proporzione(int n_1, int d_1, int d_2);
-void inizializzare_record_vet_giocatori(record_vet_giocatori* vet);
+record_vet_giocatori inizializzare_record_vet_giocatori(record_vet_giocatori vet);
 
 #endif /* CREARE_NUOVA_PARTITA_H_ */
