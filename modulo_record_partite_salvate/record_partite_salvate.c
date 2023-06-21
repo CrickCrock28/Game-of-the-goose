@@ -6,8 +6,9 @@ FILE* leggere_file_partite_salvate(record_partite_salvate salvataggi){
     return file_salvataggi;
 }
 
-void scrivere_file_partite_salvate(record_partite_salvate* salvataggi, FILE* file_salvataggi){
+record_partite_salvate scrivere_file_partite_salvate(record_partite_salvate salvataggi, FILE* file_salvataggi){
     salvataggi.file_partite_salvate = file_salvataggi;
+    return salvataggi;
 }
 
 record_partita leggere_partita_opzionale(record_partite_salvate salvataggi){
@@ -16,6 +17,7 @@ record_partita leggere_partita_opzionale(record_partite_salvate salvataggi){
     return partita;
 }
 
-void scrivere_partita_opzionale(record_partite_salvate* salvataggi, record_partita partita){
+record_partite_salvate scrivere_partita_opzionale(record_partite_salvate salvataggi, record_partita partita){
     salvataggi.partita_opzionale = partita;
+    return salvataggi;
 }

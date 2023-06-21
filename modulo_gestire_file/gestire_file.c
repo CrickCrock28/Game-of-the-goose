@@ -1,5 +1,4 @@
 #include "gestire_file.h"
-#include <stdlib.h>
 
 bool verificare_file_esistente(FILE* file) { 
 	bool esito;
