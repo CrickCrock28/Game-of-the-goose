@@ -67,7 +67,7 @@ int main(void) {
                 else {
                     if (leggere_salvare_partita_record_partita(partita) == true) {
                         // salvo la partita
-                        partita = salvare_partita(NOME_FILE_PARTITE_SALVATE, partita);
+                        salvare_partita(NOME_FILE_PARTITE_SALVATE, partita);
                         // chiedo all'utente se vuole continuare la partita
                         riprendere_partita = chiedere_intero(MESSAGGIO_INSERIMENTO, 0, 1);
                     }
