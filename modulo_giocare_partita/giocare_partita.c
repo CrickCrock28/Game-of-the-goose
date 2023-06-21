@@ -1,6 +1,6 @@
 #include "giocare_partita.h"
 
-char tipo_casella(record_partita partita, int indice_giocatore){
+char trovare_tipo_casella_giocatore(record_partita partita, int indice_giocatore){
     record_vet_giocatori vet_giocatori;
     record_giocatore giocatore;
     record_percorso percorso;
@@ -51,7 +51,7 @@ record_partita applicare_effetto_casella_prigione(record_partita partita, int in
     while(i < NUMERO_MASSIMO_GIOCATORI && !trovato){
         giocatore = leggere_giocatore_record_vet_giocatori(vet_giocatori, i);
 
-        if(trovare_tipo_casella_giocatore(giocatore) == CASELLA_PRIGIONE && leggere_bloccato_record_giocatore(giocatore)){
+        if(trovare_tipo_casella_giocatore(partita, i) == CASELLA_PRIGIONE && leggere_bloccato_record_giocatore(giocatore)){
             giocatore = scrivere_bloccato_record_giocatore(giocatore, false);
             vet_giocatori = scrivere_giocatore_record_vet_giocatori(vet_giocatori, i, giocatore);
             trovato = true;
@@ -93,7 +93,7 @@ record_partita giocare_partita(record_partita partita){
     int indice_giocatore_di_turno;
     int scelta;
 
-    if(!verificare_partita_iniziata(partita)){
+    if(leggere_indice_giocatore_di_turno_record_partita(partita) == GIOCATORE_NON_STABILITO){
         partita = stabilire_primo_giocatore(partita);
     }
 
@@ -103,7 +103,7 @@ record_partita giocare_partita(record_partita partita){
            !leggere_salvare_partita_record_partita(partita)){
         indice_giocatore_di_turno = leggere_indice_giocatore_di_turno_record_partita(partita);
         stampare_file_di_testo(PERCORSO_FILE_MENU_PARTITA);
-        scelta = chiedere_intero("Inserisci la scelta: ", 0, 3);    
+        scelta = chiedere_intero("Inserisci la scelta: ", 0, 3, 0, 0);//VANNO MODIFICATE LE COORDINATE E AGGIUNTE IN PSEUDO    
         partita = gestire_scelta_partita(partita, scelta);          
     }
 
@@ -151,10 +151,10 @@ void stampare_percorso(char* caselle, int dimensione, int posizione_giocatore_1,
 	int y = 0;
 	int i = 0;
 	while(i<=dimensione){
-		GoToXY(x,y);
+		spostare_cursore(x,y);
 		printf("-----");
 		
-		GoToXY(x, y+1);
+		spostare_cursore(x, y+1);
 		if(posizione_giocatore_1 == i)
 			printf("|& ");
 		else
@@ -165,7 +165,7 @@ void stampare_percorso(char* caselle, int dimensione, int posizione_giocatore_1,
 		else
 			printf(" |");
 		
-		GoToXY(x, y+2);
+		spostare_cursore(x, y+2);
 		if(posizione_giocatore_3 == i)
 			printf("|# ");
 		else
@@ -176,13 +176,13 @@ void stampare_percorso(char* caselle, int dimensione, int posizione_giocatore_1,
 		else
 			printf(" |");
 		
-		GoToXY(x, y+3);
+		spostare_cursore(x, y+3);
 		if(i==0)
 			printf("| %2d|", i);
 		else
 			printf("|%c%2d|", caselle[i-1], i);
 		
-		GoToXY(x, y+4);
+		spostare_cursore(x, y+4);
 		printf("-----");
 		x = x + 4;
 		
@@ -199,7 +199,7 @@ void stampare_percorso(char* caselle, int dimensione, int posizione_giocatore_1,
 record_partita avanzare_turno(record_partita partita){
     int indice_successivo;
     
-    indice_successivo = leggere_indice_giocatore_di_turno(partita) + 1;
+    indice_successivo = leggere_indice_giocatore_di_turno_record_partita(partita) + 1;
 
     if(indice_successivo > leggere_dimensione_record_vet_giocatori(leggere_vet_giocatori_record_partita(partita))){
         indice_successivo = PRIMO_INDICE_ARRAY;
@@ -273,6 +273,7 @@ record_partita gestire_menu_nuova_partita(char* NOME_FILE_MENU_NUOVA_PARTITA, re
     return partita;
 }
 
+//QUI INIZIANO LE FUNZIONI TUE BACCALEEEEEEEEEEÈ
 
 record_partita applicare_effetto_casella_oca_ponte(record_partita partita, int indice_giocatore){
     record_vet_giocatori vet_giocatori;

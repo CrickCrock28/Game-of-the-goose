@@ -1,62 +1,6 @@
 {
-  "C_Cpp_Runner.cCompilerPath": "gcc",
-  "C_Cpp_Runner.cppCompilerPath": "g++",
-  "C_Cpp_Runner.debuggerPath": "gdb",
-  "C_Cpp_Runner.cStandard": "",
-  "C_Cpp_Runner.cppStandard": "",
-  "C_Cpp_Runner.msvcBatchPath": "",
-  "C_Cpp_Runner.useMsvc": false,
-  "C_Cpp_Runner.warnings": [
-    "-Wall",
-    "-Wextra",
-    "-Wpedantic",
-    "-Wshadow",
-    "-Wformat=2",
-    "-Wconversion",
-    "-Wnull-dereference",
-    "-Wsign-conversion"
-  ],
-  "C_Cpp_Runner.enableWarnings": true,
-  "C_Cpp_Runner.warningsAsError": false,
-  "C_Cpp_Runner.compilerArgs": [],
-  "C_Cpp_Runner.linkerArgs": [],
-  "C_Cpp_Runner.includePaths": [],
-  "C_Cpp_Runner.includeSearch": [
-    "*",
-    "**/*"
-  ],
-  "C_Cpp_Runner.excludeSearch": [
-    "**/build",
-    "**/build/**",
-    "**/.*",
-    "**/.*/**",
-    "**/.vscode",
-    "**/.vscode/**"
-  ],
-  "C_Cpp_Runner.useAddressSanitizer": false,
-  "C_Cpp_Runner.showCompilationTime": false,
-  "files.associations": {
-    "funzioni_accesso_da_modificare.h": "c",
-    "record_": "c",
-    "gestire_classifica.h": "c",
-    "record_classificato.h": "c",
-    "stdio.h": "c",
-    "gestire_aiuto.h": "c",
-    "costanti.h": "c",
-    "record_dati_nuova_partita.h": "c",
-    "record_giocatore.h": "c",
-    "record_percorso.h": "c",
-    "record_vet_giocatori.h": "c",
-    "record_vettore_partite_salvate.h": "c",
-    "record_menu_partite_salvate.h": "c",
-    "giocare_partita.h": "c",
-    "gestire_partite_salvate.h": "c",
-<<<<<<< Updated upstream
-    "record_partite_salvate.h": "c"
-=======
-    "record_partita.h": "c"
->>>>>>> Stashed changes
-  },
-  "C_Cpp.errorSquiggles": "disabled",
-  "cmake.configureOnOpen": false
+    "files.associations": {
+        "azioni_semplici.h": "c",
+        "stdio.h": "c"
+    }
 }
