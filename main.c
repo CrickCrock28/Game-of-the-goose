@@ -36,7 +36,7 @@
 
 int main(void) {
     bool partita_caricata, creare_nuova_partita;
-    int scelta, riprendere_partita;
+    int scelta;
     record_partita partita;
     record_partite_salvate salvataggi;
     FILE* menu_principale,
@@ -49,14 +49,13 @@ int main(void) {
         stampare_file_di_testo(menu_principale);
         scelta = chiedere_intero(MESSAGGIO_INSERIMENTO, 0, 4, 9, 0);
         if (scelta == MENU_NUOVA_PARTITA) {
-            riprendere_partita = 0;
             if (partita_caricata == true) {
                 partita = (partita);
             }
             else {
                 // se l’utente vuole crare una nuova partita, questa viene creata nella funzione gestire_menu_nuova_partita
                 if (creare_nuova_partita == false) {
-                    partita = gestire_menu_nuova_partita(NOME_FILE_MENU_NUOVA_PARTITA, riprendere_partita, partita);
+                    partita = gestire_menu_nuova_partita(NOME_FILE_MENU_NUOVA_PARTITA, partita);
                 }
             }
             do {
