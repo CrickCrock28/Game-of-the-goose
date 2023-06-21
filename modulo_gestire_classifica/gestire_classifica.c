@@ -1,4 +1,8 @@
 #include "gestire_classifica.h"
+#define TITOLO_STAMPA_CLASSIFICA "Giocatori classificati:\n\0"
+#define NUMERO_POSTO_CLASSIFICA "Posto numero\0"
+#define NOME "nome: \0"
+#define TIRI "tiri: \0"
 
 void gestire_menu_classifica(char* NOME_FILE_MENU_CLASSIFICA, char* NOME_FILE_CLASSIFICA) {
     int scelta; // Scelta dell'utente tra le opzioni del menù
@@ -58,7 +62,7 @@ void aggiornare_classifica(char* NOME_FILE_CLASSIFICA, record_partita partita) {
             printf("%s", MESSAGGIO_RICHIESTA_NOME_CLASSIFICATO);
             scanf("%s", nome);
             // Scrivere il giocatore classificato come giocatore
-            classificato = scrivere_nome_record_classificato(classificato, nome);
+            classificato = scrivere_nome_giocatore_record_classificato(classificato, nome);
             classificato = scrivere_tiri_record_classificato(classificato, tiri);
             // Inserire il giocatore nella classifica
             inserire_vincitore_in_classifica(classificati, dimensione, classificato, posizione);
@@ -110,11 +114,11 @@ int aggiornare_dimensione_classifica(int dimensione) {
     return dimensione;
 }
 
-void inserire_vincitore_in_classifica(record_classificato* classificati, int numero_classificati, record_classificato classificato, int indice_classificato, int NUMERO_MASSIMO_CLASSIFICATI) {
+void inserire_vincitore_in_classifica(record_classificato* classificati, int numero_classificati, record_classificato classificato, int indice_classificato) {
         int i; // Contatore del numero di giocatori classificati
         // Controllare se il numero dei classificati è già di 10
         if (numero_classificati == NUMERO_MASSIMO_CLASSIFICATI - 1) {
-            i = numero_classificati
+            i = numero_classificati;
         } 
         else {
             i = numero_classificati + 1;
@@ -122,11 +126,11 @@ void inserire_vincitore_in_classifica(record_classificato* classificati, int num
 
         while (i > indice_classificato) {
             // Copiare il classificato di un posto in classifica e lo inserisce nel posto subito inferiore
-            classificati[i] = inserire_record_classificato(classificati[i], classificati[i - 1]);
+            classificati[i] = copiare_record_classificato(classificati[i], classificati[i - 1]);
             i = i - 1;
         }
         // Inserire il vincitore nella classifica
-        classificati[i] = inserire_record_classificato(classificati[i], classificato);
+        classificati[i] = copiare_record_classificato(classificati[i], classificato);
 
         return;
 }
@@ -161,7 +165,7 @@ record_classificato copiare_record_classificato(record_classificato classificato
     // Copia il nome di un classificato nell'altro classificato
     classificato_con_dati_da_copiare = scrivere_nome_giocatore_record_classificato(classificato_con_dati_da_copiare, leggere_nome_giocatore_record_classifica (classificato_con_dati_da_inserire));
     // Copia il numero di tiri di un classificato
-    classificato_con_dati_da_copiare = scrivere_tiri_record_classifica(classificato_con_dati_da_copiare, leggere_tiri_record_classifica (classificato_con_dati_da_inserire));
+    classificato_con_dati_da_copiare = scrivere_tiri_record_classificato(classificato_con_dati_da_copiare, leggere_tiri_record_classifica (classificato_con_dati_da_inserire));
 
     return classificato_con_dati_da_copiare;
 }
@@ -191,8 +195,11 @@ void stampare_classifica(FILE* classifica) {
 }
 
 void stampare_giocatore_classificato(record_classificato giocatore_classificato) {
+    char nome[LUNGHEZZA_NOME + 1]; // Stringa che contiene il nome di un classificato da stampare
+    // Leggere il nome di un classificato
+    leggere_nome_giocatore_record_classificato(giocatore_classificato, nome);    
     // Stampare il nome di un classificato
-    printf("%s%s ,", NOME, leggere_nome_giocatore_record_classificato(giocatore_classificato));
+    printf("%s%s ,", NOME, nome);
     // Stampare il numero di tiri di un classificato
     printf("%s%d\n", TIRI, leggere_tiri_record_classificato(giocatore_classificato));
 

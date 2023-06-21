@@ -17,10 +17,6 @@
 #define NUMERO_MASSIMO_CLASSIFICATI 10
 #define TIRI_CLASSIFICATO_FINE -1
 #define GIOCATORE_NON_CLASSIFICATO -1
-#define TITOLO_STAMPA_CLASSIFICA "Giocatori classificati:\n\0"
-#define NUMERO_POSTO_CLASSIFICA "Posto numero\0"
-#define NOME "nome: \0"
-#define TIRI "tiri: \0"
 
 // Gestisce il menù della classifica 
 void gestire_menu_classifica(char* NOME_FILE_MENU_CLASSIFICA, char* NOME_FILE_CLASSIFICA);
@@ -31,7 +27,7 @@ int trovare_posizione_vincitore(record_classificato* classificati, int tiri, int
 // Aggiorna la dimensione della classifica se necessario
 int aggiornare_dimensione_classifica(int dimensione);
 // Inserisce il vincitore nel posto corretto della classifica
-void inserire_vincitore_in_classifica(record_classificato* classificati, int numero_classificati,record_classificato classificato, int indice_classificato);
+void inserire_vincitore_in_classifica(record_classificato* classificati, int numero_classificati, record_classificato classificato, int indice_classificato);
 // Recupera il numero di tiri del vincitore
 int recuperare_tiri_vincitore(record_partita partita);
 // Copia un record classificato in un altro
