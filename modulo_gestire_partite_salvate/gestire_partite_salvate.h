@@ -12,7 +12,7 @@
 #define MESSAGGIO_SCELTA_MENU "Inserire un intero che rappresenta la scelta\0"
 #define PARTITA_OPZIONALE_INESISTENTE -2
 
-record_partite_salvate gestire_menu_partite_salvate(int scelta, record_partite_salvate salvataggi, int numero_partita, const char* menu_carica_partita);
+record_partite_salvate gestire_menu_partite_salvate(record_partite_salvate salvataggi, int numero_partita, char* NOME_FILE_MENU_CARICA_PARTITA);
 record_partita leggere_partita_scelta(FILE* file_partite_salvate, int numero_partite);
 FILE* salvare_partita(FILE* file_partite_salvate, record_partita partita);
 int stampare_partite_salvate(FILE* file_partite_salvate); 

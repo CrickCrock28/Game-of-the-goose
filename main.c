@@ -76,7 +76,7 @@ int main(void) {
             } while (riprendere_partita == CONTINUARE_PARTITA);
         }
         else if (scelta == MENU_CARICA_PARTITA) {
-            salvataggi = gestire_menu_partite_salvate(NOME_FILE_MENU_CARICA_PARTITA, NOME_FILE_PARTITE_SALVATE, salvataggi);
+            salvataggi = gestire_menu_partite_salvate(NOME_FILE_PARTITE_SALVATE, salvataggi, NOME_FILE_MENU_CARICA_PARTITA);
             // leggere_partite_salvate(salvataggi, &partite_salvate); ?
             if (leggere_indice_giocatore_di_turno_record_partita(leggere_partita_opzionale(salvataggi)) == PARTITA_OPZIONALE_INESISTENTE) {
                 partita = leggere_partita_opzionale(salvataggi, partita);

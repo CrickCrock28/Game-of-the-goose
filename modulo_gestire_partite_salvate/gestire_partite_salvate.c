@@ -1,25 +1,25 @@
 #include "gestire_partite_salvate.h" 
 
 
-record_partite_salvate gestire_menu_partite_salvate(int scelta, record_partite_salvate salvataggi, int numero_partita, const char* menu_carica_partita){
+record_partite_salvate gestire_menu_partite_salvate(record_partite_salvate salvataggi, int numero_partita, char* NOME_FILE_MENU_CARICA_PARTITA){
     int numero_partite_salvate;
     record_partita partita_scelta;
     FILE* file_partite_salvate;
 
     do{
         stampare_file_di_testo(menu_carica_partita);
-        scelta = chiedere_intero(”Inserisci il numero corrispondente all’azione da eseguire: 0, 2, 8, 0);
+        scelta = chiedere_intero("Inserisci il numero corrispondente all’azione da eseguire: 0, 2, 8, 0");
         file_partite_salvate = leggere_file_partite_salvate(salvataggi);
         numero_partite_salvate = leggere_da_file_binario(file_partite_salvate);
         stampare_partite_salvate(file_partite_salvate);
         
         if(scelta = 1){
-            numero_partita = chiedere_intero(”Inserisci il numero corrispondente alla partita da cancellare: ”, 0, 2, (numero_partite_salvate*2+1), 0);
+            numero_partita = chiedere_intero("Inserisci il numero corrispondente alla partita da cancellare: ", 0, 2, (numero_partite_salvate*2+1), 0);
             file_partite_salvate = cancellare_partita_da_file(file_partite_salvate, numero_partita);
             salvataggi = scrivere_partite_salvate(salvataggi, file_partite_salvate);
             }else{
             if(scelta = 2)
-            numero_partita = chiedere_intero(”Inserisci il numero corrispondente alla partita da caricare: ”, 0, 2,  (numero_partite_salvate*2+1), 0);
+            numero_partita = chiedere_intero("Inserisci il numero corrispondente alla partita da caricare: ", 0, 2,  (numero_partite_salvate*2+1), 0);
             partita_scelta = leggere_partita_scelta(file_partite_salvate, numero_partita);
             salvataggi = scrivere_partite_salvate(salvataggi, file_partite_salvate);
             }
@@ -52,7 +52,7 @@ FILE* salvare_partita(FILE* file_partite_salvate, record_partita partita){
 
 if(numero_partite_salvate == NUMERO_MASSIMO_PARTITE_SALVATE){
     stampare_partite_salvate(file_partite_salvate);
-    numero_partita_da_cancellare = richiedere_intero(”Inserisci il numero della partita da cancellare per poter salvare la partita corrente (oppure 0 se non vuoi salvare): ”, 0, 5, (numero_partite_salvate*2+1), 0);
+    numero_partita_da_cancellare = richiedere_intero("Inserisci il numero della partita da cancellare per poter salvare la partita corrente (oppure 0 se non vuoi salvare): ", 0, 5, (numero_partite_salvate*2+1), 0);
     if(numero_partita_da_cancellare != 0){
         file_partite_salvate = cancellare_partita_da_file(file_partite_salvate, numero_partita_da_cancellare);
         file_partite_salvate = accodare_a_file_binario(file_partite_salvate, partita);
@@ -83,25 +83,25 @@ int stampare_partite_salvate(FILE* file_partite_salvate){
     numero_partita = PRIMO_INDICE_ARRAY;
     
     while(numero_partita <= NUMERO_MASSIMO_PARTITE_SALVATE){
-        stampare_a_video(”Partita “);
+        stampare_a_video("Partita ");
         stampare_a_video(numero_partita);
-        stampare_a_video(”:\n”);
-        stampare_a_video(”Dimensione del percorso: ”);
+        stampare_a_video(":\n");
+        stampare_a_video("Dimensione del percorso: ");
         stampare_a_video(leggere_dimensione_record_percorso(leggere_percorso_record_partita(leggere_partita_record_vettore_partite_salvate(file_partite_salvate, numero_partita))));
-        stampare_a_video(”\n”);
+        stampare_a_video("\n");
         numero_giocatore = PRIMO_INDICE_ARRAY;
         
         while(numero_giocatore <= NUMERO_MASSIMO_GIOCATORI){
             posizione_giocatore = leggere_posizione_giocatore_record_giocatore(leggere_giocatore_record_vet_giocatori(leggere_vet_giocatori_record_partita(partita)));
             if(posizione_giocatore != POSIZIONE_GIOCATORE_NON_PARTECIPANTE){
-                stampare_a_video(”Posizione giocatore “);
+                stampare_a_video("Posizione giocatore ");
                 stampare_a_video(numero_giocatore);
-                stampare_a_video(”: ”);
+                stampare_a_video(": ");
                 stampare_a_video(posizione_giocatore);
-                stampare_a_video(”\n”);
+                stampare_a_video("\n");
                 }
         numero_giocatore = numero_giocatore + 1;
-        stampare_a_video(”\n”);
+        stampare_a_video("\n");
         numero_partita = numero_partita + 1;
         }
     } 
