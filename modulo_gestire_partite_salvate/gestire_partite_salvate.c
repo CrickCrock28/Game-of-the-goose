@@ -81,7 +81,6 @@ int stampare_partite_salvate(FILE* file_partite_salvate){
         leggere_record_vettore_partite_salvate(file_partite_salvate, i)= leggere_da_file_binario(file_partite_salvate);
         i=i+1;
         }
-        
     numero_partita = PRIMO_INDICE_ARRAY;
     
     while(numero_partita <= NUMERO_MASSIMO_PARTITE_SALVATE){
@@ -117,7 +116,7 @@ FILE* cancellare_partita_da_file(FILE* file_partite_salvate, int numero_partita)
 
     numero_partite_salvate = leggere_da_file_binario(file_partite_salvate);
     i = PRIMO_INDICE_ARRAY;
-    
+
     while(i<=numero_partite_salvate){
     leggere_record_vettore_partite_salvate(file_partite_salvate, i) = leggere_da_file_binario(file_partite_salvate);
     i=i+1;
