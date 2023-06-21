@@ -1,5 +1,4 @@
 #include "record_vettore_partite_salvate.h"
-#include "record_partita.h"
 
 int leggere_dimensione_record_vettore_partite_salvate(record_vettore_partite_salvate vettore_partite_salvate){
         int dim = record_vettore_partite_salvate.dimensione;

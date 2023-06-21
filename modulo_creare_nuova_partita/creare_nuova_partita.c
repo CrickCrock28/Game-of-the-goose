@@ -1,6 +1,4 @@
 #include "creare_nuova_partita.h"
-#include "costanti.h"
-#include <stdbool.h>
 
 record_dati_nuova_partita chiedere_dati_nuova_partita(void) {
 	int scelta, num_gioc, num_caselle;

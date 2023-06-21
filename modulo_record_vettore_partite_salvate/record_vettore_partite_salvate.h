@@ -1,6 +1,9 @@
 #ifndef RECORD_VETTORE_PARTITE_SALVATE_H_
 #define RECORD_VETTORE_PARTITE_SALVATE_H_
 
+#include "../modulo_record_partita/record_partita.h"
+
+
 #define NUMERO_PARTITE_MAX 5
 
 typedef struct record_vettore_partite_salvate {

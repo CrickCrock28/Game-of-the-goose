@@ -1,13 +1,15 @@
 #ifndef CREARE_NUOVA_PARTITA_H_
 #define CREARE_NUOVA_PARTITA_H_
 
-#include "record_dati_nuova_partita.h"
-#include "record_percorso.h"
-#include "record_vet_giocatori.h"
-#include "record_partita.h"
-#include "record_giocatore.h"
+#include "../modulo_record_dati_nuova_partita/record_dati_nuova_partita.h"
+#include "../modulo_record_percorso/record_percorso.h"
+#include "../modulo_record_vet_giocatori/record_vet_giocatori.h"
+#include "../modulo_record_partita/record_partita.h"
+#include "../modulo_record_giocatore/record_giocatore.h"
+#include "../costanti.h"
+#include <stdbool.h>
 
-//#define PRIMO_INDICE_ARRAY 0 // Indice del primo elemento di un generico array
+#define PRIMO_INDICE_ARRAY 0 // Indice del primo elemento di un generico array
 #define NUMERO_MASSIMO_GIOCATORI 4 // Numero massimo di giocatori
 #define NUMERO_MINIMO_GIOCATORI	2 // Numero minimo di giocatori
 #define NUMERO_MINIMO_CASELLE 50 // Numero minimo di caselle

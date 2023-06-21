@@ -1,5 +1,4 @@
 #include "record_vet_giocatori.h"
-#include "record_giocatore.h"
 
 int leggere_dimensione_record_vet_giocatori(record_vet_giocatori vet_giocatori) {
     int dimensione;

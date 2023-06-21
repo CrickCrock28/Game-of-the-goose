@@ -1,4 +1,4 @@
-//DA RIVEDERE IL MESSAGGIO
+#include "azioni_semplici.h"
 
 int chiedere_intero(const char* messaggio, int valore_minimo, int valore_massimo, int x, int y) {
     int colonna;
