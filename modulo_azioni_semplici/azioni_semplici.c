@@ -17,7 +17,7 @@ int chiedere_intero(const char* messaggio, int valore_minimo, int valore_massimo
     scanf("%d", &num);
     while (num < valore_minimo || num > valore_massimo) {
         spostare_cursore(colonna, riga + 1);
-        printf("Il valore deve essere compreso tra: %d e %d", valore_minimo, valore_massimo); //MAGICOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO
+        printf("%s %d e %d", MESSAGGIO, valore_minimo, valore_massimo);
         spostare_cursore(colonna, riga);
         printf("%s", messaggio);
         scanf("%d", &num);

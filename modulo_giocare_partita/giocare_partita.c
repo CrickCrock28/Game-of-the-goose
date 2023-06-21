@@ -150,45 +150,65 @@ void stampare_percorso(char* caselle, int dimensione, int posizione_giocatore_1,
 	int x = 0;
 	int y = 0;
 	int i = 0;
+
+    #define BORDO_LATERALE_CASELLA "|"
+    #define BORDO_INFERIORE_SUPERIORE_CASELLA "-----\0"
+    #define SIMBOLO_GIOCATORE_1 "&"
+    #define SIMBOLO_GIOCATORE_2 "*"
+    #define SIMBOLO_GIOCATORE_3 "#"
+    #define SIMBOLO_GIOCATORE_4 "$"
+    #define NUMERO_CASELLE_PER_RIGA 19
+
 	while(i<=dimensione){
 		spostare_cursore(x,y);
-		printf("-----");
+		printf("%s", BORDO_INFERIORE_SUPERIORE_CASELLA);
 		
 		spostare_cursore(x, y+1);
-		if(posizione_giocatore_1 == i)
-			printf("|& ");
-		else
-			printf("|  ");
-		
-		if(posizione_giocatore_2 == i)
-			printf("*|");
-		else
-			printf(" |");
-		
+		if(posizione_giocatore_1 == i){
+			printf("%c%c ",BORDO_LATERALE_CASELLA, SIMBOLO_GIOCATORE_1);
+		}
+        else{
+			printf("%c  ", BORDO_LATERALE_CASELLA);
+		}
+
+		if(posizione_giocatore_2 == i){
+			printf("%c%c", SIMBOLO_GIOCATORE_2, BORDO_LATERALE_CASELLA);
+		}
+        else{
+			printf(" %c", BORDO_LATERALE_CASELLA);
+		}
+
 		spostare_cursore(x, y+2);
-		if(posizione_giocatore_3 == i)
-			printf("|# ");
-		else
-			printf("|  ");
-		
-		if(posizione_giocatore_4 == i)
-			printf("$|");
-		else
-			printf(" |");
+
+		if(posizione_giocatore_3 == i){
+			printf("%c%c ", BORDO_LATERALE_CASELLA, SIMBOLO_GIOCATORE_3);
+		}
+        else{
+			printf("%c  ", BORDO_LATERALE_CASELLA);
+		}
+		if(posizione_giocatore_4 == i){
+			printf("%c%c", SIMBOLO_GIOCATORE_4, BORDO_LATERALE_CASELLA);
+		}
+        else{
+			printf(" %c", BORDO_LATERALE_CASELLA);
+        }
 		
 		spostare_cursore(x, y+3);
-		if(i==0)
-			printf("| %2d|", i);
-		else
-			printf("|%c%2d|", caselle[i-1], i);
+
+		if(i==0){
+			printf("%c %2d%c", BORDO_LATERALE_CASELLA, i, BORDO_LATERALE_CASELLA);
+        }
+        else{
+			printf("%c%c%2d%c", BORDO_LATERALE_CASELLA, caselle[i-1], i, BORDO_LATERALE_CASELLA);
+        }
 		
 		spostare_cursore(x, y+4);
-		printf("-----");
+		printf("%s", BORDO_INFERIORE_SUPERIORE_CASELLA);
 		x = x + 4;
 		
 		i++;
 		
-		if(i%19 == 0){
+		if(i%NUMERO_CASELLE_PER_RIGA == 0){
 			y = y + 4;
 			x = 0;
 		}		
