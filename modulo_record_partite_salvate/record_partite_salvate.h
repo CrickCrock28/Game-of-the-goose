@@ -1,7 +1,7 @@
 #ifndef RECORD_PARTITE_SALVATE_H_
 #define RECORD_PARTITE_SALVATE_H_
 
-#include "record_partita.h"
+#include "../modulo_record_partita/record_partita.h"
 #include "stdio.h"
 #include "stdlib.h"
 

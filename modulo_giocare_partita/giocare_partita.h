@@ -1,12 +1,14 @@
-#ifndef GIOCARE_PARTITA_H
-#define GIOCARE_PARTITA_H
+#ifndef GIOCARE_PARTITA_H_
+#define GIOCARE_PARTITA_H_
 
 #include <stdbool.h>
-#include "giocare_partita.h"
-#include "funzioni_accesso_da_modificare.h"
-#include "gotoxy.h"
+#include "../modulo_record_partita/record_partita.h"
+#include "../modulo_record_giocatore/record_giocatore.h"
+#include "../modulo_record_percorso/record_percorso.h"
+#include "../modulo_record_vet_giocatoi/record_vet_giocatori.h"
+#include "../gotoxy.h"
 
-#define PERCORSO_FILE_MENU_PARTITA "menu_partita.txt" //DA RIVEDEREEEEEEEE
+#define PERCORSO_FILE_MENU_PARTITA "menu_partita.txt
 #define NUMERO_MASSIMO_CASELLE 90
 #define CASELLA_OCA	'O'
 #define CASELLA_PONTE 'T'
@@ -17,7 +19,6 @@
 #define CASELLA_PRIGIONE 'P'
 #define CASELLA_FINE 'F'
 #define ARRIVO_LABIRINTO 33
-#define TURNI_BLOCCATO_LOCANDA 999 //DA RIVEDEREEEEEEEE
 #define NUMERO_MASSIMO_GIOCATORI 4
 #define PRIMO_INDICE_ARRAY 0
 #define PRIMA_POSIZIONE_PERCORSO 1

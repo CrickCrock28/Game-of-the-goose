@@ -103,8 +103,8 @@ record_partita giocare_partita(record_partita partita){
            !leggere_salvare_partita_record_partita(partita)){
         indice_giocatore_di_turno = leggere_indice_giocatore_di_turno_record_partita(partita);
         stampare_file_di_testo(PERCORSO_FILE_MENU_PARTITA);
-        scelta = chiedere_intero("Inserisci la scelta: ", 0, 3);    //DA RIVEDERE
-        partita = gestire_scelta_partita(partita, scelta);          //DA RIVEDERE
+        scelta = chiedere_intero("Inserisci la scelta: ", 0, 3);    
+        partita = gestire_scelta_partita(partita, scelta);          
     }
 
     return partita;
@@ -119,8 +119,8 @@ record_partita lanciare_primi_dadi(record_partita partita, int indice_giocatore)
     record_giocatore giocatore;
     int dimensione_percorso;
 
-    dado_1 = generare_numero_casuale(NUMERO_MINIMO_DADO, NUMERO_MASSIMO_DADO);      //DA RIVEDERE
-    dado_2 = generare_numero_casuale(NUMERO_MINIMO_DADO, NUMERO_MASSIMO_DADO);      //DA RIVEDERE
+    dado_1 = generare_numero_casuale(NUMERO_MINIMO_DADO, NUMERO_MASSIMO_DADO);      
+    dado_2 = generare_numero_casuale(NUMERO_MINIMO_DADO, NUMERO_MASSIMO_DADO);      
     
     partita = scrivere_ultimo_lancio_dado_1_record_partita(partita, dado_1);
     partita = scrivere_ultimo_lancio_dado_2_record_partita(partita, dado_2);
@@ -250,14 +250,14 @@ record_partita gestire_menu_nuova_partita(const char* menu_nuova_partita, const 
     nuova_partita = false;
     do {
         if(nuova_partita){
-            partita = gestire_scelta_nuova_partita(scelta); //DA RIVEDERE
+            partita = gestire_scelta_nuova_partita(scelta); 
         } else {
             if(riprendere_partita == 0){
                 stampare_file_di_testo(PERCORSO_FILE_MENU_PARTITA);
-                scelta = chiedere_intero("Inserisci la scelta: ", 0, 1); //DA RIVEDERE
-                partita = gestire_scelta_nuova_partita(scelta); //DA RIVEDERE
+                scelta = chiedere_intero("Inserisci la scelta: ", 0, 1); 
+                partita = gestire_scelta_nuova_partita(scelta); 
             } else {
-                partita = giocare_partita(partita); //DA RIVEDERE
+                partita = giocare_partita(partita);
             }
         }
 
