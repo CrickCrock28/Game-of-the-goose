@@ -6,7 +6,7 @@
 #include "modulo_record_partita/record_partita.h"
 #include "modulo_record_partite_salvate/record_partite_salvate.h"
 #include "modulo_record_percorso/record_percorso.h"
-#include "modulo_record_vet_giocatori/vet_giocatori.h"
+#include "modulo_record_vet_giocatori/record_vet_giocatori.h"
 #include "modulo_vettore_partite_salvate/vettore_partite_salvate.h"
 #include "modulo_azioni_semplici/azioni_semplici.h"
 #include "modulo_creare_nuova_partita/creare_nuova_partita.h"
