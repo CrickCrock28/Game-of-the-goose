@@ -2,7 +2,6 @@
     "files.associations": {
         "azioni_semplici.h": "c",
         "stdio.h": "c",
-        "time.h": "c",
-        "spostare_cursore.h": "c"
+        "record_classificato.h": "c"
     }
 }
