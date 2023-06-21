@@ -51,7 +51,7 @@ record_partita applicare_effetto_casella_prigione(record_partita partita, int in
     while(i < NUMERO_MASSIMO_GIOCATORI && !trovato){
         giocatore = leggere_giocatore_record_vet_giocatori(vet_giocatori, i);
 
-        if(trovare_tipo_casella_giocatore(giocatore) == CASELLA_PRIGIONE && leggere_bloccato_record_giocatore(giocatore)){
+        if(trovare_tipo_casella_giocatore(partita, i) == CASELLA_PRIGIONE && leggere_bloccato_record_giocatore(giocatore)){
             giocatore = scrivere_bloccato_record_giocatore(giocatore, false);
             vet_giocatori = scrivere_giocatore_record_vet_giocatori(vet_giocatori, i, giocatore);
             trovato = true;
