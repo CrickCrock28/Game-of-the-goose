@@ -2,7 +2,7 @@
 #define AZIONI_SEMPLICI_H_
 
 #include <stdio.h>
-#include "../gotoxy.h"
+#include "../spostare_cursore.h"
 
 #define NUMERO_COLONNA_MASSIMA 80
 #define FINE_STRINGA '\0'

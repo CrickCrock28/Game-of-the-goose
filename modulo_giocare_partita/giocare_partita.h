@@ -7,8 +7,9 @@
 #include "../modulo_record_giocatore/record_giocatore.h"
 #include "../modulo_record_percorso/record_percorso.h"
 #include "../modulo_record_vet_giocatori/record_vet_giocatori.h"
-#include  "../modulo_record_dati_nuova_partita/record_dati_nuova_partita.h"
-#include "../gotoxy.h"
+#include "../modulo_record_dati_nuova_partita/record_dati_nuova_partita.h"
+#include "../modulo_gestire_file/gestire_file.h"
+#include "../spostare_cursore.h"
 
 #define PERCORSO_FILE_MENU_PARTITA "menu_partita.txt"
 #define NUMERO_MASSIMO_CASELLE 90

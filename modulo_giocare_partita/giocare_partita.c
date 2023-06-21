@@ -151,10 +151,10 @@ void stampare_percorso(char* caselle, int dimensione, int posizione_giocatore_1,
 	int y = 0;
 	int i = 0;
 	while(i<=dimensione){
-		GoToXY(x,y);
+		spostare_cursore(x,y);
 		printf("-----");
 		
-		GoToXY(x, y+1);
+		spostare_cursore(x, y+1);
 		if(posizione_giocatore_1 == i)
 			printf("|& ");
 		else
@@ -165,7 +165,7 @@ void stampare_percorso(char* caselle, int dimensione, int posizione_giocatore_1,
 		else
 			printf(" |");
 		
-		GoToXY(x, y+2);
+		spostare_cursore(x, y+2);
 		if(posizione_giocatore_3 == i)
 			printf("|# ");
 		else
@@ -176,13 +176,13 @@ void stampare_percorso(char* caselle, int dimensione, int posizione_giocatore_1,
 		else
 			printf(" |");
 		
-		GoToXY(x, y+3);
+		spostare_cursore(x, y+3);
 		if(i==0)
 			printf("| %2d|", i);
 		else
 			printf("|%c%2d|", caselle[i-1], i);
 		
-		GoToXY(x, y+4);
+		spostare_cursore(x, y+4);
 		printf("-----");
 		x = x + 4;
 		
