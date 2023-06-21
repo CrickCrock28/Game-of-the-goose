@@ -21,7 +21,7 @@ record_dati_nuova_partita chiedere_dati_nuova_partita(void) {
 	}
 	return dati_nuova_partita;
 }
-record_partita creare_nuova_partita(record_dati_nuova_partita dati_nuova_partita, record_partita* partita) {
+record_partita creare_nuova_partita(record_dati_nuova_partita dati_nuova_partita) {
 	record_percorso percorso;
 	record_vet_giocatori vet_gioc;
 

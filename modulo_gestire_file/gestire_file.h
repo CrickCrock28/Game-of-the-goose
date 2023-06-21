@@ -28,7 +28,7 @@
 #define NUMERO_MASSIMO_DADO 7
 
 
-int stampare_file_di_testo(const char* file_da_stampare);
+void stampare_file_di_testo(FILE* file);
 bool verificare_file_esistente(FILE* file);
 
 #endif /* GESTIRE_FILE_H_ */
