@@ -1,6 +1,6 @@
 #include "giocare_partita.h"
 
-char tipo_casella(record_partita partita, int indice_giocatore){
+char trovare_tipo_casella_giocatore(record_partita partita, int indice_giocatore){
     record_vet_giocatori vet_giocatori;
     record_giocatore giocatore;
     record_percorso percorso;
