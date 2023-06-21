@@ -22,3 +22,11 @@ int chiedere_intero(const char* messaggio, int valore_minimo, int valore_massimo
 
     return num;
 }
+int calcolare_proporzione(int n_1, int d_1, int d_2) {
+	int n_2, x;
+
+	 x = n_1 * d_2 / d_1;
+	 n_2 = (int) x;
+
+	return n_2;
+}
