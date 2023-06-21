@@ -18,6 +18,7 @@
 
 
 #define NOME_FILE_MENU_NUOVA_PARTITA "menu_nuova_partita.txt\0"
+#define NOME_FILE_MENU_RIPRENDERE_PARTITA "menu_riprendere_partita.txt\0"
 #define NOME_FILE_MENU_PRINCIPALE "menu_principale.txt\0"
 #define NOME_FILE_MENU_CARICA_PARTITA "menu_carica_partita.txt\0"
 #define NOME_FILE_MENU_AIUTO "menu_aiuto.txt\0"
@@ -38,30 +39,35 @@ int main(void) {
     int scelta, riprendere_partita;
     record_partita partita;
     record_partite_salvate salvataggi;
+    FILE* menu_principale,
+    *menu_riprendere_partita;
+
+    menu_riprendere_partita = fopen(NOME_FILE_MENU_RIPRENDERE_PARTITA, "r");
+    menu_principale = fopen(NOME_FILE_MENU_PRINCIPALE, "r");
 
     do {
-        stampare_file_di_testo(NOME_FILE_MENU_PRINCIPALE);
+        stampare_file_di_testo(menu_principale);
         scelta = chiedere_intero(MESSAGGIO_INSERIMENTO, 0, 4, 9, 0);
         if (scelta == MENU_NUOVA_PARTITA) {
             riprendere_partita = 0;
             if (partita_caricata == true) {
-                giocare_partita(&partita);
+                partita = (partita);
             }
             else {
                 // se l’utente vuole crare una nuova partita, questa viene creata nella funzione gestire_menu_nuova_partita
                 if (creare_nuova_partita == false) {
-                    gestire_menu_nuova_partita(NOME_FILE_MENU_NUOVA_PARTITA, riprendere_partita, &partita);
+                    partita = gestire_menu_nuova_partita(NOME_FILE_MENU_NUOVA_PARTITA, riprendere_partita, partita);
                 }
             }
             do {
-                if (leggere_terminata_record_partita(partita) = true) {
+                if (leggere_terminata_record_partita(partita) == true) {
                     // aggiorno la classifica
                     aggiornare_classifica(NOME_FILE_CLASSIFICA);
                 }
                 else {
-                    if (leggere_salvare_partita_record_partita(partita) = true) {
+                    if (leggere_salvare_partita_record_partita(partita) == true) {
                         // salvo la partita
-                        salvare_partita(NOME_FILE_PARTITE_SALVATE, partita);
+                        partita = salvare_partita(NOME_FILE_PARTITE_SALVATE, partita);
                         // chiedo all'utente se vuole continuare la partita
                         riprendere_partita = chiedere_intero(MESSAGGIO_INSERIMENTO, 0, 1);
                     }
@@ -70,10 +76,10 @@ int main(void) {
             } while (riprendere_partita == CONTINUARE_PARTITA);
         }
         else if (scelta == MENU_CARICA_PARTITA) {
-            gestire_menu_partite_salvate(NOME_FILE_MENU_CARICA_PARTITA, NOME_FILE_PARTITE_SALVATE, &salvataggi);
+            salvataggi = gestire_menu_partite_salvate(NOME_FILE_MENU_CARICA_PARTITA, NOME_FILE_PARTITE_SALVATE, salvataggi);
             // leggere_partite_salvate(salvataggi, &partite_salvate); ?
             if (leggere_indice_giocatore_di_turno_record_partita(leggere_partita_opzionale(salvataggi)) == PARTITA_OPZIONALE_INESISTENTE) {
-                leggere_partita_opzionale(salvataggi, &partita);
+                partita = leggere_partita_opzionale(salvataggi, partita);
                 partita_caricata = true;
             }
         }

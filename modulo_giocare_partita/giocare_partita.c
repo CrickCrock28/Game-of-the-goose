@@ -429,7 +429,7 @@ record_partita gestire_scelta_partita(record_partita partita, int scelta){
             }else{
                 partita = lanciare_dadi(partita, indice_giocatore_di_turno);
                 }
-                while(trovare_tipo_casella_giocatore(partita, indice_giocatore_di_turno) != CASELLA_NORMALE)){
+                while(trovare_tipo_casella_giocatore(partita, indice_giocatore_di_turno) != CASELLA_NORMALE){
                 partita = gestire_effetti_caselle_speciali(partita, indice_giocatore_di_turno);
                 }
                 partita = avanzare_turno(partita);
@@ -452,8 +452,8 @@ record_partita gestire_scelta_partita(record_partita partita, int scelta){
 }
 
 
-record_partita gestire_scelta_partita(int scelta){
-    if(scelta==1){
+record_partita gestire_scelta_nuova_partita(int scelta){
+    if(scelta == 1){
         record_partita partita;
         record_dati_nuova_partita dati_nuova_partita;
 
