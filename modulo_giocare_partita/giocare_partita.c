@@ -242,7 +242,7 @@ record_partita stabilire_primo_giocatore(record_partita partita){
 }
 
 
-record_partita gestire_menu_nuova_partita(const char* menu_nuova_partita, const char* menu_partita_in_corso, int riprendere_partita){
+record_partita gestire_menu_nuova_partita(char* NOME_FILE_MENU_NUOVA_PARTITA, record_partita partita){
     int nuova_partita;
     int scelta;
     record_partita partita;
