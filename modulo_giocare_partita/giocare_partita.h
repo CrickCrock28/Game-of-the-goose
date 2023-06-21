@@ -29,6 +29,7 @@
 #define ARRIVO_PRIMO_LANCIO_3_6 26
 #define NUMERO_MINIMO_DADO 1
 #define NUMERO_MASSIMO_DADO 6
+#define GIOCATORE_NON_STABILITO -1
 
 char tipo_casella(record_partita partita, int indice_giocatore);
 record_partita applicare_effetto_casella_labirinto(record_partita partita, int indice_giocatore);

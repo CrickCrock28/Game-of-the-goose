@@ -93,7 +93,7 @@ record_partita giocare_partita(record_partita partita){
     int indice_giocatore_di_turno;
     int scelta;
 
-    if(leggere_indice_giocatore_di_turno_record_partita(partita) == GIOCATORE_NON_STABILITO){
+    if(!verificare_partita_iniziata(partita)){
         partita = stabilire_primo_giocatore(partita);
     }
 
@@ -199,7 +199,7 @@ void stampare_percorso(char* caselle, int dimensione, int posizione_giocatore_1,
 record_partita avanzare_turno(record_partita partita){
     int indice_successivo;
     
-    indice_successivo = leggere_indice_giocatore_di_turno_record_partita(partita) + 1;
+    indice_successivo = leggere_indice_giocatore_di_turno(partita) + 1;
 
     if(indice_successivo > leggere_dimensione_record_vet_giocatori(leggere_vet_giocatori_record_partita(partita))){
         indice_successivo = PRIMO_INDICE_ARRAY;
