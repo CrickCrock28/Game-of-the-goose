@@ -4,20 +4,22 @@
 
 record_dati_nuova_partita chiedere_dati_nuova_partita(void) {
 	int scelta, num_gioc, num_caselle;
+	record_dati_nuova_partita dati_nuova_partita;
 
 	system("cls");
 	scelta = chiedere_intero(MESSAGGIO_DATI_NUOVA_PARTITA, 1, 2);
 	if (scelta == 1) {
-		scrivere_numero_giocatori_record_dati_nuova_partita(dati_nuova_partita, NUMERO_PREDEFINITO_GIOCATORI);
-		scrivere_numero_caselle_record_dati_nuova_partita(dati_nuova_partita, NUMERO_PREDEFINITO_CASELLE);
+		dati_nuova_partita = scrivere_numero_giocatori_record_dati_nuova_partita(dati_nuova_partita, NUMERO_PREDEFINITO_GIOCATORI);
+		dati_nuova_partita = scrivere_numero_caselle_record_dati_nuova_partita(dati_nuova_partita, NUMERO_PREDEFINITO_CASELLE);
 	}
 	else {
 		num_gioc = chiedere_intero(MESSAGGIO_NUMERO_GIOCATORI, NUMERO_MINIMO_GIOCATORI, NUMERO_MASSIMO_GIOCATORI);
 		num_caselle = chiedere_intero(MESSAGGIO_NUMERO_CASELLE, NUMERO_MINIMO_CASELLE, NUMERO_MASSIMO_CASELLE);
 
-		scrivere_numero_giocatori_record_dati_nuova_partita(dati_nuova_partita, num_gioc);
-		scrivere_numero_caselle_record_dati_nuova_partita(dati_nuova_partita, num_caselle);
+		dati_nuova_partita = scrivere_numero_giocatori_record_dati_nuova_partita(dati_nuova_partita, num_gioc);
+		dati_nuova_partita = scrivere_numero_caselle_record_dati_nuova_partita(dati_nuova_partita, num_caselle);
 	}
+	return dati_nuova_partita;
 }
 record_partita creare_nuova_partita(record_dati_nuova_partita dati_nuova_partita, record_partita* partita) {
 	record_percorso percorso;
