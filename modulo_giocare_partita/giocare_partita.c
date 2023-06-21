@@ -103,7 +103,7 @@ record_partita giocare_partita(record_partita partita){
            !leggere_salvare_partita_record_partita(partita)){
         indice_giocatore_di_turno = leggere_indice_giocatore_di_turno_record_partita(partita);
         stampare_file_di_testo(PERCORSO_FILE_MENU_PARTITA);
-        scelta = chiedere_intero("Inserisci la scelta: ", 0, 3);    
+        scelta = chiedere_intero("Inserisci la scelta: ", 0, 3, 0, 0);//VANNO MODIFICATE LE COORDINATE E AGGIUNTE IN PSEUDO    
         partita = gestire_scelta_partita(partita, scelta);          
     }
 
@@ -273,6 +273,7 @@ record_partita gestire_menu_nuova_partita(char* NOME_FILE_MENU_NUOVA_PARTITA, re
     return partita;
 }
 
+//QUI INIZIANO LE FUNZIONI TUE BACCALEEEEEEEEEEÈ
 
 record_partita applicare_effetto_casella_oca_ponte(record_partita partita, int indice_giocatore){
     record_vet_giocatori vet_giocatori;

@@ -2,12 +2,13 @@
 #define GIOCARE_PARTITA_H_
 
 #include <stdbool.h>
+#include "../modulo_azioni_semplici/azioni_semplici.h"
 #include "../modulo_record_partita/record_partita.h"
 #include "../modulo_record_giocatore/record_giocatore.h"
 #include "../modulo_record_percorso/record_percorso.h"
 #include "../modulo_record_vet_giocatori/record_vet_giocatori.h"
-#include "../gotoxy.h"
 #include  "../modulo_record_dati_nuova_partita/record_dati_nuova_partita.h"
+#include "../gotoxy.h"
 
 #define PERCORSO_FILE_MENU_PARTITA "menu_partita.txt"
 #define NUMERO_MASSIMO_CASELLE 90
