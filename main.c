@@ -28,6 +28,7 @@
 #define NOME_FILE_CLASSIFICA "classifica.bin\0"
 #define NOME_FILE_REGOLE_GIOCO "regole_gioco.txt\0"
 #define NOME_FILE_MANUALE_GIOCO "manuale_gioco.txt\0"
+#define NOME_FILE_MENU_SCELTA_DATI_NUOVA_PARTITA "menu_scelta_dati_nuova_partita.txt\0"	// Nome del file che contiene il menù scegliere dati nuova parita
 #define MENU_NUOVA_PARTITA 1 // Scelta corrispondende al menu nuova partita
 #define MENU_CARICA_PARTITA 2 // Scelta corrispondende al menu carica partita
 #define MENU_CLASSIFICA 3 // Scelta corrispondende al menu classifica
