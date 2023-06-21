@@ -37,7 +37,7 @@
 
 int main(void) {
     bool partita_caricata, creare_nuova_partita;
-    int scelta;
+    int scelta, riprendere_partita;
     record_partita partita;
     record_partite_salvate salvataggi;
     FILE* menu_principale,
@@ -62,7 +62,7 @@ int main(void) {
             do {
                 if (leggere_terminata_record_partita(partita) == true) {
                     // aggiorno la classifica
-                    aggiornare_classifica(NOME_FILE_CLASSIFICA);
+                    aggiornare_classifica(NOME_FILE_CLASSIFICA, partita);
                 }
                 else {
                     if (leggere_salvare_partita_record_partita(partita) == true) {
