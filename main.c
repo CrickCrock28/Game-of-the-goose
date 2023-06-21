@@ -37,7 +37,7 @@ int main(void) {
     bool partita_caricata, creare_nuova_partita;
     int scelta, riprendere_partita;
     record_partita partita;
-    record_salvataggi salvataggi;
+    record_partite_salvate salvataggi;
 
     do {
         stampare_file_di_testo(NOME_FILE_MENU_PRINCIPALE);
