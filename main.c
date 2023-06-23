@@ -1,6 +1,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 
+#include "costanti.h"
 #include "modulo_record_classificato/record_classificato.h"
 #include "modulo_record_giocatore/record_giocatore.h"
 #include "modulo_record_partita/record_partita.h"
@@ -16,18 +17,16 @@
 #include "modulo_gestire_partite_salvate/gestire_partite_salvate.h"
 #include "modulo_giocare_partita/giocare_partita.h"
 
-
-#define NOME_FILE_MENU_NUOVA_PARTITA "menu_nuova_partita.txt\0"
-#define NOME_FILE_MENU_RIPRENDERE_PARTITA "menu_riprendere_partita.txt\0"
-#define NOME_FILE_MENU_PRINCIPALE "menu_principale.txt\0"
-#define NOME_FILE_MENU_CARICA_PARTITA "menu_carica_partita.txt\0"
-#define NOME_FILE_MENU_AIUTO "menu_aiuto.txt\0"
-#define NOME_FILE_MENU_CLASSIFICA "menu_classifica.txt\0"
-#define MESSAGGIO_INSERIMENTO "Inserire la scelta: \0"
-#define NOME_FILE_PARTITE_SALVATE "partite_salvate.bin\0"
-#define NOME_FILE_CLASSIFICA "classifica.bin\0"
-#define NOME_FILE_REGOLE_GIOCO "regole_gioco.txt\0"
-#define NOME_FILE_MANUALE_GIOCO "manuale_gioco.txt\0"
+#define NOME_FILE_MENU_NUOVA_PARTITA "menu_nuova_partita.txt\0" // Nome del file che contiene il menù nuova partita
+#define NOME_FILE_MENU_PRINCIPALE "menu_principale.txt\0" // Nome del file che contiene il menù principale
+#define NOME_FILE_MENU_CARICA_PARTITA "menu_carica_partita.txt\0" // Nome del file che contiene il menù carica partita
+#define NOME_FILE_MENU_AIUTO "menu_aiuto.txt\0" // Nome del file che contiene il menù aiuto
+#define NOME_FILE_MENU_CLASSIFICA "menu_classifica.txt\0" // Nome del file che contiene il menù classifica
+#define NOME_FILE_PARTITE_SALVATE "partite_salvate.bin\0" // Nome del file che contiene le partite salvate
+#define NOME_FILE_CLASSIFICA "classifica.bin\0" // Nome del file che contiene la classifica
+#define NOME_FILE_REGOLE_GIOCO "regole_gioco.txt\0" // Nome del file che contiene le regole di gioco
+#define NOME_FILE_MANUALE_GIOCO "manuale_gioco.txt\0" // Nome del file che contiene il manuale di gioco
+#define NOME_FILE_MENU_RIPRENDERE_PARTITA "menu_riprendere_partita.txt\0" // Nome del file che contiene il menù riprendere partita appena salvata
 #define NOME_FILE_MENU_SCELTA_DATI_NUOVA_PARTITA "menu_scelta_dati_nuova_partita.txt\0"	// Nome del file che contiene il menù scegliere dati nuova parita
 #define MENU_NUOVA_PARTITA 1 // Scelta corrispondende al menu nuova partita
 #define MENU_CARICA_PARTITA 2 // Scelta corrispondende al menu carica partita
@@ -35,39 +34,30 @@
 #define MENU_AIUTO 4 // Scelta corrispondende al menu aiuto
 #define CONTINUARE_PARTITA 1 // Indica che l'utente vuole continuare la partita appena salvata
 
-void inizializzare_file(void) {
-    FILE* file_partite_salvate;
-
-    file_partite_salvate = fopen(NOME_FILE_PARTITE_SALVATE, "rb");
-    if (verificare_file_esistente(NOME_FILE_PARTITE_SALVATE) == false) {
-        file_partite_salvate = fopen(NOME_FILE_PARTITE_SALVATE, "wb");
-        fwrite(0, sizeof(int), 1, file_partite_salvate);
-        fclose(file_partite_salvate);
-    }
-    // altri file binari che devono essere creati e modificati a runtime
-
-    return;
-}
+void inizializzare_file(void);
 
 int main(void) {
-    bool partita_caricata, creare_nuova_partita;
-    int scelta, riprendere_partita;
+    bool partita_caricata,
+        creare_nuova_partita;
+    int scelta,
+        riprendere_partita;
     record_partita partita;
     record_partite_salvate salvataggi;
     FILE* menu_principale,
         *menu_riprendere_partita;
 
     //inizializzare_file(); quando funziona il programma decommentare
-
     menu_riprendere_partita = fopen(NOME_FILE_MENU_RIPRENDERE_PARTITA, "r");
     menu_principale = fopen(NOME_FILE_MENU_PRINCIPALE, "r");
 
     if (verificare_file_esistente(menu_principale) == true
         && verificare_file_esistente(menu_riprendere_partita) == true) {
+        partita_caricata = false; // indica se l’utente ha caricato una partita in RAM dal file delle partite salvate
+        creare_nuova_partita = false; // indica se l’utente vuole creare una nuova partita incurante di quella precedente in corso
         do {
             system("cls");
             stampare_file_di_testo(menu_principale);
-            scelta = chiedere_intero(MESSAGGIO_INSERIMENTO, 0, 4, 9, 0);
+            scelta = chiedere_intero(MESSAGGIO_SCELTA, 0, 4, 9, 0);
             if (scelta == MENU_NUOVA_PARTITA) {
                 if (partita_caricata == true) {
                     // la partita e' stata caricata dal file delle partite salvate
@@ -91,15 +81,18 @@ int main(void) {
                             // chiedo all'utente se vuole continuare la partita
                             system("cls");
                             stampare_file_di_testo(menu_riprendere_partita);
-                            riprendere_partita = chiedere_intero(MESSAGGIO_INSERIMENTO, 0, 1, 5, 0);
+                            riprendere_partita = chiedere_intero(MESSAGGIO_SCELTA, 0, 1, 5, 0);
                         }
-
                     }
                 } while (riprendere_partita == CONTINUARE_PARTITA);
             }
             else if (scelta == MENU_CARICA_PARTITA) {
                 salvataggi = gestire_menu_partite_salvate(salvataggi, NOME_FILE_MENU_CARICA_PARTITA);
-                // leggere_partite_salvate(salvataggi, &partite_salvate); ?
+                // leggere_partite_salvate(salvataggi, &partite_salvate); ? legge le partite salvate, \
+                l'output è inserito in partite_salvate passato per indirizzo
+
+                // partite_salvate = leggere_partite_salvate(salvataggi); <-- questa sta nello pseudocodice
+
                 if (leggere_indice_giocatore_di_turno_record_partita(leggere_partita_opzionale(salvataggi)) == PARTITA_OPZIONALE_INESISTENTE) {
                     partita = leggere_partita_opzionale(salvataggi, partita);
                     partita_caricata = true;
@@ -115,4 +108,28 @@ int main(void) {
     }
 
     return EXIT_SUCCESS;
+}
+
+void inizializzare_file(void) {
+    FILE* file_partite_salvate,
+        *file_classifica;
+
+    file_classifica = fopen(NOME_FILE_CLASSIFICA, "rb");
+    if (verificare_file_esistente(NOME_FILE_CLASSIFICA) == false) {
+        // ricontrollare se i dati di default per il file sono corretti
+        file_classifica = fopen(NOME_FILE_CLASSIFICA, "wb");
+        fwrite(0, sizeof(int), 1, file_classifica);
+    }
+
+    file_partite_salvate = fopen(NOME_FILE_PARTITE_SALVATE, "rb");
+    if (verificare_file_esistente(NOME_FILE_PARTITE_SALVATE) == false) {
+        file_partite_salvate = fopen(NOME_FILE_PARTITE_SALVATE, "wb");
+        // scrivere i dati di default per questo file, se esistono, altrimenti eliminare questi due commenti
+        //fwrite(0, sizeof(int), 1, file_partite_salvate);
+    }
+    // altri file binari che devono essere creati e modificati a runtime, non dovrebbero essercene altri
+    fclose(file_partite_salvate);
+    fclose(file_classifica);
+
+    return;
 }
