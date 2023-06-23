@@ -478,7 +478,7 @@ record_partita gestire_scelta_nuova_partita(int scelta){
         record_dati_nuova_partita dati_nuova_partita;
 
         dati_nuova_partita = chiedere_dati_nuova_partita();
-        partita = creare_partita(dati_nuova_partita);
+        partita = creare_nuova_partita(dati_nuova_partita);
         partita = giocare_partita(partita);
     }
     return partita;
