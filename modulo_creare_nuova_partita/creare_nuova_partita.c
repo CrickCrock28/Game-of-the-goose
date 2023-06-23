@@ -1,8 +1,7 @@
 #include "creare_nuova_partita.h"
 
-record_dati_nuova_partita chiedere_dati_nuova_partita(void) {
+record_dati_nuova_partita chiedere_dati_nuova_partita(record_dati_nuova_partita dati_nuova_partita) {
 	int scelta, num_gioc, num_caselle;
-	record_dati_nuova_partita dati_nuova_partita;
 
 	system("cls");
 	scelta = chiedere_intero(MESSAGGIO_DATI_NUOVA_PARTITA, 1, 2);

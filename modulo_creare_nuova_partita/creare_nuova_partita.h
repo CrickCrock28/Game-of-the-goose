@@ -44,7 +44,7 @@
 #define MESSAGGIO_NUMERO_CASELLE "Inserisci il numero di caselle (50 a 90): \0"
 //#define MESSAGGIO_DATI_NUOVA_PARTITA "Parametri di default (1) o li scegli tu (2): "    
 
-record_dati_nuova_partita chiedere_dati_nuova_partita(void);
+record_dati_nuova_partita chiedere_dati_nuova_partita(record_dati_nuova_partita dati_nuova_partita);
 record_partita creare_nuova_partita(record_dati_nuova_partita dati_nuova_partita);
 record_percorso inizializzare_percorso(record_percorso percorso);
 record_percorso inserire_caselle_oche(record_percorso percorso);
