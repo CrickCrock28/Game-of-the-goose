@@ -1,15 +1,13 @@
 #ifndef CREARE_NUOVA_PARTITA_H_
 #define CREARE_NUOVA_PARTITA_H_
 
-#include "../modulo_record_dati_nuova_partita/record_dati_nuova_partita.h"
-#include "../modulo_record_percorso/record_percorso.h"
-#include "../modulo_record_vet_giocatori/record_vet_giocatori.h"
-#include "../modulo_record_partita/record_partita.h"
-#include "../modulo_record_giocatore/record_giocatore.h"
-#include "../costanti.h"
-#include <stdbool.h>
+#include "record_dati_nuova_partita.h"
+#include "record_percorso.h"
+#include "record_vet_giocatori.h"
+#include "record_partita.h"
+#include "record_giocatore.h"
+#include "giocare_partita.h"
 
-#define PRIMO_INDICE_ARRAY 0 // Indice del primo elemento di un generico array
 #define NUMERO_MASSIMO_GIOCATORI 4 // Numero massimo di giocatori
 #define NUMERO_MINIMO_GIOCATORI	2 // Numero minimo di giocatori
 #define NUMERO_MINIMO_CASELLE 50 // Numero minimo di caselle
@@ -38,19 +36,17 @@
 #define SCHELETRO 58 // Posizione della casella scheletro su percorso da 90 caselle
 #define GIOCATORE_NON_STABILITO	-1 // Indica che il giocatore di turno non è stato ancora stabilito
 #define LANCIO_NON_EFFETTUATO -1 // Indica che non è stato ancora effettuato alcun lancio
-#define POSIZIONE_GIOCATORE_NON_PARTECIPANTE -1 // Indica che il giocatore non sta giocando la partita
+#define POSIZIONE_GIOCATORE_NON_PARTECIPANTE -2 // Indica che il giocatore non sta giocando la partita
 #define POSIZIONE_INIZIO (PRIMO_INDICE_ARRAY - 1) // Indica la posizione del giocatore all’inizio della partita
 #define MESSAGGIO_NUMERO_GIOCATORI "Inserisci il numero di giocatori (2 a 4): \0"
 #define MESSAGGIO_NUMERO_CASELLE "Inserisci il numero di caselle (50 a 90): \0"
-//#define MESSAGGIO_DATI_NUOVA_PARTITA "Parametri di default (1) o li scegli tu (2): "    
 
-record_dati_nuova_partita chiedere_dati_nuova_partita(record_dati_nuova_partita dati_nuova_partita);
+record_dati_nuova_partita chiedere_dati_nuova_partita(char* NOME_FILE_MENU_SCELTA_DATI_NUOVA_PARTITA);
 record_partita creare_nuova_partita(record_dati_nuova_partita dati_nuova_partita);
 record_percorso inizializzare_percorso(record_percorso percorso);
 record_percorso inserire_caselle_oche(record_percorso percorso);
 record_percorso inserire_casella_speciale(record_percorso percorso, int posizione_casella_speciale, char carattere_casella_speciale);
 record_percorso inserire_caselle_speciali(record_percorso percorso);
-int calcolare_proporzione(int n_1, int d_1, int d_2);
 record_vet_giocatori inizializzare_record_vet_giocatori(record_vet_giocatori vet);
 
 #endif /* CREARE_NUOVA_PARTITA_H_ */

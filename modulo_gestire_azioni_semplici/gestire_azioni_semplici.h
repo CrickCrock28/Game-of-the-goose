@@ -1,5 +1,5 @@
-#ifndef AZIONI_SEMPLICI_H_
-#define AZIONI_SEMPLICI_H_
+#ifndef GESTIRE_AZIONI_SEMPLICI_H_
+#define GESTIRE_AZIONI_SEMPLICI_H_
 
 #include <stdio.h>
 #include <stdlib.h>

@@ -1,4 +1,4 @@
-#include "azioni_semplici.h"
+#include "gestire_azioni_semplici.h"
 
 int chiedere_intero(const char* messaggio, int valore_minimo, int valore_massimo, int riga, int colonna) {
     int y;

@@ -9,5 +9,7 @@
 #define PRIMO_INDICE_STRINGA 0 // Indice del primo elemento di un array di caratteri terminato dal carattere FINE_STRINGA
 #define FINE_FILE EOF // Carattere terminatore di un file di testo
 #define MESSAGGIO_SCELTA "Inserisci la scelta: \0" // Messaggio generico da stampare al momento dell’inserimento di una scelta all’interno di un menu
+#define TITOLO "                                Gioco dell'oca\0" // Titolo del gioco
+#define BORDO "--------------------------------------------------------------------------------\0" // Bordo generico
 
 #endif /* COSTANTI_H_ */
