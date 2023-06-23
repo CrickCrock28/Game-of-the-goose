@@ -440,7 +440,7 @@ record_partita gestire_scelta_partita(record_partita partita, int scelta){
     if(scelta == 1){
         // tira i dadi, potrebbe terminare la partita
         vet_giocatori = leggere_vet_giocatori_record_partita(partita);
-        giocatore_di_turno = leggere_record_giocatore_vet_giocatori(vet_giocatori, indice_giocatore_di_turno);
+        giocatore_di_turno = leggere_giocatore_record_vet_giocatori(vet_giocatori, indice_giocatore_di_turno);
         giocatore_di_turno = scrivere_numero_dadi_lanciati_record_giocatore(leggere_numero_dadi_lanciati_record_giocatore(giocatore_di_turno) + 1);
         vet_giocatori = scrivere_giocatore_record_vet_giocatori(vet_giocatori, indice_giocatore_di_turno, giocatore_di_turno);
         partita = scrivere_vet_giocatori_record_partita(partita, vet_giocatori);
@@ -460,7 +460,7 @@ record_partita gestire_scelta_partita(record_partita partita, int scelta){
         }else{
             if(scelta = 3){
                 // salvare partita 
-                partita = scrivere_salvare_partita_record_partita(partita, true);
+                partita = scrivere_nuova_partita_record_partita(partita, true);
             }else{
                 // abbandona partita
                 // metto il flag di abbandona partita a true ed esco
