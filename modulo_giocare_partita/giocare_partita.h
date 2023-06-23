@@ -31,7 +31,7 @@
 #define NUMERO_MASSIMO_DADO 6
 #define GIOCATORE_NON_STABILITO -1
 
-char tipo_casella(record_partita partita, int indice_giocatore);
+char trovare_tipo_casella_giocatore(record_partita partita, int indice_giocatore);
 record_partita applicare_effetto_casella_labirinto(record_partita partita, int indice_giocatore);
 record_partita applicare_effetto_casella_prigione(record_partita partita, int indice_giocatore);
 record_partita applicare_effetto_casella_scheletro(record_partita partita, int indice_giocatore);
@@ -40,7 +40,7 @@ record_partita lanciare_primi_dadi(record_partita partita, int indice_giocatore)
 void stampare_percorso(char* caselle, int dimensione, int posizione_giocatore_1, int posizione_giocatore_2, int posizione_giocatore_3, int posizione_giocatore_4);
 record_partita avanzare_turno(record_partita partita);
 record_partita stabilire_primo_giocatore(record_partita partita);
-record_partita gestire_menu_nuova_partita(char* NOME_FILE_MENU_NUOVA_PARTITA, record_partita partita);
+record_partita gestire_menu_nuova_partita(char* NOME_FILE_MENU_NUOVA_PARTITA, int riprendere_partita);
 record_partita applicare_effetto_casella_oca_ponte(record_partita partita, int indice_giocatore);
 record_partita applicare_effetto_casella_pozzo(record_partita partita, int indice_giocatore);
 record_partita applicare_effetto_casella_locanda(record_partita partita, int indice_giocatore);

@@ -262,7 +262,7 @@ record_partita stabilire_primo_giocatore(record_partita partita){
 }
 
 
-record_partita gestire_menu_nuova_partita(char* NOME_FILE_MENU_NUOVA_PARTITA, record_partita partita){
+record_partita gestire_menu_nuova_partita(char* NOME_FILE_MENU_NUOVA_PARTITA, int riprendere_partita){
     int nuova_partita;
     int scelta;
     record_partita partita;
@@ -293,7 +293,6 @@ record_partita gestire_menu_nuova_partita(char* NOME_FILE_MENU_NUOVA_PARTITA, re
     return partita;
 }
 
-//QUI INIZIANO LE FUNZIONI TUE BACCALEEEEEEEEEEÈ
 
 record_partita applicare_effetto_casella_oca_ponte(record_partita partita, int indice_giocatore){
     record_vet_giocatori vet_giocatori;
@@ -323,7 +322,7 @@ record_partita applicare_effetto_casella_pozzo(record_partita partita, int indic
 
     while(i<=NUMERO_MASSIMO_GIOCATORI && trovato == false){
         giocatore = leggere_giocatore_record_vet_giocatori(vet_giocatori, i);
-        if(trovare_tipo_casella_giocatore(giocatore) == CASELLA_POZZO && leggere_bloccato_record_giocatore(giocatore) = true){
+        if(trovare_tipo_casella_giocatore(partita, indice_giocatore) == CASELLA_POZZO && leggere_bloccato_record_giocatore(giocatore) = true){
             giocatore = scrivere_bloccato_record_giocatore(giocatore, false);
             vet_giocatori = scrivere_giocatore_record_vet_giocatori(vet_giocatori, i, giocatore);
             trovato = true;
@@ -445,7 +444,7 @@ record_partita gestire_scelta_partita(record_partita partita, int scelta){
         giocatore_di_turno = scrivere_numero_dadi_lanciati_record_giocatore(leggere_numero_dadi_lanciati_record_giocatore(giocatore_di_turno) + 1);
         vet_giocatori = scrivere_giocatore_record_vet_giocatori(vet_giocatori, indice_giocatore_di_turno, giocatore_di_turno);
         partita = scrivere_vet_giocatori_record_partita(partita, vet_giocatori);
-        if(leggere_posizione_record_giocatore(giocatore_da_incrementare) == (PRIMA_POSIZIONE_PERCORSO - 1)){
+        if(leggere_posizione_record_giocatore(giocatore_di_turno) == (PRIMA_POSIZIONE_PERCORSO - 1)){
             partita = lanciare_primi_dadi(partita, indice_giocatore_di_turno);
             }else{
                 partita = lanciare_dadi(partita, indice_giocatore_di_turno);
