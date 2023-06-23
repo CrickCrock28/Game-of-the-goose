@@ -64,7 +64,7 @@ int main(void) {
                     partita = giocare_partita(partita);
                 }
                 else {
-                    // se l’utente vuole crare una nuova partita, questa viene creata nella funzione gestire_menu_nuova_partita
+                    // se l’utente vuole creare una nuova partita, questa viene creata nella funzione gestire_menu_nuova_partita
                     if (creare_nuova_partita == false) {
                         partita = gestire_menu_nuova_partita(NOME_FILE_MENU_NUOVA_PARTITA, NOME_FILE_MENU_SCELTA_DATI_NUOVA_PARTITA);
                     }
