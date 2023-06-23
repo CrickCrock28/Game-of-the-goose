@@ -375,7 +375,7 @@ record_partita lanciare_dadi(record_partita partita, int indice_giocatore){
     vet_giocatori = leggere_vet_giocatori_record_partita(partita);
     giocatore = leggere_giocatore_record_vet_giocatori(vet_giocatori, indice_giocatore);
     
-    if((leggere_bloccato_record_giocatore(giocatore) == false) || (leggere_bloccato_record_giocatore(giocatore) == true && ( somma_dadi== 5 || somma_dadi= = 7))){
+    if((leggere_bloccato_record_giocatore(giocatore) == false) || (leggere_bloccato_record_giocatore(giocatore) == true && ( somma_dadi == 5 || somma_dadi == 7))){
         dimensione_percorso = leggere_dimensione_record_percorso(leggere_percorso_record_partita(partita));
         vecchia_posizione = leggere_posizione_record_giocatore(giocatore);
         nuova_posizione = vecchia_posizione + dado_1 + dado_2;
@@ -401,8 +401,8 @@ int calcolare_resto(int dividendo, int divisore){
 
 
 record_partita gestire_effetti_caselle_speciali(record_partita partita, int indice_giocatore){
-    if (trovare_tipo_casella_giocatore(partita, indice_giocatore)  == CASELLA_OCA || trovare_tipo_casella_giocatore(partita, indice_giocatore) = CASELLA_PONTE){
-        partita = applicare_effetto_casella_oca_ponte(partita, indice_giocatore)
+    if (trovare_tipo_casella_giocatore(partita, indice_giocatore)  == CASELLA_OCA || trovare_tipo_casella_giocatore(partita, indice_giocatore) == CASELLA_PONTE){
+        partita = applicare_effetto_casella_oca_ponte(partita, indice_giocatore);
         }else{
             if(trovare_tipo_casella_giocatore(partita, indice_giocatore) == CASELLA_LABIRINTO){
                 partita = applicare_effetto_casella_labirinto(partita, indice_giocatore);
