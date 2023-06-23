@@ -65,6 +65,7 @@ int main(void) {
     if (verificare_file_esistente(menu_principale) == true
         && verificare_file_esistente(menu_riprendere_partita) == true) {
         do {
+            system("cls");
             stampare_file_di_testo(menu_principale);
             scelta = chiedere_intero(MESSAGGIO_INSERIMENTO, 0, 4, 9, 0);
             if (scelta == MENU_NUOVA_PARTITA) {
