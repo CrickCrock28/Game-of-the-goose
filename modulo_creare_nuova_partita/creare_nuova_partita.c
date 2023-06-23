@@ -12,6 +12,7 @@
 
 // spostami
 void stampare_titolo(void) {
+	system("cls");
 	puts(TITOLO);
 	puts(BORDO);
 
@@ -33,10 +34,8 @@ record_dati_nuova_partita chiedere_dati_nuova_partita(char* NOME_FILE_MENU_SCELT
 			dati_nuova_partita = scrivere_numero_caselle_record_dati_nuova_partita(dati_nuova_partita, NUMERO_PREDEFINITO_CASELLE);
 		}
 		else if (scelta == DATI_SCELTI_UTENTE) {
-			system("cls");
 			stampare_titolo();
 			num_gioc = chiedere_intero(MESSAGGIO_NUMERO_GIOCATORI, NUMERO_MINIMO_GIOCATORI, NUMERO_MASSIMO_GIOCATORI, 2, 0);
-			system("cls");
 			stampare_titolo();
 			num_caselle = chiedere_intero(MESSAGGIO_NUMERO_CASELLE, NUMERO_MINIMO_CASELLE, NUMERO_MASSIMO_CASELLE, 2, 0);
 
