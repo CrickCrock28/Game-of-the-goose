@@ -2,7 +2,7 @@
 #define GIOCARE_PARTITA_H_
 
 #include <stdbool.h>
-#include "../modulo_azioni_semplici/azioni_semplici.h"
+#include "../modulo_gestire_azioni_semplici/gestire_azioni_semplici.h"
 #include "../modulo_record_partita/record_partita.h"
 #include "../modulo_record_giocatore/record_giocatore.h"
 #include "../modulo_record_percorso/record_percorso.h"

@@ -1,9 +1,5 @@
 {
     "files.associations": {
-        "giocare_partita.h": "c",
-        "creare_nuova_partita.h": "c",
-        "record_vettore_partite_salvate.h": "c",
-        "record_vet_giocatori.h": "c",
         "gestire_azioni_semplici.h": "c"
     }
 }
