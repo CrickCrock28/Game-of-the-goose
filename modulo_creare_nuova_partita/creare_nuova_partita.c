@@ -69,6 +69,7 @@ record_partita creare_nuova_partita(record_dati_nuova_partita dati_nuova_partita
 	partita = scrivere_ultimo_lancio_dado_2_record_partita(partita, LANCIO_NON_EFFETTUATO);
 	partita = scrivere_nuova_partita_record_partita(partita, false);
 	partita = scrivere_abbandona_partita_record_partita(partita, false);
+	partita = scrivere_salvare_partita_record_partita(partita, false);
 
 	return partita;
 }

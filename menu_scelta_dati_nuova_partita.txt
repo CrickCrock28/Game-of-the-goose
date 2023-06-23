@@ -1,5 +1,6 @@
 				Gioco dell'oca
 --------------------------------------------------------------------------------
-1. Riprendere la partita appena salvata
-0. Continuare al menu' principale
+1. Dati predefiniti
+2. Dati scelti da te
+0. Esci
 --------------------------------------------------------------------------------
