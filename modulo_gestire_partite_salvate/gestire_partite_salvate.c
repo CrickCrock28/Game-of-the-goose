@@ -10,7 +10,7 @@ record_partite_salvate gestire_menu_partite_salvate(record_partite_salvate salva
 
     do{
         stampare_file_di_testo(menu_carica_partita);
-        scelta = chiedere_intero("Inserisci il numero corrispondente all’azione da eseguire: 0, 2, 8, 0");
+        scelta = chiedere_intero("Inserisci il numero corrispondente all’azione da eseguire: ", 0, 2, 8, 0);
         file_partite_salvate = leggere_file_partite_salvate(salvataggi);
         numero_partite_salvate = leggere_da_file_binario(file_partite_salvate);
         stampare_partite_salvate(file_partite_salvate);
