@@ -322,7 +322,7 @@ record_partita applicare_effetto_casella_pozzo(record_partita partita, int indic
 
     while(i<=NUMERO_MASSIMO_GIOCATORI && trovato == false){
         giocatore = leggere_giocatore_record_vet_giocatori(vet_giocatori, i);
-        if(trovare_tipo_casella_giocatore(partita, indice_giocatore) == CASELLA_POZZO && leggere_bloccato_record_giocatore(giocatore) = true){
+        if((trovare_tipo_casella_giocatore(partita, indice_giocatore) == CASELLA_POZZO) && (leggere_bloccato_record_giocatore(giocatore) == true)){
             giocatore = scrivere_bloccato_record_giocatore(giocatore, false);
             vet_giocatori = scrivere_giocatore_record_vet_giocatori(vet_giocatori, i, giocatore);
             trovato = true;
