@@ -1,13 +1,12 @@
 #include "record_partite_salvate.h"
 
-FILE* leggere_file_partite_salvate(record_partite_salvate salvataggi){
-    FILE* file_salvataggi;
-    file_salvataggi = salvataggi.file_partite_salvate;
-    return file_salvataggi;
+void leggere_percorso_file_partite_salvate(record_partite_salvate salvataggi, char* percorso_file){
+    strcpy(percorso_file, salvataggi.percorso_file);
+    return;
 }
 
-record_partite_salvate scrivere_file_partite_salvate(record_partite_salvate salvataggi, FILE* file_salvataggi){
-    salvataggi.file_partite_salvate = file_salvataggi;
+record_partite_salvate scrivere_percorso_file_partite_salvate(record_partite_salvate salvataggi, char* percorso_file){
+    strcpy(salvataggi.percorso_file, percorso_file);
     return salvataggi;
 }
 
