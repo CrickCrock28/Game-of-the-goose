@@ -470,11 +470,11 @@ record_partita gestire_scelta_partita(record_partita partita, int scelta){
 
 
 record_partita gestire_scelta_nuova_partita(int scelta){
+    record_partita partita;
+    record_dati_nuova_partita dati_nuova_partita;
+    
     if(scelta == 1){
-        record_partita partita;
-        record_dati_nuova_partita dati_nuova_partita;
-
-        dati_nuova_partita = chiedere_dati_nuova_partita(dati_nuova_partita);
+        dati_nuova_partita = chiedere_dati_nuova_partita(PERCORSO_FILE_MENU_SCELTA_DATI_NUOVA_PARTITA);
         partita = creare_nuova_partita(dati_nuova_partita);
         partita = giocare_partita(partita);
     }

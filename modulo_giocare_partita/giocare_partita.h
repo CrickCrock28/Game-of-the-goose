@@ -13,6 +13,7 @@
 #include "../spostare_cursore.h"
 
 #define PERCORSO_FILE_MENU_PARTITA "file_aggiuntivi\\menu_partita.txt"
+#define PERCORSO_FILE_MENU_SCELTA_DATI_NUOVA_PARTITA "file_aggiuntivi\\menu_scelta_dati_nuova_partita.txt\0"
 #define NUMERO_MASSIMO_CASELLE 90
 #define CASELLA_OCA	'O'
 #define CASELLA_PONTE 'T'
