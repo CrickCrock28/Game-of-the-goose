@@ -2,6 +2,8 @@
 #include "../costanti.h"
 #include "../modulo_gestire_azioni_semplici/gestire_azioni_semplici.h"
 #include "../modulo_gestire_file/gestire_file.h"
+#include "costanti.h"
+
 #include <stdbool.h>
 #include <stdlib.h>
 
@@ -19,29 +21,26 @@ void stampare_titolo(void) {
 	return;
 }
 
-record_dati_nuova_partita chiedere_dati_nuova_partita(char* NOME_FILE_MENU_SCELTA_DATI_NUOVA_PARTITA) {
+record_dati_nuova_partita chiedere_dati_nuova_partita(char* percorso_nome_file_menu_scelta_dati_nuova_partita) {
 	int scelta, num_gioc, num_caselle;
 	record_dati_nuova_partita dati_nuova_partita;
-	FILE* menu_scelta_dati_nuova_partita;
 
-	menu_scelta_dati_nuova_partita = fopen(NOME_FILE_MENU_SCELTA_DATI_NUOVA_PARTITA, "r");
 	system("cls");
-	if (verificare_file_esistente(menu_scelta_dati_nuova_partita) == true) {
-		stampare_file_di_testo(menu_scelta_dati_nuova_partita);
-		scelta = chiedere_intero(MESSAGGIO_SCELTA, 0, 2, 6, 0);
-		if (scelta == DATI_PREDEFINITI) {
-			dati_nuova_partita = scrivere_numero_giocatori_record_dati_nuova_partita(dati_nuova_partita, NUMERO_PREDEFINITO_GIOCATORI);
-			dati_nuova_partita = scrivere_numero_caselle_record_dati_nuova_partita(dati_nuova_partita, NUMERO_PREDEFINITO_CASELLE);
-		}
-		else if (scelta == DATI_SCELTI_UTENTE) {
-			stampare_titolo();
-			num_gioc = chiedere_intero(MESSAGGIO_NUMERO_GIOCATORI, NUMERO_MINIMO_GIOCATORI, NUMERO_MASSIMO_GIOCATORI, 2, 0);
-			stampare_titolo();
-			num_caselle = chiedere_intero(MESSAGGIO_NUMERO_CASELLE, NUMERO_MINIMO_CASELLE, NUMERO_MASSIMO_CASELLE, 2, 0);
+	spostare_cursore(PRIMA_COORDINATA_SCHERMO, PRIMA_COORDINATA_SCHERMO);
+	stampare_file_di_testo(percorso_nome_file_menu_scelta_dati_nuova_partita);
+	scelta = chiedere_intero(MESSAGGIO_SCELTA, 0, 2, 6, 0);
+	if (scelta == DATI_PREDEFINITI) {
+		dati_nuova_partita = scrivere_numero_giocatori_record_dati_nuova_partita(dati_nuova_partita, NUMERO_PREDEFINITO_GIOCATORI);
+		dati_nuova_partita = scrivere_numero_caselle_record_dati_nuova_partita(dati_nuova_partita, NUMERO_PREDEFINITO_CASELLE);
+	}
+	else if (scelta == DATI_SCELTI_UTENTE) {
+		stampare_titolo();
+		num_gioc = chiedere_intero(MESSAGGIO_NUMERO_GIOCATORI, NUMERO_MINIMO_GIOCATORI, NUMERO_MASSIMO_GIOCATORI, 2, 0);
+		stampare_titolo();
+		num_caselle = chiedere_intero(MESSAGGIO_NUMERO_CASELLE, NUMERO_MINIMO_CASELLE, NUMERO_MASSIMO_CASELLE, 2, 0);
 
-			dati_nuova_partita = scrivere_numero_giocatori_record_dati_nuova_partita(dati_nuova_partita, num_gioc);
-			dati_nuova_partita = scrivere_numero_caselle_record_dati_nuova_partita(dati_nuova_partita, num_caselle);
-		}
+		dati_nuova_partita = scrivere_numero_giocatori_record_dati_nuova_partita(dati_nuova_partita, num_gioc);
+		dati_nuova_partita = scrivere_numero_caselle_record_dati_nuova_partita(dati_nuova_partita, num_caselle);
 	}
 
 	return dati_nuova_partita;
@@ -69,7 +68,7 @@ record_partita creare_nuova_partita(record_dati_nuova_partita dati_nuova_partita
 	partita = scrivere_ultimo_lancio_dado_2_record_partita(partita, LANCIO_NON_EFFETTUATO);
 	partita = scrivere_nuova_partita_record_partita(partita, false);
 	partita = scrivere_abbandona_partita_record_partita(partita, false);
-	partita = scrivere_salvare_partita_record_partita(partita, false);
+	partita = scrivere_salva_partita_record_partita(partita, false);
 
 	return partita;
 }

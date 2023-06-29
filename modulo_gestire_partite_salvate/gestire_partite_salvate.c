@@ -1,16 +1,14 @@
 #include "gestire_partite_salvate.h" 
 
 record_partite_salvate gestire_menu_partite_salvate(record_partite_salvate salvataggi, char* percorso_file_menu_carica_partita){
-    int numero_partite_salvate, scelta, numero_partita, righe_utilizzate;
+    int scelta, numero_partita, righe_utilizzate;
     record_partita partita_scelta;
-    FILE *file_partite_salvate, *file_menu_carica_partita;
+    FILE *file_menu_carica_partita;
     char percorso_file_partite_salvate[DIMENSIONE_MASSIMA_PERCORSO_FILE];
 
     do{
         // Stampa il menu e chiede l'azione da eseguire
-        file_menu_carica_partita = fopen(percorso_file_menu_carica_partita, "r");
-        stampare_file_di_testo(file_menu_carica_partita);
-        fclose(file_menu_carica_partita);
+        stampare_file_di_testo(percorso_file_menu_carica_partita);
         scelta = chiedere_intero(MESSAGGIO_MENU, 0, 2, 8, 0);
 
         // Stampa le partite salvate
@@ -104,11 +102,10 @@ void salvare_partita(char* percorso_file_partite_salvate, record_partita partita
 
 int stampare_partite_salvate(char* percorso_file_partite_salvate){
     FILE* file_partite_salvate;
-    int numero_partite_salvate, numero_partita, numero_giocatore, posizione_giocatore, righe_utilizzate;
+    int numero_partita, numero_giocatore, posizione_giocatore, righe_utilizzate;
     record_partita partita;
 
     file_partite_salvate = fopen(percorso_file_partite_salvate, "rb");
-    numero_partite_salvate = contare_partite_salvate(percorso_file_partite_salvate);
 
     // Stampa le partite salvate
     righe_utilizzate = 0;

@@ -90,7 +90,7 @@ record_partita applicare_effetto_casella_scheletro(record_partita partita, int i
 
 record_partita giocare_partita(record_partita partita){
 
-    int indice_giocatore_di_turno;
+    //int indice_giocatore_di_turno;
     int scelta;
     FILE *file_menu_partita;
 
@@ -101,11 +101,11 @@ record_partita giocare_partita(record_partita partita){
     while(!leggere_terminata_record_partita(partita) &&
            !leggere_nuova_partita_record_partita(partita) &&
            !leggere_abbandona_partita_record_partita(partita) &&
-           !leggere_salvare_partita_record_partita(partita)){
-        indice_giocatore_di_turno = leggere_indice_giocatore_di_turno_record_partita(partita);
-        file_menu_partita = fopen(PERCORSO_FILE_MENU_PARTITA, "r");
-        stampare_file_di_testo(file_menu_partita);
-        fclose(file_menu_partita);
+           !leggere_salva_partita_record_partita(partita)){
+        //indice_giocatore_di_turno = leggere_indice_giocatore_di_turno_record_partita(partita);
+        system("cls");
+	    spostare_cursore(PRIMA_COORDINATA_SCHERMO, PRIMA_COORDINATA_SCHERMO);
+        stampare_file_di_testo(PERCORSO_FILE_MENU_PARTITA);
         scelta = chiedere_intero("Inserisci la scelta: ", 0, 3, 0, 0);//VANNO MODIFICATE LE COORDINATE E AGGIUNTE IN PSEUDO    
         partita = gestire_scelta_partita(partita, scelta);          
     }
@@ -154,12 +154,12 @@ void stampare_percorso(char* caselle, int dimensione, int posizione_giocatore_1,
 	int y = 0;
 	int i = 0;
 
-    #define BORDO_LATERALE_CASELLA "|"
+    #define BORDO_LATERALE_CASELLA '|'
     #define BORDO_INFERIORE_SUPERIORE_CASELLA "-----\0"
-    #define SIMBOLO_GIOCATORE_1 "&"
-    #define SIMBOLO_GIOCATORE_2 "*"
-    #define SIMBOLO_GIOCATORE_3 "#"
-    #define SIMBOLO_GIOCATORE_4 "$"
+    #define SIMBOLO_GIOCATORE_1 '&'
+    #define SIMBOLO_GIOCATORE_2 '*'
+    #define SIMBOLO_GIOCATORE_3 '#'
+    #define SIMBOLO_GIOCATORE_4 '$'
     #define NUMERO_CASELLE_PER_RIGA 19
 
 	while(i<=dimensione){
@@ -277,10 +277,10 @@ record_partita gestire_menu_nuova_partita(char* NOME_FILE_MENU_NUOVA_PARTITA){
         if(nuova_partita){ //?????????????????????????????????????????????????????
             partita = gestire_scelta_nuova_partita(scelta); 
         } else {
-            file_menu_partita = fopen(PERCORSO_FILE_MENU_PARTITA, "r");
-            stampare_file_di_testo(file_menu_partita);
-            fclose(file_menu_partita);
-            scelta = chiedere_intero("Inserisci la scelta: ", 0, 1, 0, 0);  //COORDINATE DA MODIFICARE
+        	system("cls");
+        	spostare_cursore(PRIMA_COORDINATA_SCHERMO, PRIMA_COORDINATA_SCHERMO);
+            stampare_file_di_testo(PERCORSO_FILE_MENU_PARTITA);
+            scelta = chiedere_intero("Inserisci la scelta: ", 0, 1, 10, 0);  //COORDINATE DA MODIFICARE
             partita = gestire_scelta_nuova_partita(scelta); 
         }
         
@@ -288,10 +288,10 @@ record_partita gestire_menu_nuova_partita(char* NOME_FILE_MENU_NUOVA_PARTITA){
             nuova_partita = true;
         } else {
             if(leggere_abbandona_partita_record_partita(partita) == false){
-                scelta = 0;
+                scelta = SCELTA_USCIRE_DAL_MENU;
             }
         }
-    } while(scelta != 0);
+    } while(scelta != SCELTA_USCIRE_DAL_MENU);
 
     return partita;
 }
@@ -383,9 +383,8 @@ record_partita lanciare_dadi(record_partita partita, int indice_giocatore){
         vecchia_posizione = leggere_posizione_record_giocatore(giocatore);
         nuova_posizione = vecchia_posizione + dado_1 + dado_2;
         if(nuova_posizione > dimensione_percorso){
-        nuova_posizione = dimensione_percorso - (nuova_posizione - dimensione_percorso);
+        	nuova_posizione = dimensione_percorso - (nuova_posizione - dimensione_percorso);
         }
-    }else{
         giocatore = scrivere_posizione_record_giocatore(giocatore, nuova_posizione);
         vet_giocatori = scrivere_giocatore_record_vet_giocatori(vet_giocatori, indice_giocatore, giocatore);
         partita = scrivere_vet_giocatori_record_partita(partita, vet_giocatori);
@@ -443,6 +442,7 @@ record_partita gestire_scelta_partita(record_partita partita, int scelta){
     if(scelta == 1){
         // tira i dadi, potrebbe terminare la partita
         vet_giocatori = leggere_vet_giocatori_record_partita(partita);
+        indice_giocatore_di_turno = leggere_indice_giocatore_di_turno_record_partita(partita);
         giocatore_di_turno = leggere_giocatore_record_vet_giocatori(vet_giocatori, indice_giocatore_di_turno);
         giocatore_di_turno = scrivere_numero_dadi_lanciati_record_giocatore(giocatore_di_turno, (leggere_numero_dadi_lanciati_record_giocatore(giocatore_di_turno) + 1));
         vet_giocatori = scrivere_giocatore_record_vet_giocatori(vet_giocatori, indice_giocatore_di_turno, giocatore_di_turno);
@@ -461,7 +461,7 @@ record_partita gestire_scelta_partita(record_partita partita, int scelta){
             // CREARE NUOVA PARTITA, metto il flag a true ed esco
             partita = scrivere_nuova_partita_record_partita(partita, true);
         }else{
-            if(scelta = 3){
+            if(scelta == 3){
                 // salvare partita 
                 partita = scrivere_nuova_partita_record_partita(partita, true);
             }else{
@@ -479,7 +479,7 @@ record_partita gestire_scelta_nuova_partita(int scelta){
     record_partita partita;
     record_dati_nuova_partita dati_nuova_partita;
     
-    if(scelta == 1){
+    if(scelta == SCELTA_INIZIARE_NUOVA_PARTITA){
         dati_nuova_partita = chiedere_dati_nuova_partita(PERCORSO_FILE_MENU_SCELTA_DATI_NUOVA_PARTITA);
         partita = creare_nuova_partita(dati_nuova_partita);
         partita = giocare_partita(partita);

@@ -11,6 +11,7 @@
 #include "../modulo_gestire_file/gestire_file.h"
 #include "../modulo_creare_nuova_partita/creare_nuova_partita.h"
 #include "../spostare_cursore.h"
+#include "../costanti.h"
 
 #define PERCORSO_FILE_MENU_PARTITA "file_aggiuntivi\\menu_partita.txt"
 #define PERCORSO_FILE_MENU_SCELTA_DATI_NUOVA_PARTITA "file_aggiuntivi\\menu_scelta_dati_nuova_partita.txt\0"
@@ -34,6 +35,7 @@
 #define NUMERO_MINIMO_DADO 1
 #define NUMERO_MASSIMO_DADO 6
 #define GIOCATORE_NON_STABILITO -1
+#define SCELTA_INIZIARE_NUOVA_PARTITA 1
 
 char trovare_tipo_casella_giocatore(record_partita partita, int indice_giocatore);
 record_partita applicare_effetto_casella_labirinto(record_partita partita, int indice_giocatore);
