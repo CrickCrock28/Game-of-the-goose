@@ -5,6 +5,7 @@
         "gestire_classifica.h": "c",
         "creare_nuova_partita.h": "c",
         "record_classificato.h": "c",
-        "gestire_partite_salvate.h": "c"
+        "gestire_partite_salvate.h": "c",
+        "record_vet_giocatori.h": "c"
     }
 }

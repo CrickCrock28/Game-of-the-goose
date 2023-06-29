@@ -47,8 +47,7 @@ int main(void) {
     record_partite_salvate salvataggi;
     FILE *file_menu_principale,
          *file_menu_riprendere_partita,
-         *file_menu_scelta_dati_nuova_partita,
-         *file_classifica,
+
          *file_partite_salvate;
 
     //inizializzare_file(); //quando funziona il programma decommentare

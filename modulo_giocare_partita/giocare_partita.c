@@ -415,7 +415,7 @@ record_partita gestire_effetti_caselle_speciali(record_partita partita, int indi
                                         if(trovare_tipo_casella_giocatore(partita, indice_giocatore) == CASELLA_SCHELETRO){
                                             partita = applicare_effetto_casella_scheletro(partita, indice_giocatore);
                                             }else{
-                                                if (trovare_tipo_casella_giocatore(partita, indice_giocatore) == CASELLA_FINALE){
+                                                if (trovare_tipo_casella_giocatore(partita, indice_giocatore) == CASELLA_FINE){
                                                 }else{
                                                     partita = applicare_effetto_casella_finale(partita);
                                                 }
