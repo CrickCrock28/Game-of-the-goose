@@ -1,13 +1,13 @@
 #include "record_classificato.h"
 
 void leggere_nome_giocatore_record_classificato(record_classificato classificato, char* nome){
-    copiare_stringa(nome, classificato.nome_giocatore);
+    strcpy(nome, classificato.nome_giocatore);
     return;
 }
 
 record_classificato scrivere_nome_giocatore_record_classificato(record_classificato classificato, char* nome){
-    copiare_stringa(classificato.nome_giocatore, nome);
-    return;
+    strcpy(classificato.nome_giocatore, nome);
+    return classificato;
 }
 
 int leggere_tiri_record_classificato(record_classificato classificato){

@@ -79,8 +79,7 @@ int main(void) {
                     else {
                         if (leggere_salvare_partita_record_partita(partita) == true) {
                             // salvo la partita
-                            file_partite_salvate = fopen(PERCORSO_FILE_PARTITE_SALVATE, "rb");
-                            salvare_partita(file_partite_salvate, partita);
+                            salvare_partita(PERCORSO_FILE_PARTITE_SALVATE, partita);
                             // chiedo all'utente se vuole continuare la partita
                             system("cls");
                             stampare_file_di_testo(file_menu_riprendere_partita);

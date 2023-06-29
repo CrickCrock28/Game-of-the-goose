@@ -163,9 +163,9 @@ int recuperare_tiri_vincitore(record_partita partita) {
 
 record_classificato copiare_record_classificato(record_classificato classificato_con_dati_da_copiare, record_classificato classificato_con_dati_da_inserire) {
     // Copia il nome di un classificato nell'altro classificato
-    classificato_con_dati_da_copiare = scrivere_nome_giocatore_record_classificato(classificato_con_dati_da_copiare, leggere_nome_giocatore_record_classifica (classificato_con_dati_da_inserire));
+    classificato_con_dati_da_copiare = scrivere_nome_giocatore_record_classificato(classificato_con_dati_da_copiare, leggere_nome_giocatore_record_classifica(classificato_con_dati_da_inserire));
     // Copia il numero di tiri di un classificato
-    classificato_con_dati_da_copiare = scrivere_tiri_record_classificato(classificato_con_dati_da_copiare, leggere_tiri_record_classifica (classificato_con_dati_da_inserire));
+    classificato_con_dati_da_copiare = scrivere_tiri_record_classificato(classificato_con_dati_da_copiare, leggere_tiri_record_classifica(classificato_con_dati_da_inserire));
 
     return classificato_con_dati_da_copiare;
 }
@@ -174,7 +174,6 @@ void stampare_classifica(FILE* classifica) {
     record_classificato classificati[NUMERO_MASSIMO_CLASSIFICATI], classificato;
     int i, // Contatore dei giocatori classificati
     numero_classificati; // Numero di giocatori classificati
-    FILE* classifica; // Puntatore al file contenente la classifica
     i = PRIMO_INDICE_ARRAY;
 
     if (verificare_file_esistente(classifica) == true) {

@@ -1,6 +1,8 @@
 #ifndef RECORD_CLASSIFICATO_H
 #define RECORD_CLASSIFICATO_H
 
+#include<string.h>
+
 #include "../costanti.h"
 
 typedef struct record_classificato {

@@ -5,6 +5,8 @@
 #include <stdlib.h>
 #include <stdio.h>
 
+#define MAX 25*80 //???????????????????? NON SO CHE VALORE METTERE
+
 void stampare_file_di_testo(FILE* file);
 bool verificare_file_esistente(FILE* file);
 
