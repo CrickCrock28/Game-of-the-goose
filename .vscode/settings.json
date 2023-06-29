@@ -3,6 +3,8 @@
         "record_percorso.h": "c",
         "record_partita.h": "c",
         "gestire_classifica.h": "c",
-        "creare_nuova_partita.h": "c"
+        "creare_nuova_partita.h": "c",
+        "record_classificato.h": "c",
+        "gestire_partite_salvate.h": "c"
     }
 }
