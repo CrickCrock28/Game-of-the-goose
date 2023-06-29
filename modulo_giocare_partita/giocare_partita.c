@@ -92,6 +92,7 @@ record_partita giocare_partita(record_partita partita){
 
     int indice_giocatore_di_turno;
     int scelta;
+    FILE *file_menu_partita;
 
     if(leggere_indice_giocatore_di_turno_record_partita(partita) == GIOCATORE_NON_STABILITO){
         partita = stabilire_primo_giocatore(partita);
@@ -102,7 +103,9 @@ record_partita giocare_partita(record_partita partita){
            !leggere_abbandona_partita_record_partita(partita) &&
            !leggere_salvare_partita_record_partita(partita)){
         indice_giocatore_di_turno = leggere_indice_giocatore_di_turno_record_partita(partita);
-        stampare_file_di_testo(PERCORSO_FILE_MENU_PARTITA);
+        file_menu_partita = fopen(PERCORSO_FILE_MENU_PARTITA, "r");
+        stampare_file_di_testo(file_menu_partita);
+        fclose(file_menu_partita);
         scelta = chiedere_intero("Inserisci la scelta: ", 0, 3, 0, 0);//VANNO MODIFICATE LE COORDINATE E AGGIUNTE IN PSEUDO    
         partita = gestire_scelta_partita(partita, scelta);          
     }
@@ -266,6 +269,7 @@ record_partita gestire_menu_nuova_partita(char* NOME_FILE_MENU_NUOVA_PARTITA){
     int nuova_partita;
     int scelta;
     record_partita partita;
+    FILE *file_menu_partita;
 
     nuova_partita = false; //?????????????????????????????????????????????????????
     
@@ -273,7 +277,9 @@ record_partita gestire_menu_nuova_partita(char* NOME_FILE_MENU_NUOVA_PARTITA){
         if(nuova_partita){ //?????????????????????????????????????????????????????
             partita = gestire_scelta_nuova_partita(scelta); 
         } else {
-            stampare_file_di_testo(PERCORSO_FILE_MENU_PARTITA);
+            file_menu_partita = fopen(PERCORSO_FILE_MENU_PARTITA, "r");
+            stampare_file_di_testo(file_menu_partita);
+            fclose(file_menu_partita);
             scelta = chiedere_intero("Inserisci la scelta: ", 0, 1, 0, 0);  //COORDINATE DA MODIFICARE
             partita = gestire_scelta_nuova_partita(scelta); 
         }
