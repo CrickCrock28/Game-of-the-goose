@@ -417,7 +417,7 @@ record_partita gestire_effetti_caselle_speciali(record_partita partita, int indi
                                             }else{
                                                 if (trovare_tipo_casella_giocatore(partita, indice_giocatore) == CASELLA_FINE){
                                                 }else{
-                                                    partita = applicare_effetto_casella_finale(partita);
+                                                    partita = applicare_effetto_casella_finale(partita, indice_giocatore);
                                                 }
                                             }
                                     }
@@ -438,7 +438,7 @@ record_partita gestire_scelta_partita(record_partita partita, int scelta){
         // tira i dadi, potrebbe terminare la partita
         vet_giocatori = leggere_vet_giocatori_record_partita(partita);
         giocatore_di_turno = leggere_giocatore_record_vet_giocatori(vet_giocatori, indice_giocatore_di_turno);
-        giocatore_di_turno = scrivere_numero_dadi_lanciati_record_giocatore(leggere_numero_dadi_lanciati_record_giocatore(giocatore_di_turno) + 1);
+        giocatore_di_turno = scrivere_numero_dadi_lanciati_record_giocatore(giocatore_di_turno, (leggere_numero_dadi_lanciati_record_giocatore(giocatore_di_turno) + 1));
         vet_giocatori = scrivere_giocatore_record_vet_giocatori(vet_giocatori, indice_giocatore_di_turno, giocatore_di_turno);
         partita = scrivere_vet_giocatori_record_partita(partita, vet_giocatori);
         if(leggere_posizione_record_giocatore(giocatore_di_turno) == (PRIMA_POSIZIONE_PERCORSO - 1)){
