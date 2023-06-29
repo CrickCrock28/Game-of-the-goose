@@ -1,16 +1,14 @@
-//MANCANO LE fclose dei file
-
 #include <stdlib.h>
 #include <stdio.h>
 
 #include "costanti.h"
-#include "modulo_record_classificato/record_classificato.h"
-#include "modulo_record_giocatore/record_giocatore.h"
-#include "modulo_record_partita/record_partita.h"
-#include "modulo_record_partite_salvate/record_partite_salvate.h"
-#include "modulo_record_percorso/record_percorso.h"
-#include "modulo_record_vet_giocatori/record_vet_giocatori.h"
-#include "modulo_record_vettore_partite_salvate/record_vettore_partite_salvate.h"
+#include "moduli_record/modulo_record_classificato/record_classificato.h"
+#include "moduli_record/modulo_record_giocatore/record_giocatore.h"
+#include "moduli_record/modulo_record_partita/record_partita.h"
+#include "moduli_record/modulo_record_partite_salvate/record_partite_salvate.h"
+#include "moduli_record/modulo_record_percorso/record_percorso.h"
+#include "moduli_record/modulo_record_vet_giocatori/record_vet_giocatori.h"
+#include "moduli_record/modulo_record_vettore_partite_salvate/record_vettore_partite_salvate.h"
 #include "modulo_gestire_azioni_semplici/gestire_azioni_semplici.h"
 #include "modulo_creare_nuova_partita/creare_nuova_partita.h"
 #include "modulo_gestire_aiuto/gestire_aiuto.h"

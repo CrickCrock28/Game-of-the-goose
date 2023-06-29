@@ -3,7 +3,7 @@
 
 #include<string.h>
 
-#include "../costanti.h"
+#include "../../costanti.h"
 
 typedef struct record_classificato {
 	char nome_giocatore[LUNGHEZZA_NOME + 1]; // Nome del giocatore classificato

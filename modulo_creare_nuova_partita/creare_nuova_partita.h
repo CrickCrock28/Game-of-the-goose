@@ -1,11 +1,11 @@
 #ifndef CREARE_NUOVA_PARTITA_H_
 #define CREARE_NUOVA_PARTITA_H_
 
-#include "../modulo_record_dati_nuova_partita/record_dati_nuova_partita.h"
-#include "../modulo_record_percorso/record_percorso.h"
-#include "../modulo_record_vet_giocatori/record_vet_giocatori.h"
-#include "../modulo_record_partita/record_partita.h"
-#include "../modulo_record_giocatore/record_giocatore.h"
+#include "../moduli_record/modulo_record_dati_nuova_partita/record_dati_nuova_partita.h"
+#include "../moduli_record/modulo_record_percorso/record_percorso.h"
+#include "../moduli_record/modulo_record_vet_giocatori/record_vet_giocatori.h"
+#include "../moduli_record/modulo_record_partita/record_partita.h"
+#include "../moduli_record/modulo_record_giocatore/record_giocatore.h"
 #include "../modulo_giocare_partita/giocare_partita.h"
 
 #define NUMERO_MASSIMO_GIOCATORI 4 // Numero massimo di giocatori

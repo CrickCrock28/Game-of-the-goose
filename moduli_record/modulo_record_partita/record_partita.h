@@ -1,8 +1,8 @@
 #ifndef RECORD_PARTITA_H_
 #define RECORD_PARTITA_H_
 
-#include "../modulo_record_percorso/record_percorso.h"
-#include "../modulo_record_vet_giocatori/record_vet_giocatori.h"
+#include "../../moduli_record/modulo_record_percorso/record_percorso.h"
+#include "../../moduli_record/modulo_record_vet_giocatori/record_vet_giocatori.h"
 
 typedef struct {
     record_percorso percorso;
