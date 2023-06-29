@@ -262,25 +262,22 @@ record_partita stabilire_primo_giocatore(record_partita partita){
 }
 
 
-record_partita gestire_menu_nuova_partita(char* NOME_FILE_MENU_NUOVA_PARTITA, int riprendere_partita){
+record_partita gestire_menu_nuova_partita(char* NOME_FILE_MENU_NUOVA_PARTITA){
     int nuova_partita;
     int scelta;
     record_partita partita;
+
+    nuova_partita = false; //?????????????????????????????????????????????????????
     
-    nuova_partita = false;
     do {
-        if(nuova_partita){
+        if(nuova_partita){ //?????????????????????????????????????????????????????
             partita = gestire_scelta_nuova_partita(scelta); 
         } else {
-            if(riprendere_partita == 0){
-                stampare_file_di_testo(PERCORSO_FILE_MENU_PARTITA);
-                scelta = chiedere_intero("Inserisci la scelta: ", 0, 1); 
-                partita = gestire_scelta_nuova_partita(scelta); 
-            } else {
-                partita = giocare_partita(partita);
-            }
+            stampare_file_di_testo(PERCORSO_FILE_MENU_PARTITA);
+            scelta = chiedere_intero("Inserisci la scelta: ", 0, 1, 0, 0);  //COORDINATE DA MODIFICARE
+            partita = gestire_scelta_nuova_partita(scelta); 
         }
-
+        
         if(leggere_nuova_partita_record_partita(partita)){
             nuova_partita = true;
         } else {

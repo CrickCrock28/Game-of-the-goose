@@ -10,6 +10,7 @@ bool verificare_file_esistente(FILE* file) {
 	}
 	return esito;
 }
+
 void stampare_file_di_testo(FILE* file) {
     char stringa[MAX];
 	while (feof(file) == false) {

@@ -11,7 +11,7 @@
 #include "../modulo_gestire_file/gestire_file.h"
 #include "../spostare_cursore.h"
 
-#define PERCORSO_FILE_MENU_PARTITA "menu_partita.txt"
+#define PERCORSO_FILE_MENU_PARTITA "file_aggiuntivi\\menu_partita.txt"
 #define NUMERO_MASSIMO_CASELLE 90
 #define CASELLA_OCA	'O'
 #define CASELLA_PONTE 'T'
@@ -40,7 +40,7 @@ record_partita lanciare_primi_dadi(record_partita partita, int indice_giocatore)
 void stampare_percorso(char* caselle, int dimensione, int posizione_giocatore_1, int posizione_giocatore_2, int posizione_giocatore_3, int posizione_giocatore_4);
 record_partita avanzare_turno(record_partita partita);
 record_partita stabilire_primo_giocatore(record_partita partita);
-record_partita gestire_menu_nuova_partita(char* NOME_FILE_MENU_NUOVA_PARTITA, int riprendere_partita);
+record_partita gestire_menu_nuova_partita(char* NOME_FILE_MENU_NUOVA_PARTITA);
 record_partita applicare_effetto_casella_oca_ponte(record_partita partita, int indice_giocatore);
 record_partita applicare_effetto_casella_pozzo(record_partita partita, int indice_giocatore);
 record_partita applicare_effetto_casella_locanda(record_partita partita, int indice_giocatore);

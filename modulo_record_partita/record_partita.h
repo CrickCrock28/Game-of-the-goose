@@ -13,6 +13,7 @@ typedef struct {
     int ultimo_lancio_dado_2;
     int nuova_partita;
     int abbandona_partita;
+    int salva_partita;
 } record_partita;
 
 record_percorso leggere_percorso_record_partita(record_partita partita);
@@ -23,6 +24,7 @@ int leggere_ultimo_lancio_dado_1_record_partita(record_partita partita);
 int leggere_ultimo_lancio_dado_2_record_partita(record_partita partita);
 int leggere_nuova_partita_record_partita(record_partita partita);
 int leggere_abbandona_partita_record_partita(record_partita partita);
+int leggere_salvare_partita_record_partita(record_partita partita);
 record_partita scrivere_percorso_record_partita(record_partita partita, record_percorso nuovo_percorso);
 record_partita scrivere_vet_giocatori_record_partita(record_partita partita, record_vet_giocatori nuovo_vet_giocatori);
 record_partita scrivere_indice_giocatore_di_turno_record_partita(record_partita partita, int nuovo_indice);
@@ -31,5 +33,6 @@ record_partita scrivere_ultimo_lancio_dado_1_record_partita(record_partita parti
 record_partita scrivere_ultimo_lancio_dado_2_record_partita(record_partita partita, int nuovo_lancio);
 record_partita scrivere_nuova_partita_record_partita(record_partita partita, int nuova_partita);
 record_partita scrivere_abbandona_partita_record_partita(record_partita partita, int abbandona_partita);
+record_partita scrivere_salvare_partita_record_partita(record_partita partita, int abbandona_partita);
 
 #endif /* RECORD_PARTITA */

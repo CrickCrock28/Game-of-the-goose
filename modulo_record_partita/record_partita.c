@@ -50,6 +50,12 @@ int leggere_abbandona_partita_record_partita(record_partita partita) {
     return abbandona_partita;
 }
 
+int leggere_salva_partita_record_partita(record_partita partita) {
+    int salva_partita;
+	salva_partita = partita.salva_partita;
+    return salva_partita;
+}
+
 record_partita scrivere_percorso_record_partita(record_partita partita, record_percorso nuovo_percorso) {
     partita.percorso = nuovo_percorso;
     return partita;
@@ -86,5 +92,10 @@ record_partita scrivere_nuova_partita_record_partita(record_partita partita, int
 
 record_partita scrivere_abbandona_partita_record_partita(record_partita partita, int abbandona_partita) {
     partita.abbandona_partita = abbandona_partita;
+    return partita;
+}
+
+record_partita scrivere_salva_partita_record_partita(record_partita partita, int salva_partita) {
+    partita.salva_partita = salva_partita;
     return partita;
 }

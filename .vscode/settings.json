@@ -1,0 +1,8 @@
+{
+    "files.associations": {
+        "record_percorso.h": "c",
+        "record_partita.h": "c",
+        "gestire_classifica.h": "c",
+        "creare_nuova_partita.h": "c"
+    }
+}
