@@ -46,6 +46,7 @@ record_dati_nuova_partita chiedere_dati_nuova_partita(char* NOME_FILE_MENU_SCELT
 
 	return dati_nuova_partita;
 }
+
 record_partita creare_nuova_partita(record_dati_nuova_partita dati_nuova_partita) {
 	record_percorso percorso;
 	record_vet_giocatori vet_gioc;
@@ -72,6 +73,7 @@ record_partita creare_nuova_partita(record_dati_nuova_partita dati_nuova_partita
 
 	return partita;
 }
+
 record_percorso inizializzare_percorso(record_percorso percorso) {
 	int i;
 
@@ -98,6 +100,7 @@ record_percorso inserire_caselle_oche(record_percorso percorso) {
 
 	return percorso;
 }
+
 record_percorso inserire_casella_speciale(record_percorso percorso, int posizione_casella_speciale, char carattere_casella_speciale) {
 	while (leggere_casella_record_percorso(percorso, posizione_casella_speciale) != CASELLA_NORMALE) {
 		posizione_casella_speciale = posizione_casella_speciale + 1;
@@ -106,6 +109,7 @@ record_percorso inserire_casella_speciale(record_percorso percorso, int posizion
 
 	return percorso;
 }
+
 record_percorso inserire_caselle_speciali(record_percorso percorso) {
 	int pos_ponte,
 		pos_locanda,
@@ -136,6 +140,7 @@ record_percorso inserire_caselle_speciali(record_percorso percorso) {
 
 	return percorso;
 }
+
 record_vet_giocatori inizializzare_record_vet_giocatori(record_vet_giocatori vet) {
 	int i;
 	record_giocatore giocatore;

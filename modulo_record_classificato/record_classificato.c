@@ -11,7 +11,7 @@ record_classificato scrivere_nome_giocatore_record_classificato(record_classific
 }
 
 int leggere_tiri_record_classificato(record_classificato classificato){
-    int tiri; // Tiri del giocatore classificato
+    int tiri;
     tiri = classificato.tiri;
     return tiri;
 }

@@ -1,12 +1,12 @@
 #include "record_vettore_partite_salvate.h"
 
 int leggere_dimensione_record_vettore_partite_salvate(record_vettore_partite_salvate vettore_partite_salvate){
-        int dim = record_vettore_partite_salvate.dimensione;
+        int dim = vettore_partite_salvate.dimensione;
         return dim;
 }
 
 record_vettore_partite_salvate scrivere_dimensione_record_vettore_partite_salvate(record_vettore_partite_salvate vettore_partite_salvate, int dim){
-     dimensione.vettore_partite_salvate = dim;
+     vettore_partite_salvate.dimensione = dim;
      return vettore_partite_salvate;
 }
 
