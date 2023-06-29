@@ -16,18 +16,22 @@ bool verificare_file_esistente(char* percorso_file) {
 	return file_esitente;
 }
 
-void stampare_file_di_testo(char* percorso_file) {
+int stampare_file_di_testo(char* percorso_file) {
 
 	FILE* file;
 	char carattere;
+	int riga = PRIMA_RIGA;
 
 	file = fopen(percorso_file, "r");
 	while ((carattere = fgetc(file)) != EOF) {
 	    printf("%c", carattere);
+		if(carattere == '\n') {
+			riga = riga + 1;
+		}
 	}
 	fclose(file);
 
-	return;
+	return riga;
 }
 
 int contare_righe_file_di_testo(char* percorso_file) {

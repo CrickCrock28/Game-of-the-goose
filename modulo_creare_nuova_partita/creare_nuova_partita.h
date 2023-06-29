@@ -37,7 +37,12 @@
 #define GIOCATORE_NON_STABILITO	-1 // Indica che il giocatore di turno non è stato ancora stabilito
 #define LANCIO_NON_EFFETTUATO -1 // Indica che non è stato ancora effettuato alcun lancio
 #define POSIZIONE_GIOCATORE_NON_PARTECIPANTE -2 // Indica che il giocatore non sta giocando la partita
-#define POSIZIONE_INIZIO (PRIMO_INDICE_ARRAY - 1) // Indica la posizione del giocatore all’inizio della partita
+#define POSIZIONE_INIZIO 0 // Indica la posizione del giocatore all’inizio della partita
+#define SCELTA_DATI_PREDEFINITI 1 // Indica l'opzione di menu corrispondente ad usare i dati predefiniti del programma per la nuova partita
+#define SCELTA_DATI_SCELTI_UTENTE 2 // Indica l'opzione di menu corrispondente a permettere all'utente di scegliere i dati per la nuova partita
+#define MESSAGGIO_NUMERO_GIOCATORI "Inserisci il numero di giocatori (2 a 4): \0" // Messaggio da stampare al momento dell’inserimento del numero di giocatori della nuova partita
+#define MESSAGGIO_NUMERO_CASELLE "Inserisci il numero di caselle (50 a 90): \0" // Messaggio da stampare al momento dell’inserimento del numero di caselle della nuova partita
+
 record_dati_nuova_partita chiedere_dati_nuova_partita(char* NOME_FILE_MENU_SCELTA_DATI_NUOVA_PARTITA);
 record_partita creare_nuova_partita(record_dati_nuova_partita dati_nuova_partita);
 record_percorso inizializzare_percorso(record_percorso percorso);

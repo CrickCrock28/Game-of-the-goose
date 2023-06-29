@@ -2,44 +2,30 @@
 #include "../costanti.h"
 #include "../modulo_gestire_azioni_semplici/gestire_azioni_semplici.h"
 #include "../modulo_gestire_file/gestire_file.h"
-#include "costanti.h"
 
 #include <stdbool.h>
 #include <stdlib.h>
 
-#define DATI_PREDEFINITI 1 // Indica l'opzione di menu corrispondente ad usare i dati predefiniti del programma per la nuova partita
-#define DATI_SCELTI_UTENTE 2 // Indica l'opzione di menu corrispondente a permettere all'utente di scegliere i dati per la nuova partita
-#define MESSAGGIO_NUMERO_GIOCATORI "Inserisci il numero di giocatori (2 a 4): \0" // Messaggio da stampare al momento dell’inserimento del numero di giocatori della nuova partita
-#define MESSAGGIO_NUMERO_CASELLE "Inserisci il numero di caselle (50 a 90): \0" // Messaggio da stampare al momento dell’inserimento del numero di caselle della nuova partita
-
-// spostami
-void stampare_titolo(void) {
-	system("cls");
-	puts(TITOLO);
-	puts(BORDO);
-
-	return;
-}
-
 record_dati_nuova_partita chiedere_dati_nuova_partita(char* percorso_nome_file_menu_scelta_dati_nuova_partita) {
-	int scelta, num_gioc, num_caselle;
+	int scelta, numero_giocatori, num_caselle, riga;
 	record_dati_nuova_partita dati_nuova_partita;
 
 	system("cls");
 	spostare_cursore(PRIMA_COORDINATA_SCHERMO, PRIMA_COORDINATA_SCHERMO);
-	stampare_file_di_testo(percorso_nome_file_menu_scelta_dati_nuova_partita);
-	scelta = chiedere_intero(MESSAGGIO_SCELTA, 0, 2, 6, 0);
-	if (scelta == DATI_PREDEFINITI) {
+	riga = stampare_file_di_testo(percorso_nome_file_menu_scelta_dati_nuova_partita);
+	scelta = chiedere_intero(MESSAGGIO_SCELTA, SCELTA_USCIRE_DAL_MENU, SCELTA_DATI_SCELTI_UTENTE, (riga+1), PRIMA_COORDINATA_SCHERMO);
+	if (scelta == SCELTA_DATI_PREDEFINITI) {
 		dati_nuova_partita = scrivere_numero_giocatori_record_dati_nuova_partita(dati_nuova_partita, NUMERO_PREDEFINITO_GIOCATORI);
 		dati_nuova_partita = scrivere_numero_caselle_record_dati_nuova_partita(dati_nuova_partita, NUMERO_PREDEFINITO_CASELLE);
 	}
-	else if (scelta == DATI_SCELTI_UTENTE) {
-		stampare_titolo();
-		num_gioc = chiedere_intero(MESSAGGIO_NUMERO_GIOCATORI, NUMERO_MINIMO_GIOCATORI, NUMERO_MASSIMO_GIOCATORI, 2, 0);
-		stampare_titolo();
-		num_caselle = chiedere_intero(MESSAGGIO_NUMERO_CASELLE, NUMERO_MINIMO_CASELLE, NUMERO_MASSIMO_CASELLE, 2, 0);
+	else if (scelta == SCELTA_DATI_SCELTI_UTENTE) {
+		system("cls");
+		spostare_cursore(PRIMA_COORDINATA_SCHERMO, PRIMA_COORDINATA_SCHERMO);
+		riga = stampare_file_di_testo(PERCORSO_FILE_TITOLO);
+		numero_giocatori = chiedere_intero(MESSAGGIO_NUMERO_GIOCATORI, NUMERO_MINIMO_GIOCATORI, NUMERO_MASSIMO_GIOCATORI, (riga+1), PRIMA_COORDINATA_SCHERMO);
+		num_caselle = chiedere_intero(MESSAGGIO_NUMERO_CASELLE, NUMERO_MINIMO_CASELLE, NUMERO_MASSIMO_CASELLE, (riga+2), PRIMA_COORDINATA_SCHERMO);
 
-		dati_nuova_partita = scrivere_numero_giocatori_record_dati_nuova_partita(dati_nuova_partita, num_gioc);
+		dati_nuova_partita = scrivere_numero_giocatori_record_dati_nuova_partita(dati_nuova_partita, numero_giocatori);
 		dati_nuova_partita = scrivere_numero_caselle_record_dati_nuova_partita(dati_nuova_partita, num_caselle);
 	}
 

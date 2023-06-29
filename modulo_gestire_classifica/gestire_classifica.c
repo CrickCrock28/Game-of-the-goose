@@ -5,16 +5,16 @@
 #define TIRI "tiri: \0"
 
 void gestire_menu_classifica(char* percorso_file_menu_classifica, char* percorso_file_classifica) {
-    int scelta; // Scelta dell'utente tra le opzioni del menù
+    int scelta, riga; // Scelta dell'utente tra le opzioni del menù
 
     do {
         // Stampare il menù
         system("cls");
 	    spostare_cursore(PRIMA_COORDINATA_SCHERMO, PRIMA_COORDINATA_SCHERMO);
-        stampare_file_di_testo(percorso_file_menu_classifica);
+        riga = stampare_file_di_testo(percorso_file_menu_classifica);
         // Chiedere e attendere l'inserimento della scelta tra le opzioni del menù
-        scelta = chiedere_intero(MESSAGGIO_SCELTA, 0, 1, 7, 0);
-        if (scelta == STAMPARE_CLASSIFICA) {
+        scelta = chiedere_intero(MESSAGGIO_SCELTA, SCELTA_USCIRE_DAL_MENU, SCELTA_STAMPARE_CLASSIFICA, (riga+1), PRIMA_COORDINATA_SCHERMO);
+        if (scelta == SCELTA_STAMPARE_CLASSIFICA) {
             // Stampare a video la classifica
             stampare_classifica(percorso_file_classifica);
         }

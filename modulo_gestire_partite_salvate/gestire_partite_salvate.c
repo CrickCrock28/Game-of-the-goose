@@ -1,29 +1,30 @@
 #include "gestire_partite_salvate.h" 
 
 record_partite_salvate gestire_menu_partite_salvate(record_partite_salvate salvataggi, char* percorso_file_menu_carica_partita){
-    int scelta, numero_partita, righe_utilizzate;
+    int scelta, numero_partita, riga;
     record_partita partita_scelta;
-    FILE *file_menu_carica_partita;
     char percorso_file_partite_salvate[DIMENSIONE_MASSIMA_PERCORSO_FILE];
 
     do{
         // Stampa il menu e chiede l'azione da eseguire
-        stampare_file_di_testo(percorso_file_menu_carica_partita);
-        scelta = chiedere_intero(MESSAGGIO_MENU, 0, 2, 8, 0);
+    	system("cls");
+    	spostare_cursore(PRIMA_COORDINATA_SCHERMO, PRIMA_COORDINATA_SCHERMO);
+        riga = stampare_file_di_testo(percorso_file_menu_carica_partita);
+        scelta = chiedere_intero(MESSAGGIO_MENU, SCELTA_USCIRE_DAL_MENU, SCELTA_CARICA_PARTITA, (riga+1), PRIMA_COORDINATA_SCHERMO);
 
         // Stampa le partite salvate
         leggere_percorso_file_partite_salvate(salvataggi, percorso_file_partite_salvate);
-        righe_utilizzate = stampare_partite_salvate(percorso_file_partite_salvate);
+        riga = stampare_partite_salvate(percorso_file_partite_salvate);
         
         if(scelta == SCELTA_CANCELLA_PARTITA){ 
             // L'utente vuole cancellare una partita salvata
-            numero_partita = chiedere_intero("Inserisci il numero corrispondente alla partita da cancellare: ", 0, 2, (righe_utilizzate+1), 0);
+            numero_partita = chiedere_intero("Inserisci il numero corrispondente alla partita da cancellare: ", SCELTA_USCIRE_DAL_MENU, SCELTA_CARICA_PARTITA, (riga+1), PRIMA_COORDINATA_SCHERMO);
             cancellare_partita_da_file(percorso_file_partite_salvate, numero_partita);
 
             } else {
                 if(scelta == SCELTA_CARICA_PARTITA){ 
                     //L'utente vuole caricare una partita salvata
-                    numero_partita = chiedere_intero("Inserisci il numero corrispondente alla partita da caricare: ", 0, 2,  (righe_utilizzate+1), 0);
+                    numero_partita = chiedere_intero("Inserisci il numero corrispondente alla partita da caricare: ", SCELTA_USCIRE_DAL_MENU, SCELTA_CARICA_PARTITA,  (riga+1), PRIMA_COORDINATA_SCHERMO);
                     partita_scelta = leggere_partita_scelta(percorso_file_partite_salvate, numero_partita);
                 }
             }
@@ -131,6 +132,12 @@ int stampare_partite_salvate(char* percorso_file_partite_salvate){
         righe_utilizzate++;
         numero_partita++;
     }
+
+    if(righe_utilizzate == 0) {
+        printf("Non ci sono partite salvate\n");
+        righe_utilizzate++;
+    }
+
     return righe_utilizzate;
 }
 

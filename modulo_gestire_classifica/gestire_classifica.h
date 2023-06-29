@@ -13,7 +13,7 @@
 #include <stdio.h>
 
 #define MESSAGGIO_RICHIESTA_NOME_CLASSIFICATO "Inserire il nome del nuovo classificato(3 caratteri)\nInserisci:\0"
-#define STAMPARE_CLASSIFICA 1
+#define SCELTA_STAMPARE_CLASSIFICA 1
 #define NUMERO_MASSIMO_CLASSIFICATI 10
 #define TIRI_CLASSIFICATO_FINE -1
 #define GIOCATORE_NON_CLASSIFICATO -1
@@ -33,7 +33,7 @@ int recuperare_tiri_vincitore(record_partita partita);
 // Copia un record classificato in un altro
 record_classificato copiare_record_classificato(record_classificato classificato_con_dati_da_copiare, record_classificato classificato_con_dati_da_inserire);
 // Stampa la classifica
-void stampare_classifica(FILE* classifica);
+void stampare_classifica(char* classifica);
 // Stampa i dati di un singolo giocatore della classifica 
 void stampare_giocatore_classificato(record_classificato giocatore_classificato);
 // Carica da file in un array di classificati la classifica

@@ -35,9 +35,9 @@
 #define SCELTA_CONTINUARE_PARTITA 1 // Indica che l'utente vuole continuare la partita appena salvata
 
 //void inizializzare_file(void);
-#define MESSAGGIO_FILE_NON_TROVATO "Impossibile trovare il file: "
+#define MESSAGGIO_FILE_NON_TROVATO "Impossibile trovare il file: \0"
 
-void verificare_esistenza_tutti_file(){
+void verificare_esistenza_tutti_file(){//MANCA FILE TITOLO
     
     if(!verificare_file_esistente(PERCORSO_FILE_MENU_NUOVA_PARTITA)){
         printf("%s%s\n", MESSAGGIO_FILE_NON_TROVATO, PERCORSO_FILE_MENU_NUOVA_PARTITA);
@@ -94,11 +94,10 @@ int main(void) {
     bool partita_caricata,
         creare_nuova_partita;
     int scelta,
-        riprendere_partita;
+        riprendere_partita,
+        riga;
     record_partita partita;
     record_partite_salvate salvataggi;
-    FILE *file_menu_principale,
-         *file_menu_riprendere_partita;
 
     //inizializzare_file(); //quando funziona il programma decommentare
     verificare_esistenza_tutti_file();
@@ -107,8 +106,8 @@ int main(void) {
 	do {
 		system("cls");
 		spostare_cursore(PRIMA_COORDINATA_SCHERMO, PRIMA_COORDINATA_SCHERMO);
-		stampare_file_di_testo(PERCORSO_FILE_MENU_PRINCIPALE);
-		scelta = chiedere_intero(MESSAGGIO_SCELTA, SCELTA_USCIRE_DAL_MENU, SCELTA_MENU_AIUTO, 9, 0);
+		riga = stampare_file_di_testo(PERCORSO_FILE_MENU_PRINCIPALE);
+		scelta = chiedere_intero(MESSAGGIO_SCELTA, SCELTA_USCIRE_DAL_MENU, SCELTA_MENU_AIUTO, (riga+1), PRIMA_COORDINATA_SCHERMO);
 		if (scelta == SCELTA_MENU_NUOVA_PARTITA) {
 			if (partita_caricata == true) {
 				// la partita e' stata caricata dal file delle partite salvate
@@ -133,7 +132,7 @@ int main(void) {
 						system("cls");
 	                    spostare_cursore(PRIMA_COORDINATA_SCHERMO, PRIMA_COORDINATA_SCHERMO);
 						stampare_file_di_testo(PERCORSO_FILE_MENU_RIPRENDERE_PARTITA);
-						riprendere_partita = chiedere_intero(MESSAGGIO_SCELTA, 0, 1, 5, 0);
+						riprendere_partita = chiedere_intero(MESSAGGIO_SCELTA, SCELTA_USCIRE_DAL_MENU, 1, (riga+1), PRIMA_COORDINATA_SCHERMO); //NUMERO MAGICO
 					}
 				}
 			} while (riprendere_partita == SCELTA_CONTINUARE_PARTITA);

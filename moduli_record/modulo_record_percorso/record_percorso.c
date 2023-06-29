@@ -21,3 +21,8 @@ record_percorso scrivere_casella_record_percorso(record_percorso percorso, int i
     percorso.caselle[indice] = nuova_casella;
     return percorso;
 }
+
+void copiare_caselle_percorso(record_percorso percorso, char* caselle){
+	memcpy(caselle, percorso.caselle, DIMENSIONE_MASSIMA_PERCORSO*sizeof(char));
+	return;
+}

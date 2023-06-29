@@ -1,6 +1,7 @@
 #ifndef GESTIRE_PARTITE_SALVATE_H_
 #define GESTIRE_PARTITE_SALVATE_H_
 
+#include "../costanti.h"
 #include "../moduli_record/modulo_record_vettore_partite_salvate/record_vettore_partite_salvate.h"
 #include "../moduli_record/modulo_record_partite_salvate/record_partite_salvate.h"
 #include "../moduli_record/modulo_record_partita/record_partita.h"
