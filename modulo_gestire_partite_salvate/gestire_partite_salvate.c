@@ -38,8 +38,17 @@ record_partita leggere_partita_scelta(FILE* file_partite_salvate, int numero_par
 
     numero_partite_salvate = leggere_da_file_binario(file_partite_salvate);
     i = PRIMO_INDICE_ARRAY;
+    record_partita vettore_partite_salvate[100];
+
     while(i<=numero_partite_salvate){
     leggere_record_vettore_partite_salvate(vet_partite_salvate, i) = leggere_da_file_binario(file_partite_salvate);
+
+        //  leggere dal file la classifica
+        fread(&numero_partite_salvate, sizeof(int), 1, file_partite_salvate);
+        fread(vettore_partite_salvate, sizeof(record_partita), numero_partite_salvate, file_partite_salvate);
+        // Chiudere il file
+        fclose(file_partite_salvate);
+
     i=i+1;
     }
     partita_scelta  = copiare_partita(partita_caricata, leggere_record_vettore_partite_salvate(vet_partite_salvate, numero_partite_salvate));
