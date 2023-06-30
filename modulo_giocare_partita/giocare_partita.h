@@ -10,12 +10,12 @@
 #include "../moduli_record/modulo_record_dati_nuova_partita/record_dati_nuova_partita.h"
 #include "../modulo_gestire_file/gestire_file.h"
 #include "../modulo_creare_nuova_partita/creare_nuova_partita.h"
-#include "../spostare_cursore.h"
+#include "../modulo_spostare_cursore/spostare_cursore.h"
 #include "../costanti.h"
 
-#define PERCORSO_FILE_MENU_PARTITA "file_aggiuntivi\\menu_partita.txt"
-#define PERCORSO_FILE_TITOLO "file_aggiuntivi\\titolo.txt"
-#define PERCORSO_FILE_MENU_SCELTA_DATI_NUOVA_PARTITA "file_aggiuntivi\\menu_scelta_dati_nuova_partita.txt\0"
+#define PERCORSO_FILE_MENU_PARTITA "file_di_gioco\\menu_partita.txt"
+#define PERCORSO_FILE_TITOLO "file_di_gioco\\titolo.txt"
+#define PERCORSO_FILE_MENU_SCELTA_DATI_NUOVA_PARTITA "file_di_gioco\\menu_scelta_dati_nuova_partita.txt\0"
 #define NUMERO_MASSIMO_CASELLE 90
 #define CASELLA_OCA	'O'
 #define CASELLA_PONTE 'T'
@@ -36,6 +36,7 @@
 #define NUMERO_MINIMO_DADO 1
 #define NUMERO_MASSIMO_DADO 6
 #define GIOCATORE_NON_STABILITO -1
+#define POSIZIONE_GIOCATORE_NON_PARTECIPANTE -2
 
 #define SCELTA_INIZIARE_NUOVA_PARTITA 1 // nomi troppo simili?????
 #define SCELTA_TIRARE_I_DADI 1 // nomi troppo simili ?????
@@ -43,9 +44,10 @@
 #define SCELTA_SALVARE_PARTITA 3
 #define SCELTA_ABBANDONARE_PARTITA 4
 
-//costanti per la stampas
+//costanti per la stampa
+#define PRIMA_RIGA_TABELLONE "--------------------------------Gioco dell'oca------------------------------\0"
 #define BORDO_LATERALE_CASELLA '|'
-#define BORDO_INFERIORE_SUPERIORE_CASELLA "-----\0"
+#define BORDO_INFERIORE_SUPERIORE_CASELLA "------\0"
 #define SIMBOLO_GIOCATORE_1 '&'
 #define SIMBOLO_GIOCATORE_2 '*'
 #define SIMBOLO_GIOCATORE_3 '#'
@@ -54,7 +56,7 @@
 #define INDICE_GIOCATORE_2 1
 #define INDICE_GIOCATORE_3 2
 #define INDICE_GIOCATORE_4 3
-#define NUMERO_CASELLE_PER_RIGA 19
+#define NUMERO_CASELLE_PER_RIGA 15
 
 char trovare_tipo_casella_giocatore(record_partita partita, int indice_giocatore);
 record_partita applicare_effetto_casella_labirinto(record_partita partita, int indice_giocatore);
@@ -62,7 +64,7 @@ record_partita applicare_effetto_casella_prigione(record_partita partita, int in
 record_partita applicare_effetto_casella_scheletro(record_partita partita, int indice_giocatore);
 record_partita giocare_partita(record_partita partita);
 record_partita lanciare_primi_dadi(record_partita partita, int indice_giocatore);
-void stampare_percorso(record_partita partita, int riga_iniziale);
+void stampare_percorso(record_partita partita);
 record_partita avanzare_turno(record_partita partita);
 record_partita stabilire_primo_giocatore(record_partita partita);
 record_partita gestire_menu_nuova_partita(char* NOME_FILE_MENU_NUOVA_PARTITA);

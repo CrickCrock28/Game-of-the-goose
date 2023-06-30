@@ -37,8 +37,12 @@ int calcolare_proporzione(int n_1, int d_1, int d_2) {
 int generare_numero_casuale(int minimo, int massimo) {
     int numero_casuale;
 
-    srand(time(NULL));
     numero_casuale = (rand() % massimo) + minimo;
 
     return numero_casuale;
+}
+
+void stampare_riga_vuota(int riga){
+	printf("%s", RIGA_VUOTA);
+	return;
 }

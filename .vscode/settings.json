@@ -8,6 +8,7 @@
         "gestire_partite_salvate.h": "c",
         "record_vet_giocatori.h": "c",
         "record_partite_salvate.h": "c",
-        "record_vettore_partite_salvate.h": "c"
+        "record_vettore_partite_salvate.h": "c",
+        "stdio.h": "c"
     }
 }

@@ -17,16 +17,16 @@
 #include "modulo_gestire_partite_salvate/gestire_partite_salvate.h"
 #include "modulo_giocare_partita/giocare_partita.h"
 
-#define PERCORSO_FILE_MENU_NUOVA_PARTITA "file_aggiuntivi\\menu_nuova_partita.txt\0" // Nome del file che contiene il menù nuova partita
-#define PERCORSO_FILE_MENU_PRINCIPALE "file_aggiuntivi\\menu_principale.txt\0" // Nome del file che contiene il menù principale
-#define PERCORSO_FILE_MENU_CARICA_PARTITA "file_aggiuntivi\\menu_carica_partita.txt\0" // Nome del file che contiene il menù carica partita
-#define PERCORSO_FILE_MENU_AIUTO "file_aggiuntivi\\menu_aiuto.txt\0" // Nome del file che contiene il menù aiuto
-#define PERCORSO_FILE_MENU_CLASSIFICA "file_aggiuntivi\\menu_classifica.txt\0" // Nome del file che contiene il menù classifica
-#define PERCORSO_FILE_CLASSIFICA "file_aggiuntivi\\classifica.bin\0" // Nome del file che contiene la classifica
-#define PERCORSO_FILE_REGOLE_GIOCO "file_aggiuntivi\\regole_gioco.txt\0" // Nome del file che contiene le regole di gioco
-#define PERCORSO_FILE_MANUALE_GIOCO "file_aggiuntivi\\manuale_gioco.txt\0" // Nome del file che contiene il manuale di gioco
-#define PERCORSO_FILE_MENU_RIPRENDERE_PARTITA "file_aggiuntivi\\menu_riprendere_partita.txt\0" // Nome del file che contiene il menù riprendere partita appena salvata
-#define PERCORSO_FILE_MENU_SCELTA_DATI_NUOVA_PARTITA "file_aggiuntivi\\menu_scelta_dati_nuova_partita.txt\0"	// Nome del file che contiene il menù scegliere dati nuova parita
+#define PERCORSO_FILE_MENU_NUOVA_PARTITA "file_di_gioco\\menu_nuova_partita.txt\0" // Nome del file che contiene il menù nuova partita
+#define PERCORSO_FILE_MENU_PRINCIPALE "file_di_gioco\\menu_principale.txt\0" // Nome del file che contiene il menù principale
+#define PERCORSO_FILE_MENU_CARICA_PARTITA "file_di_gioco\\menu_carica_partita.txt\0" // Nome del file che contiene il menù carica partita
+#define PERCORSO_FILE_MENU_AIUTO "file_di_gioco\\menu_aiuto.txt\0" // Nome del file che contiene il menù aiuto
+#define PERCORSO_FILE_MENU_CLASSIFICA "file_di_gioco\\menu_classifica.txt\0" // Nome del file che contiene il menù classifica
+#define PERCORSO_FILE_CLASSIFICA "file_di_gioco\\classifica.bin\0" // Nome del file che contiene la classifica
+#define PERCORSO_FILE_REGOLE_GIOCO "file_di_gioco\\regole_gioco.txt\0" // Nome del file che contiene le regole di gioco
+#define PERCORSO_FILE_MANUALE_GIOCO "file_di_gioco\\manuale_gioco.txt\0" // Nome del file che contiene il manuale di gioco
+#define PERCORSO_FILE_MENU_RIPRENDERE_PARTITA "file_di_gioco\\menu_riprendere_partita.txt\0" // Nome del file che contiene il menù riprendere partita appena salvata
+#define PERCORSO_FILE_MENU_SCELTA_DATI_NUOVA_PARTITA "file_di_gioco\\menu_scelta_dati_nuova_partita.txt\0"	// Nome del file che contiene il menù scegliere dati nuova parita
 
 #define SCELTA_MENU_NUOVA_PARTITA 1 // Scelta corrispondende al menu nuova partita
 #define SCELTA_MENU_CARICA_PARTITA 2 // Scelta corrispondende al menu carica partita
@@ -99,6 +99,8 @@ int main(void) {
     record_partita partita;
     record_partite_salvate salvataggi;
 
+    srand(time(NULL));
+
     //inizializzare_file(); //quando funziona il programma decommentare
     verificare_esistenza_tutti_file();
     partita_caricata = false; // indica se l’utente ha caricato una partita in RAM dal file delle partite salvate
@@ -157,7 +159,6 @@ int main(void) {
 		}
 	} while (scelta != SCELTA_USCIRE_DAL_MENU);
 
-	printf("TERMINATOOOO");
     system("pause");
 
     return EXIT_SUCCESS;

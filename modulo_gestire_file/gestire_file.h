@@ -5,6 +5,9 @@
 #include <stdlib.h>
 #include <stdio.h>
 
+
+#include "..\\costanti.h"
+
 #define PRIMA_RIGA 0
 
 int stampare_file_di_testo(char* percorso_file);
