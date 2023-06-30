@@ -36,6 +36,4 @@ record_classificato copiare_record_classificato(record_classificato classificato
 void stampare_classifica(char* classifica);
 // Stampa i dati di un singolo giocatore della classifica 
 void stampare_giocatore_classificato(record_classificato giocatore_classificato);
-// Carica da file in un array di classificati la classifica
-void caricare_classifica_da_file(FILE* classifica, record_classificato* classificati);
 #endif /* GESTIRE_CLASSIFICA_H_ */
