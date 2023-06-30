@@ -1,7 +1,7 @@
 #ifndef RECORD_VET_GIOCATORI_H_
 #define RECORD_VET_GIOCATORI_H_
 
-#include "../modulo_record_giocatore/record_giocatore.h"
+#include "../../moduli_record/modulo_record_giocatore/record_giocatore.h"
 
 #define NUMERO_GIOCATORI_MAX 4
 typedef struct {

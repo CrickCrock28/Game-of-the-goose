@@ -5,9 +5,9 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-#define MAX 25*80 //???????????????????? NON SO CHE VALORE METTERE
+#define PRIMA_RIGA 0
 
-void stampare_file_di_testo(FILE* file);
-bool verificare_file_esistente(FILE* file);
+int stampare_file_di_testo(char* percorso_file);
+bool verificare_file_esistente(char* percorso_file);
 
 #endif /* GESTIRE_FILE_H_ */
