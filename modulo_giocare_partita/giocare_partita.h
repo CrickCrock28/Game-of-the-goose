@@ -13,9 +13,8 @@
 #include "../modulo_spostare_cursore/spostare_cursore.h"
 #include "../costanti.h"
 
-#define PERCORSO_FILE_MENU_PARTITA "file_di_gioco\\menu_partita.txt"
-#define PERCORSO_FILE_TITOLO "file_di_gioco\\titolo.txt"
-#define PERCORSO_FILE_MENU_SCELTA_DATI_NUOVA_PARTITA "file_di_gioco\\menu_scelta_dati_nuova_partita.txt\0"
+#define PERCORSO_FILE_MENU_PARTITA "..\\src\\file_di_gioco\\menu_partita.txt"
+#define PERCORSO_FILE_TITOLO "..\\src\\file_di_gioco\\titolo.txt"
 #define NUMERO_MASSIMO_CASELLE 90
 #define CASELLA_OCA	'O'
 #define CASELLA_PONTE 'T'
@@ -31,8 +30,6 @@
 #define NUMERO_MASSIMO_GIOCATORI 4
 #define PRIMO_INDICE_ARRAY 0
 #define PRIMA_POSIZIONE_PERCORSO 1
-#define ARRIVO_PRIMO_LANCIO_4_5 53
-#define ARRIVO_PRIMO_LANCIO_3_6 26
 #define NUMERO_MINIMO_DADO 1
 #define NUMERO_MASSIMO_DADO 6
 #define GIOCATORE_NON_STABILITO -1
@@ -63,11 +60,11 @@ record_partita applicare_effetto_casella_labirinto(record_partita partita, int i
 record_partita applicare_effetto_casella_prigione(record_partita partita, int indice_giocatore);
 record_partita applicare_effetto_casella_scheletro(record_partita partita, int indice_giocatore);
 record_partita giocare_partita(record_partita partita);
+record_partita gestire_menu_partita(char* percorso_file_menu_partita, record_partita partita);
 record_partita lanciare_primi_dadi(record_partita partita, int indice_giocatore);
 void stampare_percorso(record_partita partita);
 record_partita avanzare_turno(record_partita partita);
 record_partita stabilire_primo_giocatore(record_partita partita);
-record_partita gestire_menu_nuova_partita(char* NOME_FILE_MENU_NUOVA_PARTITA);
 record_partita applicare_effetto_casella_oca_ponte(record_partita partita, int indice_giocatore);
 record_partita applicare_effetto_casella_pozzo(record_partita partita, int indice_giocatore);
 record_partita applicare_effetto_casella_locanda(record_partita partita, int indice_giocatore);
@@ -75,6 +72,5 @@ record_partita applicare_effetto_casella_finale(record_partita partita, int indi
 record_partita lanciare_dadi(record_partita partita, int indice_giocatore);
 record_partita gestire_effetti_caselle_speciali(record_partita partita, int indice_giocatore);
 record_partita gestire_scelta_partita(record_partita partita, int scelta);
-record_partita gestire_scelta_nuova_partita(int scelta);
 
 #endif

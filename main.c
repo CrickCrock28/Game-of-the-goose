@@ -1,32 +1,33 @@
 #include <stdlib.h>
 #include <stdio.h>
+#include <stdbool.h>
 
 #include "costanti.h"
-#include "moduli_record/modulo_record_classificato/record_classificato.h"
-#include "moduli_record/modulo_record_giocatore/record_giocatore.h"
-#include "moduli_record/modulo_record_partita/record_partita.h"
-#include "moduli_record/modulo_record_partite_salvate/record_partite_salvate.h"
-#include "moduli_record/modulo_record_percorso/record_percorso.h"
-#include "moduli_record/modulo_record_vet_giocatori/record_vet_giocatori.h"
-#include "moduli_record/modulo_record_vettore_partite_salvate/record_vettore_partite_salvate.h"
-#include "modulo_gestire_azioni_semplici/gestire_azioni_semplici.h"
-#include "modulo_creare_nuova_partita/creare_nuova_partita.h"
-#include "modulo_gestire_aiuto/gestire_aiuto.h"
-#include "modulo_gestire_classifica/gestire_classifica.h"
-#include "modulo_gestire_file/gestire_file.h"
-#include "modulo_gestire_partite_salvate/gestire_partite_salvate.h"
-#include "modulo_giocare_partita/giocare_partita.h"
+#include "..\\src\\moduli_record\\modulo_record_classificato\\record_classificato.h"
+#include "..\\src\\moduli_record\\modulo_record_giocatore\\record_giocatore.h"
+#include "..\\src\\moduli_record\\modulo_record_partita\\record_partita.h"
+#include "..\\src\\moduli_record\\modulo_record_partite_salvate\\record_partite_salvate.h"
+#include "..\\src\\moduli_record\\modulo_record_percorso\\record_percorso.h"
+#include "..\\src\\moduli_record\\modulo_record_vet_giocatori\\record_vet_giocatori.h"
+#include "..\\src\\moduli_record\\modulo_record_vettore_partite_salvate\\record_vettore_partite_salvate.h"
+#include "..\\src\\modulo_gestire_azioni_semplici\\gestire_azioni_semplici.h"
+#include "..\\src\\modulo_creare_nuova_partita\\creare_nuova_partita.h"
+#include "..\\src\\modulo_gestire_aiuto\\gestire_aiuto.h"
+#include "..\\src\\modulo_gestire_classifica\\gestire_classifica.h"
+#include "..\\src\\modulo_gestire_file\\gestire_file.h"
+#include "..\\src\\modulo_gestire_partite_salvate\\gestire_partite_salvate.h"
+#include "..\\src\\modulo_giocare_partita\\giocare_partita.h"
 
-#define PERCORSO_FILE_MENU_NUOVA_PARTITA "file_di_gioco\\menu_nuova_partita.txt\0" // Nome del file che contiene il menù nuova partita
-#define PERCORSO_FILE_MENU_PRINCIPALE "file_di_gioco\\menu_principale.txt\0" // Nome del file che contiene il menù principale
-#define PERCORSO_FILE_MENU_CARICA_PARTITA "file_di_gioco\\menu_carica_partita.txt\0" // Nome del file che contiene il menù carica partita
-#define PERCORSO_FILE_MENU_AIUTO "file_di_gioco\\menu_aiuto.txt\0" // Nome del file che contiene il menù aiuto
-#define PERCORSO_FILE_MENU_CLASSIFICA "file_di_gioco\\menu_classifica.txt\0" // Nome del file che contiene il menù classifica
-#define PERCORSO_FILE_CLASSIFICA "file_di_gioco\\classifica.bin\0" // Nome del file che contiene la classifica
-#define PERCORSO_FILE_REGOLE_GIOCO "file_di_gioco\\regole_gioco.txt\0" // Nome del file che contiene le regole di gioco
-#define PERCORSO_FILE_MANUALE_GIOCO "file_di_gioco\\manuale_gioco.txt\0" // Nome del file che contiene il manuale di gioco
-#define PERCORSO_FILE_MENU_RIPRENDERE_PARTITA "file_di_gioco\\menu_riprendere_partita.txt\0" // Nome del file che contiene il menù riprendere partita appena salvata
-#define PERCORSO_FILE_MENU_SCELTA_DATI_NUOVA_PARTITA "file_di_gioco\\menu_scelta_dati_nuova_partita.txt\0"	// Nome del file che contiene il menù scegliere dati nuova parita
+#define PERCORSO_FILE_MENU_NUOVA_PARTITA "..\\src\\file_di_gioco\\menu_nuova_partita.txt\0" // Nome del file che contiene il menù nuova partita
+#define PERCORSO_FILE_MENU_PRINCIPALE "..\\src\\file_di_gioco\\menu_principale.txt\0" // Nome del file che contiene il menù principale
+#define PERCORSO_FILE_MENU_CARICA_PARTITA "..\\src\\file_di_gioco\\menu_carica_partita.txt\0" // Nome del file che contiene il menù carica partita
+#define PERCORSO_FILE_MENU_AIUTO "..\\src\\file_di_gioco\\menu_aiuto.txt\0" // Nome del file che contiene il menù aiuto
+#define PERCORSO_FILE_MENU_CLASSIFICA "..\\src\\file_di_gioco\\menu_classifica.txt\0" // Nome del file che contiene il menù classifica
+#define PERCORSO_FILE_CLASSIFICA "..\\src\\file_di_gioco\\classifica.bin\0" // Nome del file che contiene la classifica
+#define PERCORSO_FILE_REGOLE_GIOCO "..\\src\\file_di_gioco\\regole_gioco.txt\0" // Nome del file che contiene le regole di gioco
+#define PERCORSO_FILE_MANUALE_GIOCO "..\\src\\file_di_gioco\\manuale_gioco.txt\0" // Nome del file che contiene il manuale di gioco
+#define PERCORSO_FILE_MENU_RIPRENDERE_PARTITA "..\\src\\file_di_gioco\\menu_riprendere_partita.txt\0" // Nome del file che contiene il menù riprendere partita appena salvata
+//#define PERCORSO_FILE_MENU_SCELTA_DATI_NUOVA_PARTITA "..\\src\\file_di_gioco\\menu_scelta_dati_nuova_partita.txt\0"	// Nome del file che contiene il menù scegliere dati nuova parita
 
 #define SCELTA_MENU_NUOVA_PARTITA 1 // Scelta corrispondende al menu nuova partita
 #define SCELTA_MENU_CARICA_PARTITA 2 // Scelta corrispondende al menu carica partita
@@ -37,57 +38,66 @@
 //void inizializzare_file(void);
 #define MESSAGGIO_FILE_NON_TROVATO "Impossibile trovare il file: \0"
 
-void verificare_esistenza_tutti_file(){//MANCA FILE TITOLO
+bool verificare_esistenza_tutti_file(){//MANCA FILE TITOLO
     
+	bool tutti_i_file_esistono = true;
+
     if(!verificare_file_esistente(PERCORSO_FILE_MENU_NUOVA_PARTITA)){
         printf("%s%s\n", MESSAGGIO_FILE_NON_TROVATO, PERCORSO_FILE_MENU_NUOVA_PARTITA);
+        tutti_i_file_esistono = false;
     }
 
     if(!verificare_file_esistente(PERCORSO_FILE_MENU_PRINCIPALE)){
         printf("%s%s\n", MESSAGGIO_FILE_NON_TROVATO, PERCORSO_FILE_MENU_PRINCIPALE);
+        tutti_i_file_esistono = false;
     }
 
     if(!verificare_file_esistente(PERCORSO_FILE_MENU_CARICA_PARTITA)){
         printf("%s%s\n", MESSAGGIO_FILE_NON_TROVATO, PERCORSO_FILE_MENU_CARICA_PARTITA);
+        tutti_i_file_esistono = false;
     }
 
     if(!verificare_file_esistente(PERCORSO_FILE_MENU_AIUTO)){
         printf("%s%s\n", MESSAGGIO_FILE_NON_TROVATO, PERCORSO_FILE_MENU_AIUTO);
+        tutti_i_file_esistono = false;
     }
 
     if(!verificare_file_esistente(PERCORSO_FILE_MENU_CLASSIFICA)){
         printf("%s%s\n", MESSAGGIO_FILE_NON_TROVATO, PERCORSO_FILE_MENU_CLASSIFICA);
+        tutti_i_file_esistono = false;
     }
 
     if(!verificare_file_esistente(PERCORSO_FILE_CLASSIFICA)){
         printf("%s%s\n", MESSAGGIO_FILE_NON_TROVATO, PERCORSO_FILE_CLASSIFICA);
+        tutti_i_file_esistono = false;
     }
 
     if(!verificare_file_esistente(PERCORSO_FILE_REGOLE_GIOCO)){
         printf("%s%s\n", MESSAGGIO_FILE_NON_TROVATO, PERCORSO_FILE_REGOLE_GIOCO);
+        tutti_i_file_esistono = false;
     }
 
     if(!verificare_file_esistente(PERCORSO_FILE_MANUALE_GIOCO)){
         printf("%s%s\n", MESSAGGIO_FILE_NON_TROVATO, PERCORSO_FILE_MANUALE_GIOCO);
+        tutti_i_file_esistono = false;
     }
 
     if(!verificare_file_esistente(PERCORSO_FILE_MENU_RIPRENDERE_PARTITA)){
         printf("%s%s\n", MESSAGGIO_FILE_NON_TROVATO, PERCORSO_FILE_MENU_RIPRENDERE_PARTITA);
-    }
-
-    if(!verificare_file_esistente(PERCORSO_FILE_MENU_SCELTA_DATI_NUOVA_PARTITA)){
-        printf("%s%s\n", MESSAGGIO_FILE_NON_TROVATO, PERCORSO_FILE_MENU_SCELTA_DATI_NUOVA_PARTITA);
+        tutti_i_file_esistono = false;
     }
 
     if(!verificare_file_esistente(PERCORSO_FILE_CLASSIFICA)){
         printf("%s%s\n", MESSAGGIO_FILE_NON_TROVATO, PERCORSO_FILE_CLASSIFICA);
+        tutti_i_file_esistono = false;
     }
 
     if(!verificare_file_esistente(PERCORSO_FILE_PARTITE_SALVATE)){
         printf("%s%s\n", MESSAGGIO_FILE_NON_TROVATO, PERCORSO_FILE_PARTITE_SALVATE);
+        tutti_i_file_esistono = false;
     }
 
-    return;
+    return tutti_i_file_esistono;
 }
 
 int main(void) {
@@ -101,8 +111,10 @@ int main(void) {
 
     srand(time(NULL));
 
-    //inizializzare_file(); //quando funziona il programma decommentare
-    verificare_esistenza_tutti_file();
+
+    while(!verificare_esistenza_tutti_file()){
+    	system("pause");
+    }
     partita_caricata = false; // indica se l’utente ha caricato una partita in RAM dal file delle partite salvate
 	creare_nuova_partita = false; // indica se l’utente vuole creare una nuova partita incurante di quella precedente in corso
 	do {
@@ -122,12 +134,12 @@ int main(void) {
 				}
 			}
 			do {
-				if (leggere_terminata_record_partita(partita) == true) {
+				if (leggere_terminata_record_partita(partita)) {
 					// aggiorno la classifica
 					aggiornare_classifica(PERCORSO_FILE_CLASSIFICA, partita);
 				}
 				else {
-					if (leggere_salva_partita_record_partita(partita) == true) {
+					if (leggere_salva_partita_record_partita(partita)) {
 						// salvo la partita
 						salvare_partita(PERCORSO_FILE_PARTITE_SALVATE, partita);
 						// chiedo all'utente se vuole continuare la partita

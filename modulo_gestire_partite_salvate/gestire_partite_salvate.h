@@ -10,8 +10,8 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-#define PERCORSO_FILE_PARTITE_SALVATE "partite_salvate.bin"
-#define PERCORSO_FILE_BINARIO_REMPORANEO "file_temporaneo.bin"
+#define PERCORSO_FILE_PARTITE_SALVATE "..\\src\\file_di_gioco\\partite_salvate.bin"
+#define PERCORSO_FILE_BINARIO_REMPORANEO "..\\src\\file_di_gioco\\file_temporaneo.bin"
 #define SCELTA_ESCI 0
 #define SCELTA_CANCELLA_PARTITA 1
 #define SCELTA_CARICA_PARTITA 2

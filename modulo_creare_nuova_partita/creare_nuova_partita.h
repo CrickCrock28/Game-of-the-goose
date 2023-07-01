@@ -43,7 +43,11 @@
 #define MESSAGGIO_NUMERO_GIOCATORI "Inserisci il numero di giocatori (2 a 4): \0" // Messaggio da stampare al momento dell’inserimento del numero di giocatori della nuova partita
 #define MESSAGGIO_NUMERO_CASELLE "Inserisci il numero di caselle (50 a 90): \0" // Messaggio da stampare al momento dell’inserimento del numero di caselle della nuova partita
 
-record_dati_nuova_partita chiedere_dati_nuova_partita(char* NOME_FILE_MENU_SCELTA_DATI_NUOVA_PARTITA);
+
+record_partita gestire_menu_nuova_partita(char* percorso_file_menu_nuova_partita);
+record_partita gestire_menu_nuova_partita(char* percorso_file_menu_nuova_partita);
+record_partita gestire_scelta_menu_nuova_partita(int scelta);
+record_dati_nuova_partita chiedere_dati_nuova_partita(char* percorso_file_titolo, bool utilizzare_dati_predefiniti);
 record_partita creare_nuova_partita(record_dati_nuova_partita dati_nuova_partita);
 record_percorso inizializzare_percorso(record_percorso percorso);
 record_percorso inserire_caselle_oche(record_percorso percorso);
