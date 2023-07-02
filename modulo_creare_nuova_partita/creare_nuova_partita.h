@@ -7,6 +7,7 @@
 #include "../moduli_record/modulo_record_partita/record_partita.h"
 #include "../moduli_record/modulo_record_giocatore/record_giocatore.h"
 #include "../modulo_giocare_partita/giocare_partita.h"
+#include "../modulo_gestire_classifica/gestire_classifica.h"
 
 #define NUMERO_MASSIMO_GIOCATORI 4 // Numero massimo di giocatori
 #define NUMERO_MINIMO_GIOCATORI	2 // Numero minimo di giocatori
@@ -45,7 +46,6 @@
 
 
 record_partita gestire_menu_nuova_partita(char* percorso_file_menu_nuova_partita);
-record_partita gestire_menu_nuova_partita(char* percorso_file_menu_nuova_partita);
 record_partita gestire_scelta_menu_nuova_partita(int scelta);
 record_dati_nuova_partita chiedere_dati_nuova_partita(char* percorso_file_titolo, bool utilizzare_dati_predefiniti);
 record_partita creare_nuova_partita(record_dati_nuova_partita dati_nuova_partita);
@@ -54,5 +54,6 @@ record_percorso inserire_caselle_oche(record_percorso percorso);
 record_percorso inserire_casella_speciale(record_percorso percorso, int posizione_casella_speciale, char carattere_casella_speciale);
 record_percorso inserire_caselle_speciali(record_percorso percorso);
 record_vet_giocatori inizializzare_record_vet_giocatori(record_vet_giocatori vet);
+
 
 #endif /* CREARE_NUOVA_PARTITA_H_ */

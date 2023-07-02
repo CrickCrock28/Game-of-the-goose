@@ -1,15 +1,15 @@
 #ifndef RECORD_PARTITE_SALVATE_H_
 #define RECORD_PARTITE_SALVATE_H_
 
-#include "../../moduli_record/modulo_record_partita/record_partita.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 
-#define DIMENSIONE_PERCORSO_FILE 30
+#include "..\\..\\moduli_record\\modulo_record_partita\\record_partita.h"
+#include "..\\..\\percorsi_file.h"
 
 typedef struct record_partite_salvate {
-    char percorso_file[DIMENSIONE_PERCORSO_FILE];
+    char percorso_file[DIMENSIONE_MASSIMA_PERCORSO_FILE];
     record_partita partita_opzionale;
 } record_partite_salvate;
 

@@ -30,7 +30,8 @@ record_partita gestire_menu_nuova_partita(char* percorso_file_menu_nuova_partita
 			scelta = SCELTA_USCIRE_DAL_MENU;
 		}
 
-    } while(scelta != SCELTA_USCIRE_DAL_MENU);
+    } while(scelta != SCELTA_USCIRE_DAL_MENU &&
+    		leggere_terminata_record_partita(partita) == false);
 
     return partita;
 }
@@ -54,6 +55,8 @@ record_partita gestire_scelta_menu_nuova_partita(int scelta){
 				dati_nuova_partita = chiedere_dati_nuova_partita(PERCORSO_FILE_TITOLO, false);
 				partita = creare_nuova_partita(dati_nuova_partita);
 				partita = giocare_partita(partita);
+			} else{
+				partita = scrivere_terminata_record_partita(partita, false);
 			}
 		}
 

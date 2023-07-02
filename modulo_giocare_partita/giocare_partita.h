@@ -10,6 +10,7 @@
 #include "../moduli_record/modulo_record_dati_nuova_partita/record_dati_nuova_partita.h"
 #include "../modulo_gestire_file/gestire_file.h"
 #include "../modulo_creare_nuova_partita/creare_nuova_partita.h"
+#include "../modulo_gestire_partite_salvate/gestire_partite_salvate.h"
 #include "../modulo_spostare_cursore/spostare_cursore.h"
 #include "../costanti.h"
 
@@ -57,7 +58,6 @@
 
 char trovare_tipo_casella_giocatore(record_partita partita, int indice_giocatore);
 record_partita applicare_effetto_casella_labirinto(record_partita partita, int indice_giocatore);
-record_partita applicare_effetto_casella_prigione(record_partita partita, int indice_giocatore);
 record_partita applicare_effetto_casella_scheletro(record_partita partita, int indice_giocatore);
 record_partita giocare_partita(record_partita partita);
 record_partita gestire_menu_partita(char* percorso_file_menu_partita, record_partita partita);
@@ -66,7 +66,7 @@ void stampare_percorso(record_partita partita);
 record_partita avanzare_turno(record_partita partita);
 record_partita stabilire_primo_giocatore(record_partita partita);
 record_partita applicare_effetto_casella_oca_ponte(record_partita partita, int indice_giocatore);
-record_partita applicare_effetto_casella_pozzo(record_partita partita, int indice_giocatore);
+record_partita applicare_effetto_casella_pozzo_prigione(record_partita partita, int indice_giocatore, char tipo_casella);
 record_partita applicare_effetto_casella_locanda(record_partita partita, int indice_giocatore);
 record_partita applicare_effetto_casella_finale(record_partita partita, int indice_giocatore);
 record_partita lanciare_dadi(record_partita partita, int indice_giocatore);

@@ -3,6 +3,7 @@
 #include <stdbool.h>
 
 #include "costanti.h"
+#include "percorsi_file.h"
 #include "..\\src\\moduli_record\\modulo_record_classificato\\record_classificato.h"
 #include "..\\src\\moduli_record\\modulo_record_giocatore\\record_giocatore.h"
 #include "..\\src\\moduli_record\\modulo_record_partita\\record_partita.h"
@@ -18,19 +19,9 @@
 #include "..\\src\\modulo_gestire_partite_salvate\\gestire_partite_salvate.h"
 #include "..\\src\\modulo_giocare_partita\\giocare_partita.h"
 
-#define PERCORSO_FILE_MENU_NUOVA_PARTITA "..\\src\\file_di_gioco\\menu_nuova_partita.txt\0" // Nome del file che contiene il menù nuova partita
-#define PERCORSO_FILE_MENU_PRINCIPALE "..\\src\\file_di_gioco\\menu_principale.txt\0" // Nome del file che contiene il menù principale
-#define PERCORSO_FILE_MENU_CARICA_PARTITA "..\\src\\file_di_gioco\\menu_carica_partita.txt\0" // Nome del file che contiene il menù carica partita
-#define PERCORSO_FILE_MENU_AIUTO "..\\src\\file_di_gioco\\menu_aiuto.txt\0" // Nome del file che contiene il menù aiuto
-#define PERCORSO_FILE_MENU_CLASSIFICA "..\\src\\file_di_gioco\\menu_classifica.txt\0" // Nome del file che contiene il menù classifica
-#define PERCORSO_FILE_CLASSIFICA "..\\src\\file_di_gioco\\classifica.bin\0" // Nome del file che contiene la classifica
-#define PERCORSO_FILE_REGOLE_GIOCO "..\\src\\file_di_gioco\\regole_gioco.txt\0" // Nome del file che contiene le regole di gioco
-#define PERCORSO_FILE_MANUALE_GIOCO "..\\src\\file_di_gioco\\manuale_gioco.txt\0" // Nome del file che contiene il manuale di gioco
-#define PERCORSO_FILE_MENU_RIPRENDERE_PARTITA "..\\src\\file_di_gioco\\menu_riprendere_partita.txt\0" // Nome del file che contiene il menù riprendere partita appena salvata
-//#define PERCORSO_FILE_MENU_SCELTA_DATI_NUOVA_PARTITA "..\\src\\file_di_gioco\\menu_scelta_dati_nuova_partita.txt\0"	// Nome del file che contiene il menù scegliere dati nuova parita
 
 #define SCELTA_MENU_NUOVA_PARTITA 1 // Scelta corrispondende al menu nuova partita
-#define SCELTA_MENU_CARICA_PARTITA 2 // Scelta corrispondende al menu carica partita
+#define SCELTA_MENU_PARTITE_SALVATE 2 // Scelta corrispondende al menu carica partita
 #define SCELTA_MENU_CLASSIFICA 3 // Scelta corrispondende al menu classifica
 #define SCELTA_MENU_AIUTO 4 // Scelta corrispondende al menu aiuto
 #define SCELTA_CONTINUARE_PARTITA 1 // Indica che l'utente vuole continuare la partita appena salvata
@@ -52,8 +43,8 @@ bool verificare_esistenza_tutti_file(){//MANCA FILE TITOLO
         tutti_i_file_esistono = false;
     }
 
-    if(!verificare_file_esistente(PERCORSO_FILE_MENU_CARICA_PARTITA)){
-        printf("%s%s\n", MESSAGGIO_FILE_NON_TROVATO, PERCORSO_FILE_MENU_CARICA_PARTITA);
+    if(!verificare_file_esistente(PERCORSO_FILE_MENU_PARTITE_SALVATE)){
+        printf("%s%s\n", MESSAGGIO_FILE_NON_TROVATO, PERCORSO_FILE_MENU_PARTITE_SALVATE);
         tutti_i_file_esistono = false;
     }
 
@@ -82,11 +73,6 @@ bool verificare_esistenza_tutti_file(){//MANCA FILE TITOLO
         tutti_i_file_esistono = false;
     }
 
-    if(!verificare_file_esistente(PERCORSO_FILE_MENU_RIPRENDERE_PARTITA)){
-        printf("%s%s\n", MESSAGGIO_FILE_NON_TROVATO, PERCORSO_FILE_MENU_RIPRENDERE_PARTITA);
-        tutti_i_file_esistono = false;
-    }
-
     if(!verificare_file_esistente(PERCORSO_FILE_CLASSIFICA)){
         printf("%s%s\n", MESSAGGIO_FILE_NON_TROVATO, PERCORSO_FILE_CLASSIFICA);
         tutti_i_file_esistono = false;
@@ -101,8 +87,7 @@ bool verificare_esistenza_tutti_file(){//MANCA FILE TITOLO
 }
 
 int main(void) {
-    bool partita_caricata,
-        creare_nuova_partita;
+    bool partita_caricata;
     int scelta,
         riprendere_partita,
         riga;
@@ -115,44 +100,33 @@ int main(void) {
     while(!verificare_esistenza_tutti_file()){
     	system("pause");
     }
+
+    salvataggi = scrivere_percorso_file_partite_salvate(salvataggi, PERCORSO_FILE_PARTITE_SALVATE);
+
     partita_caricata = false; // indica se l’utente ha caricato una partita in RAM dal file delle partite salvate
-	creare_nuova_partita = false; // indica se l’utente vuole creare una nuova partita incurante di quella precedente in corso
 	do {
+
+		// Stampa il menu principale
 		system("cls");
 		spostare_cursore(PRIMA_COORDINATA_SCHERMO, PRIMA_COORDINATA_SCHERMO);
 		riga = stampare_file_di_testo(PERCORSO_FILE_MENU_PRINCIPALE);
 		scelta = chiedere_intero(MESSAGGIO_SCELTA, SCELTA_USCIRE_DAL_MENU, SCELTA_MENU_AIUTO, (riga+1), PRIMA_COORDINATA_SCHERMO);
+
+		// Se l'utente sceglie di creare una nuova partita
 		if (scelta == SCELTA_MENU_NUOVA_PARTITA) {
+			// Se la partita è stata caricata dal file delle partite salvate
 			if (partita_caricata == true) {
-				// la partita e' stata caricata dal file delle partite salvate
+				// Gioca la partita caricata
 				partita = giocare_partita(partita);
 			}
 			else {
-				// se l’utente vuole creare una nuova partita, questa viene creata nella funzione gestire_menu_nuova_partita
-				if (creare_nuova_partita == false) {
-					partita = gestire_menu_nuova_partita(PERCORSO_FILE_MENU_NUOVA_PARTITA);//PERCORSO_FILE_MENU_SCELTA_DATI_NUOVA_PARTITA); PRIMA C'ERA QUESTO
-				}
+				partita = gestire_menu_nuova_partita(PERCORSO_FILE_MENU_NUOVA_PARTITA);
 			}
-			do {
-				if (leggere_terminata_record_partita(partita)) {
-					// aggiorno la classifica
-					aggiornare_classifica(PERCORSO_FILE_CLASSIFICA, partita);
-				}
-				else {
-					if (leggere_salva_partita_record_partita(partita)) {
-						// salvo la partita
-						salvare_partita(PERCORSO_FILE_PARTITE_SALVATE, partita);
-						// chiedo all'utente se vuole continuare la partita
-						system("cls");
-	                    spostare_cursore(PRIMA_COORDINATA_SCHERMO, PRIMA_COORDINATA_SCHERMO);
-						stampare_file_di_testo(PERCORSO_FILE_MENU_RIPRENDERE_PARTITA);
-						riprendere_partita = chiedere_intero(MESSAGGIO_SCELTA, SCELTA_USCIRE_DAL_MENU, 1, (riga+1), PRIMA_COORDINATA_SCHERMO); //NUMERO MAGICO
-					}
-				}
-			} while (riprendere_partita == SCELTA_CONTINUARE_PARTITA);
 		}
-		else if (scelta == SCELTA_MENU_CARICA_PARTITA) {
-			salvataggi = gestire_menu_partite_salvate(salvataggi, PERCORSO_FILE_MENU_CARICA_PARTITA);
+
+		// Se l'utente sceglie di aprire il menu partite salvate
+		else if (scelta == SCELTA_MENU_PARTITE_SALVATE) {
+			salvataggi = gestire_menu_partite_salvate(salvataggi, PERCORSO_FILE_MENU_PARTITE_SALVATE);
 			/* leggere_partite_salvate(salvataggi, &partite_salvate); ? legge le partite salvate, \
 			l'output è inserito in partite_salvate passato per indirizzo
 
@@ -163,39 +137,18 @@ int main(void) {
 				partita_caricata = true;
 			}
 		}
+
+		// Se l'utente sceglie di aprire il menu classifica
 		else if (scelta == SCELTA_MENU_CLASSIFICA) {
 			gestire_menu_classifica(PERCORSO_FILE_MENU_CLASSIFICA, PERCORSO_FILE_CLASSIFICA);
 		}
+
+		// Se l'utente scegie di aprire il menu aiuto
 		else if (scelta == SCELTA_MENU_AIUTO) {
 			gestire_menu_aiuto(PERCORSO_FILE_MENU_AIUTO, PERCORSO_FILE_REGOLE_GIOCO, PERCORSO_FILE_MANUALE_GIOCO);
 		}
-	} while (scelta != SCELTA_USCIRE_DAL_MENU);
 
-    system("pause");
+	} while (scelta != SCELTA_USCIRE_DAL_MENU);
 
     return EXIT_SUCCESS;
 }
-/*
-void inizializzare_file(void) {
-    FILE* file_partite_salvate,
-        *file_classifica;
-
-    file_classifica = fopen(PERCORSO_FILE_CLASSIFICA, "rb");
-    if (verificare_file_esistente(file_classifica) == false) {
-        // ricontrollare se i dati di default per il file sono corretti
-        file_classifica = fopen(PERCORSO_FILE_CLASSIFICA, "wb");
-        fwrite(0, sizeof(int), 1, file_classifica);
-    }
-
-    file_partite_salvate = fopen(PERCORSO_FILE_PARTITE_SALVATE, "rb");
-    if (verificare_file_esistente(file_partite_salvate) == false) {
-        file_partite_salvate = fopen(PERCORSO_FILE_PARTITE_SALVATE, "wb");
-        // scrivere i dati di default per questo file, se esistono, altrimenti eliminare questi due commenti
-        //fwrite(0, sizeof(int), 1, file_partite_salvate);
-    }
-    // altri file binari che devono essere creati e modificati a runtime, non dovrebbero essercene altri
-    fclose(file_partite_salvate);
-    fclose(file_classifica);
-
-    return;
-}*/

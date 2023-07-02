@@ -1,12 +1,12 @@
 #include "record_partite_salvate.h"
 
 void leggere_percorso_file_partite_salvate(record_partite_salvate salvataggi, char* percorso_file){
-    strcpy(percorso_file, salvataggi.percorso_file);
+    memcpy(percorso_file, salvataggi.percorso_file, DIMENSIONE_MASSIMA_PERCORSO*sizeof(char));
     return;
 }
 
 record_partite_salvate scrivere_percorso_file_partite_salvate(record_partite_salvate salvataggi, char* percorso_file){
-    strcpy(salvataggi.percorso_file, percorso_file);
+    memcpy(salvataggi.percorso_file, percorso_file, DIMENSIONE_MASSIMA_PERCORSO*sizeof(char));
     return salvataggi;
 }
 

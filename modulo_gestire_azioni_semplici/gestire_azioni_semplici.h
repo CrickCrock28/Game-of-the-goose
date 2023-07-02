@@ -5,14 +5,16 @@
 #include <stdlib.h>
 #include <time.h>
 #include "../modulo_spostare_cursore/spostare_cursore.h"
+#include "../costanti.h"
 
 #define NUMERO_COLONNA_MASSIMA 80
-#define FINE_STRINGA '\0'
+#define CARATTERE_FINE_STRINGA '\0'
 #define MESSAGGIO "Il valore deve essere compreso tra:\0"
-#define RIGA_VUOTA "                                                                                \0"
 
+int ottenere_riga_cursore();
+int ottenere_colonna_cursore();
 int chiedere_intero(const char* messaggio, int valore_minimo, int valore_massimo, int x, int y);
 int calcolare_proporzione(int n_1, int d_1, int d_2);
 int generare_numero_casuale(int minimo, int massimo);
-void stampare_riga_vuota(int riga);
+void stampare_riga_vuota(int riga, int numero_colonna_massima);
 #endif

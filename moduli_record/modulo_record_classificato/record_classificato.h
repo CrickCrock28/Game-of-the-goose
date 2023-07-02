@@ -5,6 +5,8 @@
 
 #include "../../costanti.h"
 
+#define LUNGHEZZA_NOME 3 // Lunghezza del nome
+
 typedef struct record_classificato {
 	char nome_giocatore[LUNGHEZZA_NOME + 1]; // Nome del giocatore classificato
 	int tiri; // Numero di tiri del giocatore classificato

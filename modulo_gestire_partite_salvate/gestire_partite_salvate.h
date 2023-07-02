@@ -10,17 +10,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-#define PERCORSO_FILE_PARTITE_SALVATE "..\\src\\file_di_gioco\\partite_salvate.bin"
-#define PERCORSO_FILE_BINARIO_REMPORANEO "..\\src\\file_di_gioco\\file_temporaneo.bin"
-#define SCELTA_ESCI 0
-#define SCELTA_CANCELLA_PARTITA 1
-#define SCELTA_CARICA_PARTITA 2
-#define DIMENSIONE_MASSIMA_PERCORSO_FILE 30
-#define NUMERO_MASSIMO_PARTITE_SALVATE 5
 #define PARTITA_OPZIONALE_INESISTENTE -2
-#define MESSAGGIO_SCELTA_MENU "Inserire un intero che rappresenta la scelta\0"
-#define MESSAGGIO_CANCELLARE_PARTITA "Inserisci il numero della partita da cancellare per poter salvare la partita corrente (oppure 0 se non vuoi salvare): \0"
-#define MESSAGGIO_MENU "Inserisci il numero corrispondente all'azione da eseguire: \0" //FORSE PUO' ESSERE TRASFORMATA IN GLOBALE
 
 record_partite_salvate gestire_menu_partite_salvate(record_partite_salvate salvataggi, char* NOME_FILE_MENU_CARICA_PARTITA);
 int contare_partite_salvate(char* percorso_file_partite_salvate);

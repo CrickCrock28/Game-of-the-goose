@@ -1,7 +1,7 @@
 				Gioco dell'oca
 --------------------------------------------------------------------------------
 1. Menu' Nuova partita
-2. Menu' Carica partita salvate
+2. Menu' Partita salvate
 3. Menu' Classifica
 4. Menu' Aiuto
 0. Chiudi programma

@@ -23,7 +23,7 @@ int stampare_file_di_testo(char* percorso_file) {
 	int riga = PRIMA_RIGA;
 
 	file = fopen(percorso_file, "r");
-	while ((carattere = fgetc(file)) != FINE_FILE) {
+	while ((carattere = fgetc(file)) != CARATTERE_FINE_FILE) {
 	    printf("%c", carattere);
 		if(carattere == '\n') {
 			riga = riga + 1;
@@ -41,7 +41,7 @@ int contare_righe_file_di_testo(char* percorso_file) {
 
 	file = fopen(percorso_file, "r");
 	righe = 0;
-	while ((carattere = fgetc(file)) != FINE_FILE) {
+	while ((carattere = fgetc(file)) != CARATTERE_FINE_FILE) {
 		if (carattere == '\n') {
 			righe = righe + 1;
 		}
