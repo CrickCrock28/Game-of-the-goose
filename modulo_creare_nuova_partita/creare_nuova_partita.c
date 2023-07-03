@@ -1,15 +1,53 @@
+// PERFETTO
 #include "creare_nuova_partita.h"
-#include "../costanti.h"
-#include "../modulo_gestire_azioni_semplici/gestire_azioni_semplici.h"
-#include "../modulo_gestire_file/gestire_file.h"
 
 #include <stdbool.h>
 #include <stdlib.h>
 
+#include "..\\costanti.h"
+#include "..\\percorsi_file.h"
+
+#include "..\\modulo_gestire_file\\gestire_file.h"
+#include "..\\modulo_gestire_azioni_semplici\\gestire_azioni_semplici.h"
+#include "..\\modulo_spostare_cursore\\spostare_cursore.h"
+
+#include "..\\moduli_record\\modulo_record_percorso\\record_percorso.h"
+#include "..\\moduli_record\\modulo_record_vet_giocatori\\record_vet_giocatori.h"
+#include "..\\moduli_record\\modulo_record_giocatore\\record_giocatore.h"
+#include "..\\moduli_record\\modulo_record_dati_nuova_partita\\record_dati_nuova_partita.h"
+
+#include "..\\modulo_giocare_partita\\giocare_partita.h"
+
+
+#define MESSAGGIO_NUMERO_GIOCATORI "Inserisci il numero di giocatori (2 a 4): "
+#define MESSAGGIO_NUMERO_CASELLE "Inserisci il numero di caselle (50 a 90): "
 
 #define SCELTA_UTILIZZARE_DATI_PREDEFINITI 1
 #define SCELTA_UTILIZZARE_DATI_PERSONALIZZATI 2
-#define SCELTA_USCIRE_DAL_MENU 0
+
+#define TIPO_CASELLA_VUOTA 'V'
+
+#define FREQUENZA_OCA 9
+
+#define POSIZIONE_PONTE_90_CASELLE 6
+#define POSIZIONE_LOCANDA_90_CASELLE 19
+#define POSIZIONE_POZZO_90_CASELLE 31
+#define POSIZIONE_LABIRINTO_90_CASELLE 42
+#define POSIZIONE_PRIGIONE_90_CASELLE 52
+#define POSIZIONE_SCHELETRO_90_CASELLE 58
+
+#define LANCIO_NON_EFFETTUATO -1
+
+
+record_partita gestire_scelta_menu_nuova_partita(int scelta);
+record_dati_nuova_partita chiedere_dati_nuova_partita(char* percorso_file_titolo, bool utilizzare_dati_predefiniti);
+record_partita creare_nuova_partita(record_dati_nuova_partita dati_nuova_partita);
+record_percorso inizializzare_percorso(record_percorso percorso);
+record_percorso inserire_caselle_oche(record_percorso percorso);
+record_percorso inserire_casella_speciale(record_percorso percorso, int posizione_casella_speciale, char carattere_casella_speciale);
+record_percorso inserire_caselle_speciali(record_percorso percorso);
+record_vet_giocatori inizializzare_record_vet_giocatori(record_vet_giocatori vet);
+
 
 record_partita gestire_menu_nuova_partita(char* percorso_file_menu_nuova_partita){
 
@@ -20,7 +58,7 @@ record_partita gestire_menu_nuova_partita(char* percorso_file_menu_nuova_partita
 		system("cls");
 		spostare_cursore(PRIMA_COORDINATA_SCHERMO, PRIMA_COORDINATA_SCHERMO);
 		riga = stampare_file_di_testo(percorso_file_menu_nuova_partita);
-		scelta = chiedere_intero(MESSAGGIO_SCELTA, SCELTA_USCIRE_DAL_MENU, SCELTA_DATI_SCELTI_UTENTE, (riga+1), PRIMA_COORDINATA_SCHERMO);
+		scelta = chiedere_intero(MESSAGGIO_SCELTA_AZIONE_MENU, SCELTA_USCIRE_DAL_MENU, SCELTA_UTILIZZARE_DATI_PERSONALIZZATI, (riga+1), PRIMA_COORDINATA_SCHERMO);
 
 		partita = gestire_scelta_menu_nuova_partita(scelta);
 
@@ -42,7 +80,7 @@ record_partita gestire_scelta_menu_nuova_partita(int scelta){
 	record_dati_nuova_partita dati_nuova_partita;
 
 	// Se l'utente sceglie di usare i dati predefiniti
-	if (scelta == SCELTA_DATI_PREDEFINITI) {
+	if (scelta == SCELTA_UTILIZZARE_DATI_PREDEFINITI) {
 		// Crea una partita utilizzando i dati predefiniti e iniziala
 		dati_nuova_partita = chiedere_dati_nuova_partita(PERCORSO_FILE_TITOLO, true);
 		partita = creare_nuova_partita(dati_nuova_partita);
@@ -50,7 +88,7 @@ record_partita gestire_scelta_menu_nuova_partita(int scelta){
 
 		// Altimenti, se l'utente scegie di utilizzare dati personalizzati
 		} else {
-			if (scelta == SCELTA_DATI_SCELTI_UTENTE) {
+			if (scelta == SCELTA_UTILIZZARE_DATI_PERSONALIZZATI) {
 				// Chiedi i dati all'utente e con questi crea inizia una nuova partita
 				dati_nuova_partita = chiedere_dati_nuova_partita(PERCORSO_FILE_TITOLO, false);
 				partita = creare_nuova_partita(dati_nuova_partita);
@@ -77,11 +115,12 @@ record_dati_nuova_partita chiedere_dati_nuova_partita(char* percorso_file_titolo
 
 		system("cls");
 		spostare_cursore(PRIMA_COORDINATA_SCHERMO, PRIMA_COORDINATA_SCHERMO);
-		riga = stampare_file_di_testo(percorso_file_titolo);
+		stampare_file_di_testo(percorso_file_titolo);
+		riga = ottenere_riga_cursore();
 
 		// Chiedi il numero di giocatori e di caselle all'utente
-		numero_giocatori = chiedere_intero(MESSAGGIO_NUMERO_GIOCATORI, NUMERO_MINIMO_GIOCATORI, NUMERO_MASSIMO_GIOCATORI, (riga+1), PRIMA_COORDINATA_SCHERMO);
-		numero_caselle = chiedere_intero(MESSAGGIO_NUMERO_CASELLE, NUMERO_MINIMO_CASELLE, NUMERO_MASSIMO_CASELLE, (riga+2), PRIMA_COORDINATA_SCHERMO);
+		numero_giocatori = chiedere_intero(MESSAGGIO_NUMERO_GIOCATORI, NUMERO_MINIMO_GIOCATORI, NUMERO_MASSIMO_GIOCATORI, riga, PRIMA_COORDINATA_SCHERMO);
+		numero_caselle = chiedere_intero(MESSAGGIO_NUMERO_CASELLE, NUMERO_MINIMO_CASELLE, NUMERO_MASSIMO_CASELLE, (riga+1), PRIMA_COORDINATA_SCHERMO);
 
 		// Salva i dati scelti dall'utente in dati_nuova_partita
 		dati_nuova_partita = scrivere_numero_giocatori_record_dati_nuova_partita(dati_nuova_partita, numero_giocatori);
@@ -97,18 +136,22 @@ record_partita creare_nuova_partita(record_dati_nuova_partita dati_nuova_partita
 	record_vet_giocatori vet_gioc;
 	record_partita partita;
 
+	// Crea il percorso
 	percorso = scrivere_dimensione_record_percorso(percorso, leggere_numero_caselle_record_dati_nuova_partita(dati_nuova_partita));
 	percorso = inizializzare_percorso(percorso);
 	percorso = inserire_caselle_oche(percorso);
 	percorso = inserire_caselle_speciali(percorso);
 
+	// Crea il vettore contenente i giocatori
 	vet_gioc = scrivere_dimensione_record_vet_giocatori(vet_gioc, leggere_numero_giocatori_record_dati_nuova_partita(dati_nuova_partita));
  	vet_gioc = inizializzare_record_vet_giocatori(vet_gioc);
 
+ 	// Salva il vettore contenente i giocatori e il percorso nella partita
 	partita = scrivere_percorso_record_partita(partita, percorso);
 	partita = scrivere_vet_giocatori_record_partita(partita, vet_gioc);
 
-	partita = scrivere_indice_giocatore_di_turno_record_partita(partita, GIOCATORE_NON_STABILITO);
+	// Scrive i dati della partita non scritti in precedenza
+	partita = scrivere_indice_giocatore_di_turno_record_partita(partita, GIOCATORE_DI_TURNO_NON_STABILITO);
 	partita = scrivere_terminata_record_partita(partita, false);
 	partita = scrivere_ultimo_lancio_dado_1_record_partita(partita, LANCIO_NON_EFFETTUATO);
 	partita = scrivere_ultimo_lancio_dado_2_record_partita(partita, LANCIO_NON_EFFETTUATO);
@@ -124,11 +167,11 @@ record_percorso inizializzare_percorso(record_percorso percorso) {
 
 	i = PRIMO_INDICE_ARRAY;
 	while (i < leggere_dimensione_record_percorso(percorso)) {
-		percorso = scrivere_casella_record_percorso(percorso, i, CASELLA_NORMALE);
+		percorso = scrivere_casella_record_percorso(percorso, i, TIPO_CASELLA_NORMALE);
 		i = i + 1;
 	}
 	while (i < NUMERO_MASSIMO_CASELLE) {
-		percorso = scrivere_casella_record_percorso(percorso, i, CASELLA_VUOTA);
+		percorso = scrivere_casella_record_percorso(percorso, i, TIPO_CASELLA_VUOTA);
 		i = i + 1;
 	}
 
@@ -140,7 +183,7 @@ record_percorso inserire_caselle_oche(record_percorso percorso) {
 
 	i = FREQUENZA_OCA - 1; // Viene decrementato di 1 poichè in c l'indice dell'n-sima casella è n-1
 	while (i < leggere_dimensione_record_percorso(percorso)) {
-		percorso = scrivere_casella_record_percorso(percorso, i, CASELLA_OCA);
+		percorso = scrivere_casella_record_percorso(percorso, i, TIPO_CASELLA_OCA);
 		i = i + FREQUENZA_OCA;
 	}
 
@@ -153,7 +196,7 @@ record_percorso inserire_casella_speciale(record_percorso percorso, int posizion
 	posizione_casella_speciale--;
 
 	// Incremento la posizione della casella fino a quando questa non coincide con ka posizione di una casella normale
-	while (leggere_casella_record_percorso(percorso, posizione_casella_speciale) != CASELLA_NORMALE) {
+	while (leggere_casella_record_percorso(percorso, posizione_casella_speciale) != TIPO_CASELLA_NORMALE) {
 		posizione_casella_speciale++;
 	}
 
@@ -171,26 +214,26 @@ record_percorso inserire_caselle_speciali(record_percorso percorso) {
 		posizione_prigione,
 		posizione_scheletro;
 
-	// Calcola, mediante una proporzione le posizioni delle caselle in base alla dimensione del percorso e le inserisce all'interno di esso
-	posizione_ponte = calcolare_proporzione(PONTE, NUMERO_MASSIMO_CASELLE, leggere_dimensione_record_percorso(percorso));
-	percorso = inserire_casella_speciale(percorso, posizione_ponte, CASELLA_PONTE);
+	// Calcola, mediante una proporzione, le posizioni delle caselle in base alla dimensione del percorso e le inserisce all'interno di esso
+	posizione_ponte = calcolare_proporzione(POSIZIONE_PONTE_90_CASELLE, NUMERO_MASSIMO_CASELLE, leggere_dimensione_record_percorso(percorso));
+	percorso = inserire_casella_speciale(percorso, posizione_ponte, TIPO_CASELLA_PONTE);
 
-	posizione_locanda = calcolare_proporzione(LOCANDA, NUMERO_MASSIMO_CASELLE, leggere_dimensione_record_percorso(percorso));
-	percorso = inserire_casella_speciale(percorso, posizione_locanda, CASELLA_LOCANDA);
+	posizione_locanda = calcolare_proporzione(POSIZIONE_LOCANDA_90_CASELLE, NUMERO_MASSIMO_CASELLE, leggere_dimensione_record_percorso(percorso));
+	percorso = inserire_casella_speciale(percorso, posizione_locanda, TIPO_CASELLA_LOCANDA);
 
-	posizione_pozzo = calcolare_proporzione(POZZO, NUMERO_MASSIMO_CASELLE, leggere_dimensione_record_percorso(percorso));
-	percorso = inserire_casella_speciale(percorso, posizione_pozzo, CASELLA_POZZO);
+	posizione_pozzo = calcolare_proporzione(POSIZIONE_POZZO_90_CASELLE, NUMERO_MASSIMO_CASELLE, leggere_dimensione_record_percorso(percorso));
+	percorso = inserire_casella_speciale(percorso, posizione_pozzo, TIPO_CASELLA_POZZO);
 
-	posizione_labirinto = calcolare_proporzione(LABIRINTO, NUMERO_MASSIMO_CASELLE, leggere_dimensione_record_percorso(percorso));
-	percorso = inserire_casella_speciale(percorso, posizione_labirinto, CASELLA_LABIRINTO);
+	posizione_labirinto = calcolare_proporzione(POSIZIONE_LABIRINTO_90_CASELLE, NUMERO_MASSIMO_CASELLE, leggere_dimensione_record_percorso(percorso));
+	percorso = inserire_casella_speciale(percorso, posizione_labirinto, TIPO_CASELLA_LABIRINTO);
 
-	posizione_prigione = calcolare_proporzione(PRIGIONE, NUMERO_MASSIMO_CASELLE, leggere_dimensione_record_percorso(percorso));
-	percorso = inserire_casella_speciale(percorso, posizione_prigione, CASELLA_PRIGIONE);
+	posizione_prigione = calcolare_proporzione(POSIZIONE_PRIGIONE_90_CASELLE, NUMERO_MASSIMO_CASELLE, leggere_dimensione_record_percorso(percorso));
+	percorso = inserire_casella_speciale(percorso, posizione_prigione, TIPO_CASELLA_PRIGIONE);
 
-	posizione_scheletro = calcolare_proporzione(SCHELETRO, NUMERO_MASSIMO_CASELLE, leggere_dimensione_record_percorso(percorso));
-	percorso = inserire_casella_speciale(percorso, posizione_scheletro, CASELLA_SCHELETRO);
+	posizione_scheletro = calcolare_proporzione(POSIZIONE_SCHELETRO_90_CASELLE, NUMERO_MASSIMO_CASELLE, leggere_dimensione_record_percorso(percorso));
+	percorso = inserire_casella_speciale(percorso, posizione_scheletro, TIPO_CASELLA_SCHELETRO);
 
-	percorso = scrivere_casella_record_percorso(percorso, leggere_dimensione_record_percorso(percorso) - 1, CASELLA_FINE);
+	percorso = scrivere_casella_record_percorso(percorso, leggere_dimensione_record_percorso(percorso) - 1, TIPO_CASELLA_FINE);
 
 	return percorso;
 }
@@ -199,10 +242,13 @@ record_vet_giocatori inizializzare_record_vet_giocatori(record_vet_giocatori vet
 	int i;
 	record_giocatore giocatore;
 
+	// Scorre tutti i giocatori
 	i = PRIMO_INDICE_ARRAY;
 	while (i < NUMERO_MASSIMO_GIOCATORI) {
+
+		// Inizializza il giocatore
 		if (i < leggere_dimensione_record_vet_giocatori(vet)) {
-			giocatore = scrivere_posizione_record_giocatore(giocatore, POSIZIONE_INIZIO);
+			giocatore = scrivere_posizione_record_giocatore(giocatore, POSIZIONE_INIZIO_PARTITA);
 		}
 		else {
 			giocatore = scrivere_posizione_record_giocatore(giocatore, POSIZIONE_GIOCATORE_NON_PARTECIPANTE);
@@ -210,7 +256,10 @@ record_vet_giocatori inizializzare_record_vet_giocatori(record_vet_giocatori vet
 		giocatore = scrivere_numero_turni_bloccato_record_giocatore(giocatore, 0);
 		giocatore = scrivere_numero_dadi_lanciati_record_giocatore(giocatore, 0);
 		giocatore = scrivere_bloccato_record_giocatore(giocatore, false);
+
+		// Riscrive il giocatore nel vettore
 		vet = scrivere_giocatore_record_vet_giocatori(vet, i, giocatore);
+
 		i++;
 	}
 	return vet;

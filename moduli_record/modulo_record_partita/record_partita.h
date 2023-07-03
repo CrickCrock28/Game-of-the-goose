@@ -1,8 +1,11 @@
+// PERFETTO
 #ifndef RECORD_PARTITA_H_
 #define RECORD_PARTITA_H_
 
-#include "../../moduli_record/modulo_record_percorso/record_percorso.h"
-#include "../../moduli_record/modulo_record_vet_giocatori/record_vet_giocatori.h"
+
+#include "..\\..\\moduli_record\\modulo_record_percorso\\record_percorso.h"
+#include "..\\..\\moduli_record\\modulo_record_vet_giocatori\\record_vet_giocatori.h"
+
 
 typedef struct {
     record_percorso percorso;
@@ -15,6 +18,7 @@ typedef struct {
     int abbandona_partita;
     int salva_partita;
 } record_partita;
+
 
 record_percorso leggere_percorso_record_partita(record_partita partita);
 record_vet_giocatori leggere_vet_giocatori_record_partita(record_partita partita);

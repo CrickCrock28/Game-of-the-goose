@@ -1,3 +1,4 @@
+// PERFETTO
 #include "record_vet_giocatori.h"
 
 int leggere_dimensione_record_vet_giocatori(record_vet_giocatori vet_giocatori) {

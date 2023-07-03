@@ -1,4 +1,9 @@
+// PERFETTO
 #include "record_classificato.h"
+
+
+#include<string.h>
+
 
 void leggere_nome_giocatore_record_classificato(record_classificato classificato, char* nome){
     strcpy(nome, classificato.nome_giocatore);

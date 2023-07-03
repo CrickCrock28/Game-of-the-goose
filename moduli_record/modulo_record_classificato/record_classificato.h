@@ -1,14 +1,16 @@
+// PERFETTO
 #ifndef RECORD_CLASSIFICATO_H
 #define RECORD_CLASSIFICATO_H
 
-#include<string.h>
 
-#include "../../costanti.h"
+#include "..\\..\\costanti.h"
 
-#define LUNGHEZZA_NOME 3 // Lunghezza del nome
+
+#define LUNGHEZZA_NOME_CLASSIFICATO 3 // Lunghezza del nome
+
 
 typedef struct record_classificato {
-	char nome_giocatore[LUNGHEZZA_NOME + 1]; // Nome del giocatore classificato
+	char nome_giocatore[LUNGHEZZA_NOME_CLASSIFICATO + 1]; // Nome del giocatore classificato
 	int tiri; // Numero di tiri del giocatore classificato
 } record_classificato;
 

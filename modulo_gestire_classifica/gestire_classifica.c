@@ -2,17 +2,20 @@
 
 #include "gestire_classifica.h"
 
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 #include <limits.h>
 #include <stdbool.h>
-#include <stdio.h>
 
 #include "..\\percorsi_file.h"
 #include "..\\moduli_record\\modulo_record_classificato\\record_classificato.h"
 #include "..\\moduli_record\\modulo_record_giocatore\\record_giocatore.h"
 #include "..\\moduli_record\\modulo_record_vet_giocatori\\record_vet_giocatori.h"
 
-#include "..\\modulo_gestire_azioni_semplici\\gestire_azioni_semplici.h"
 #include "..\\modulo_gestire_file\\gestire_file.h"
+#include "..\\modulo_gestire_azioni_semplici\\gestire_azioni_semplici.h"
+#include "..\\modulo_spostare_cursore\\spostare_cursore.h"
 
 
 #define SCELTA_STAMPARE_CLASSIFICA 1
@@ -57,7 +60,7 @@ void gestire_menu_classifica(char* percorso_file_menu_classifica, char* percorso
         system("cls");
 	    spostare_cursore(PRIMA_COORDINATA_SCHERMO, PRIMA_COORDINATA_SCHERMO);
         riga = stampare_file_di_testo(percorso_file_menu_classifica);
-        scelta = chiedere_intero(MESSAGGIO_SCELTA, SCELTA_USCIRE_DAL_MENU, SCELTA_STAMPARE_CLASSIFICA, (riga+1), PRIMA_COORDINATA_SCHERMO);
+        scelta = chiedere_intero(MESSAGGIO_SCELTA_AZIONE_MENU, SCELTA_USCIRE_DAL_MENU, SCELTA_STAMPARE_CLASSIFICA, (riga+1), PRIMA_COORDINATA_SCHERMO);
 
         // Se l'utente sceglie di stampare la classifica
         if (scelta == SCELTA_STAMPARE_CLASSIFICA) {
@@ -230,17 +233,17 @@ void chiedere_nome_giocatore(char* nome_vincitore, char* messaggio) { // SE INSE
     lunghezza_nome = strlen(nome_vincitore);
 
 	// Se la lunghezza del nome è minore della dimensione corretta
-	if (lunghezza_nome < LUNGHEZZA_NOME) {
+	if (lunghezza_nome < LUNGHEZZA_NOME_CLASSIFICATO) {
 		// Completa con spazi
 		i = lunghezza_nome;
-		while (i < LUNGHEZZA_NOME) {
+		while (i < LUNGHEZZA_NOME_CLASSIFICATO) {
 			nome_vincitore[i] = CARATTERE_SPAZIO;
 			i++;
 		}
 	}
 
 	// Aggiungi il terminatore di stringa
-	nome_vincitore[LUNGHEZZA_NOME] = CARATTERE_FINE_STRINGA;  // Aggiungi il terminatore di stringa
+	nome_vincitore[LUNGHEZZA_NOME_CLASSIFICATO] = CARATTERE_FINE_STRINGA;  // Aggiungi il terminatore di stringa
 
 	// Fino a quando il nome corrisponde ad uno di quelli non ammessi
     while(strcmp(STRINGA_NOME_VUOTO, nome_vincitore) == 0||
@@ -264,17 +267,17 @@ void chiedere_nome_giocatore(char* nome_vincitore, char* messaggio) { // SE INSE
 		lunghezza_nome = strlen(nome_vincitore);
 
 		// Se la lunghezza del nome è minore della dimensione corretta
-		if (lunghezza_nome < LUNGHEZZA_NOME) {
+		if (lunghezza_nome < LUNGHEZZA_NOME_CLASSIFICATO) {
 			// Completa con spazi
 			i = lunghezza_nome;
-			while (i < LUNGHEZZA_NOME) {
+			while (i < LUNGHEZZA_NOME_CLASSIFICATO) {
 				nome_vincitore[i] = CARATTERE_SPAZIO;
 				i++;
 			}
 		}
 
 		// Aggiungi il terminatore di stringa
-		nome_vincitore[LUNGHEZZA_NOME] = CARATTERE_FINE_STRINGA;
+		nome_vincitore[LUNGHEZZA_NOME_CLASSIFICATO] = CARATTERE_FINE_STRINGA;
 
     }
 }
@@ -310,7 +313,7 @@ void aggiornare_classifica(record_partita partita, int indice_giocatore_vincitor
 		numero_tiri_vincitore;
 	record_giocatore giocatore_vincitore;
 	record_classificato classificato;
-	char nome_vincitore[LUNGHEZZA_NOME + 1];
+	char nome_vincitore[LUNGHEZZA_NOME_CLASSIFICATO + 1];
 
 	// Legge il numero di tiri del giocatore che ha vinto la partita
 	giocatore_vincitore = leggere_giocatore_record_vet_giocatori(leggere_vet_giocatori_record_partita(partita), indice_giocatore_vincitore);
@@ -350,7 +353,7 @@ void stampare_classifica(char* percorso_file_classifica){
     record_classificato classificato;
     int numero_tiri,
 		numero_classificato = 0;
-    char nome[LUNGHEZZA_NOME + 1];
+    char nome[LUNGHEZZA_NOME_CLASSIFICATO + 1];
 
     // Stampa il titolo
     system("cls");

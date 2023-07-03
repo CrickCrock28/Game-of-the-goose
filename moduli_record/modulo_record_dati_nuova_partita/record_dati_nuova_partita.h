@@ -1,10 +1,13 @@
+// PERFETTO
 #ifndef RECORD_DATI_NUOVA_PARTITA_H_
 #define RECORD_DATI_NUOVA_PARTITA_H_
+
 
 typedef struct record_dati_nuova_partita {
 	int numero_giocatori;
 	int numero_caselle;
 } record_dati_nuova_partita;
+
 
 int leggere_numero_giocatori_record_dati_nuova_partita(record_dati_nuova_partita dati_nuova_partita);
 record_dati_nuova_partita scrivere_numero_giocatori_record_dati_nuova_partita(record_dati_nuova_partita dati_nuova_partita, int numero_giocatori);

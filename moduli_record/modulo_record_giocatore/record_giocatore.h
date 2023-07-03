@@ -1,3 +1,4 @@
+// PERFETTO
 #ifndef RECORD_GIOCATORE_H_
 #define RECORD_GIOCATORE_H_
 

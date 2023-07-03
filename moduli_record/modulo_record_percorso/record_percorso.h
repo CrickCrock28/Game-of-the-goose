@@ -1,13 +1,12 @@
+// PERFETTO
 #ifndef RECORD_PERCORSO_H_
 #define RECORD_PERCORSO_H_
 
-#include <string.h>
-
-#define DIMENSIONE_MASSIMA_PERCORSO 90
+#include "..\\..\\costanti.h"
 
 typedef struct {
     int dimensione;
-    char caselle[DIMENSIONE_MASSIMA_PERCORSO];
+    char caselle[NUMERO_MASSIMO_CASELLE];
 } record_percorso;
 
 int leggere_dimensione_record_percorso(record_percorso percorso);

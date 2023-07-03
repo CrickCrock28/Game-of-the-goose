@@ -1,4 +1,9 @@
+// PERFETTO
 #include "record_percorso.h"
+
+
+#include <string.h>
+
 
 int leggere_dimensione_record_percorso(record_percorso percorso) {
     int dimensione;
@@ -23,6 +28,6 @@ record_percorso scrivere_casella_record_percorso(record_percorso percorso, int i
 }
 
 void copiare_caselle_percorso(record_percorso percorso, char* caselle){
-	memcpy(caselle, percorso.caselle, DIMENSIONE_MASSIMA_PERCORSO*sizeof(char));
+	memcpy(caselle, percorso.caselle, NUMERO_MASSIMO_CASELLE*sizeof(char));
 	return;
 }

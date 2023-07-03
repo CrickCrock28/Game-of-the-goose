@@ -1,3 +1,4 @@
+// PERFETTO
 #include "record_giocatore.h"
 
 record_giocatore scrivere_posizione_record_giocatore(record_giocatore giocatore, int nuova_posizione) {
