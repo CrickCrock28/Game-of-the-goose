@@ -55,11 +55,16 @@ record_partita gestire_menu_nuova_partita(char* percorso_file_menu_nuova_partita
     record_partita partita;
 
     do {
+    	// Stampa il menu nuova partita
 		system("cls");
 		spostare_cursore(PRIMA_COORDINATA_SCHERMO, PRIMA_COORDINATA_SCHERMO);
-		riga = stampare_file_di_testo(percorso_file_menu_nuova_partita);
-		scelta = chiedere_intero(MESSAGGIO_SCELTA_AZIONE_MENU, SCELTA_USCIRE_DAL_MENU, SCELTA_UTILIZZARE_DATI_PERSONALIZZATI, (riga+1), PRIMA_COORDINATA_SCHERMO);
+		stampare_file_di_testo(percorso_file_menu_nuova_partita);
 
+		// Chiede all'utente quale azione eseguire
+		riga = ottenere_riga_cursore();
+		scelta = chiedere_intero(MESSAGGIO_SCELTA_AZIONE_MENU, SCELTA_USCIRE_DAL_MENU, SCELTA_UTILIZZARE_DATI_PERSONALIZZATI, riga, PRIMA_COORDINATA_SCHERMO);
+
+		// Gestisce la scelta dell'utente
 		partita = gestire_scelta_menu_nuova_partita(scelta);
 
 		// Se all'interno del menu partita è stato scelto di abbandonare la partita

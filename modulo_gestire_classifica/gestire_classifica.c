@@ -59,8 +59,9 @@ void gestire_menu_classifica(char* percorso_file_menu_classifica, char* percorso
         // Stampare il menu e chiede all'utente la scelta
         system("cls");
 	    spostare_cursore(PRIMA_COORDINATA_SCHERMO, PRIMA_COORDINATA_SCHERMO);
-        riga = stampare_file_di_testo(percorso_file_menu_classifica);
-        scelta = chiedere_intero(MESSAGGIO_SCELTA_AZIONE_MENU, SCELTA_USCIRE_DAL_MENU, SCELTA_STAMPARE_CLASSIFICA, (riga+1), PRIMA_COORDINATA_SCHERMO);
+        stampare_file_di_testo(percorso_file_menu_classifica);
+        riga = ottenere_riga_cursore();
+        scelta = chiedere_intero(MESSAGGIO_SCELTA_AZIONE_MENU, SCELTA_USCIRE_DAL_MENU, SCELTA_STAMPARE_CLASSIFICA, riga, PRIMA_COORDINATA_SCHERMO);
 
         // Se l'utente sceglie di stampare la classifica
         if (scelta == SCELTA_STAMPARE_CLASSIFICA) {

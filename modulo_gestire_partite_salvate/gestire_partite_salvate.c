@@ -40,7 +40,7 @@ void stampare_partite_salvate(char* percorso_file_partite_salvate);
 void cancellare_partita_da_file(char* percorso_file_partite_salvate, int numero_partita);
 
 
-record_partite_salvate gestire_menu_partite_salvate(record_partite_salvate salvataggi, char* percorso_file_menu_carica_partita){
+record_partite_salvate gestire_menu_partite_salvate(record_partite_salvate salvataggi, char* percorso_file_menu_partite_salvate){
     int scelta, numero_partita, riga, numero_partite_salvate;
     record_partita partita_scelta;
     char percorso_file_partite_salvate[DIMENSIONE_MASSIMA_PERCORSO_FILE];
@@ -51,8 +51,9 @@ record_partite_salvate gestire_menu_partite_salvate(record_partite_salvate salva
         // Stampa il menu e chiede l'azione da eseguire
     	system("cls");
     	spostare_cursore(PRIMA_COORDINATA_SCHERMO, PRIMA_COORDINATA_SCHERMO);
-        stampare_file_di_testo(percorso_file_menu_carica_partita);
-        scelta = chiedere_intero(MESSAGGIO_SCELTA_AZIONE_MENU, SCELTA_USCIRE_DAL_MENU, SCELTA_CARICA_PARTITA, (riga+1), PRIMA_COORDINATA_SCHERMO);
+        stampare_file_di_testo(percorso_file_menu_partite_salvate);
+        riga = ottenere_riga_cursore();
+        scelta = chiedere_intero(MESSAGGIO_SCELTA_AZIONE_MENU, SCELTA_USCIRE_DAL_MENU, SCELTA_CARICA_PARTITA, riga, PRIMA_COORDINATA_SCHERMO);
 
         // Stampa le partite salvate
         leggere_percorso_file_partite_salvate_record_partite_salvate(salvataggi, percorso_file_partite_salvate);

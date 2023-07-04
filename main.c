@@ -53,8 +53,9 @@ int main(void) {
 		// Stampa il menu principale
 		system("cls");
 		spostare_cursore(PRIMA_COORDINATA_SCHERMO, PRIMA_COORDINATA_SCHERMO);
-		riga = stampare_file_di_testo(PERCORSO_FILE_MENU_PRINCIPALE);
-		scelta = chiedere_intero(MESSAGGIO_SCELTA_AZIONE_MENU, SCELTA_USCIRE_DAL_MENU, SCELTA_MENU_AIUTO, (riga+1), PRIMA_COORDINATA_SCHERMO);
+		stampare_file_di_testo(PERCORSO_FILE_MENU_PRINCIPALE);
+		riga = ottenere_riga_cursore();
+		scelta = chiedere_intero(MESSAGGIO_SCELTA_AZIONE_MENU, SCELTA_USCIRE_DAL_MENU, SCELTA_MENU_AIUTO, riga, PRIMA_COORDINATA_SCHERMO);
 
 		// Se l'utente sceglie di creare una nuova partita
 		if (scelta == SCELTA_MENU_NUOVA_PARTITA) {

@@ -85,7 +85,7 @@ bool verificare_esistenza_tutti_file() {
 }
 
 
-int stampare_file_di_testo(char* percorso_file) {
+void stampare_file_di_testo(char* percorso_file) {
 
 	FILE* file;
 	char carattere;
@@ -100,5 +100,5 @@ int stampare_file_di_testo(char* percorso_file) {
 	}
 	fclose(file);
 
-	return riga;
+	return;
 }

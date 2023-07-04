@@ -6,7 +6,7 @@
 #include <stdbool.h>
 
 
-int stampare_file_di_testo(char* percorso_file);
+void stampare_file_di_testo(char* percorso_file);
 bool verificare_file_esistente(char* percorso_file);
 bool verificare_esistenza_tutti_file();
 
