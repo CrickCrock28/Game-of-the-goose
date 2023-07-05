@@ -68,7 +68,7 @@ record_partita gestire_menu_nuova_partita(char* percorso_file_menu_nuova_partita
 		partita = gestire_scelta_menu_nuova_partita(scelta);
 
 		// Se all'interno del menu partita è stato scelto di abbandonare la partita
-		if(leggere_abbandona_partita_record_partita(partita)){
+		if(leggere_terminata_record_partita(partita)){
 			// Imposto scelta su SCELTA_USCIRE_DAL_MENU in modo da uscire dal menu e tornare al menu principale
 			scelta = SCELTA_USCIRE_DAL_MENU;
 		}
@@ -98,8 +98,6 @@ record_partita gestire_scelta_menu_nuova_partita(int scelta){
 				dati_nuova_partita = chiedere_dati_nuova_partita(PERCORSO_FILE_TITOLO, false);
 				partita = creare_nuova_partita(dati_nuova_partita);
 				partita = giocare_partita(partita);
-			} else{
-				partita = scrivere_terminata_record_partita(partita, false);
 			}
 		}
 
@@ -161,8 +159,6 @@ record_partita creare_nuova_partita(record_dati_nuova_partita dati_nuova_partita
 	partita = scrivere_ultimo_lancio_dado_1_record_partita(partita, LANCIO_NON_EFFETTUATO);
 	partita = scrivere_ultimo_lancio_dado_2_record_partita(partita, LANCIO_NON_EFFETTUATO);
 	partita = scrivere_nuova_partita_record_partita(partita, false);
-	partita = scrivere_abbandona_partita_record_partita(partita, false);
-	partita = scrivere_salva_partita_record_partita(partita, false);
 
 	return partita;
 }
@@ -258,7 +254,7 @@ record_vet_giocatori inizializzare_record_vet_giocatori(record_vet_giocatori vet
 		else {
 			giocatore = scrivere_posizione_record_giocatore(giocatore, POSIZIONE_GIOCATORE_NON_PARTECIPANTE);
 		}
-		giocatore = scrivere_numero_turni_bloccato_record_giocatore(giocatore, 0);
+		giocatore = scrivere_numero_turni_bloccato_record_giocatore(giocatore, NUMERO_TURNI_NON_BLOCCATO_LOCANDA);
 		giocatore = scrivere_numero_dadi_lanciati_record_giocatore(giocatore, 0);
 		giocatore = scrivere_bloccato_record_giocatore(giocatore, false);
 

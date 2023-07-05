@@ -3,7 +3,7 @@
 #define RECORD_GIOCATORE_H_
 
 typedef struct {
-    int posizione; // Si riferisce al vero numero della casella, non quello dell'indice del vettore corrispondente
+    int posizione; // Si riferisce al vero numero della casella, non a quello dell'indice del vettore corrispondente
     int numero_turni_bloccato;
     int bloccato;
     int numero_dadi_lanciati;

@@ -311,7 +311,8 @@ int trovare_punteggio_minimo_ingresso_classifica(char* percorso_file_classifica)
 void aggiornare_classifica(record_partita partita, int indice_giocatore_vincitore){
 
 	int punteggio_ingresso_classifica,
-		numero_tiri_vincitore;
+		numero_tiri_vincitore,
+		riga;
 	record_giocatore giocatore_vincitore;
 	record_classificato classificato;
 	char nome_vincitore[LUNGHEZZA_NOME_CLASSIFICATO + 1];
@@ -335,6 +336,11 @@ void aggiornare_classifica(record_partita partita, int indice_giocatore_vincitor
 
 		// Inserisce il classificato all'interno della classifica
 		inserire_classificato_in_classifica(PERCORSO_FILE_CLASSIFICA, classificato);
+
+		//Comunica al giocatore che è entrato in classifica
+		riga = ottenere_riga_cursore();
+		stampare_riga_vuota(riga, NUMERO_COLONNA_MASSIMA);
+		spostare_cursore(PRIMA_COORDINATA_SCHERMO, riga);
 		printf(MESSAGGIO_ENTRATO_IN_CLASSIFICA);
 		printf("%c",CARATTERE_NUOVA_RIGA);
 

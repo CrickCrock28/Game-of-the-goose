@@ -40,7 +40,10 @@ int main(void) {
 
     salvataggi = scrivere_percorso_file_partite_salvate_record_partite_salvate(salvataggi, PERCORSO_FILE_PARTITE_SALVATE);
 
-    partita_caricata = false; // indica se l’utente ha caricato una partita in RAM dal file delle partite salvate
+    // Imposto a false il flag che indica se l'utente ha scelto di creare una nuova partita all'interno del menu partita
+    partita = scrivere_nuova_partita_record_partita(partita, false);
+    // Imposto a false indica se l’utente ha caricato una partita
+    partita_caricata = false;
 	do {
 
 		// Se la partita è stata caricata dal file delle partite salvate
@@ -48,6 +51,12 @@ int main(void) {
 			// Gioca la partita caricata
 			partita = giocare_partita(partita);
 			partita_caricata = false;
+		}
+
+		// Se l'utente ha scelto di creare una nuova partita all'interno del menu partita
+		if (leggere_nuova_partita_record_partita(partita)){
+			// Crea una nuova partita
+			partita = gestire_menu_nuova_partita(PERCORSO_FILE_MENU_NUOVA_PARTITA);
 		}
 
 		// Stampa il menu principale

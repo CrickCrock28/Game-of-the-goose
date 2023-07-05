@@ -19,7 +19,7 @@ int leggere_indice_giocatore_di_turno_record_partita(record_partita partita) {
     return indice_giocatore_di_turno;
 }
 
-int leggere_terminata_record_partita(record_partita partita) {
+bool leggere_terminata_record_partita(record_partita partita) {
     int terminata;
 	terminata = partita.terminata;
     return terminata;
@@ -37,22 +37,10 @@ int leggere_ultimo_lancio_dado_2_record_partita(record_partita partita) {
     return ultimo_lancio_dado_2;
 }
 
-int leggere_nuova_partita_record_partita(record_partita partita) {
+bool leggere_nuova_partita_record_partita(record_partita partita) {
     int nuova_partita;
 	nuova_partita = partita.nuova_partita;
     return nuova_partita;
-}
-
-int leggere_abbandona_partita_record_partita(record_partita partita) {
-    int abbandona_partita;
-	abbandona_partita = partita.abbandona_partita;
-    return abbandona_partita;
-}
-
-int leggere_salva_partita_record_partita(record_partita partita) {
-    int salva_partita;
-	salva_partita = partita.salva_partita;
-    return salva_partita;
 }
 
 record_partita scrivere_percorso_record_partita(record_partita partita, record_percorso nuovo_percorso) {
@@ -86,15 +74,5 @@ record_partita scrivere_ultimo_lancio_dado_2_record_partita(record_partita parti
 
 record_partita scrivere_nuova_partita_record_partita(record_partita partita, int nuova_partita) {
     partita.nuova_partita = nuova_partita;
-    return partita;
-}
-
-record_partita scrivere_abbandona_partita_record_partita(record_partita partita, int abbandona_partita) {
-    partita.abbandona_partita = abbandona_partita;
-    return partita;
-}
-
-record_partita scrivere_salva_partita_record_partita(record_partita partita, int salva_partita) {
-    partita.salva_partita = salva_partita;
     return partita;
 }

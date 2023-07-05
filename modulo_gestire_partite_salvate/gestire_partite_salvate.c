@@ -84,8 +84,11 @@ record_partite_salvate gestire_menu_partite_salvate(record_partite_salvate salva
 					}
 				}
         } else {
-        	printf(MESSAGGIO_NESSUNA_PARTITA_SALVATA);
-        	printf("%c", CARATTERE_NUOVA_RIGA);
+        	if (scelta != SCELTA_USCIRE_DAL_MENU){
+				printf(MESSAGGIO_NESSUNA_PARTITA_SALVATA);
+				printf("%c", CARATTERE_NUOVA_RIGA);
+				system("pause");
+			}
         }
 
     }while(scelta != SCELTA_USCIRE_DAL_MENU);
@@ -229,15 +232,9 @@ void stampare_partite_salvate(char* percorso_file_partite_salvate){
         numero_partita++;
     }
 
-    riga++;
-    spostare_cursore(colonna, riga);
+    printf("%c", CARATTERE_NUOVA_RIGA);
 
     fclose(file_partite_salvate);
-
-    if(contare_partite_salvate(percorso_file_partite_salvate) == 0) {
-        printf(MESSAGGIO_NESSUNA_PARTITA_SALVATA);
-        printf("%c", CARATTERE_NUOVA_RIGA);
-    }
 
     return;
 }
