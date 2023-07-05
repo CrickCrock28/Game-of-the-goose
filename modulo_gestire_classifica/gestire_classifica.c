@@ -33,10 +33,10 @@
 #define MESSAGGIO_RICHIESTA_NOME_CLASSIFICATO "Inserisci il tuo nome in modo da inserito nella classifica (3 caratteri): "
 #define MESSAGGIO_ERRORE_NOME_VUOTO "Il nome non puo' essere vuoto, riprova"
 
-#define STRINGA_NOME_VUOTO "   \0"
-#define STRINGA_NOME_NON_AMMESSO_1 "\n  \0"
-#define STRINGA_NOME_NON_AMMESSO_2 " \n \0"
-#define STRINGA_NOME_NON_AMMESSO_3 "  \n\0"
+#define STRINGA_NOME_VUOTO "   "
+#define STRINGA_NOME_NON_AMMESSO_1 "\n  "
+#define STRINGA_NOME_NON_AMMESSO_2 " \n "
+#define STRINGA_NOME_NON_AMMESSO_3 "  \n"
 
 
 int contare_classificati(char* percorso_file_classifica);
@@ -246,6 +246,8 @@ void chiedere_nome_giocatore(char* nome_vincitore, char* messaggio) { // SE INSE
 	// Aggiungi il terminatore di stringa
 	nome_vincitore[LUNGHEZZA_NOME_CLASSIFICATO] = CARATTERE_FINE_STRINGA;  // Aggiungi il terminatore di stringa
 
+	printf("TESTERELLO: nome: INIZIO%sFINE\n", nome_vincitore);
+
 	// Fino a quando il nome corrisponde ad uno di quelli non ammessi
     while(strcmp(STRINGA_NOME_VUOTO, nome_vincitore) == 0||
     	  strcmp(STRINGA_NOME_NON_AMMESSO_1, nome_vincitore) == 0||
@@ -291,17 +293,18 @@ int trovare_punteggio_minimo_ingresso_classifica(char* percorso_file_classifica)
 	// Conta i classificati all'interno del file
 	numero_classificati = contare_classificati(percorso_file_classifica);
 
-	// Se c'è almeno un classificato
-	if(numero_classificati > 0){
+	// Se la classifica è piena
+	if(numero_classificati == NUMERO_MASSIMO_CLASSIFICATI){
 
 		// Legge l'ultimo giocatore dalla classifica
 		ultimo_classificato = leggere_classificato_da_file(percorso_file_classifica, numero_classificati);
 
-		// Legge il numero di dadi dell'ultimo giocatore della classifica
+		// Imposta il puntegio minimo per entrare in classifica pari al punteggio dell'ultimo giocatore in classifica
 		punteggio_minimo = leggere_tiri_record_classificato(ultimo_classificato);
 
-	// Altrimenti non ci sono classificati
+	// Altrimenti la classifica non è piena
 	} else {
+		// Imposta il punteggio minimo per entrare in classifica a "- infinito" in modo che chiunque possa entrare in classifica
 		punteggio_minimo = INT_MAX;
 	}
 
