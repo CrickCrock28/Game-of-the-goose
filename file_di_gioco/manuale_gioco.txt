@@ -1,4 +1,0 @@
-& indica il primo giocatore
-* indica il secondo giocatore
-# indica il terzo giocatore, se esiste
-$ indica il quarto giocatore, se esiste

@@ -246,7 +246,6 @@ void chiedere_nome_giocatore(char* nome_vincitore, char* messaggio) { // SE INSE
 	// Aggiungi il terminatore di stringa
 	nome_vincitore[LUNGHEZZA_NOME_CLASSIFICATO] = CARATTERE_FINE_STRINGA;  // Aggiungi il terminatore di stringa
 
-	printf("TESTERELLO: nome: INIZIO%sFINE\n", nome_vincitore);
 
 	// Fino a quando il nome corrisponde ad uno di quelli non ammessi
     while(strcmp(STRINGA_NOME_VUOTO, nome_vincitore) == 0||

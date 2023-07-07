@@ -1,8 +1,6 @@
 				Gioco dell'oca
 --------------------------------------------------------------------------------
-1. Menu' Nuova partita
-2. Menu' Partita salvate
-3. Menu' Classifica
-4. Menu' Aiuto
-0. Chiudi programma
+1. Dati predefiniti (2 giocatori, 90 caselle)
+2. Dati personalizzati
+0. Esci
 --------------------------------------------------------------------------------
