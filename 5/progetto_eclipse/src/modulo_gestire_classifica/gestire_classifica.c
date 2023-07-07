@@ -282,6 +282,7 @@ void chiedere_nome_giocatore(char* nome_vincitore, char* messaggio) { // SE INSE
 		nome_vincitore[LUNGHEZZA_NOME_CLASSIFICATO] = CARATTERE_FINE_STRINGA;
 
     }
+	return;
 }
 
 int trovare_punteggio_minimo_ingresso_classifica(char* percorso_file_classifica){
