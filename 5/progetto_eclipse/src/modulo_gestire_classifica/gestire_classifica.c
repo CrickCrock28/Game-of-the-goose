@@ -304,7 +304,7 @@ int trovare_punteggio_minimo_ingresso_classifica(char* percorso_file_classifica)
 
 	// Altrimenti la classifica non è piena
 	} else {
-		// Imposta il punteggio minimo per entrare in classifica a "- infinito" in modo che chiunque possa entrare in classifica
+		// Imposta il punteggio minimo per entrare in classifica a "+ infinito" in modo che chiunque possa entrare in classifica
 		punteggio_minimo = INT_MAX;
 	}
 
