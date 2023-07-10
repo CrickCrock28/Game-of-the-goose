@@ -374,7 +374,7 @@ void stampare_classifica(char* percorso_file_classifica){
 
     // Leggi i record classificati dal file e stampali
     while (fread(&classificato, sizeof(record_classificato), 1, file_classifica)) {
-    	// Leggei i dati del classificato
+    	// Legge i dati del classificato
         numero_classificato++;
 
         if(numero_classificato == 1){
