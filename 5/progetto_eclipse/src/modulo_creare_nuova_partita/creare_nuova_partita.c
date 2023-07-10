@@ -261,7 +261,7 @@ record_vet_giocatori inizializzare_record_vet_giocatori(record_vet_giocatori vet
 		// Riscrive il giocatore nel vettore
 		vet = scrivere_giocatore_record_vet_giocatori(vet, i, giocatore);
 
-		i++;
+		i = i + 1;
 	}
 	return vet;
 }

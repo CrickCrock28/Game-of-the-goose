@@ -84,7 +84,7 @@ int contare_classificati(char* percorso_file_classifica) {
 
     // Calcola il numero di record classificati nel file
     while (fread(&classificato, sizeof(classificato), 1, file)) {
-    	numero_classificati++;
+    	numero_classificati = i + 1;
     }
 
     // Chiudi il file
@@ -158,7 +158,7 @@ void inserire_classificato_in_vettore_classificati(record_classificato* vettore_
 				i = posizione_in_classifica + 1;
 				while(i < numero_classificati){
 					vettore_classificati[i] = vettore_classificati[i-1];
-					i++;
+					i = i + 1;
 				}
 
 				// Inserisce il nuovo classificato
@@ -184,7 +184,7 @@ void scrivere_vettore_classificati_su_file(char* percorso_file_classifica, recor
 	while(i < numero_classificati){
 		// Inserisco il classificato i sul file
 		fwrite(&vettore_classificati[i], sizeof(record_classificato), 1, file_classifica);
-		i++;
+		i = i + 1;
 	}
 
 	// Chiudi il file
@@ -203,7 +203,7 @@ void inserire_classificato_in_classifica(char* percorso_file_classifica, record_
 
 	// Se il file non è pieno incrementa il numero dei classificati
 	if(numero_classificati<NUMERO_MASSIMO_CLASSIFICATI){
-		numero_classificati++;
+		numero_classificati = i + 1;
 	}
 
 	// Mette i classificati presenti nel file in un vettore
@@ -239,7 +239,7 @@ void chiedere_nome_giocatore(char* nome_vincitore, char* messaggio) { // SE INSE
 		i = lunghezza_nome;
 		while (i < LUNGHEZZA_NOME_CLASSIFICATO) {
 			nome_vincitore[i] = CARATTERE_SPAZIO;
-			i++;
+			i = i + 1;
 		}
 	}
 
@@ -274,7 +274,7 @@ void chiedere_nome_giocatore(char* nome_vincitore, char* messaggio) { // SE INSE
 			i = lunghezza_nome;
 			while (i < LUNGHEZZA_NOME_CLASSIFICATO) {
 				nome_vincitore[i] = CARATTERE_SPAZIO;
-				i++;
+				i = i + 1;
 			}
 		}
 
@@ -404,5 +404,3 @@ void stampare_classifica(char* percorso_file_classifica){
 
 	return;
 }
-
-

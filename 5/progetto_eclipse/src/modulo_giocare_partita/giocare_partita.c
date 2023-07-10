@@ -655,7 +655,7 @@ record_partita stabilire_primo_giocatore(record_partita partita){
 		printf("%c", CARATTERE_NUOVA_RIGA);
 		printf("%c", CARATTERE_NUOVA_RIGA);
 
-        i++;
+        i = i + 1;
     }
 
     // Viene comunicato il giocatore che inizierà la partita
@@ -749,7 +749,7 @@ record_partita applicare_effetto_casella_pozzo_prigione(record_partita partita, 
             trovato = true;
         }
 
-        i++;
+        i = i + 1;
     }
 
     // Legge il giocatore che è appena finito sulla casella pozzo dal vettore dei giocatori
