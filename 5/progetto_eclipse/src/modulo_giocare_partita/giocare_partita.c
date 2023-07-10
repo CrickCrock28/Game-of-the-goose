@@ -655,7 +655,7 @@ record_partita stabilire_primo_giocatore(record_partita partita){
 		printf("%c", CARATTERE_NUOVA_RIGA);
 		printf("%c", CARATTERE_NUOVA_RIGA);
 
-        i = i + 1;
+        i++;
     }
 
     // Viene comunicato il giocatore che inizierà la partita
@@ -749,7 +749,7 @@ record_partita applicare_effetto_casella_pozzo_prigione(record_partita partita, 
             trovato = true;
         }
 
-        i = i + 1;
+        i++;
     }
 
     // Legge il giocatore che è appena finito sulla casella pozzo dal vettore dei giocatori
@@ -1001,7 +1001,7 @@ record_partita gestire_scelta_menu_partita(record_partita partita, int scelta){
 
         		// Decrementa i turni in cui il giocatore dovrà rimanere bloccato
         		turni_bloccato = leggere_numero_turni_bloccato_record_giocatore(giocatore_di_turno);
-        		turni_bloccato--;
+        		turni_bloccato - 1;
         		giocatore_di_turno = scrivere_numero_turni_bloccato_record_giocatore(giocatore_di_turno, turni_bloccato);
         		vet_giocatori = scrivere_giocatore_record_vet_giocatori(vet_giocatori, indice_giocatore_di_turno, giocatore_di_turno);
         		partita = scrivere_vet_giocatori_record_partita(partita, vet_giocatori);
