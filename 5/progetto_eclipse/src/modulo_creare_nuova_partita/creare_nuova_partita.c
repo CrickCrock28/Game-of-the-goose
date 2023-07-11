@@ -90,9 +90,8 @@ record_partita gestire_scelta_menu_nuova_partita(int scelta){
 		dati_nuova_partita = chiedere_dati_nuova_partita(PERCORSO_FILE_TITOLO, true);
 		partita = creare_nuova_partita(dati_nuova_partita);
 		partita = giocare_partita(partita);
-
-	// Altimenti, se l'utente scegie di utilizzare dati personalizzati
-	} 
+	}
+	// Altimenti, se l'utente sceglie di utilizzare dati personalizzati
 	else if (scelta == SCELTA_UTILIZZARE_DATI_PERSONALIZZATI) {
 			// Chiedi i dati all'utente e con questi crea inizia una nuova partita
 			dati_nuova_partita = chiedere_dati_nuova_partita(PERCORSO_FILE_TITOLO, false);
@@ -107,7 +106,7 @@ record_dati_nuova_partita chiedere_dati_nuova_partita(char* percorso_file_titolo
 	int numero_giocatori, numero_caselle, riga;
 	record_dati_nuova_partita dati_nuova_partita;
 
-	if(utilizzare_dati_predefiniti == true){
+	if (utilizzare_dati_predefiniti == true) {
 
 		// Salva i dati predefiniti per il numero dei giocatori e il numero di caselle in dati_nuova_partita
 		dati_nuova_partita = scrivere_numero_giocatori_record_dati_nuova_partita(dati_nuova_partita, NUMERO_PREDEFINITO_GIOCATORI);
@@ -122,7 +121,7 @@ record_dati_nuova_partita chiedere_dati_nuova_partita(char* percorso_file_titolo
 
 		// Chiedi il numero di giocatori e di caselle all'utente
 		numero_giocatori = chiedere_intero(MESSAGGIO_NUMERO_GIOCATORI, NUMERO_MINIMO_GIOCATORI, NUMERO_MASSIMO_GIOCATORI, riga, PRIMA_COORDINATA_SCHERMO);
-		numero_caselle = chiedere_intero(MESSAGGIO_NUMERO_CASELLE, NUMERO_MINIMO_CASELLE, NUMERO_MASSIMO_CASELLE, (riga+1), PRIMA_COORDINATA_SCHERMO);
+		numero_caselle = chiedere_intero(MESSAGGIO_NUMERO_CASELLE, NUMERO_MINIMO_CASELLE, NUMERO_MASSIMO_CASELLE, (riga + 1), PRIMA_COORDINATA_SCHERMO);
 
 		// Salva i dati scelti dall'utente in dati_nuova_partita
 		dati_nuova_partita = scrivere_numero_giocatori_record_dati_nuova_partita(dati_nuova_partita, numero_giocatori);
