@@ -2,6 +2,9 @@
 
 :loop
 
+echo IMPORTANTE: La compilazione non avviene se il progetto si trova in una cartella collegata 
+echo a onedrive/drive/dropbox e simili.
+
 set /p choice="Vuoi compilare il programma prima di eseguirlo? [S/N]: "
 
 if /i "%choice%"=="S" (
@@ -11,14 +14,16 @@ if /i "%choice%"=="S" (
     rem Controllo se la compilazione è riuscita
     if %errorlevel% neq 0 (
         echo Errore durante la compilazione.
+        pause
     ) else (
         rem Esecuzione del programma compilato
         if exist progetto_eclipse\\Debug\\gioco_oca_gruppo_5.exe (
             cd progetto_eclipse\\Debug
-	    gioco_oca_gruppo_5.exe
+	        gioco_oca_gruppo_5.exe
             exit
         ) else (
             echo Il file eseguibile non e' presente. Assicurati di averlo compilato correttamente.
+            pause
         )
     )   
 
@@ -26,10 +31,11 @@ if /i "%choice%"=="S" (
     rem Esecuzione del programma senza compilazione
     if exist progetto_eclipse\\Debug\\gioco_oca_gruppo_5.exe (
         cd progetto_eclipse\\Debug
-	gioco_oca_gruppo_5.exe
+	    gioco_oca_gruppo_5.exe
         exit
     ) else (
         echo Il file eseguibile non e' presente. Assicurati di averlo compilato correttamente.
+        pause
     )    
 
 ) else (
