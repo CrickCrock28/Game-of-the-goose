@@ -51,7 +51,7 @@ int main(void) {
 			}
 
 			// Se l'utente ha scelto di creare una nuova partita all'interno del menu partita
-			if (leggere_nuova_partita_record_partita(partita)) {
+			if (leggere_nuova_partita_record_partita(partita) == true) {
 				// Crea una nuova partita
 				partita = gestire_menu_nuova_partita(PERCORSO_FILE_MENU_NUOVA_PARTITA);
 			}

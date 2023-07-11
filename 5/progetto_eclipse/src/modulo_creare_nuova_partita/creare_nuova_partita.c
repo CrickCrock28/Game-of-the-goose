@@ -108,7 +108,7 @@ record_dati_nuova_partita chiedere_dati_nuova_partita(char* percorso_file_titolo
 	int numero_giocatori, numero_caselle, riga;
 	record_dati_nuova_partita dati_nuova_partita;
 
-	if(utilizzare_dati_predefiniti){
+	if(utilizzare_dati_predefiniti == true){
 
 		// Salva i dati predefiniti per il numero dei giocatori e il numero di caselle in dati_nuova_partita
 		dati_nuova_partita = scrivere_numero_giocatori_record_dati_nuova_partita(dati_nuova_partita, NUMERO_PREDEFINITO_GIOCATORI);
