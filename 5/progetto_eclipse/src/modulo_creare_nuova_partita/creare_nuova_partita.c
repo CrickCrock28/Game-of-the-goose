@@ -68,7 +68,7 @@ record_partita gestire_menu_nuova_partita(char* percorso_file_menu_nuova_partita
 		partita = gestire_scelta_menu_nuova_partita(scelta);
 
 		// Se all'interno del menu partita è stato scelto di abbandonare la partita
-		if(leggere_terminata_record_partita(partita) == true){
+		if (leggere_terminata_record_partita(partita) == true) {
 			// Imposto scelta su SCELTA_USCIRE_DAL_MENU in modo da uscire dal menu e tornare al menu principale
 			scelta = SCELTA_USCIRE_DAL_MENU;
 		}
@@ -92,10 +92,10 @@ record_partita gestire_scelta_menu_nuova_partita(int scelta) {
 	}
 	// Altimenti, se l'utente sceglie di utilizzare dati personalizzati
 	else if (scelta == SCELTA_UTILIZZARE_DATI_PERSONALIZZATI) {
-			// Chiedi i dati all'utente e con questi crea inizia una nuova partita
-			dati_nuova_partita = chiedere_dati_nuova_partita(PERCORSO_FILE_TITOLO, false);
-			partita = creare_nuova_partita(dati_nuova_partita);
-			partita = giocare_partita(partita);
+		// Chiedi i dati all'utente e con questi crea inizia una nuova partita
+		dati_nuova_partita = chiedere_dati_nuova_partita(PERCORSO_FILE_TITOLO, false);
+		partita = creare_nuova_partita(dati_nuova_partita);
+		partita = giocare_partita(partita);
 	}
 
 	return partita;

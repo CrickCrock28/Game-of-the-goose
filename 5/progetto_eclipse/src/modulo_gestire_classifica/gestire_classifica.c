@@ -83,7 +83,7 @@ int contare_classificati(char* percorso_file_classifica) {
 
     // Calcola il numero di record classificati nel file
     while (fread(&classificato, sizeof(classificato), 1, file)) {
-    	numero_classificati++;
+    	numero_classificati = i + 1;
     }
 
     // Chiudi il file
@@ -137,26 +137,27 @@ void inserire_classificato_in_vettore_classificati(record_classificato* vettore_
     bool inserito = false;
 
     // Se è il primo classificato
-	if(numero_classificati == 1){
+	if (numero_classificati == 1) {
 		// Inserisci il classificato nella prima posizione dell'array
 		vettore_classificati[PRIMO_INDICE_ARRAY] = classificato_da_inserire;
 
 	// Altrimenti ci sono già dei classificati
-	} else {
+	}
+	else {
 
 		posizione_in_classifica = PRIMO_INDICE_ARRAY;
 
 		// Inserisci il classificato nel vettore
-		while(posizione_in_classifica < numero_classificati && !inserito){
+		while(posizione_in_classifica < numero_classificati && !inserito) {
 			// Se il numero di tiri del nuovo classificato è minore del numero di tiri del giocatore in classifica preso in esame
-			if(leggere_tiri_record_classificato(classificato_da_inserire) <
-			   leggere_tiri_record_classificato(vettore_classificati[posizione_in_classifica])){
+			if (leggere_tiri_record_classificato(classificato_da_inserire) <
+			   leggere_tiri_record_classificato(vettore_classificati[posizione_in_classifica])) {
 
 				// Sposta tutti gli elementi del vettore a destra partendo dal posto in cui verrà inserito il nuovo classificato
 				i = posizione_in_classifica + 1;
-				while(i < numero_classificati){
+				while(i < numero_classificati) {
 					vettore_classificati[i] = vettore_classificati[i-1];
-					i++;
+					i = i + 1;
 				}
 
 				// Inserisce il nuovo classificato
@@ -164,13 +165,13 @@ void inserire_classificato_in_vettore_classificati(record_classificato* vettore_
 				// Imposta la variabile inserito a true in modo da uscie dal ciclo
 				inserito = true;
 			}
-			posizione_in_classifica++;
+			posizione_in_classifica = posizione_in_classifica + 1;
 		}
 	}
     return;
 }
 
-void scrivere_vettore_classificati_su_file(char* percorso_file_classifica, record_classificato* vettore_classificati, int numero_classificati){
+void scrivere_vettore_classificati_su_file(char* percorso_file_classifica, record_classificato* vettore_classificati, int numero_classificati) {
 	FILE *file_classifica;
 	int i;
 
@@ -179,10 +180,10 @@ void scrivere_vettore_classificati_su_file(char* percorso_file_classifica, recor
 
 	// Scrivi i record classificati nel file
 	i = PRIMO_INDICE_ARRAY;
-	while(i < numero_classificati){
+	while(i < numero_classificati) {
 		// Inserisco il classificato i sul file
 		fwrite(&vettore_classificati[i], sizeof(record_classificato), 1, file_classifica);
-		i++;
+		i = i + 1;
 	}
 
 	// Chiudi il file
@@ -191,7 +192,7 @@ void scrivere_vettore_classificati_su_file(char* percorso_file_classifica, recor
 	return;
 }
 
-void inserire_classificato_in_classifica(char* percorso_file_classifica, record_classificato classificato_da_inserire){
+void inserire_classificato_in_classifica(char* percorso_file_classifica, record_classificato classificato_da_inserire) {
 
 	int numero_classificati;
 	record_classificato vettore_classificati[NUMERO_MASSIMO_CLASSIFICATI];
@@ -200,8 +201,8 @@ void inserire_classificato_in_classifica(char* percorso_file_classifica, record_
 	numero_classificati = contare_classificati(percorso_file_classifica);
 
 	// Se il file non è pieno incrementa il numero dei classificati
-	if(numero_classificati<NUMERO_MASSIMO_CLASSIFICATI){
-		numero_classificati++;
+	if (numero_classificati<NUMERO_MASSIMO_CLASSIFICATI) {
+		numero_classificati = i + 1;
 	}
 
 	// Mette i classificati presenti nel file in un vettore
@@ -237,7 +238,7 @@ void chiedere_nome_giocatore(char* nome_vincitore, char* messaggio) { // SE INSE
 		i = lunghezza_nome;
 		while (i < LUNGHEZZA_NOME_CLASSIFICATO) {
 			nome_vincitore[i] = CARATTERE_SPAZIO;
-			i++;
+			i = i + 1;
 		}
 	}
 
@@ -249,7 +250,7 @@ void chiedere_nome_giocatore(char* nome_vincitore, char* messaggio) { // SE INSE
     while(strcmp(STRINGA_NOME_VUOTO, nome_vincitore) == 0||
     	  strcmp(STRINGA_NOME_NON_AMMESSO_1, nome_vincitore) == 0||
 		  strcmp(STRINGA_NOME_NON_AMMESSO_2, nome_vincitore) == 0||
-		  strcmp(STRINGA_NOME_NON_AMMESSO_3, nome_vincitore) == 0){
+		  strcmp(STRINGA_NOME_NON_AMMESSO_3, nome_vincitore) == 0) {
 
     	//Comunica l'errore all'utente
 		printf(MESSAGGIO_ERRORE_NOME_VUOTO);
@@ -272,7 +273,7 @@ void chiedere_nome_giocatore(char* nome_vincitore, char* messaggio) { // SE INSE
 			i = lunghezza_nome;
 			while (i < LUNGHEZZA_NOME_CLASSIFICATO) {
 				nome_vincitore[i] = CARATTERE_SPAZIO;
-				i++;
+				i = i + 1;
 			}
 		}
 
@@ -283,7 +284,7 @@ void chiedere_nome_giocatore(char* nome_vincitore, char* messaggio) { // SE INSE
 	return;
 }
 
-int trovare_punteggio_minimo_ingresso_classifica(char* percorso_file_classifica){
+int trovare_punteggio_minimo_ingresso_classifica(char* percorso_file_classifica) {
 	int punteggio_minimo,
 		numero_classificati;
 	record_classificato ultimo_classificato;
@@ -292,7 +293,7 @@ int trovare_punteggio_minimo_ingresso_classifica(char* percorso_file_classifica)
 	numero_classificati = contare_classificati(percorso_file_classifica);
 
 	// Se la classifica è piena
-	if(numero_classificati == NUMERO_MASSIMO_CLASSIFICATI){
+	if (numero_classificati == NUMERO_MASSIMO_CLASSIFICATI) {
 
 		// Legge l'ultimo giocatore dalla classifica
 		ultimo_classificato = leggere_classificato_da_file(percorso_file_classifica, numero_classificati);
@@ -301,7 +302,8 @@ int trovare_punteggio_minimo_ingresso_classifica(char* percorso_file_classifica)
 		punteggio_minimo = leggere_tiri_record_classificato(ultimo_classificato);
 
 	// Altrimenti la classifica non è piena
-	} else {
+	} 
+	else {
 		// Imposta il punteggio minimo per entrare in classifica a "+ infinito" in modo che chiunque possa entrare in classifica
 		punteggio_minimo = INT_MAX;
 	}
@@ -309,7 +311,7 @@ int trovare_punteggio_minimo_ingresso_classifica(char* percorso_file_classifica)
 	return punteggio_minimo;
 }
 
-void aggiornare_classifica(record_partita partita, int indice_giocatore_vincitore){
+void aggiornare_classifica(record_partita partita, int indice_giocatore_vincitore) {
 
 	int punteggio_ingresso_classifica,
 		numero_tiri_vincitore,
@@ -326,7 +328,7 @@ void aggiornare_classifica(record_partita partita, int indice_giocatore_vincitor
 	punteggio_ingresso_classifica = trovare_punteggio_minimo_ingresso_classifica(PERCORSO_FILE_CLASSIFICA);
 
 	// Se il giocatore può entrare in classifica
-	if(numero_tiri_vincitore < punteggio_ingresso_classifica){
+	if (numero_tiri_vincitore < punteggio_ingresso_classifica) {
 
 		// Chiede al giocatore il suo nome
 		chiedere_nome_giocatore(nome_vincitore, MESSAGGIO_RICHIESTA_NOME_CLASSIFICATO);
@@ -346,7 +348,8 @@ void aggiornare_classifica(record_partita partita, int indice_giocatore_vincitor
 		printf("%c",CARATTERE_NUOVA_RIGA);
 
 	// Altimenti il giocatore non può entrare in classifica
-	} else {
+	}
+	else {
 
 		// Comunica al giocatore che non può entrare in classifica
 		printf(MESSAGGIO_PUNTEGGIO_NON_SUFFICIENTE_CLASSIFICA, numero_tiri_vincitore);
@@ -356,7 +359,7 @@ void aggiornare_classifica(record_partita partita, int indice_giocatore_vincitor
 	return;
 }
 
-void stampare_classifica(char* percorso_file_classifica){
+void stampare_classifica(char* percorso_file_classifica) {
     FILE *file_classifica;
     record_classificato classificato;
     int numero_tiri,
@@ -373,9 +376,9 @@ void stampare_classifica(char* percorso_file_classifica){
     // Leggi i record classificati dal file e stampali
     while (fread(&classificato, sizeof(record_classificato), 1, file_classifica)) {
     	// Legge i dati del classificato
-        numero_classificato++;
+        numero_classificato = numero_classificato + 1;
 
-        if(numero_classificato == 1){
+        if (numero_classificato == 1) {
             // Stampa la prima riga della classifica
             printf(MESSAGGIO_PRIMA_RIGA_CLASSIFICA);
             printf("%c",CARATTERE_NUOVA_RIGA);
@@ -392,7 +395,7 @@ void stampare_classifica(char* percorso_file_classifica){
     	printf("%c",CARATTERE_NUOVA_RIGA);
     }
 
-    if(numero_classificato == 0){
+    if (numero_classificato == 0) {
     	printf(MESSAGGIO_CLASSIFICA_VUOTA);
         printf("%c",CARATTERE_NUOVA_RIGA);
     }

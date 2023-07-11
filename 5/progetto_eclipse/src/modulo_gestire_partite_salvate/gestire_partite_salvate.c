@@ -214,10 +214,10 @@ void stampare_partite_salvate(char* percorso_file_partite_salvate) {
 
         // Stampa i dati della partita
         printf(MESSAGGIO_NUMERO_PARTITA, numero_partita);
-        riga++;
+        riga = riga + 1;
     	spostare_cursore(colonna, riga);
         printf(MESSAGGIO_DIMENSIONE_PERCORSO, leggere_dimensione_record_percorso(leggere_percorso_record_partita(partita)));
-        riga++;
+        riga = riga + 1;
 
         // Stampa i dati dei giocatori
         numero_giocatore = PRIMO_INDICE_ARRAY;
@@ -226,14 +226,14 @@ void stampare_partite_salvate(char* percorso_file_partite_salvate) {
             if (posizione_giocatore != POSIZIONE_GIOCATORE_NON_PARTECIPANTE) {
             	spostare_cursore(colonna, riga);
             	printf(MESSAGGIO_POSIZIONE_GIOCATORE, (numero_giocatore+1), posizione_giocatore);
-            	riga++;
+            	riga = riga + 1;
             }
             else {
             	spostare_cursore(colonna, riga);
             	printf(MESSAGGIO_GIOCATORE_NON_PRESENTE, (numero_giocatore+1));
-            	riga++;
+            	riga = riga + 1;
             }
-            numero_giocatore++;
+            numero_giocatore = numero_giocatore + 1;
         }
     	if (numero_partita%2 == 1 && numero_partita!=NUMERO_MASSIMO_PARTITE_SALVATE) {
     		riga = riga_iniziale;
@@ -241,7 +241,7 @@ void stampare_partite_salvate(char* percorso_file_partite_salvate) {
         else {
     		riga_iniziale = riga;
     	}
-        numero_partita++;
+        numero_partita = numero_partita + 1;
     }
 
     printf("%c", CARATTERE_NUOVA_RIGA);
@@ -268,7 +268,7 @@ void cancellare_partita_da_file(char* percorso_file_partite_salvate, int numero_
     // Fino a quando legge partite dal file
     while (fread(&partita, sizeof(record_partita), 1, file_partite_salvate)) {
         // Incrementa il numero delle partite scritte sul file temporaneo
-    	numero_partite++;
+    	numero_partite = numero_partite + 1;
         
     	// Se il numero della partita è diverso dal numer odella partita da cancellare
         if (numero_partite != numero_partita_da_cancellare) {

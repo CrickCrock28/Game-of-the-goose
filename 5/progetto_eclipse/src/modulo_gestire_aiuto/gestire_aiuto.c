@@ -15,7 +15,7 @@
 
 void gestire_scelta_menu_aiuto(int scelta, char* percorso_file_regole_gioco, char* percorso_file_manuale_gioco);
 
-void gestire_scelta_menu_aiuto(int scelta, char* percorso_file_regole_gioco, char* percorso_file_manuale_gioco){
+void gestire_scelta_menu_aiuto(int scelta, char* percorso_file_regole_gioco, char* percorso_file_manuale_gioco) {
 
 	if (scelta == SCELTA_STAMPARE_REGOLE) {
 		// Stampare le regole del gioco

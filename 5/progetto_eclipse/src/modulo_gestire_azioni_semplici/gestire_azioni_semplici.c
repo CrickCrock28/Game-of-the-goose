@@ -74,13 +74,13 @@ int generare_numero_casuale(int minimo, int massimo) {
     return numero_casuale;
 }
 
-void stampare_riga_vuota(int riga, int numero_colonna_massima){
+void stampare_riga_vuota(int riga, int numero_colonna_massima) {
 	int colonna = PRIMA_COORDINATA_SCHERMO;
 
 	spostare_cursore(colonna, riga);
     while (colonna <= numero_colonna_massima) {
         printf("%c", CARATTERE_SPAZIO_VUOTO);
-        colonna++;
+        colonna= colonna+ 1;
     }
 	return;
 }
