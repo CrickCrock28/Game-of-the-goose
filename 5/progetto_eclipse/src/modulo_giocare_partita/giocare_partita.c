@@ -45,7 +45,7 @@
 #define MESSAGGIO_ARRIVO_CASELLA_FINALE "La casella numero %d e' la casella %s. Hai vinto!"
 #define MESSAGGIO_CASELLA_SPECIALE_FINE "Hai vinto!"
 
-#define NOME_CASELLA_SCHELETRO "\033[0;31mscheletro\033[0m" // prigione (rosso)
+#define NOME_CASELLA_SCHELETRO "\033[0;31mscheletro\033[0m" // scheletro (rosso)
 #define NOME_CASELLA_LABIRINTO "\033[0;31mlabirinto\033[0m" // labirinto (rosso)
 #define NOME_CASELLA_LOCANDA "\033[0;31mlocanda\033[0m" // locanda (rosso)
 #define NOME_CASELLA_OCA "\033[0;32moca\033[0m" // oca (verde)

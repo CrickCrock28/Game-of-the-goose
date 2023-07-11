@@ -79,7 +79,10 @@ bool verificare_esistenza_tutti_file() {
         printf("%s%s\n", MESSAGGIO_FILE_NON_TROVATO, PERCORSO_FILE_CLASSIFICA);
         tutti_i_file_esistono = false;
     }
-
+    if (!verificare_file_esistente(PERCORSO_FILE_TITOLO)) {
+        printf("%s%s\n", MESSAGGIO_FILE_NON_TROVATO, PERCORSO_FILE_TITOLO);
+        tutti_i_file_esistono = false;
+    }
     return tutti_i_file_esistono;
 }
 

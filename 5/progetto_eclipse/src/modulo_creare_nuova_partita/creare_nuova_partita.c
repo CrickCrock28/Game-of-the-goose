@@ -89,7 +89,7 @@ record_partita gestire_scelta_menu_nuova_partita(int scelta) {
 		partita = creare_nuova_partita(dati_nuova_partita);
 		partita = giocare_partita(partita);
 	}
-	// Altimenti, se l'utente sceglie di utilizzare dati personalizzati
+	// Altrimenti, se l'utente sceglie di utilizzare dati personalizzati
 	else if (scelta == SCELTA_UTILIZZARE_DATI_PERSONALIZZATI) {
 		// Chiedi i dati all'utente e con questi crea inizia una nuova partita
 		dati_nuova_partita = chiedere_dati_nuova_partita(PERCORSO_FILE_TITOLO, false);

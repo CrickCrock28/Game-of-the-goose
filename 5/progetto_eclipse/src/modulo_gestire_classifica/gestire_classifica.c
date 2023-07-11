@@ -45,6 +45,7 @@ void leggere_vettore_classificati_da_file(char* percorso_file_classifica, record
 void inserire_classificato_in_vettore_classificati(record_classificato* vettore_classificati, int numero_classificati, record_classificato classificato_da_inserire);
 void scrivere_vettore_classificati_su_file(char* percorso_file_classifica, record_classificato* vettore_classificati, int numero_classificati);
 void inserire_classificato_in_classifica(char* percorso_file_classifica, record_classificato classificato_da_inserire);
+void inserire_nome(char* nome_vincitore, char* messaggio);
 void chiedere_nome_giocatore(char* nome_vincitore, char* messaggio);
 int trovare_punteggio_minimo_ingresso_classifica(char* percorso_file_classifica);
 
@@ -215,9 +216,8 @@ void inserire_classificato_in_classifica(char* percorso_file_classifica, record_
 	return;
 }
 
-void chiedere_nome_giocatore(char* nome_vincitore, char* messaggio) {
-
-	int lunghezza_nome, i, riga;
+void inserire_nome(char* nome_vincitore, char* messaggio){
+	int lunghezza_nome, i;
 
 	// Stampa il messaggio per chiedere il nome all'utente
 	printf("%s", messaggio);
@@ -225,8 +225,6 @@ void chiedere_nome_giocatore(char* nome_vincitore, char* messaggio) {
 	// Chiede il nome all'utente
 	getchar(); // Consuma il vecchio carattere di nuova riga rimasto nel buffer
 	scanf("%[^\n]", nome_vincitore); // Legge i caratteri fino al \n
-	getchar(); // Consuma il carattere di nuova riga rimasto nel buffer
-
 	// Calcola la lunghezza del nome
     lunghezza_nome = strlen(nome_vincitore);
 
@@ -243,6 +241,13 @@ void chiedere_nome_giocatore(char* nome_vincitore, char* messaggio) {
 	// Aggiungi il terminatore di stringa
 	nome_vincitore[LUNGHEZZA_NOME_CLASSIFICATO] = CARATTERE_FINE_STRINGA;  // Aggiungi il terminatore di stringa
 
+	return;
+}
+
+void chiedere_nome_giocatore(char* nome_vincitore, char* messaggio) {
+
+	int riga;
+	inserire_nome(nome_vincitore, messaggio);
 	// Fino a quando il nome corrisponde ad uno di quelli non ammessi
     while(strcmp(STRINGA_NOME_VUOTO, nome_vincitore) == 0||
     	  strcmp(STRINGA_NOME_NON_AMMESSO_1, nome_vincitore) == 0||
@@ -255,28 +260,7 @@ void chiedere_nome_giocatore(char* nome_vincitore, char* messaggio) {
 		// Stampa nuovamente il messaggio per inserire il nome
     	riga = ottenere_riga_cursore(); // La riga è quella successiva a quella in cui è stato inserito il nome (a causa del \n usato per inserire il nome)
 		spostare_cursore(PRIMA_COORDINATA_SCHERMO, riga-1);
-		printf("%s", messaggio);
-
-		// Chiede il nome all'utente
-		scanf("%[^\n]", nome_vincitore); // Legge i caratteri fino al \n
-		getchar(); // Consuma il carattere di nuova riga rimasto nel buffer
-
-		// Calcola la lunghezza del nome
-		lunghezza_nome = strlen(nome_vincitore);
-
-		// Se la lunghezza del nome è minore della dimensione corretta
-		if (lunghezza_nome < LUNGHEZZA_NOME_CLASSIFICATO) {
-			// Completa con spazi
-			i = lunghezza_nome;
-			while (i < LUNGHEZZA_NOME_CLASSIFICATO) {
-				nome_vincitore[i] = CARATTERE_SPAZIO;
-				i = i + 1;
-			}
-		}
-
-		// Aggiungi il terminatore di stringa
-		nome_vincitore[LUNGHEZZA_NOME_CLASSIFICATO] = CARATTERE_FINE_STRINGA;
-
+		inserire_nome(nome_vincitore, messaggio);
     }
 	return;
 }
@@ -344,7 +328,7 @@ void aggiornare_classifica(record_partita partita, int indice_giocatore_vincitor
 		printf(MESSAGGIO_ENTRATO_IN_CLASSIFICA);
 		printf("%c",CARATTERE_NUOVA_RIGA);
 
-	// Altimenti il giocatore non può entrare in classifica
+	// Altrimenti il giocatore non può entrare in classifica
 	}
 	else {
 
