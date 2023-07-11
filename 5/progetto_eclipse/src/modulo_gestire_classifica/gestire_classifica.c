@@ -83,7 +83,7 @@ int contare_classificati(char* percorso_file_classifica) {
 
     // Calcola il numero di record classificati nel file
     while (fread(&classificato, sizeof(classificato), 1, file)) {
-    	numero_classificati = i + 1;
+    	numero_classificati = numero_classificati + 1;
     }
 
     // Chiudi il file
@@ -202,7 +202,7 @@ void inserire_classificato_in_classifica(char* percorso_file_classifica, record_
 
 	// Se il file non è pieno incrementa il numero dei classificati
 	if (numero_classificati<NUMERO_MASSIMO_CLASSIFICATI) {
-		numero_classificati = i + 1;
+		numero_classificati = numero_classificati + 1;
 	}
 
 	// Mette i classificati presenti nel file in un vettore
