@@ -44,7 +44,7 @@ record_classificato leggere_classificato_da_file(const char* percorso_file_class
 void gestire_menu_classifica(char* percorso_file_menu_classifica, char* percorso_file_classifica);
 int contare_classificati(char* percorso_file_classifica);
 record_classificato leggere_classificato_da_file(const char* percorso_file_classifica, int indice_classificato);
-int leggere_vettore_classificati_da_file(char* percorso_file_classifica, record_classificato* vettore_classificati);
+void leggere_vettore_classificati_da_file(char* percorso_file_classifica, record_classificato* vettore_classificati);
 void inserire_classificato_in_vettore_classificati(record_classificato* vettore_classificati, int numero_classificati, record_classificato classificato_da_inserire);
 void scrivere_vettore_classificati_su_file(char* percorso_file_classifica, record_classificato* vettore_classificati, int numero_classificati);
 void inserire_classificato_in_classifica(char* percorso_file_classifica, record_classificato classificato_da_inserire);
@@ -113,7 +113,7 @@ record_classificato leggere_classificato_da_file(const char* percorso_file_class
     return classificato;
 }
 
-int leggere_vettore_classificati_da_file(char* percorso_file_classifica, record_classificato* vettore_classificati) {
+void leggere_vettore_classificati_da_file(char* percorso_file_classifica, record_classificato* vettore_classificati) {
     FILE *file_classifica;
     int numero_classificati;
 
@@ -129,8 +129,7 @@ int leggere_vettore_classificati_da_file(char* percorso_file_classifica, record_
     // Chiudi il file
     fclose(file_classifica);
 
-    // Restituisci il vettore di classificati
-    return numero_classificati;
+    return;
 }
 
 void inserire_classificato_in_vettore_classificati(record_classificato* vettore_classificati, int numero_classificati, record_classificato classificato_da_inserire) {
