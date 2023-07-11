@@ -11,6 +11,9 @@
         "record_vettore_partite_salvate.h": "c",
         "stdio.h": "c",
         "costanti.h": "c",
-        "percorsi_file.h": "c"
+        "percorsi_file.h": "c",
+        "gestire_azioni_semplici.h": "c",
+        "giocare_partita.h": "c",
+        "spostare_cursore.h": "c"
     }
 }

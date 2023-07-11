@@ -1001,7 +1001,7 @@ record_partita gestire_scelta_menu_partita(record_partita partita, int scelta){
 
         		// Decrementa i turni in cui il giocatore dovrà rimanere bloccato
         		turni_bloccato = leggere_numero_turni_bloccato_record_giocatore(giocatore_di_turno);
-        		turni_bloccato - 1;
+        		turni_bloccato = turni_bloccato - 1;
         		giocatore_di_turno = scrivere_numero_turni_bloccato_record_giocatore(giocatore_di_turno, turni_bloccato);
         		vet_giocatori = scrivere_giocatore_record_vet_giocatori(vet_giocatori, indice_giocatore_di_turno, giocatore_di_turno);
         		partita = scrivere_vet_giocatori_record_partita(partita, vet_giocatori);
