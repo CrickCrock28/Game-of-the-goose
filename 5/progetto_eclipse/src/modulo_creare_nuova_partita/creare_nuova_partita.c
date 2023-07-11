@@ -49,7 +49,7 @@ record_percorso inserire_caselle_speciali(record_percorso percorso);
 record_vet_giocatori inizializzare_record_vet_giocatori(record_vet_giocatori vet);
 
 
-record_partita gestire_menu_nuova_partita(char* percorso_file_menu_nuova_partita){
+record_partita gestire_menu_nuova_partita(char* percorso_file_menu_nuova_partita) {
 
 	int scelta, riga;
     record_partita partita;
@@ -79,8 +79,7 @@ record_partita gestire_menu_nuova_partita(char* percorso_file_menu_nuova_partita
     return partita;
 }
 
-record_partita gestire_scelta_menu_nuova_partita(int scelta){
-
+record_partita gestire_scelta_menu_nuova_partita(int scelta) {
 	record_partita partita;
 	record_dati_nuova_partita dati_nuova_partita;
 
