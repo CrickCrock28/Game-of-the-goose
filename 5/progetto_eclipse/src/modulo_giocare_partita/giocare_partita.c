@@ -895,7 +895,7 @@ record_partita applicare_effetto_casella_labirinto(record_partita partita, int i
 		giocatore = scrivere_posizione_record_giocatore(giocatore, nuova_posizione);
 		vet_giocatori = scrivere_giocatore_record_vet_giocatori(vet_giocatori, indice_giocatore, giocatore);
 		partita = scrivere_vet_giocatori_record_partita(partita, vet_giocatori);
-		nuova_posizione = nuova_posizione;
+		nuova_posizione = nuova_posizione + 1;
 
     } while(trovare_tipo_casella_giocatore(partita, indice_giocatore)!=TIPO_CASELLA_NORMALE);
 
