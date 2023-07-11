@@ -161,8 +161,10 @@ char trovare_tipo_casella_giocatore(record_partita partita, int indice_giocatore
     // Legge il numero della casella in cui si trova il giocatore
     vet_giocatori = leggere_vet_giocatori_record_partita(partita);
     giocatore = leggere_giocatore_record_vet_giocatori(vet_giocatori, indice_giocatore);
-    numero_casella = leggere_posizione_record_giocatore(giocatore) - 1; // Viene decrementato di 1 poichè in c l'indice dell'n-esima casella è n-1
-
+	numero_casella = leggere_posizione_record_giocatore(giocatore);
+	if (numero_casella != 0) {
+		numero_casella = numero_casella - 1; // Viene decrementato di 1 poichè in c l'indice dell'n-esima casella è n-1
+	}
     // Legge il tipo della casella in cui si trova il giocatore
     percorso = leggere_percorso_record_partita(partita);
     tipo_casella = leggere_casella_record_percorso(percorso, numero_casella);
