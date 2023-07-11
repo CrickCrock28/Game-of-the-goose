@@ -1,4 +1,3 @@
-// PERFETTO
 #ifndef GESTIRE_AIUTO_H_
 #define GESTIRE_AIUTO_H_
 

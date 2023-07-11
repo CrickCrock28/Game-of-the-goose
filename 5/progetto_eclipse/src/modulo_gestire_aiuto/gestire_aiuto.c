@@ -1,4 +1,3 @@
-// PERFETTO
 #include "gestire_aiuto.h"
 
 #include <stdlib.h>

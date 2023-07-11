@@ -1,4 +1,3 @@
-// PERFETTO
 #include "record_partita.h"
 
 record_percorso leggere_percorso_record_partita(record_partita partita) {

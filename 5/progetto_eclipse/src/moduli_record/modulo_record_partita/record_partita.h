@@ -1,4 +1,3 @@
-// PERFETTO
 #ifndef RECORD_PARTITA_H_
 #define RECORD_PARTITA_H_
 

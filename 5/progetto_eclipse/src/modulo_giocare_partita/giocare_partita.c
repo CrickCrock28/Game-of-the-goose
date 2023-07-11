@@ -1,4 +1,3 @@
-// PERFETTO
 #include "giocare_partita.h"
 
 

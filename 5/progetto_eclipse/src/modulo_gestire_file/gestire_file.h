@@ -1,4 +1,3 @@
-// PERFETTO
 #ifndef GESTIRE_FILE_H_
 #define GESTIRE_FILE_H_
 

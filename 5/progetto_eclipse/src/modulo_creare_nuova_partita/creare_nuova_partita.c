@@ -1,4 +1,3 @@
-// PERFETTO
 #include "creare_nuova_partita.h"
 
 #include <stdbool.h>

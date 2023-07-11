@@ -1,4 +1,3 @@
-// PERFETTO
 #include "record_percorso.h"
 
 

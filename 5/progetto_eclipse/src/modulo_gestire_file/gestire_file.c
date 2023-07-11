@@ -1,4 +1,3 @@
-// PERFETTO
 #include "gestire_file.h"
 
 #include <stdio.h>

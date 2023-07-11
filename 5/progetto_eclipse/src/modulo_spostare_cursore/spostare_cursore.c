@@ -1,4 +1,3 @@
-// PERFETTO
 #include "spostare_cursore.h"
 
 

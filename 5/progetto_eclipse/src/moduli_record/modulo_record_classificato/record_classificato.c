@@ -1,4 +1,3 @@
-// PERFETTO
 #include "record_classificato.h"
 
 

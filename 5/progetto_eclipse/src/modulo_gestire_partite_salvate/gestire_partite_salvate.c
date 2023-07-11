@@ -1,4 +1,3 @@
-// PERFETTO
 #include "gestire_partite_salvate.h"
 
 

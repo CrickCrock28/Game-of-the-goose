@@ -1,5 +1,3 @@
-//PERFETTO
-
 #include "gestire_classifica.h"
 
 #include <stdio.h>
@@ -217,13 +215,13 @@ void inserire_classificato_in_classifica(char* percorso_file_classifica, record_
 	return;
 }
 
-void chiedere_nome_giocatore(char* nome_vincitore, char* messaggio) { // SE INSERISCI 25 CARATTERI SI BUGGA
+void chiedere_nome_giocatore(char* nome_vincitore, char* messaggio) {
 
 	int lunghezza_nome, i, riga;
 
 	// Stampa il messaggio per chiedere il nome all'utente
 	printf("%s", messaggio);
-
+	strcpy(nome_vincitore,STRINGA_NOME_VUOTO);
 	// Chiede il nome all'utente
 	getchar(); // Consuma il vecchio carattere di nuova riga rimasto nel buffer
 	scanf("%[^\n]", nome_vincitore); // Legge i caratteri fino al \n

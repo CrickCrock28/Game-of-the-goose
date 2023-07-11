@@ -1,4 +1,3 @@
-// PERFETTO
 #ifndef RECORD_PERCORSO_H_
 #define RECORD_PERCORSO_H_
 

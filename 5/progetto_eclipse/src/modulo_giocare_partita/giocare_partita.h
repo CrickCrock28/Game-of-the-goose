@@ -1,4 +1,3 @@
-// PERFETTO
 #ifndef GIOCARE_PARTITA_H_
 #define GIOCARE_PARTITA_H_
 

@@ -1,4 +1,3 @@
-// PERFETTO
 #ifndef SPOSTARE_CURSORE_H_
 #define SPOSTARE_CURSORE_H_
 

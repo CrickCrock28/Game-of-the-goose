@@ -1,4 +1,3 @@
-// PERFETTO
 #include "gestire_azioni_semplici.h"
 
 
