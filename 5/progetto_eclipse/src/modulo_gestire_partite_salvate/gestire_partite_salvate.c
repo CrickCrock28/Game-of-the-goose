@@ -40,14 +40,14 @@ void stampare_partite_salvate(char* percorso_file_partite_salvate);
 void cancellare_partita_da_file(char* percorso_file_partite_salvate, int numero_partita_da_cancellare);
 
 
-record_partite_salvate gestire_menu_partite_salvate(record_partite_salvate salvataggi, char* percorso_file_menu_partite_salvate){
+record_partite_salvate gestire_menu_partite_salvate(record_partite_salvate salvataggi, char* percorso_file_menu_partite_salvate) {
     int scelta, numero_partita, riga, numero_partite_salvate;
     record_partita partita_scelta;
     char percorso_file_partite_salvate[DIMENSIONE_MASSIMA_PERCORSO_FILE];
 
     salvataggi = scrivere_partita_presente_record_partite_salvate(salvataggi, false);
 
-    do{
+    do {
         // Stampa il menu e chiede l'azione da eseguire
     	system("cls");
     	spostare_cursore(PRIMA_COORDINATA_SCHERMO, PRIMA_COORDINATA_SCHERMO);
@@ -64,24 +64,25 @@ record_partite_salvate gestire_menu_partite_salvate(record_partite_salvate salva
         numero_partite_salvate = contare_partite_salvate(percorso_file_partite_salvate);
 
         // Se ci sono partite sul file
-        if(numero_partite_salvate > 0){
+        if (numero_partite_salvate > 0) {
 
         	// Se l'utente vuole cancellare una partita
-			if(scelta == SCELTA_CANCELLA_PARTITA){
+			if (scelta == SCELTA_CANCELLA_PARTITA) {
 				// Chiede il numero della partita da cancellare e la cancella
 				numero_partita = chiedere_intero(MESSAGGIO_CANCELLARE_PARTITA, SCELTA_USCIRE_DAL_MENU, numero_partite_salvate, riga, PRIMA_COORDINATA_SCHERMO);
-				if(numero_partita != SCELTA_USCIRE_DAL_MENU){
+				if (numero_partita != SCELTA_USCIRE_DAL_MENU) {
 					cancellare_partita_da_file(percorso_file_partite_salvate, numero_partita);
 				}
 				printf("%c", CARATTERE_NUOVA_RIGA);
 				system("pause");
-				} else {
+				}
+                else {
 					// Altrimenti, se l'utente vuole caricare una partita
-					if(scelta == SCELTA_CARICA_PARTITA){
+					if (scelta == SCELTA_CARICA_PARTITA) {
 						// Chiede il numero della partita da caricare
 						numero_partita = chiedere_intero(MESSAGGIO_CARICARE_PARTITA, SCELTA_USCIRE_DAL_MENU, numero_partite_salvate,  riga, PRIMA_COORDINATA_SCHERMO);
 						// Se l'utente non ha inserito la scelta per uscire dal menu
-						if(numero_partita != SCELTA_USCIRE_DAL_MENU){
+						if (numero_partita != SCELTA_USCIRE_DAL_MENU) {
 							partita_scelta = leggere_partita_scelta(percorso_file_partite_salvate, numero_partita);
 							salvataggi = scrivere_partita_opzionale_record_partite_salvate(salvataggi, partita_scelta);
 							salvataggi = scrivere_partita_presente_record_partite_salvate(salvataggi, true);
@@ -90,15 +91,16 @@ record_partite_salvate gestire_menu_partite_salvate(record_partite_salvate salva
 					}
 				}
 		// Altrimenti non ci sono partite salvate
-        } else {
-        	if (scelta != SCELTA_USCIRE_DAL_MENU){
+        }
+        else {
+        	if (scelta != SCELTA_USCIRE_DAL_MENU) {
 				printf(MESSAGGIO_NESSUNA_PARTITA_SALVATA);
 				printf("%c", CARATTERE_NUOVA_RIGA);
 				system("pause");
 			}
         }
 
-    }while(scelta != SCELTA_USCIRE_DAL_MENU);
+    } while(scelta != SCELTA_USCIRE_DAL_MENU);
 
     return salvataggi;
 }
@@ -118,7 +120,7 @@ int contare_partite_salvate(char* percorso_file_partite_salvate) {
     return numero_partite_salvate;
 }
 
-void aggiungere_partita_su_file(char* percorso_file_partite_salvate, record_partita partita){
+void aggiungere_partita_su_file(char* percorso_file_partite_salvate, record_partita partita) {
     FILE* file_partite_salvate;
     
     file_partite_salvate = fopen(percorso_file_partite_salvate, "ab");
@@ -128,7 +130,7 @@ void aggiungere_partita_su_file(char* percorso_file_partite_salvate, record_part
     return;
 }
 
-record_partita leggere_partita_scelta(char* percorso_file_partite_salvate, int numero_partita){
+record_partita leggere_partita_scelta(char* percorso_file_partite_salvate, int numero_partita) {
     int posizione;
     record_partita partita_scelta;
     FILE* file_partite_salvate;
@@ -149,21 +151,21 @@ record_partita leggere_partita_scelta(char* percorso_file_partite_salvate, int n
     return partita_scelta;
 }
 
-void salvare_partita(char* percorso_file_partite_salvate, record_partita partita){
+void salvare_partita(char* percorso_file_partite_salvate, record_partita partita) {
     int numero_partite_salvate, numero_partita_da_cancellare, riga;
 
     // Ottiene il numero di partite salvate sul file
     numero_partite_salvate = contare_partite_salvate(percorso_file_partite_salvate);
     
     // Se il file dei salvataggi è pieno
-    if(numero_partite_salvate == NUMERO_MASSIMO_PARTITE_SALVATE){
+    if (numero_partite_salvate == NUMERO_MASSIMO_PARTITE_SALVATE) {
         // Stampa le partite salvate e chiede quale cancellare
         stampare_partite_salvate(percorso_file_partite_salvate);
         riga = ottenere_riga_cursore();
         numero_partita_da_cancellare = chiedere_intero(MESSAGGIO_SOVRASCRIVERE_PARTITA, SCELTA_USCIRE_DAL_MENU, NUMERO_MASSIMO_PARTITE_SALVATE, riga, PRIMA_COORDINATA_SCHERMO);
         
         // Se l'utente sceglie di cancellare una partita per poter salvare quella in corso
-        if(numero_partita_da_cancellare != 0){
+        if (numero_partita_da_cancellare != 0) {
             // Cancella la partita scelta e aggiunge la nuova partita
             cancellare_partita_da_file(percorso_file_partite_salvate, numero_partita_da_cancellare);
 			printf("%c", CARATTERE_NUOVA_RIGA);
@@ -171,7 +173,7 @@ void salvare_partita(char* percorso_file_partite_salvate, record_partita partita
             printf(MESSAGGIO_PARTITA_SALVATA);
 			printf("%c", CARATTERE_NUOVA_RIGA);
         }
-    }else{
+    }else {
         // Salva la partita sul file
         aggiungere_partita_su_file(percorso_file_partite_salvate, partita);
 		printf("%c", CARATTERE_NUOVA_RIGA);
@@ -182,7 +184,7 @@ void salvare_partita(char* percorso_file_partite_salvate, record_partita partita
     return;
 }
 
-void stampare_partite_salvate(char* percorso_file_partite_salvate){
+void stampare_partite_salvate(char* percorso_file_partite_salvate) {
     FILE* file_partite_salvate;
     int numero_partita, numero_giocatore, posizione_giocatore, riga, riga_iniziale, colonna;
     record_partita partita;
@@ -200,9 +202,10 @@ void stampare_partite_salvate(char* percorso_file_partite_salvate){
     while (fread(&partita, sizeof(record_partita), 1, file_partite_salvate)) { // Legge una partita per volta dal file
 
     	// Se il numero della partita è dispari
-    	if (numero_partita%2 == 1){
+    	if (numero_partita%2 == 1) {
     		colonna = PRIMA_COORDINATA_SCHERMO;
-    	} else {
+    	} 
+        else {
     		colonna = COLONNA_STAMPA_PARTITE_PARI;
     	}
 
@@ -218,22 +221,24 @@ void stampare_partite_salvate(char* percorso_file_partite_salvate){
 
         // Stampa i dati dei giocatori
         numero_giocatore = PRIMO_INDICE_ARRAY;
-        while(numero_giocatore < NUMERO_MASSIMO_GIOCATORI){
+        while(numero_giocatore < NUMERO_MASSIMO_GIOCATORI) {
             posizione_giocatore = leggere_posizione_record_giocatore(leggere_giocatore_record_vet_giocatori(leggere_vet_giocatori_record_partita(partita), numero_giocatore));
-            if(posizione_giocatore != POSIZIONE_GIOCATORE_NON_PARTECIPANTE){
+            if (posizione_giocatore != POSIZIONE_GIOCATORE_NON_PARTECIPANTE) {
             	spostare_cursore(colonna, riga);
             	printf(MESSAGGIO_POSIZIONE_GIOCATORE, (numero_giocatore+1), posizione_giocatore);
             	riga++;
-            } else {
+            }
+            else {
             	spostare_cursore(colonna, riga);
             	printf(MESSAGGIO_GIOCATORE_NON_PRESENTE, (numero_giocatore+1));
             	riga++;
             }
             numero_giocatore++;
         }
-    	if(numero_partita%2 == 1 && numero_partita!=NUMERO_MASSIMO_PARTITE_SALVATE){
+    	if (numero_partita%2 == 1 && numero_partita!=NUMERO_MASSIMO_PARTITE_SALVATE) {
     		riga = riga_iniziale;
-    	} else {
+    	} 
+        else {
     		riga_iniziale = riga;
     	}
         numero_partita++;
@@ -270,7 +275,8 @@ void cancellare_partita_da_file(char* percorso_file_partite_salvate, int numero_
         	// Scrive la partita sul file temporaneo
             fwrite(&partita, sizeof(record_partita), 1, file_temporaneo);
         // Altrimenti (la partita è da cancellare quindi non la scrive sul fiel temporaneo)
-        } else {
+        } 
+        else {
         	// Comunica all'utente che ha cancellato la partita
         	spostare_cursore(PRIMA_COORDINATA_SCHERMO, ottenere_riga_cursore());
             printf(MESSAGGIO_PARTITA_CANCELLATA, numero_partita_da_cancellare);
