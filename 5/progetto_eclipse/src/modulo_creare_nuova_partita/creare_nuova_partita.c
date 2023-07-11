@@ -193,11 +193,11 @@ record_percorso inserire_caselle_oche(record_percorso percorso) {
 record_percorso inserire_casella_speciale(record_percorso percorso, int posizione_casella_speciale, char carattere_casella_speciale) {
 
 	// Decremento la posizione perchè se la proporzione ha dato come risultato "n" l'elemento dell'array corrispondente in c è "n-1"
-	posizione_casella_speciale--;
+	posizione_casella_speciale = posizione_casella_speciale + 1;
 
 	// Incremento la posizione della casella fino a quando questa non coincide con ka posizione di una casella normale
 	while (leggere_casella_record_percorso(percorso, posizione_casella_speciale) != TIPO_CASELLA_NORMALE) {
-		posizione_casella_speciale++;
+		posizione_casella_speciale = posizione_casella_speciale + 1;
 	}
 
 	// Inserisco la casella all'interno del percorso
@@ -260,7 +260,7 @@ record_vet_giocatori inizializzare_record_vet_giocatori(record_vet_giocatori vet
 		// Riscrive il giocatore nel vettore
 		vet = scrivere_giocatore_record_vet_giocatori(vet, i, giocatore);
 
-		i++;
+		i = i + 1;
 	}
 	return vet;
 }
