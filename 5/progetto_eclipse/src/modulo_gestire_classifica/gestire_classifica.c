@@ -40,7 +40,6 @@
 
 
 int contare_classificati(char* percorso_file_classifica);
-record_classificato leggere_classificato_da_file(const char* percorso_file_classifica, int indice_classificato);
 void gestire_menu_classifica(char* percorso_file_menu_classifica, char* percorso_file_classifica);
 int contare_classificati(char* percorso_file_classifica);
 record_classificato leggere_classificato_da_file(const char* percorso_file_classifica, int indice_classificato);
