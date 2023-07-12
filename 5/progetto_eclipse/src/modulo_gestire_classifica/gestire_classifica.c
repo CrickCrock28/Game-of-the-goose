@@ -6,7 +6,7 @@
 #include <limits.h>
 #include <stdbool.h>
 
-#include "..\\percorsi_file.h"
+#include "..\\costanti.h"
 #include "..\\moduli_record\\modulo_record_classificato\\record_classificato.h"
 #include "..\\moduli_record\\modulo_record_giocatore\\record_giocatore.h"
 #include "..\\moduli_record\\modulo_record_vet_giocatori\\record_vet_giocatori.h"

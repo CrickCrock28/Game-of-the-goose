@@ -5,7 +5,6 @@
 
 
 #include "..\\costanti.h"
-#include "..\\percorsi_file.h"
 
 #define MESSAGGIO_FILE_NON_TROVATO "Impossibile trovare il file: \0"
 
