@@ -24,11 +24,11 @@
 #define MESSAGGIO_PUNTEGGIO_NON_SUFFICIENTE_CLASSIFICA "Con il numero di lanci effettuati (%d) non puoi entrare in classifica."
 
 #define MESSAGGIO_BORDO_SUPERIORE_INFERIORE_CLASSIFICA "------------------------------------------------------"
-#define MESSAGGIO_PRIMA_RIGA_CLASSIFICA "|  Posto in classifica  |  Nome  |  Numereo di tiri  |"
+#define MESSAGGIO_PRIMA_RIGA_CLASSIFICA "|  Posto in classifica  |  Nome  |  Numero di tiri  |"
 #define MESSAGGIO_CLASSIFICATO "|          %2d           |  %s   |        %2d         |"
 #define MESSAGGIO_CLASSIFICA_VUOTA "La classifica e' vuota"
 
-#define MESSAGGIO_RICHIESTA_NOME_CLASSIFICATO "Inserisci il tuo nome in modo da inserito nella classifica (3 caratteri): "
+#define MESSAGGIO_RICHIESTA_NOME_CLASSIFICATO "Inserisci il tuo nome in modo da inserirlo nella classifica (3 caratteri): "
 #define MESSAGGIO_ERRORE_NOME_VUOTO "Il nome non puo' essere vuoto, riprova"
 
 #define STRINGA_NOME_VUOTO "   "
