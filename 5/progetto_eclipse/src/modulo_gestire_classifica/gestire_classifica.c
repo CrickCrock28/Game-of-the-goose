@@ -248,7 +248,7 @@ void chiedere_nome_giocatore(char* nome_vincitore, char* messaggio) {
 
 	int riga;
 	inserire_nome(nome_vincitore, messaggio);
-	// Fino a quando il nome corrisponde ad uno di quelli non ammessi
+	// Ripeti fino a quando il nome corrisponde ad uno di quelli ammessi
     while(strcmp(STRINGA_NOME_VUOTO, nome_vincitore) == 0||
     	  strcmp(STRINGA_NOME_NON_AMMESSO_1, nome_vincitore) == 0||
 		  strcmp(STRINGA_NOME_NON_AMMESSO_2, nome_vincitore) == 0||
