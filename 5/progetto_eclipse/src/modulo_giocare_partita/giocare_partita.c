@@ -769,7 +769,7 @@ record_partita applicare_effetto_casella_pozzo_prigione(record_partita partita, 
         i = i + 1;
     }
 
-    // Legge il giocatore che è appena finito sulla casella pozzo dal vettore dei giocatori
+    // Legge il giocatore che è appena finito sulla casella pozzo o prigione dal vettore dei giocatori
     giocatore = leggere_giocatore_record_vet_giocatori(vet_giocatori, indice_giocatore);
 
     // Ottiene il numero della casella su cui si trova il giocatore
