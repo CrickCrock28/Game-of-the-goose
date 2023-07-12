@@ -4,7 +4,6 @@
 #include <time.h>
 
 #include "costanti.h"
-#include "percorsi_file.h"
 
 #include "..\\src\\modulo_gestire_file\\gestire_file.h"
 #include "..\\src\\modulo_spostare_cursore\\spostare_cursore.h"

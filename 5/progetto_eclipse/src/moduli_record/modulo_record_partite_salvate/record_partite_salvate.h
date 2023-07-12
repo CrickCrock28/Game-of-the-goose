@@ -4,12 +4,12 @@
 
 #include <stdbool.h>
 
-#include "..\\..\\percorsi_file.h"
+#include "..\\..\\costanti.h"
 #include "..\\..\\moduli_record\\modulo_record_partita\\record_partita.h"
 
 
 typedef struct record_partite_salvate {
-    char percorso_file[DIMENSIONE_MASSIMA_PERCORSO_FILE]; // Ho lasciato il percorso sole per poter mettere il file in pseudo ma non servirebbe
+    char percorso_file[DIMENSIONE_MASSIMA_PERCORSO_FILE];
     record_partita partita_opzionale;
     bool partita_presente;
 } record_partite_salvate;

@@ -8,7 +8,6 @@
 #include <stdbool.h>
 
 #include "..\\costanti.h"
-#include "..\\percorsi_file.h"
 
 
 #include "..\\modulo_gestire_file\\gestire_file.h"
