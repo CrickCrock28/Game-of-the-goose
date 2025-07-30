@@ -54,5 +54,5 @@ To read it, open `index.html` in your browser.
 
 ## 👤 Author
 
-This project was developed by Luca Ardito, student ID 777818 at the University of Bari (Uniba). It was carried out during the 2022-2023 academic year for the Programmi Lab course, taught by Professor Fabio Abbattista.
+This project was developed by Luca Ardito, student ID 777818 at the University of Bari (Uniba). It was carried out during the 2022-2023 academic year for the Programming Lab course, taught by Professor Fabio Abbattista.
 
