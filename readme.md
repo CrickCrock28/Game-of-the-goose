@@ -1,6 +1,6 @@
-# 🐍 Goose Game (Gioco dell’Oca)
+# 🐍 Game of the goose (Gioco dell’Oca)
 
-This project is a text-based implementation of the classic **Goose Game**, entirely developed in **Italian** as required for a university programming course. It includes support for saving games, displaying player rankings, and multiple modular features.
+This project is a text-based implementation of the classic **Game of the goose**, entirely developed in **Italian** as required for a university programming course. It includes support for saving games, displaying player rankings, and multiple modular features.
 
 ---
 
