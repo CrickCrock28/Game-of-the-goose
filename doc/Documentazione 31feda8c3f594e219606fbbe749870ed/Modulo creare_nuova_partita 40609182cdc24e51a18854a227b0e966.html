@@ -1,0 +1,686 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Modulo creare_nuova_partita</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+	margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(50, 48, 44, 1);
+}
+.highlight-gray {
+	color: rgba(115, 114, 110, 1);
+	fill: rgba(115, 114, 110, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(205, 60, 58, 1);
+	fill: rgba(205, 60, 58, 1);
+}
+.highlight-default_background {
+	color: rgba(50, 48, 44, 1);
+}
+.highlight-gray_background {
+	background: rgba(248, 248, 247, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(248, 243, 252, 1);
+}
+.highlight-pink_background {
+	background: rgba(252, 241, 246, 1);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(115, 114, 110, 1);
+	fill: rgba(115, 114, 110, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(205, 60, 58, 1);
+	fill: rgba(205, 60, 58, 1);
+}
+.block-color-default_background {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray_background {
+	background: rgba(248, 248, 247, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(248, 243, 252, 1);
+}
+.block-color-pink_background {
+	background: rgba(252, 241, 246, 1);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-default { background-color: rgba(84, 72, 49, 0.08); }
+.select-value-color-gray { background-color: rgba(84, 72, 49, 0.15); }
+.select-value-color-brown { background-color: rgba(210, 162, 141, 0.35); }
+.select-value-color-orange { background-color: rgba(224, 124, 57, 0.27); }
+.select-value-color-yellow { background-color: rgba(236, 191, 66, 0.39); }
+.select-value-color-green { background-color: rgba(123, 183, 129, 0.27); }
+.select-value-color-blue { background-color: rgba(93, 165, 206, 0.27); }
+.select-value-color-purple { background-color: rgba(168, 129, 197, 0.27); }
+.select-value-color-pink { background-color: rgba(225, 136, 179, 0.27); }
+.select-value-color-red { background-color: rgba(244, 171, 159, 0.4); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="40609182-cdc2-4e51-a188-54a227b0e966" class="page sans"><header><h1 class="page-title">Modulo creare_nuova_partita</h1><p class="page-description"></p></header><div class="page-body"><hr id="e8a51b3c-3770-4168-8489-849c827efbf9"/><nav id="f3418c3e-0cd0-48a1-92b4-e9efc7971ddd" class="block-color-gray table_of_contents"><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#708d9bb3-8c0a-403b-9350-79b66498c084">Descrizione</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#eaaf1fdb-c503-4f50-bf4c-ee4f2a812c52">Costanti</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#9ae19c24-ba5d-4a28-a9c3-3746ac57b519">Funzione gestire_menu_nuova_partita</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#397363b2-6a3f-420b-b3c6-250e26c4b0e7">Funzione gestire_scelta_menu_nuova_partita</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#a7b147d3-3783-4171-ab41-abdf3c20f528">Funzione chiedere_dati_nuova_partita</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#4f13f4ea-962e-490a-ab7e-113c6d93170f">Funzione creare_nuova_partita</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#9a3d2d76-fb56-4c11-8777-e3837e532a1b">Funzione inizializzare_percorso</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#7ae535dc-bd68-4803-82d5-c266e0fc99ac">Funzione inserire_caselle_oche</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#77add82c-cac6-458a-b236-b25904894648">Funzione inserire_casella_speciale</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#f6e1133a-258f-4018-9f5e-d327e238e54f">Funzione inserire_caselle_speciali</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#bc7a0a36-2d10-48d1-b0ce-dbfb6675759e">Funzione inizializzare_record_vet_giocatori</a></div></nav><hr id="f1f2e718-3d4a-465b-abf8-f329dea78e6e"/><h2 id="708d9bb3-8c0a-403b-9350-79b66498c084" class="">Descrizione</h2><p id="3bca9463-c3a3-46fe-838f-822a26cacea9" class="">Gestisce il menu per la creazione di una nuova partita.</p><hr id="3ee00ee3-fc1e-4328-beed-e1441e529979"/><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0">Costanti</summary><div class="indented"><table id="6e8874f1-1ef3-44b7-b728-428a1117994e" class="simple-table"><thead class="simple-table-header"><tr id="f340d2af-7c71-4313-b36e-0650b0e70817"><th id="P^`[" class="simple-table-header-color simple-table-header" style="width:322.99998474121094px">Nome</th><th id="AQKX" class="simple-table-header-color simple-table-header">Valore</th><th id="l&lt;|I" class="simple-table-header-color simple-table-header" style="width:649.4943237304688px">Descrizione</th></tr></thead><tbody><tr id="e5eeba85-da9f-4a7b-a15e-12a81f14fd18"><td id="P^`[" class="" style="width:322.99998474121094px">MESSAGGIO_NUMERO_GIOCATORI</td><td id="AQKX" class="">“Inserisci il numero di giocatori (2 a 4):”</td><td id="l&lt;|I" class="" style="width:649.4943237304688px">Messaggio da stampare al momento dell’inserimento del numero di giocatori della nuova partita</td></tr><tr id="584180dd-5f0e-4e82-ab0d-569052e8b8f9"><td id="P^`[" class="" style="width:322.99998474121094px">MESSAGGIO_NUMERO_CASELLE</td><td id="AQKX" class="">“Inserisci il numero di caselle (50 a 90):”</td><td id="l&lt;|I" class="" style="width:649.4943237304688px">Messaggio da stampare al momento dell’inserimento del numero di caselle della nuova partita</td></tr><tr id="25718e51-d14e-4941-b5c1-9865420ba2f0"><td id="P^`[" class="" style="width:322.99998474121094px">SCELTA_UTILIZZARE_DATI_PREDEFINITI</td><td id="AQKX" class="">1</td><td id="l&lt;|I" class="" style="width:649.4943237304688px">Indica l’opzione di menu corrispondente ad usare i dati predefiniti del programma per la nuova partita</td></tr><tr id="8744aaf6-c772-4362-9d3f-2611fffbde40"><td id="P^`[" class="" style="width:322.99998474121094px">SCELTA_UTILIZZARE_DATI_PERSONALIZZATI</td><td id="AQKX" class="">2</td><td id="l&lt;|I" class="" style="width:649.4943237304688px">Indica l&#x27;opzione di menu corrispondente a permettere all&#x27;utente di scegliere i dati per la nuova partita<br/><br/></td></tr><tr id="ee91cb01-32cf-49e3-b840-005327b41509"><td id="P^`[" class="" style="width:322.99998474121094px">LANCIO_NON_EFFETTUATO</td><td id="AQKX" class="">-1</td><td id="l&lt;|I" class="" style="width:649.4943237304688px">Indica che non è stato ancora effettuato alcun lancio</td></tr><tr id="4e67b16c-61db-4769-908e-bfab9d124757"><td id="P^`[" class="" style="width:322.99998474121094px">TIPO_CASELLA_VUOTA</td><td id="AQKX" class="">‘V’</td><td id="l&lt;|I" class="" style="width:649.4943237304688px">Indica la casella vuota, cioè che non esiste praticamente nel percorso che vede il giocatore</td></tr><tr id="776ff246-3fc1-4e10-b03a-902a8e9f980d"><td id="P^`[" class="" style="width:322.99998474121094px">FREQUENZA_OCA</td><td id="AQKX" class="">9</td><td id="l&lt;|I" class="" style="width:649.4943237304688px">Indica ogni quante caselle ci sarà la casella oca</td></tr><tr id="02d3e2c1-7535-412c-9d98-0134612a82fd"><td id="P^`[" class="" style="width:322.99998474121094px">POSIZIONE_PONTE_90_CASELLE</td><td id="AQKX" class="">6</td><td id="l&lt;|I" class="" style="width:649.4943237304688px">Posizione della casella ponte su percorso da 90 caselle</td></tr><tr id="b50825d5-2400-44c9-8450-84b0f33a6183"><td id="P^`[" class="" style="width:322.99998474121094px">POSIZIONE_LOCANDA_90_CASELLE</td><td id="AQKX" class="">19</td><td id="l&lt;|I" class="" style="width:649.4943237304688px">Posizione della casella locanda su percorso da 90 caselle</td></tr><tr id="72111308-e0c1-4953-bf56-ccda246ba5bd"><td id="P^`[" class="" style="width:322.99998474121094px">POSIZIONE_POZZO_90_CASELLE</td><td id="AQKX" class="">31</td><td id="l&lt;|I" class="" style="width:649.4943237304688px">Posizione della casella pozzo su percorso da 90 caselle</td></tr><tr id="7d9fbbbd-9cca-4de0-a81d-650b4c213a37"><td id="P^`[" class="" style="width:322.99998474121094px">POSIZIONE_LABIRINTO_90_CASELLE</td><td id="AQKX" class="">42</td><td id="l&lt;|I" class="" style="width:649.4943237304688px">Posizione della casella labirinto su percorso da 90 caselle</td></tr><tr id="e3dd570d-411a-43be-a6b0-f3991a38e590"><td id="P^`[" class="" style="width:322.99998474121094px">POSIZIONE_PRIGIONE_90_CASELLE</td><td id="AQKX" class="">52</td><td id="l&lt;|I" class="" style="width:649.4943237304688px">Posizione della casella prigione su percorso da 90 caselle</td></tr><tr id="a7b3f48e-4847-4deb-bb05-6e275aefb43f"><td id="P^`[" class="" style="width:322.99998474121094px">POSIZIONE_SCHELETRO_90_CASELLE</td><td id="AQKX" class="">58</td><td id="l&lt;|I" class="" style="width:649.4943237304688px">Posizione della casella scheletro su percorso da 90 caselle</td></tr></tbody></table></div></details><hr id="69edc156-b903-42eb-97f2-c52f0f066cf9"/><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0">Funzione gestire_menu_nuova_partita</summary><div class="indented"><p id="f0d68b53-74af-49a2-9574-38c5fe0fb8c6" class="">Gestisce il menu per la creazione della nuova partita con i dati richiesti dall’utente</p><h2 id="9144f3d0-02ac-4b1b-a79e-a97bad404214" class="">INPUT</h2><table id="d2779d21-b525-4262-9e89-35f4c08c3f14" class="simple-table"><thead class="simple-table-header"><tr id="2679d307-c741-4048-9127-dd3630715352"><th id="ITnC" class="simple-table-header-color simple-table-header" style="width:322.99998474121094px">Nome</th><th id="lFHy" class="simple-table-header-color simple-table-header" style="width:257.95738220214844px">Descrizione</th><th id="bbT:" class="simple-table-header-color simple-table-header" style="width:487.49998474121094px">Tipo/vincoli</th></tr></thead><tbody><tr id="d805857c-8a48-45d5-9784-dd37fe0d5633"><td id="ITnC" class="" style="width:322.99998474121094px">NOME_FILE_MENU_NUOVA_PARTITA</td><td id="lFHy" class="" style="width:257.95738220214844px">Indica l’opzione di menu corrispondente ad usare i dati predefiniti del programma per la nuova partita</td><td id="bbT:" class="" style="width:487.49998474121094px">array a 1 dimensione di caratteri</td></tr><tr id="b3538900-cf62-44b9-adbb-143dd419f6a7"><td id="ITnC" class="" style="width:322.99998474121094px">PRIMA_COORDINATA_SCHERMO</td><td id="lFHy" class="" style="width:257.95738220214844px">prima ascissa/ordinata disponibile</td><td id="bbT:" class="" style="width:487.49998474121094px">intero</td></tr><tr id="e68a886d-8b9e-4500-b853-28d1f0ffd39b"><td id="ITnC" class="" style="width:322.99998474121094px">MESSAGGIO_SCELTA_AZIONE_MENU</td><td id="lFHy" class="" style="width:257.95738220214844px">Indica l&#x27;opzione di menu corrispondente a permettere all&#x27;utente di scegliere i dati per la nuova partita</td><td id="bbT:" class="" style="width:487.49998474121094px">array a 1 dimensione di caratteri</td></tr><tr id="12ab5377-bce0-4a18-88b7-c8772edde2aa"><td id="ITnC" class="" style="width:322.99998474121094px">SCELTA_USCIRE_DAL_MENU</td><td id="lFHy" class="" style="width:257.95738220214844px">Indica la scelta dell’utente nel menù nuova partita</td><td id="bbT:" class="" style="width:487.49998474121094px">intero</td></tr><tr id="15d194fe-74be-4a91-ae1c-5a8a9fe5c008"><td id="ITnC" class="" style="width:322.99998474121094px">SCELTA_UTILIZZARE_DATI_PERSONALIZZATI</td><td id="lFHy" class="" style="width:257.95738220214844px">Indica l&#x27;opzione di menu corrispondente a permettere all&#x27;utente di scegliere i dati per la nuova partita</td><td id="bbT:" class="" style="width:487.49998474121094px">intero</td></tr></tbody></table><h2 id="f99f9024-f7b6-4525-b7ac-039f37ef2a22" class="">OUTPUT</h2><table id="6555fea0-35ec-4657-92f5-6898bb61eb75" class="simple-table"><thead class="simple-table-header"><tr id="bc77cdac-edb3-454f-a037-090d2b99abe7"><th id="G\;X" class="simple-table-header-color simple-table-header" style="width:232.66949462890625px">Nome</th><th id="GR[=" class="simple-table-header-color simple-table-header" style="width:232.66949462890625px">Descrizione</th><th id="_KQ:" class="simple-table-header-color simple-table-header" style="width:232.66949462890625px">Tipo/vincoli</th></tr></thead><tbody><tr id="7567d291-5504-40e5-9c48-b3eb237f063e"><td id="G\;X" class="" style="width:232.66949462890625px">partita</td><td id="GR[=" class="" style="width:232.66949462890625px">partita con i dati richiesti dall’utente</td><td id="_KQ:" class="" style="width:232.66949462890625px">record_partita</td></tr></tbody></table><h2 id="49c73485-2784-4349-bedd-d2b7d89d73a7" class="">LAVORO</h2><table id="09ee3aaa-2b82-4439-be56-ca8e85632f5f" class="simple-table"><thead class="simple-table-header"><tr id="da319351-cc7e-49d1-b2fb-f60f4e770c88"><th id="G\;X" class="simple-table-header-color simple-table-header" style="width:232.66949462890625px">Nome</th><th id="GR[=" class="simple-table-header-color simple-table-header" style="width:232.66949462890625px">Descrizione</th><th id="_KQ:" class="simple-table-header-color simple-table-header" style="width:232.66949462890625px">Tipo/vincoli</th></tr></thead><tbody><tr id="fcc6403a-4b64-4c9b-b294-e6422471ed60"><td id="G\;X" class="" style="width:232.66949462890625px">scelta</td><td id="GR[=" class="" style="width:232.66949462890625px">scelta dell’utente nel relativo menù</td><td id="_KQ:" class="" style="width:232.66949462890625px">intero</td></tr><tr id="dab0d104-6c76-4b39-bdca-78ed96a2214c"><td id="G\;X" class="" style="width:232.66949462890625px">riga</td><td id="GR[=" class="" style="width:232.66949462890625px">Riga in cui viene stampato il messaggio al momento dell’inserimento</td><td id="_KQ:" class="" style="width:232.66949462890625px">intero</td></tr></tbody></table><h2 id="a9692d77-d783-4f72-84eb-d706cceb7fb6" class="">ALGORITMO</h2><p id="985fdf61-7fc4-432f-ac8c-e0fd035fe381" class="">INIZIO<div class="indented"><p id="04c40013-a326-4d9b-a0f0-fc52f4ca9733" class=""><mark class="highlight-yellow_background">ESEGUI</mark><div class="indented"><p id="dcc9cbb4-0744-4c8f-86d5-5cb3d0fc0849" class=""><mark class="highlight-yellow_background">spostare_cursore(PRIMA_COORDINATA_SCHERMO, PRIMA_COORDINATA_SCHERMO)<br/>stampare_file_di_testo(NOME_FILE_MENU_NUOVA_PARTITA)<br/></mark></p><p id="cd12f928-0cc3-4b5f-9a2e-2b4ead7f36aa" class=""><mark class="highlight-yellow_background">riga = ottenere_riga_cursore()<br/>scelta = chiedere_intero(MESSAGGIO_SCELTA_AZIONE_MENU, SCELTA_USCIRE_DAL_MENU, SCELTA_UTILIZZARE_DATI_PERSONALIZZATI, riga, PRIMA_COORDINATA_SCHERMO)<br/></mark></p><p id="90a03a74-2a6f-4036-939e-35db78c23f8a" class=""><mark class="highlight-yellow_background">partita = gestire_scelta_menu_nuova_partita(scelta)</mark></p><p id="bc0d9b10-be2f-4962-9801-51714210dbe8" class=""><mark class="highlight-yellow_background">SE (leggere_terminata_record_partita(partita) = VERO)</mark><div class="indented"><p id="eef7d470-d57f-41e3-a9fe-f22c32dd52c2" class=""><mark class="highlight-yellow_background">ALLORA</mark><div class="indented"><p id="f11e5b5f-1248-4d61-ba4b-8bda72a2918f" class=""><mark class="highlight-yellow_background">scelta = SCELTA_USCIRE_DAL_MENU</mark></p></div></p></div></p><p id="6a8de261-e7bb-463c-b9c3-787052c243a8" class=""><mark class="highlight-yellow_background">FINE</mark></p></div></p><p id="bff1301a-8215-4294-a261-5f478da03de0" class=""><mark class="highlight-yellow_background">FINCHE (scelta ≠ SCELTA_USCIRE_DAL_MENU</mark><div class="indented"><p id="4e2ef9ec-ae3c-4f71-aaaf-03d46f4fc5b0" class=""><mark class="highlight-yellow_background">AND leggere_terminata_record_partita(partita) = FALSO)</mark></p></div></p><p id="a09fee8a-8ae7-4bdd-8536-26561241ffaf" class=""><mark class="highlight-yellow_background">FINE</mark></p></div></p><p id="ff38d358-4235-4b99-b50b-9d3f794dcfba" class="">FINE</p></div></details><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0">Funzione gestire_scelta_menu_nuova_partita</summary><div class="indented"><p id="b14ded23-8ddf-4328-8004-695f939c9ef8" class="">Gestisce la scelta relativa al menù nuova partita</p><h2 id="72871c49-414c-4957-8b75-074770cc3654" class="">INPUT</h2><table id="5bc0194e-c1fb-4034-9af6-cc275eec6d3e" class="simple-table"><thead class="simple-table-header"><tr id="63790098-91b0-4836-91e4-40ae8fea93b4"><th id="ITnC" class="simple-table-header-color simple-table-header" style="width:322.99998474121094px">Nome</th><th id="lFHy" class="simple-table-header-color simple-table-header" style="width:257.95738220214844px">Descrizione</th><th id="bbT:" class="simple-table-header-color simple-table-header" style="width:487.49998474121094px">Tipo/vincoli</th></tr></thead><tbody><tr id="bd01de5f-8c1c-48cd-8611-c43271a144eb"><td id="ITnC" class="" style="width:322.99998474121094px">SCELTA_UTILIZZARE_DATI_PREDEFINITI</td><td id="lFHy" class="" style="width:257.95738220214844px">Indica l’opzione di menu corrispondente ad usare i dati predefiniti del programma per la nuova partita</td><td id="bbT:" class="" style="width:487.49998474121094px">intero</td></tr><tr id="c1ce34a2-3fec-45a3-9c89-4f0a85e793e1"><td id="ITnC" class="" style="width:322.99998474121094px">NOME_FILE_TITOLO</td><td id="lFHy" class="" style="width:257.95738220214844px">Nome del file che contiene il titolo del gioco</td><td id="bbT:" class="" style="width:487.49998474121094px">array a 1 dimensione di caratteri</td></tr><tr id="982932d8-1bfc-4363-be2a-04cd184fc90b"><td id="ITnC" class="" style="width:322.99998474121094px">SCELTA_UTILIZZARE_DATI_PERSONALIZZATI</td><td id="lFHy" class="" style="width:257.95738220214844px">Indica l&#x27;opzione di menu corrispondente a permettere all&#x27;utente di scegliere i dati per la nuova partita</td><td id="bbT:" class="" style="width:487.49998474121094px">intero</td></tr><tr id="d1416bf0-1985-4e64-a2f9-90570ee5d73b"><td id="ITnC" class="" style="width:322.99998474121094px">scelta</td><td id="lFHy" class="" style="width:257.95738220214844px">Indica la scelta dell’utente nel menù nuova partita</td><td id="bbT:" class="" style="width:487.49998474121094px">1≤intero≤2</td></tr></tbody></table><h3 id="9ff70089-b60b-4c5a-b4ee-a494ec02fd22" class="">OUTPUT</h3><table id="47e6025f-d2dd-465e-9334-1f00c54479c4" class="simple-table"><thead class="simple-table-header"><tr id="d8c3cd70-6226-4fec-b4a5-8625ee44695e"><th id="G\;X" class="simple-table-header-color simple-table-header" style="width:232.66949462890625px">Nome</th><th id="GR[=" class="simple-table-header-color simple-table-header" style="width:232.66949462890625px">Descrizione</th><th id="_KQ:" class="simple-table-header-color simple-table-header" style="width:232.66949462890625px">Tipo/vincoli</th></tr></thead><tbody><tr id="0d11bc79-5e87-41f4-bd4f-438532d12e56"><td id="G\;X" class="" style="width:232.66949462890625px">partita</td><td id="GR[=" class="" style="width:232.66949462890625px">Partita con i dati richiesti dall’utente contenuti in dati_nuova_partita</td><td id="_KQ:" class="" style="width:232.66949462890625px">record_partita</td></tr></tbody></table><h2 id="04b0aced-0a37-4b2a-83aa-88c1a53495de" class="">LAVORO</h2><table id="b8531d04-2fec-417c-a2e0-0c562a490caf" class="simple-table"><thead class="simple-table-header"><tr id="cb7b8b7d-0070-413e-bbc8-dc1487e27014"><th id="ITnC" class="simple-table-header-color simple-table-header" style="width:322.99998474121094px">Nome</th><th id="lFHy" class="simple-table-header-color simple-table-header" style="width:257.95738220214844px">Descrizione</th><th id="bbT:" class="simple-table-header-color simple-table-header" style="width:487.49998474121094px">Tipo/vincoli</th></tr></thead><tbody><tr id="4d3a363e-a0fe-41f8-b704-5d227019e688"><td id="ITnC" class="" style="width:322.99998474121094px">partita</td><td id="lFHy" class="" style="width:257.95738220214844px">Partita con i dati richiesti dall’utente contenuti in dati_nuova_partita</td><td id="bbT:" class="" style="width:487.49998474121094px">record_partita</td></tr><tr id="2e6465a7-08ae-4a1f-adba-bed4acbded39"><td id="ITnC" class="" style="width:322.99998474121094px">dati_nuova_partita</td><td id="lFHy" class="" style="width:257.95738220214844px">Record che contiene i dati della nuova partita</td><td id="bbT:" class="" style="width:487.49998474121094px">record_dati_nuova_partita </td></tr></tbody></table><h2 id="b113c2c5-3821-4d77-b874-074c88475ae7" class="">ALGORITMO</h2><p id="360a39c4-cf8a-4f63-99b0-2c5eea0e7818" class="">INIZIO<div class="indented"><p id="0b93f065-234e-455e-b9bf-6aeb03cc9995" class=""><mark class="highlight-yellow_background">SE (scelta = SCELTA_UTILIZZARE_DATI_PREDEFINITI)</mark><div class="indented"><p id="235d2edf-7982-46a3-9c7f-c67bf8be96a8" class=""><mark class="highlight-yellow_background">ALLORA</mark><div class="indented"><p id="39ea84b6-4651-4ab7-b310-00758d935edc" class=""><mark class="highlight-yellow_background">dati_nuova_partita = chiedere_dati_nuova_partita(NOME_FILE_TITOLO, VERO)<br/>partita = creare_nuova_partita(dati_nuova_partita)<br/>partita = giocare_partita(partita)<br/></mark></p></div></p><p id="67d35b4a-2cd0-40e6-ac9d-5c5b586ea6d3" class=""><mark class="highlight-yellow_background">ALTRIMENTI</mark><div class="indented"><p id="09423a2c-4c05-4e68-af66-0409cc55728e" class=""><mark class="highlight-yellow_background">SE (scelta = SCELTA_UTILIZZARE_DATI_PERSONALIZZATI)</mark><div class="indented"><p id="6edfe967-cf52-442b-b130-a18145de7ba9" class=""><mark class="highlight-yellow_background">ALLORA</mark></p><p id="72e7671a-68ca-4ec7-a0c5-c3a6a6dcb4c1" class=""><mark class="highlight-yellow_background">dati_nuova_partita = chiedere_dati_nuova_partita(NOME_TITOLO, FALSO)<br/>partita = creare_nuova_partita(dati_nuova_partita)<br/>partita = giocare_partita(partita)<br/></mark></p></div></p><p id="abb59ce7-49e9-4021-bc8a-8eb53f32cfb9" class=""><mark class="highlight-yellow_background">FINE</mark></p></div></p></div></p><p id="db5d2397-1ebd-471c-ae5a-b0e9f5f24c46" class=""><mark class="highlight-yellow_background">FINE</mark></p></div></p><p id="d6c2f35b-ee27-4656-ab8d-2b5ebfbe2c69" class="">FINE</p></div></details><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0">Funzione chiedere_dati_nuova_partita</summary><div class="indented"><p id="ee559582-a2f1-4823-902e-dfc4933e355a" class="">Chiede all’utente i dati della nuova partita, se li sceglie lui o se usa quelli scelti dal gioco.</p><h2 id="06617857-bda1-4be3-8ec0-15c021d55b5d" class="">INPUT</h2><table id="2e18131f-890d-4682-92b9-1e854b897c1e" class="simple-table"><thead class="simple-table-header"><tr id="3f84e5e2-aae5-4f18-84e0-dd613f9e6ecb"><th id="G\;X" class="simple-table-header-color simple-table-header" style="width:262.65623474121094px">Nome</th><th id="GR[=" class="simple-table-header-color simple-table-header" style="width:232.66949462890625px">Descrizione</th><th id="_KQ:" class="simple-table-header-color simple-table-header" style="width:232.66949462890625px">Tipo/vincoli</th></tr></thead><tbody><tr id="4925d246-6c9f-4afe-84a3-1377c04c979a"><td id="G\;X" class="" style="width:262.65623474121094px">numero_giocatori</td><td id="GR[=" class="" style="width:232.66949462890625px">Numero di giocatori inserito dall’utente</td><td id="_KQ:" class="" style="width:232.66949462890625px">NUMERO_MINIMO_GIOCATORI≤intero≤NUMERO_MASSIMO_GIOCATORI</td></tr><tr id="038c97bd-d3ca-45d4-918a-cbb25727b2a4"><td id="G\;X" class="" style="width:262.65623474121094px">numero_caselle</td><td id="GR[=" class="" style="width:232.66949462890625px">Numero di caselle inserito dall’utente</td><td id="_KQ:" class="" style="width:232.66949462890625px">NUMERO_MINIMO_CASELLE≤intero≤NUMERO_MASSIMO_CASELLE</td></tr><tr id="2732a813-ed3d-491b-a261-4460c25ce737"><td id="G\;X" class="" style="width:262.65623474121094px">utilizzare_dati_predefiniti</td><td id="GR[=" class="" style="width:232.66949462890625px">Indica se la partita deve usare i dati predefiniti dal programma o se li sceglie l’utente</td><td id="_KQ:" class="" style="width:232.66949462890625px">booleano</td></tr><tr id="f81bbb3d-a4fa-433f-bd95-4c5847a7e6fb"><td id="G\;X" class="" style="width:262.65623474121094px">NOME_FILE_TITOLO</td><td id="GR[=" class="" style="width:232.66949462890625px">Nome del file che contiene il titolo del gioco</td><td id="_KQ:" class="" style="width:232.66949462890625px">array a 1 dimensione di caratteri</td></tr><tr id="ad6feed4-a250-4949-ac7b-2c53adf262d4"><td id="G\;X" class="" style="width:262.65623474121094px">NUMERO_PREDEFINITO_GIOCATORI</td><td id="GR[=" class="" style="width:232.66949462890625px">Numero di giocatori scelto dal programma per la nuova partita</td><td id="_KQ:" class="" style="width:232.66949462890625px">intero</td></tr><tr id="b0247b14-d8b8-4ed2-98e9-9a8eaf49dfe2"><td id="G\;X" class="" style="width:262.65623474121094px">NUMERO_PREDEFINITO_CASELLE</td><td id="GR[=" class="" style="width:232.66949462890625px">Lunghezza del percorso scelto dal programma per la nuova partita</td><td id="_KQ:" class="" style="width:232.66949462890625px">intero</td></tr><tr id="e05400ac-700e-4731-a346-50a3cd44c87b"><td id="G\;X" class="" style="width:262.65623474121094px">PRIMA_COORDINATA_SCHERMO</td><td id="GR[=" class="" style="width:232.66949462890625px">valore della prima ascissa/ordinata disonibile</td><td id="_KQ:" class="" style="width:232.66949462890625px">intero</td></tr><tr id="9ce35b7c-2986-4735-a2b1-7faef9ef4c85"><td id="G\;X" class="" style="width:262.65623474121094px">MESSAGGIO_NUMERO_GIOCATORI</td><td id="GR[=" class="" style="width:232.66949462890625px">Messaggio da stampare a video al momento dell’inserimento di numero_giocatori</td><td id="_KQ:" class="" style="width:232.66949462890625px">array a 1 dimensione di caratteri</td></tr><tr id="c810d7e8-d942-4b8f-a500-e4eee1df1a27"><td id="G\;X" class="" style="width:262.65623474121094px">NUMERO_MINIMO_GIOCATORI</td><td id="GR[=" class="" style="width:232.66949462890625px">Numero minimo di giocatori</td><td id="_KQ:" class="" style="width:232.66949462890625px">intero</td></tr><tr id="7f74a37e-c16a-4613-a822-96f62d000ec1"><td id="G\;X" class="" style="width:262.65623474121094px">NUMERO_MASSIMO_GIOCATORI</td><td id="GR[=" class="" style="width:232.66949462890625px">Numero massimo di giocatori</td><td id="_KQ:" class="" style="width:232.66949462890625px">intero</td></tr><tr id="ef1e0683-861c-4686-9508-1494940c9afb"><td id="G\;X" class="" style="width:262.65623474121094px">MESSAGGIO_NUMERO_CASELLE</td><td id="GR[=" class="" style="width:232.66949462890625px">Messaggio da stampare a video al momento dell’inserimento di numero_caselle</td><td id="_KQ:" class="" style="width:232.66949462890625px">array a 1 dimensione di caratteri</td></tr><tr id="cb4e4976-2ad7-4f55-92db-a800803f9bc0"><td id="G\;X" class="" style="width:262.65623474121094px">NUMERO_MINIMO_CASELLE</td><td id="GR[=" class="" style="width:232.66949462890625px">Numero minimo di caselle</td><td id="_KQ:" class="" style="width:232.66949462890625px">intero</td></tr><tr id="7aa8bc13-e941-4ffa-b586-5300220bce9f"><td id="G\;X" class="" style="width:262.65623474121094px">NUMERO_MASSIMO_CASELLE</td><td id="GR[=" class="" style="width:232.66949462890625px">Numero massimo di caselle</td><td id="_KQ:" class="" style="width:232.66949462890625px">intero</td></tr></tbody></table><h3 id="dc627059-7c49-44c9-b001-a60696988a11" class="">OUTPUT</h3><table id="e1d34dba-b413-4658-95f0-d22c7c088c0c" class="simple-table"><thead class="simple-table-header"><tr id="c83ef703-a661-49e5-bf8f-ad0f11460122"><th id="G\;X" class="simple-table-header-color simple-table-header" style="width:232.66949462890625px">Nome</th><th id="GR[=" class="simple-table-header-color simple-table-header" style="width:232.66949462890625px">Descrizione</th><th id="_KQ:" class="simple-table-header-color simple-table-header" style="width:232.66949462890625px">Tipo/vincoli</th></tr></thead><tbody><tr id="2c8b2ad2-8d82-4041-aa98-c663a78e4181"><td id="G\;X" class="" style="width:232.66949462890625px">dati_nuova_partita</td><td id="GR[=" class="" style="width:232.66949462890625px">Record che contiene i dati della nuova partita</td><td id="_KQ:" class="" style="width:232.66949462890625px">record_dati_nuova_partita</td></tr></tbody></table><h2 id="7b653e98-0576-45e5-9256-4f37a73ff4c3" class="">LAVORO</h2><table id="d0fd9d2b-dd5f-45dd-a2dd-62ae7bf28a4d" class="simple-table"><thead class="simple-table-header"><tr id="410bb479-97e2-4b79-a792-05762218efc9"><th id="G\;X" class="simple-table-header-color simple-table-header" style="width:232.66949462890625px">Nome</th><th id="GR[=" class="simple-table-header-color simple-table-header" style="width:232.66949462890625px">Descrizione</th><th id="_KQ:" class="simple-table-header-color simple-table-header" style="width:232.66949462890625px">Tipo/vincoli</th></tr></thead><tbody><tr id="410b1c19-021f-4761-ab8a-44c58e1dd58f"><td id="G\;X" class="" style="width:232.66949462890625px">riga</td><td id="GR[=" class="" style="width:232.66949462890625px">Riga in cui viene stampato il messaggio al momento dell’inserimento</td><td id="_KQ:" class="" style="width:232.66949462890625px">intero</td></tr></tbody></table><h3 id="197360e3-7631-4741-83c9-661846d908b6" class="">ALGORITMO</h3><p id="013f7ef7-65e5-458c-8151-0a85ba73226e" class="">INIZIO<div class="indented"><p id="7e977ced-bc74-4eac-81dd-b95f07e40b13" class=""><mark class="highlight-yellow_background">SE (utilizzare_dati_predefiniti = VERO)</mark><div class="indented"><p id="6008ffec-854a-4592-a249-caae5832a68e" class=""><mark class="highlight-yellow_background">ALLORA</mark><div class="indented"><p id="06dedab8-f180-42a1-8854-e5acfa1dd2f3" class="">dati_nuova_partita = scrivere_numero_giocatori_record_dati_nuova_partita(dati_nuova_partita, NUMERO_PREDEFINITO_GIOCATORI)<br/>dati_nuova_partita = scrivere_numero_caselle_record_dati_nuova_partita(dati_nuova_partita, NUMERO_PREDEFINITO_CASELLE)<br/></p></div></p><p id="8ec91891-e038-4557-bc57-29aa59449806" class=""><mark class="highlight-yellow_background">ALTRIMENTI</mark><div class="indented"><p id="15d7a276-25cf-4da1-9aee-10d647c62a5d" class=""><mark class="highlight-yellow_background">spostare_cursore(PRIMA_COORDINATA_SCHERMO, PRIMA_COORDINATA_SCHERMO)<br/><br/></mark>stampare_file_di_testo(NOME_FILE_TITOLO)<br/><br/><mark class="highlight-yellow_background">riga = ottenere_riga_cursore()</mark></p><p id="f5f4a47b-1fb8-4170-84b0-c311d11201fa" class="">numero_giocatori = <mark class="highlight-yellow_background">chiedere_intero(MESSAGGIO_NUMERO_GIOCATORI, NUMERO_MINIMO_GIOCATORI, NUMERO_MASSIMO_GIOCATORI, riga, PRIMA_COORDINATA_SCHERMO)<br/><br/></mark>numero_caselle = <mark class="highlight-yellow_background">chiedere_intero(MESSAGGIO_NUMERO_CASELLE, NUMERO_MINIMO_CASELLE, NUMERO_MASSIMO_CASELLE, (riga + 1), PRIMA_COORDINATA_SCHERMO)</mark></p><p id="7bd060ce-b719-46ba-9cd2-3f96ed83b1c5" class="">dati_nuova_partita = scrivere_numero_giocatori_record_dati_nuova_partita(dati_nuova_partita, numero_giocatori)<br/>dati_nuova_partita = scrivere_numero_caselle_record_dati_nuova_partita(dati_nuova_partita, numero_caselle)<br/></p></div></p></div></p><p id="5fdbe97c-e785-420c-b8f1-c416abc4a9f9" class=""><mark class="highlight-yellow_background">FINE</mark></p></div></p><p id="d2375b26-ade9-4a91-ad73-9cd20bf0b6ce" class="">FINE</p><p id="58163db8-a84f-4ee2-abff-9e39ae902296" class="">
+</p></div></details><hr id="6d1a254c-cd6f-4517-8356-fbf63b6300b4"/><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0">Funzione creare_nuova_partita</summary><div class="indented"><p id="6f3350f3-389d-4abc-a8a7-dd88ba46d74a" class="">Permette la creazione di una nuova partita.</p><h2 id="7de67e5f-f5f3-4c5e-8f02-15833c4cbdf8" class="">INPUT</h2><table id="e0c223a3-3691-4180-97e1-2a56f413dbde" class="simple-table"><thead class="simple-table-header"><tr id="b2d4e01e-02d0-4e81-8348-87f6d264dc8a"><th id="G\;X" class="simple-table-header-color simple-table-header" style="width:232.66949462890625px">Nome</th><th id="GR[=" class="simple-table-header-color simple-table-header" style="width:232.66949462890625px">Descrizione</th><th id="_KQ:" class="simple-table-header-color simple-table-header" style="width:232.66949462890625px">Tipo/vincoli</th></tr></thead><tbody><tr id="ab67d3f4-0b08-4c7e-93d0-3551fd8a0003"><td id="G\;X" class="" style="width:232.66949462890625px">dati_nuova_partita</td><td id="GR[=" class="" style="width:232.66949462890625px">Record che contiene i dati della nuova partita</td><td id="_KQ:" class="" style="width:232.66949462890625px">record_dati_nuova_partita</td></tr><tr id="8aedd056-e7bc-42a5-9ff7-f13616d739d8"><td id="G\;X" class="" style="width:232.66949462890625px">LANCIO_NON_EFFETTUATO</td><td id="GR[=" class="" style="width:232.66949462890625px">Indica che non è stato ancora effettuato alcun lancio</td><td id="_KQ:" class="" style="width:232.66949462890625px">intero</td></tr><tr id="85aca18d-e3e6-49af-a26b-f253b8a029ea"><td id="G\;X" class="" style="width:232.66949462890625px">GIOCATORE_NON_STABILITO</td><td id="GR[=" class="" style="width:232.66949462890625px">Indica che il giocatore di turno non è stato ancora stabilito</td><td id="_KQ:" class="" style="width:232.66949462890625px">intero</td></tr></tbody></table><h2 id="a9436cd7-6a41-4248-8705-364a0f4a2b4d" class="">OUTPUT</h2><table id="a98fc8b5-65b5-41d4-b895-6279f7f73f94" class="simple-table"><thead class="simple-table-header"><tr id="894cce3a-ae3a-45b0-b21b-d1265df1971d"><th id="G\;X" class="simple-table-header-color simple-table-header" style="width:232.66949462890625px">Nome</th><th id="GR[=" class="simple-table-header-color simple-table-header" style="width:232.66949462890625px">Descrizione</th><th id="_KQ:" class="simple-table-header-color simple-table-header" style="width:232.66949462890625px">Tipo/vincoli</th></tr></thead><tbody><tr id="58a0cad9-ab98-4d35-be79-ceaf481343e1"><td id="G\;X" class="" style="width:232.66949462890625px">partita</td><td id="GR[=" class="" style="width:232.66949462890625px">record per la nuova partita</td><td id="_KQ:" class="" style="width:232.66949462890625px">record_partita</td></tr></tbody></table><h2 id="277ece69-e6f8-4562-96a2-d14fcf4e86d8" class="">LAVORO</h2><table id="cd003f46-6de5-41dc-b923-374e18fb3326" class="simple-table"><thead class="simple-table-header"><tr id="51b261fe-5f98-49a0-bea5-e8ebec1d1011"><th id="G\;X" class="simple-table-header-color simple-table-header" style="width:232.66949462890625px">Nome</th><th id="GR[=" class="simple-table-header-color simple-table-header" style="width:232.66949462890625px">Descrizione</th><th id="_KQ:" class="simple-table-header-color simple-table-header" style="width:232.66949462890625px">Tipo/vincoli</th></tr></thead><tbody><tr id="06acaa85-783b-4799-bcd7-d2e865acb57c"><td id="G\;X" class="" style="width:232.66949462890625px">percorso</td><td id="GR[=" class="" style="width:232.66949462890625px">Percorso della partita</td><td id="_KQ:" class="" style="width:232.66949462890625px">record_percorso</td></tr><tr id="04c80bc0-c426-4f4e-be28-47bb3ddb728e"><td id="G\;X" class="" style="width:232.66949462890625px">vet_gioc</td><td id="GR[=" class="" style="width:232.66949462890625px">Giocatori della partita</td><td id="_KQ:" class="" style="width:232.66949462890625px">record_vet_giocatori</td></tr></tbody></table><h2 id="11676ce6-36da-4748-aae6-83a262615fcc" class="">ALGORITMO</h2><p id="f82bfb51-13e1-41a7-8583-74845a61ea1d" class="">INIZIO<div class="indented"><p id="8f026af1-a02f-442d-85ee-f6a9b004072c" class="">percorso = scrivere_dimensione_record_percorso(percorso, leggere_numero_caselle_record_dati_nuova_partita(dati_nuova_partita))</p><p id="5dd7120a-caf7-4d6e-b5ca-a70ff5cc814d" class="">percorso = inizializzare_percorso(percorso)</p><p id="6b3fcb4a-9c94-4231-805d-ce8835908902" class="">percorso = inserire_caselle_oche(percorso)</p><p id="1c04617d-06b2-42b9-b6e3-1173bab96445" class="">percorso = inserire_caselle_speciali(percorso)</p><p id="c8a692fb-fb4d-4e03-ba48-367621b573ee" class="">
+</p><p id="b7b30c32-a982-4785-b1f1-47300909ca43" class="">vet_gioc = scrivere_dimensione_record_vet_giocatori(vet_gioc, leggere_numero_giocatori_record_dati_nuova_partita(dati_nuova_partita))</p><p id="deaa252c-3301-4ce4-9c1b-8b0e1ef8b743" class="">vet_gioc = inizializzare_record_vet_giocatori(vet_gioc)</p><p id="03ea1b41-d803-4908-ad01-7253c9a334dd" class="">
+</p><p id="f12e5a4d-8c2f-4c5e-88ea-a9d6a09b6611" class="">partita = scrivere_percorso_record_partita(partita, percorso)</p><p id="18d1d043-a69d-4ec0-8c48-20db52bbac20" class="">partita = scrivere_vet_giocatori_record_partita(partita, vet_gioc)</p><p id="9731f7c7-426e-4ebc-b4f3-62239405a42b" class="">
+</p><p id="ef9160ef-ce73-404a-a6da-946f08c9d92e" class="">partita = scrivere_indice_giocatore_di_turno_record_partita(partita, GIOCATORE_NON_STABILITO)</p><p id="25af52ff-7220-4b21-8eb8-321e82f19721" class="">partita = scrivere_terminata_record_partita(partita, FALSO)</p><p id="bb03b4f9-530a-4ceb-a882-5c943b8b6554" class="">partita = scrivere_ultimo_lancio_dado_1_record_partita(partita, LANCIO_NON_EFFETTUATO)</p><p id="9f128d4d-61a3-488b-80f9-5b38a913581d" class="">partita = scrivere_ultimo_lancio_dado_2_record_partita(partita, LANCIO_NON_EFFETTUATO)</p><p id="0af2c184-89df-4d49-afb9-f31027debe37" class="">partita = scrivere_nuova_partita_record_partita(partita, FALSO)</p></div></p><p id="e867ca67-15c7-4b54-aa11-12a07ae9478c" class="">FINE</p></div></details><hr id="c18c0f60-e0ee-4f47-a9a7-a62f23ee34c8"/><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0">Funzione inizializzare_percorso</summary><div class="indented"><p id="3f8c8834-65af-4a67-a3f1-e74afea6671e" class="">Inizializza il percorso assegnando a tutte le caselle in uso il valore CASELLA_NORMALE e a quelle non in uso il valore CASELLA_VUOTA.</p><h2 id="551b885b-b74d-4fa7-854c-96aa1e7bfe0c" class="">INPUT</h2><table id="424a1af4-47cb-47cf-96b4-d64ad73346af" class="simple-table"><thead class="simple-table-header"><tr id="aad7c6b4-f971-4ddb-9d6b-e5c157a37a87"><th id="G\;X" class="simple-table-header-color simple-table-header" style="width:232.66949462890625px">Nome</th><th id="GR[=" class="simple-table-header-color simple-table-header" style="width:232.66949462890625px">Descrizione</th><th id="_KQ:" class="simple-table-header-color simple-table-header" style="width:232.66949462890625px">Tipo/vincoli</th></tr></thead><tbody><tr id="f5fee6ec-786a-4c2d-9857-394bf1aa4621"><td id="G\;X" class="" style="width:232.66949462890625px">percorso</td><td id="GR[=" class="" style="width:232.66949462890625px">Percorso da inizializzare a solo caselle normali</td><td id="_KQ:" class="" style="width:232.66949462890625px">record_percorso</td></tr><tr id="c112bb9e-523a-4cbb-9910-0e7b42337e4e"><td id="G\;X" class="" style="width:232.66949462890625px">TIPO_CASELLA_NORMALE</td><td id="GR[=" class="" style="width:232.66949462890625px">Indica la casella normale, cioè senza effetti particolari</td><td id="_KQ:" class="" style="width:232.66949462890625px">carattere</td></tr><tr id="22fc73ce-1c5f-4d75-9b3c-4d6cb7a2bd80"><td id="G\;X" class="" style="width:232.66949462890625px">TIPO_CASELLA_VUOTA</td><td id="GR[=" class="" style="width:232.66949462890625px">Indica la casella vuota, cioè che non esiste praticamente nel percorso che vede il giocatore</td><td id="_KQ:" class="" style="width:232.66949462890625px">carattere</td></tr><tr id="d5027e48-ebfb-4b48-91fb-0e6520c5e82b"><td id="G\;X" class="" style="width:232.66949462890625px">PRIMO_INDICE_ARRAY</td><td id="GR[=" class="" style="width:232.66949462890625px">Indice del primo elemento di un generico array</td><td id="_KQ:" class="" style="width:232.66949462890625px">intero</td></tr></tbody></table><h2 id="8f93151c-3a6e-4aba-b98f-41d0d87d092c" class="">OUTPUT</h2><table id="a76044a5-9673-4e4c-ad26-e9cf7bb890ea" class="simple-table"><thead class="simple-table-header"><tr id="dfb49011-7381-4930-8a80-7cd03ceffd44"><th id="G\;X" class="simple-table-header-color simple-table-header" style="width:232.66949462890625px">Nome</th><th id="GR[=" class="simple-table-header-color simple-table-header" style="width:232.66949462890625px">Descrizione</th><th id="_KQ:" class="simple-table-header-color simple-table-header" style="width:232.66949462890625px">Tipo/vincoli</th></tr></thead><tbody><tr id="788984bd-2667-4ea5-8f4d-7bcfe8c1b4b4"><td id="G\;X" class="" style="width:232.66949462890625px">percorso</td><td id="GR[=" class="" style="width:232.66949462890625px">Percorso inizializzato a solo caselle normali</td><td id="_KQ:" class="" style="width:232.66949462890625px">record_percorso</td></tr></tbody></table><h2 id="e0d611d9-0c60-4f15-a81f-c630a5a8cde5" class="">ALGORITMO</h2><p id="3eb2d75d-6db5-4907-be5b-117d6564d4cd" class="">INIZIO<div class="indented"><p id="4facae91-de03-499b-8eb3-261b8adad295" class="">i = PRIMO_INDICE_ARRAY</p><p id="50d2eb96-c43e-4063-9203-2c5d128f418f" class="">MENTRE (i ≤ leggere_dimensione_record_percorso(percorso))<div class="indented"><p id="6124ecbf-9f7d-4a52-b1e6-7e4c528d9d93" class="">percorso = scrivere_casella_record_percorso(percorso, i, <mark class="highlight-yellow_background">TIPO_CASELLA_NORMALE</mark>)</p><p id="af34bcef-f47d-4963-adab-492465dd6ac8" class="">i = i + 1</p></div></p><p id="25002654-7e5c-4479-8636-53f52e3cb4bd" class="">FINE</p><p id="db049658-ae74-4596-8f86-8255b228ce40" class="">MENTRE(i ≤ NUMERO_MASSIMO_CASELLE)<div class="indented"><p id="96b73ba2-a7ca-469e-8313-cccded0bfe24" class="">percorso = scrivere_casella_record_percorso(percorso, i, <mark class="highlight-yellow_background">TIPO_CASELLA_VUOTA</mark>)</p><p id="ab11c0c2-2195-4f33-be3c-e02a527208d1" class="">i = i + 1</p></div></p><p id="2721ba1a-0131-4a3f-961e-b140803cdb84" class="">FINE</p></div></p><p id="26268b06-9846-46b0-95f5-a532e84f25cb" class="">FINE</p><p id="93afbb47-764b-431c-a504-0aa695b185f8" class="">
+</p></div></details><hr id="41c50095-62ec-4bf5-981f-f0f1847582f8"/><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0">Funzione inserire_caselle_oche</summary><div class="indented"><p id="ee3b38f6-c39b-4be9-88bf-134c848cecd0" class="">Inserisce il valore CASELLA_OCA nel percorso con frequenza pari a FREQUENZA_OCA.</p><h2 id="156b8696-0aaa-4bb3-b7bf-49aa63b95f46" class="">INPUT</h2><table id="d5b054b3-7bb9-43bf-bfaa-942265259c69" class="simple-table"><thead class="simple-table-header"><tr id="2efa0c9d-a8bd-48e1-8e35-4f68e0b6cb0c"><th id="G\;X" class="simple-table-header-color simple-table-header" style="width:232.66949462890625px">Nome</th><th id="GR[=" class="simple-table-header-color simple-table-header" style="width:232.66949462890625px">Descrizione</th><th id="_KQ:" class="simple-table-header-color simple-table-header" style="width:232.66949462890625px">Tipo/vincoli</th></tr></thead><tbody><tr id="fb6aa2bd-08b2-45b0-8115-e4f12e102c2e"><td id="G\;X" class="" style="width:232.66949462890625px">percorso</td><td id="GR[=" class="" style="width:232.66949462890625px">Percorso di cui inserire le caselle oca</td><td id="_KQ:" class="" style="width:232.66949462890625px">record_percorso</td></tr><tr id="e5b6a75e-f19e-4700-8aa8-705486f7af56"><td id="G\;X" class="" style="width:232.66949462890625px">FREQUENZA_OCA</td><td id="GR[=" class="" style="width:232.66949462890625px">Indica ogni quante caselle ci sarà la casella oca</td><td id="_KQ:" class="" style="width:232.66949462890625px">intero</td></tr></tbody></table><h2 id="5b795124-1330-485f-a633-82f0b661c5d6" class="">OUTPUT</h2><table id="f29a4e4c-799d-42cd-b7d2-728aec8e8e4c" class="simple-table"><thead class="simple-table-header"><tr id="85472749-5198-4e6a-9a9f-f52d9ca27e72"><th id="G\;X" class="simple-table-header-color simple-table-header" style="width:232.66949462890625px">Nome</th><th id="GR[=" class="simple-table-header-color simple-table-header" style="width:232.66949462890625px">Descrizione</th><th id="_KQ:" class="simple-table-header-color simple-table-header" style="width:232.66949462890625px">Tipo/vincoli</th></tr></thead><tbody><tr id="fc898dbc-58e4-42d4-b90a-a7835951f9c6"><td id="G\;X" class="" style="width:232.66949462890625px">percorso</td><td id="GR[=" class="" style="width:232.66949462890625px">Percorso con inserite le caselle oca</td><td id="_KQ:" class="" style="width:232.66949462890625px">record_percorso</td></tr></tbody></table><h2 id="d15df33a-5ca7-4fa5-b35a-4dbafed4418c" class="">ALGORITMO</h2><p id="ef0a6b09-d83f-457d-9833-74babc07fe00" class="">INIZIO<div class="indented"><p id="5207aae1-1439-4094-b83d-4b48b39f9395" class="">i = FREQUENZA_OCA</p><p id="517aac43-ca7c-4e89-aef7-4ae39e1a7be3" class="">MENTRE (i &lt; leggere_dimensione_record_percorso(percorso))<div class="indented"><p id="a6393f39-5676-4f8a-bae9-8a46391a38e0" class="">percorso = scrivere_casella_record_percorso(percorso, i, <mark class="highlight-yellow_background">TIPO_CASELLA_OCA</mark>)</p><p id="87d30f55-0c24-476f-abfc-105c6b576ccb" class="">i = i + FREQUENZA_OCA</p></div></p><p id="05b12748-ca9c-45e9-a806-dd97ca7a2b92" class="">FINE</p></div></p><p id="eb0ee74f-53e0-4bf3-b13c-6c9c07c76bf6" class="">FINE</p></div></details><hr id="64dcfe54-5f3b-4e78-a37e-22a10abab933"/><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0">Funzione inserire_casella_speciale</summary><div class="indented"><p id="d15086e7-fb84-4f51-b6d6-219e5ac0875c" class="">Inserisce nella prima casella possibile del percorso la casella speciale specificata in input.</p><h2 id="8913fb85-9215-421d-a821-029b89473b8f" class="">INPUT</h2><table id="27e4f64e-5b73-4c4e-a77e-01c192ac2aa1" class="simple-table"><thead class="simple-table-header"><tr id="8b4937ba-199f-440f-bef2-8a87747ca1bb"><th id="G\;X" class="simple-table-header-color simple-table-header" style="width:232.66949462890625px">Nome</th><th id="GR[=" class="simple-table-header-color simple-table-header" style="width:232.66949462890625px">Descrizione</th><th id="_KQ:" class="simple-table-header-color simple-table-header" style="width:275.6625061035156px">Tipo/vincoli</th></tr></thead><tbody><tr id="68bbd5fd-8e0b-4655-bbff-0549e8a4ccb3"><td id="G\;X" class="" style="width:232.66949462890625px">percorso</td><td id="GR[=" class="" style="width:232.66949462890625px">contiene l’intero percorso della partita</td><td id="_KQ:" class="" style="width:275.6625061035156px">record_percorso</td></tr><tr id="2cec3069-1ed6-4f53-af5c-73befdf4f572"><td id="G\;X" class="" style="width:232.66949462890625px">posizione_casella_speciale</td><td id="GR[=" class="" style="width:232.66949462890625px">posizione della casella speciale da inserire</td><td id="_KQ:" class="" style="width:275.6625061035156px">NUMERO_MINIMO_CASELLE≤intero≤campo dimensione di percorso -1</td></tr><tr id="5ee05569-4828-4657-9dd1-bab24e40add5"><td id="G\;X" class="" style="width:232.66949462890625px">carattere_casella_speciale</td><td id="GR[=" class="" style="width:232.66949462890625px">carattere che rappresenta la casella speciale da inserire</td><td id="_KQ:" class="" style="width:275.6625061035156px">carattere, deve essere uguale a uno di questi caratteri TIPO_CASELLA_OCA, TIPO_CASELLA_PONTE, TIPO_CASELLA_LOCANDA, TIPO_CASELLA_POZZO, TIPO_CASELLA_LABIRINTO, TIPO_CASELLA_SCHELETRO, TIPO_CASELLA_PRIGIONE e CASELLA_FINE</td></tr><tr id="046ebe59-76e1-433a-98a6-3668dc6f6be8"><td id="G\;X" class="" style="width:232.66949462890625px">TIPO_CASELLA_NORMALE</td><td id="GR[=" class="" style="width:232.66949462890625px">Indica la casella normale, cioè senza effetti particolari</td><td id="_KQ:" class="" style="width:275.6625061035156px">carattere</td></tr></tbody></table><h2 id="7e12dc9c-18c2-49b2-bd15-cc199411d137" class="">OUTPUT</h2><table id="7e90e7b3-2efb-401a-a619-05acfb8052ca" class="simple-table"><thead class="simple-table-header"><tr id="2fc32d7a-9954-41a1-b4cf-4bd3f4adce39"><th id="G\;X" class="simple-table-header-color simple-table-header" style="width:232.66949462890625px">Nome</th><th id="GR[=" class="simple-table-header-color simple-table-header" style="width:232.66949462890625px">Descrizione</th><th id="_KQ:" class="simple-table-header-color simple-table-header" style="width:232.66949462890625px">Tipo/vincoli</th></tr></thead><tbody><tr id="7438e131-70c0-46b7-869a-636150c29c15"><td id="G\;X" class="" style="width:232.66949462890625px">percorso</td><td id="GR[=" class="" style="width:232.66949462890625px">record per la nuova partita, contiene l’intero percorso con la casella speciale inserita</td><td id="_KQ:" class="" style="width:232.66949462890625px">record_percorso</td></tr></tbody></table><h2 id="0f3882a5-899d-40dd-97d8-5548761cad72" class="">ALGORITMO</h2><p id="c2eef955-bf53-4190-adea-543a4b82ce16" class="">INIZIO<div class="indented"><p id="90e4916a-6fe6-4ffd-9300-7a2f0e5e5d58" class="">MENTRE (leggere_casella_record_percorso(percorso, posizione_casella_speciale) ≠ <mark class="highlight-yellow_background">TIPO_CASELLA_NORMALE</mark>)<div class="indented"><p id="9e4e469b-62e6-47c9-a3d1-d969b318425d" class="">posizione_casella_speciale = posizione_casella_speciale + 1</p></div></p><p id="8fa234c5-e84d-4445-bfcb-efd6bd1c31a0" class="">FINE</p><p id="54162de1-a458-458b-8dcb-1a741d34b147" class="">percorso = scrivere_casella_record_percorso(percorso, posizione_casella_speciale, carattere_casella_speciale)</p></div></p><p id="561fe39d-b892-4cfb-b293-ea92e544dafa" class="">FINE</p></div></details><hr id="838e2a2d-2e34-409e-ba82-2f6e1e318f1a"/><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0">Funzione inserire_caselle_speciali</summary><div class="indented"><p id="21c57e5c-1692-4368-ad92-b38c9cb40f80" class="">Inserisce tutte le caselle speciali nel percorso.</p><h2 id="33b2437e-0473-4183-91fb-83affc7b3c2d" class="">INPUT</h2><table id="c889443b-c1b7-4134-8d50-7d9bf3c80869" class="simple-table"><thead class="simple-table-header"><tr id="7d37b33f-21a8-412f-95d2-6bd4ba22a695"><th id="G\;X" class="simple-table-header-color simple-table-header" style="width:232.66949462890625px">Nome</th><th id="GR[=" class="simple-table-header-color simple-table-header" style="width:232.66949462890625px">Descrizione</th><th id="_KQ:" class="simple-table-header-color simple-table-header" style="width:232.66949462890625px">Tipo/vincoli</th></tr></thead><tbody><tr id="0046ff17-2e55-43bd-b87b-c89240d3eb80"><td id="G\;X" class="" style="width:232.66949462890625px">percorso</td><td id="GR[=" class="" style="width:232.66949462890625px">record per la nuova partita in cui inserire le caselle speciali</td><td id="_KQ:" class="" style="width:232.66949462890625px">record_percorso</td></tr><tr id="72c8297e-c7d7-4fd1-b6bd-ab69a7b0a290"><td id="G\;X" class="" style="width:232.66949462890625px">NUMERO_MASSIMO_CASELLE</td><td id="GR[=" class="" style="width:232.66949462890625px">Numero massimo di caselle</td><td id="_KQ:" class="" style="width:232.66949462890625px">intero</td></tr><tr id="410334a4-1117-4a08-8c50-06433c22556c"><td id="G\;X" class="" style="width:232.66949462890625px">POSIZIONE_PONTE_90_CASELLE</td><td id="GR[=" class="" style="width:232.66949462890625px">Posizione della casella ponte su percorso da 90 caselle</td><td id="_KQ:" class="" style="width:232.66949462890625px">intero</td></tr><tr id="6b53890e-2c89-4df7-94b7-baae338ee181"><td id="G\;X" class="" style="width:232.66949462890625px">POSIZIONE_LOCANDA_90_CASELLE</td><td id="GR[=" class="" style="width:232.66949462890625px">Posizione della casella locanda su percorso da 90 caselle</td><td id="_KQ:" class="" style="width:232.66949462890625px">intero</td></tr><tr id="12c3bbc0-9cb5-4d47-91bd-cc3829a593a7"><td id="G\;X" class="" style="width:232.66949462890625px">POSIZIONE_POZZO_90_CASELLE</td><td id="GR[=" class="" style="width:232.66949462890625px">Posizione della casella pozzo su percorso da 90 caselle</td><td id="_KQ:" class="" style="width:232.66949462890625px">intero</td></tr><tr id="7de8cd5a-cd78-45b7-a5c6-7d7f00d5bd54"><td id="G\;X" class="" style="width:232.66949462890625px">POSIZIONE_LABIRINTO_90_CASELLE</td><td id="GR[=" class="" style="width:232.66949462890625px">Posizione della casella labirinto su percorso da 90 caselle</td><td id="_KQ:" class="" style="width:232.66949462890625px">intero</td></tr><tr id="1d8217e4-0444-4e0d-8718-a0997a2d8e18"><td id="G\;X" class="" style="width:232.66949462890625px">POSIZIONE_PRIGIONE_90_CASELLE</td><td id="GR[=" class="" style="width:232.66949462890625px">Posizione della casella prigione su percorso da 90 caselle</td><td id="_KQ:" class="" style="width:232.66949462890625px">intero</td></tr><tr id="ca9f111b-b5d9-4ccd-b10c-35e9c04ed62d"><td id="G\;X" class="" style="width:232.66949462890625px">POSIZIONE_SCHELETRO_90_CASELLE</td><td id="GR[=" class="" style="width:232.66949462890625px">Posizione della casella scheletro su percorso da 90 caselle</td><td id="_KQ:" class="" style="width:232.66949462890625px">intero</td></tr><tr id="cdc0c42a-0c6f-4be9-9701-da2c026093cd"><td id="G\;X" class="" style="width:232.66949462890625px">TIPO_CASELLA_PONTE</td><td id="GR[=" class="" style="width:232.66949462890625px">Indica la casella ponte</td><td id="_KQ:" class="" style="width:232.66949462890625px">intero</td></tr><tr id="36564054-1936-4ea1-aae0-424171b10d1c"><td id="G\;X" class="" style="width:232.66949462890625px">TIPO_CASELLA_LOCANDA</td><td id="GR[=" class="" style="width:232.66949462890625px">Indica la casella locanda</td><td id="_KQ:" class="" style="width:232.66949462890625px">intero</td></tr><tr id="f4f51290-4671-49bb-b54d-404f49e8d15d"><td id="G\;X" class="" style="width:232.66949462890625px">TIPO_CASELLA_POZZO</td><td id="GR[=" class="" style="width:232.66949462890625px">Indica la casella pozzo</td><td id="_KQ:" class="" style="width:232.66949462890625px">intero</td></tr><tr id="ba13e4e8-1533-47a9-8d59-1ffc9fb95017"><td id="G\;X" class="" style="width:232.66949462890625px">TIPO_CASELLA_LABIRINTO</td><td id="GR[=" class="" style="width:232.66949462890625px">Indica la casella labirinto</td><td id="_KQ:" class="" style="width:232.66949462890625px">intero</td></tr><tr id="c3cf7bee-dc01-45c2-81dc-075ce0235c7c"><td id="G\;X" class="" style="width:232.66949462890625px">TIPO_CASELLA_SCHELETRO</td><td id="GR[=" class="" style="width:232.66949462890625px">Indica la casella scheletro</td><td id="_KQ:" class="" style="width:232.66949462890625px">intero</td></tr><tr id="5cde4f11-4328-4590-b9d6-839e374c4a10"><td id="G\;X" class="" style="width:232.66949462890625px">TIPO_CASELLA_PRIGIONE</td><td id="GR[=" class="" style="width:232.66949462890625px">Indica la casella prigione</td><td id="_KQ:" class="" style="width:232.66949462890625px">intero</td></tr><tr id="b73f2d9e-599c-4c14-89b8-066e9d8b1b38"><td id="G\;X" class="" style="width:232.66949462890625px">TIPO_CASELLA_FINE</td><td id="GR[=" class="" style="width:232.66949462890625px">Indica l&#x27;ultima casella del percorso, quella in cui si vince</td><td id="_KQ:" class="" style="width:232.66949462890625px">intero</td></tr></tbody></table><h2 id="93eefbcd-eab6-4efd-8e97-048c1131015c" class="">OUTPUT</h2><table id="38f73a9b-8d63-4d3b-b073-32d50854cb54" class="simple-table"><thead class="simple-table-header"><tr id="e6725204-b12a-4f29-bf87-973654802879"><th id="G\;X" class="simple-table-header-color simple-table-header" style="width:232.66949462890625px">Nome</th><th id="GR[=" class="simple-table-header-color simple-table-header" style="width:232.66949462890625px">Descrizione</th><th id="_KQ:" class="simple-table-header-color simple-table-header" style="width:232.66949462890625px">Tipo/vincoli</th></tr></thead><tbody><tr id="6d27d313-873d-4cde-ac0f-ae4e58848d5e"><td id="G\;X" class="" style="width:232.66949462890625px">percorso</td><td id="GR[=" class="" style="width:232.66949462890625px">record per la nuova partita con inserite le caselle speciali</td><td id="_KQ:" class="" style="width:232.66949462890625px">record_percorso</td></tr></tbody></table><h2 id="f9613446-1682-4757-989d-dcca6d174fb5" class="">DATI DI LAVORO</h2><table id="6dc04f3b-e070-4b1e-970f-2d6bf439b669" class="simple-table"><thead class="simple-table-header"><tr id="c7601adc-fd7e-4347-b811-f60efb0890b0"><th id="G\;X" class="simple-table-header-color simple-table-header" style="width:232.66949462890625px">Nome</th><th id="GR[=" class="simple-table-header-color simple-table-header" style="width:232.66949462890625px">Descrizione</th><th id="_KQ:" class="simple-table-header-color simple-table-header" style="width:232.65625px">Tipo/vincoli</th></tr></thead><tbody><tr id="50669b5d-1b5b-4445-8ad2-41766c88a01f"><td id="G\;X" class="" style="width:232.66949462890625px">pos_ponte</td><td id="GR[=" class="" style="width:232.66949462890625px">posizione della casella ponte calcolata per il percorso della dimensione scelta</td><td id="_KQ:" class="" style="width:232.65625px">NUMERO_MINIMO_CASELLE≤intero≤NUMERO_MASSIMO_CASELLE</td></tr><tr id="925b26d6-ef49-46e8-b9e0-5e13ecdb0367"><td id="G\;X" class="" style="width:232.66949462890625px">pos_locanda</td><td id="GR[=" class="" style="width:232.66949462890625px">posizione della casella locanda calcolata per il percorso della dimensione scelta</td><td id="_KQ:" class="" style="width:232.65625px">NUMERO_MINIMO_CASELLE≤intero≤NUMERO_MASSIMO_CASELLE</td></tr><tr id="00f65df6-0855-4347-91fa-496659c7014f"><td id="G\;X" class="" style="width:232.66949462890625px">pos_pozzo</td><td id="GR[=" class="" style="width:232.66949462890625px">posizione della casella pozzo calcolata per il percorso della dimensione scelta</td><td id="_KQ:" class="" style="width:232.65625px">NUMERO_MINIMO_CASELLE≤intero≤NUMERO_MASSIMO_CASELLE</td></tr><tr id="2ffdf4f6-4d73-423d-bcdd-d3d94daed382"><td id="G\;X" class="" style="width:232.66949462890625px">pos_labirinto</td><td id="GR[=" class="" style="width:232.66949462890625px">posizione della casella labirinto calcolata per il percorso della dimensione scelta</td><td id="_KQ:" class="" style="width:232.65625px">NUMERO_MINIMO_CASELLE≤intero≤NUMERO_MASSIMO_CASELLE</td></tr><tr id="e84267c2-29c9-4236-b6f6-d08a53d0d5e0"><td id="G\;X" class="" style="width:232.66949462890625px">pos_prigione</td><td id="GR[=" class="" style="width:232.66949462890625px">posizione della casella prigione calcolata per il percorso della dimensione scelta</td><td id="_KQ:" class="" style="width:232.65625px">NUMERO_MINIMO_CASELLE≤intero≤NUMERO_MASSIMO_CASELLE</td></tr><tr id="df2e2a49-3397-458e-9915-fced9705d948"><td id="G\;X" class="" style="width:232.66949462890625px">pos_scheletro</td><td id="GR[=" class="" style="width:232.66949462890625px">posizione della casella scheletro calcolata per il percorso della dimensione scelta</td><td id="_KQ:" class="" style="width:232.65625px">NUMERO_MINIMO_CASELLE≤intero≤NUMERO_MASSIMO_CASELLE</td></tr></tbody></table><h2 id="736a6156-8f53-4546-be78-533e6817cbfd" class="">ALGORITMO</h2><p id="7d48e66d-e7dd-4c96-85a2-cfbb12c23a65" class="">INIZIO<div class="indented"><p id="e0654dff-4999-4b9d-b036-dd578bfa900f" class="">pos_ponte = calcolare_proporzione(<mark class="highlight-yellow_background">POSIZIONE_PONTE_90_CASELLE</mark>, NUMERO_MASSIMO_CASELLE, leggere_dimensione_record_percorso(percorso))<br/>percorso = inserire_casella_speciale(percorso, pos_ponte, <br/><mark class="highlight-yellow_background">TIPO_CASELLA_PONTE</mark>)</p><p id="406e4cae-9281-4344-9c06-f00ad119a88c" class="">pos_locanda = calcolare_proporzione(<mark class="highlight-yellow_background">POSIZIONE_LOCANDA_90_CASELLE</mark>, NUMERO_MASSIMO_CASELLE, leggere_dimensione_record_percorso(percorso))<br/>percorso = inserire_casella_speciale(percorso, pos_locanda, <br/><mark class="highlight-yellow_background">TIPO_CASELLA_LOCANDA</mark>)</p><p id="687c85fa-4bc2-4d31-aedd-c5066b30b006" class="">pos_pozzo = calcolare_proporzione(<mark class="highlight-yellow_background">POSIZIONE_POZZO_90_CASELLE</mark>, NUMERO_MASSIMO_CASELLE, leggere_dimensione_record_percorso(percorso))<br/>percorso = inserire_casella_speciale(percorso, pos_pozzo, <br/><mark class="highlight-yellow_background">TIPO_CASELLA_POZZO</mark>)</p><p id="ebd23fbd-241a-4e7c-adcf-a0cda3f3662a" class="">pos_labirinto = calcolare_proporzione(<mark class="highlight-yellow_background">POSIZIONE_LABIRINTO_90_CASELLE</mark>, NUMERO_MASSIMO_CASELLE, leggere_dimensione_record_percorso(percorso))<br/>percorso = inserire_casella_speciale(percorso, pos_labirinto, <br/><mark class="highlight-yellow_background">TIPO_CASELLA_LABIRINTO</mark>)</p><p id="a62bbe51-d16c-4ece-a5bb-18510eb5b073" class="">pos_prigione = calcolare_proporzione(<mark class="highlight-yellow_background">POSIZIONE_PRIGIONE_90_CASELLE</mark>, NUMERO_MASSIMO_CASELLE, leggere_dimensione_record_percorso(percorso))<br/>percorso = inserire_casella_speciale(percorso, pos_prigione, <br/><mark class="highlight-yellow_background">TIPO_CASELLA_PRIGIONE</mark>)</p><p id="2feb1ded-ed78-4abd-852b-6ab375a46182" class="">pos_scheletro = calcolare_proporzione(<mark class="highlight-yellow_background">POSIZIONE_SCHELETRO_90_CASELLE</mark>, NUMERO_MASSIMO_CASELLE, leggere_dimensione_record_percorso(percorso))<br/>percorso = inserire_casella_speciale(percorso, pos_scheletro, <br/><mark class="highlight-yellow_background">TIPO_CASELLA_SCHELETRO</mark>)</p><p id="c10495d6-44ed-4faf-8896-fb0dfc0e9a7f" class="">percorso = scrivere_casella_record_percorso(percorso, leggere_dimensione_record_percorso(percorso), <mark class="highlight-yellow_background">TIPO_CASELLA_FINE</mark>)</p></div></p><p id="296ba39a-dfc6-444c-a50a-9645021a1549" class="">FINE</p></div></details><hr id="1b722103-e82c-4d5f-9ec9-b5109c80ac2b"/><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0">Funzione inizializzare_record_vet_giocatori</summary><div class="indented"><p id="e43ac6c5-de2b-49bb-9c57-99f58b930a7d" class="">Inizializza i dati di default per tutti i giocatori, con dati diversi per giocatori partecipanti e non partecipanti.</p><h2 id="a86cf3bc-58ee-4292-9f5c-7401d619e812" class="">INPUT</h2><table id="f0a8344a-5d0d-4dec-a1e1-8243eeb6dcb4" class="simple-table"><thead class="simple-table-header"><tr id="792527fb-0154-42f7-9dac-d35cfd3f4511"><th id="G\;X" class="simple-table-header-color simple-table-header" style="width:232.66949462890625px">Nome</th><th id="GR[=" class="simple-table-header-color simple-table-header" style="width:232.66949462890625px">Descrizione</th><th id="_KQ:" class="simple-table-header-color simple-table-header" style="width:232.66949462890625px">Tipo/vincoli</th></tr></thead><tbody><tr id="6e643830-c596-481e-aff3-9ec5fdf2fffb"><td id="G\;X" class="" style="width:232.66949462890625px">vet</td><td id="GR[=" class="" style="width:232.66949462890625px">record_vet_giocatori da inizializzare</td><td id="_KQ:" class="" style="width:232.66949462890625px">record_vet_giocatori</td></tr><tr id="8509ebec-5937-453f-95fc-49ece80a3eac"><td id="G\;X" class="" style="width:232.66949462890625px">NUMERO_MASSIMO_GIOCATORI</td><td id="GR[=" class="" style="width:232.66949462890625px">Numero massimo di giocatori</td><td id="_KQ:" class="" style="width:232.66949462890625px">intero</td></tr><tr id="3c9c22d7-6bc0-4489-916a-4fe7825e79ee"><td id="G\;X" class="" style="width:232.66949462890625px">POSIZIONE_INIZIO</td><td id="GR[=" class="" style="width:232.66949462890625px">Indica la posizione del giocatore all’inizio della partita</td><td id="_KQ:" class="" style="width:232.66949462890625px">intero</td></tr><tr id="efeb2274-e1f7-4bd7-ba80-78026bb18360"><td id="G\;X" class="" style="width:232.66949462890625px">POSIZIONE_GIOCATORE_NON_PARTECIPANTE</td><td id="GR[=" class="" style="width:232.66949462890625px">Indica che il giocatore non sta giocando la partita</td><td id="_KQ:" class="" style="width:232.66949462890625px">intero</td></tr></tbody></table><h2 id="fa7a0752-2226-4515-a032-5c33b89529f7" class="">OUTPUT</h2><table id="0ab5962e-f860-4c9f-87ea-beccf0cd116f" class="simple-table"><thead class="simple-table-header"><tr id="7174eeb8-a1d7-4a3f-a1fd-fed66b87eaa9"><th id="G\;X" class="simple-table-header-color simple-table-header" style="width:232.66949462890625px">Nome</th><th id="GR[=" class="simple-table-header-color simple-table-header" style="width:232.66949462890625px">Descrizione</th><th id="_KQ:" class="simple-table-header-color simple-table-header" style="width:232.66949462890625px">Tipo/vincoli</th></tr></thead><tbody><tr id="5d84aca4-36d2-4475-a6f4-23778d153fe9"><td id="G\;X" class="" style="width:232.66949462890625px">vet</td><td id="GR[=" class="" style="width:232.66949462890625px">record_vet_giocatori inizializzato</td><td id="_KQ:" class="" style="width:232.66949462890625px">record_vet_giocatori</td></tr></tbody></table><h2 id="1348f20b-2154-431d-addd-a453aee54752" class="">ALGORITMO</h2><p id="de0268ad-d8f0-4c6e-a611-2e01eb1b63c3" class="">INIZIO<div class="indented"><p id="b1ef8f6a-733a-4600-98f4-2a8b34428f70" class="">i = PRIMO_INDICE_ARRAY</p><p id="9eef3850-e4bc-455b-9c07-eaf4d3a62644" class="">MENTRE (i ≤ NUMERO_MASSIMO_GIOCATORI)<div class="indented"><p id="a0a949a7-4d7b-4ca0-8a64-4e2c7e9349b3" class="">SE (i ≤ leggere_dimensione_record_vet_giocatori(vet))<div class="indented"><p id="cc65b004-6abe-445f-a1a3-b6b4cbea8197" class="">ALLORA<div class="indented"><p id="30f42996-201a-4d69-b93d-73b54bf31fed" class="">giocatore = scrivere_posizione_giocatore(giocatore, POSIZIONE_INIZIO)</p></div></p><p id="a1638024-5e04-4e3e-b560-64a03dd7ea42" class="">ALTRIMENTI<div class="indented"><p id="3d3f8cc6-82e6-4e05-82f2-db5523e9859d" class="">giocatore = scrivere_posizione_giocatore(giocatore, POSIZIONE_GIOCATORE_NON_PARTECIPANTE)</p></div></p></div></p><p id="f0a8de45-4d3e-4797-bd5d-3ac276cbc63a" class="">FINE</p><p id="5fb4ed70-37f0-4696-9933-5ff8a216fbe3" class="">giocatore = scrivere_numero_turni_bloccato_record_giocatore(giocatore, NUMERO_TURNI_NON_BLOCCATO_LOCANDA)</p><p id="7d256419-5363-4d4d-bdd7-7fbcb9b929b2" class="">giocatore = scrivere_numero_dadi_lanciati_record_giocatore(giocatore, 0)</p><p id="e77166db-4743-4f8e-96cd-48d664b021b7" class="">giocatore = scrivere_bloccato_record_giocatore(giocatore, FALSO)</p><p id="febd434d-a256-4f91-b89c-6a3616355c82" class="">vet = scrivere_giocatore_vet_giocatori(vet, giocatore, i)</p><p id="bd104522-ab0a-43a5-b1ec-628898926087" class="">i = i + 1</p></div></p><p id="048eb7fa-dfc4-49a1-8096-7b9dc16f97bf" class="">FINE</p></div></p><p id="0ffc21d1-e5f9-41ae-8a3c-0a80f55206ec" class="">FINE</p></div></details><hr id="98cdb803-8fe1-4edd-bc4e-8c00159dcb9d"/><p id="91e3cec8-486f-40c0-ab44-80a001c4e1ab" class="">
+</p></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>

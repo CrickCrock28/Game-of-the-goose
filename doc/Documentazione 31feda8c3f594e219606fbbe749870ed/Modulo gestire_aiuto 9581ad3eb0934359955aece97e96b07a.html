@@ -1,0 +1,681 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Modulo gestire_aiuto</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+	margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(50, 48, 44, 1);
+}
+.highlight-gray {
+	color: rgba(115, 114, 110, 1);
+	fill: rgba(115, 114, 110, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(205, 60, 58, 1);
+	fill: rgba(205, 60, 58, 1);
+}
+.highlight-default_background {
+	color: rgba(50, 48, 44, 1);
+}
+.highlight-gray_background {
+	background: rgba(248, 248, 247, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(248, 243, 252, 1);
+}
+.highlight-pink_background {
+	background: rgba(252, 241, 246, 1);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(115, 114, 110, 1);
+	fill: rgba(115, 114, 110, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(205, 60, 58, 1);
+	fill: rgba(205, 60, 58, 1);
+}
+.block-color-default_background {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray_background {
+	background: rgba(248, 248, 247, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(248, 243, 252, 1);
+}
+.block-color-pink_background {
+	background: rgba(252, 241, 246, 1);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-default { background-color: rgba(84, 72, 49, 0.08); }
+.select-value-color-gray { background-color: rgba(84, 72, 49, 0.15); }
+.select-value-color-brown { background-color: rgba(210, 162, 141, 0.35); }
+.select-value-color-orange { background-color: rgba(224, 124, 57, 0.27); }
+.select-value-color-yellow { background-color: rgba(236, 191, 66, 0.39); }
+.select-value-color-green { background-color: rgba(123, 183, 129, 0.27); }
+.select-value-color-blue { background-color: rgba(93, 165, 206, 0.27); }
+.select-value-color-purple { background-color: rgba(168, 129, 197, 0.27); }
+.select-value-color-pink { background-color: rgba(225, 136, 179, 0.27); }
+.select-value-color-red { background-color: rgba(244, 171, 159, 0.4); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="9581ad3e-b093-4359-955a-ece97e96b07a" class="page sans"><header><h1 class="page-title">Modulo gestire_aiuto</h1><p class="page-description"></p></header><div class="page-body"><hr id="0e0fb0c0-f328-48be-9deb-6dd16fda46d2"/><nav id="0c8f1806-7dab-4f16-90b4-f152de0ff2f9" class="block-color-gray table_of_contents"><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#09d07292-5543-4094-b9fa-6f47bdfafba2">Descrizione</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#fef9a7ed-c057-45fa-900a-884696aa9a31">Costanti</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#5c96a2b6-e9c5-4795-b4fe-ef12b06cb0ea">Funzione gestire_menu_aiuto</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#735b5071-b314-484d-a70f-169b8a8d2e05">Funzione gestire_scelta_menu_aiuto</a></div></nav><hr id="fccd9458-2759-4632-8d88-fcdd603412b2"/><h2 id="09d07292-5543-4094-b9fa-6f47bdfafba2" class="">Descrizione</h2><p id="572c1b1b-f796-40c5-b7d0-e1c9ad39811f" class="">Gestisce il sottomenù di aiuto.</p><hr id="3555e724-0581-4d2b-bdf8-84c92767bcb4"/><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0">Costanti</summary><div class="indented"><table id="fc9c5978-4b3d-412c-a145-5fbcabff2919" class="simple-table"><thead class="simple-table-header"><tr id="6eca1e03-e1a5-419c-a678-b3129a759690"><th id="G\;X" class="simple-table-header-color simple-table-header" style="width:255.6533966064453px">Nome</th><th id="GR[=" class="simple-table-header-color simple-table-header" style="width:158.65623474121094px">Valore</th><th id="_KQ:" class="simple-table-header-color simple-table-header" style="width:201.65623474121094px">Descrizione</th></tr></thead><tbody><tr id="49167211-9611-4a7c-89c3-3cfb5bc144bf"><td id="G\;X" class="" style="width:255.6533966064453px">SCELTA_STAMPARE_MANUALE</td><td id="GR[=" class="" style="width:158.65623474121094px">2</td><td id="_KQ:" class="" style="width:201.65623474121094px">indica il valore da inserire per la visualizzazione del manuale</td></tr><tr id="4e8a70dc-0183-454e-a772-de3273b7b2f6"><td id="G\;X" class="" style="width:255.6533966064453px">SCELTA_STAMPARE_REGOLE</td><td id="GR[=" class="" style="width:158.65623474121094px">1</td><td id="_KQ:" class="" style="width:201.65623474121094px">indica il valore da inserire per la visualizzazione delle regole</td></tr></tbody></table></div></details><hr id="c0a7356a-919e-45ac-85ea-fd6c466e38a4"/><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0">Funzione gestire_menu_aiuto</summary><div class="indented"><p id="57ecbd8b-a02f-45c5-af17-68081ee3c21c" class="">Gestisce il menu di aiuto.</p><h2 id="d6aa372f-98e9-4016-9bbc-7de90518f424" class="">INPUT</h2><table id="4c68cd12-46bc-45ac-b149-4bc3d07d127e" class="simple-table"><thead class="simple-table-header"><tr id="18ad146a-54de-4f18-b452-0cc028aa747f"><th id="G\;X" class="simple-table-header-color simple-table-header" style="width:258.64488220214844px">Nome</th><th id="GR[=" class="simple-table-header-color simple-table-header" style="width:228.65625px">Descrizione</th><th id="_KQ:" class="simple-table-header-color simple-table-header" style="width:193.63919067382812px">Tipo/vincoli</th></tr></thead><tbody><tr id="9a835002-0801-46d6-9e2c-ac346204c43c"><td id="G\;X" class="" style="width:258.64488220214844px">scelta</td><td id="GR[=" class="" style="width:228.65625px">rappresenta l’azione che l’utente vuole effettuare<br/>0: Esci<br/>1: Stampare le regole del gioco<br/>2:Stampare il manuale<br/></td><td id="_KQ:" class="" style="width:193.63919067382812px">SCELTA_USCIRE_DAL_MENU ≤ Intero ≤ SCELTA_STAMPARE_MANUALE</td></tr><tr id="7759d499-d084-4da9-aef7-4d5b6eb4f206"><td id="G\;X" class="" style="width:258.64488220214844px">NOME_FILE_REGOLE_GIOCO</td><td id="GR[=" class="" style="width:228.65625px">nome del file regole_gioco</td><td id="_KQ:" class="" style="width:193.63919067382812px">array a una dimensione di caratteri</td></tr><tr id="a267b156-092e-4c4d-8054-a5bb507b509a"><td id="G\;X" class="" style="width:258.64488220214844px">NOME_FILE_MANUALE_GIOCO</td><td id="GR[=" class="" style="width:228.65625px">nome del file manuale_gioco</td><td id="_KQ:" class="" style="width:193.63919067382812px">array a una dimensione di caratteri</td></tr><tr id="48cbf5b4-0884-49ed-9cfc-9ba4a51aa71f"><td id="G\;X" class="" style="width:258.64488220214844px">NOME_FILE_MENU_AIUTO</td><td id="GR[=" class="" style="width:228.65625px">nome del file menu_aiuto</td><td id="_KQ:" class="" style="width:193.63919067382812px">array a una dimensione di caratteri</td></tr><tr id="dc208486-e468-4954-a7a7-35c13c709b5f"><td id="G\;X" class="" style="width:258.64488220214844px">MESSAGGIO_SCELTA_AZIONE_MENU</td><td id="GR[=" class="" style="width:228.65625px">indica il messaggio generico da stampare al momento dell’inserimento di una scelta all’interno di un menu</td><td id="_KQ:" class="" style="width:193.63919067382812px">array a una dimensione di caratteri</td></tr><tr id="f526d78c-7c51-4e22-a236-63d9e8c8d005"><td id="G\;X" class="" style="width:258.64488220214844px">SCELTA_USCIRE_DAL_MENU</td><td id="GR[=" class="" style="width:228.65625px">valore utilizzato per uscire dal menù</td><td id="_KQ:" class="" style="width:193.63919067382812px">intero</td></tr><tr id="8df7fd6f-b470-4e41-9048-03ecc8e4d27e"><td id="G\;X" class="" style="width:258.64488220214844px">PRIMA_COORDINATA_SCHERMO</td><td id="GR[=" class="" style="width:228.65625px">valore che corrisponde prima coordinata dello schermo</td><td id="_KQ:" class="" style="width:193.63919067382812px">intero</td></tr><tr id="13bc1cfa-08f4-44e0-852e-184178390bce"><td id="G\;X" class="" style="width:258.64488220214844px">SCELTA_STAMPARE_MANUALE</td><td id="GR[=" class="" style="width:228.65625px">indica il valore da inserire per la visualizzazione del manuale</td><td id="_KQ:" class="" style="width:193.63919067382812px">intero</td></tr></tbody></table><h2 id="b0b52ff0-cb9c-4fc5-a678-3566d882d806" class="">ALGORITMO</h2><p id="ad2c7c17-e532-400d-8d24-2c53bd44a4a3" class="">INIZIO<div class="indented"><p id="7e270fc9-5aad-4857-9882-6158b19d8c48" class="">ESEGUI<div class="indented"><p id="5bfadae0-9f2d-43f3-a432-92430096d7a6" class=""><mark class="highlight-yellow_background">// Sposta il cursore alla prima coordinata dello schermo</mark></p><p id="56ce52f2-b104-4fcf-ab1f-5188efa485fe" class=""><mark class="highlight-yellow_background">spostare_cursore(PRIMA_COORDINATA_SCHERMO, PRIMA_COORDINATA_SCHERMO)</mark></p><p id="65aa36e0-ecbe-430a-a666-4a181ae9e2ac" class=""><mark class="highlight-yellow_background">// Stampare il menù aiuto</mark></p><p id="f45b69bc-d5c5-4f39-9425-712edfe6de0b" class="">stampare_file_di_testo(<mark class="highlight-yellow_background">NOME_FILE_MENU_AIUTO</mark>)</p><p id="76880f89-af10-4c54-9b40-386497e1e69e" class=""><mark class="highlight-yellow_background">// Richiedere un valore intero per scegliere l&#x27;azione del menù e ne attende l&#x27;inserimento</mark></p><p id="9c63d3ef-c3b8-4d30-9ca3-38299cffdf8d" class=""><mark class="highlight-yellow_background">riga = ottenere_riga_cursore()</mark></p><p id="ee6260a1-bd51-4dfc-be9a-cf46589f88cc" class="">scelta = chiedere_intero(MESSAGGIO_SCELTA, <mark class="highlight-yellow_background">SCELTA_USCIRE_DAL_MENU, SCELTA_STAMPARE_MANUALE, riga, PRIMA_COORDINATA_SCHERMO</mark>)</p><p id="b92a37db-5d3b-48aa-8a0a-b9538ebec1c1" class=""><mark class="highlight-yellow_background">// Gestisce la scelta dell&#x27;utente<br/>gestire_scelta_menu_aiuto(scelta, NOME_FILE_REGOLE_GIOCO, NOME_FILE_MANUALE_GIOCO)<br/></mark></p></div></p><p id="3b183d2e-7581-4b1e-9c4d-5a0fb8e746e8" class="">FINCHE (scelta ≠ <mark class="highlight-yellow_background">SCELTA_USCIRE_DAL_MENU</mark>)</p><p id="98bd4a9c-5a6d-4681-ae8d-bc2aff351a8e" class="">FINE</p></div></p><p id="c68c0229-93f8-484c-8395-14f2f880e5bb" class="">FINE</p></div></details><hr id="d1f09ffa-17d0-4391-bf01-f93623798f64"/><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0">Funzione gestire_scelta_menu_aiuto</summary><div class="indented"><p id="e2a61a7f-4bec-4142-9c32-612718f5b40e" class="">Gestisce il menu di aiuto.</p><h2 id="37cfaf19-139b-47ff-b146-ea201f2ba610" class="">INPUT</h2><table id="ca9028af-d45c-4e3b-9106-c293f846d1d3" class="simple-table"><thead class="simple-table-header"><tr id="11c01067-21c6-47ca-aab9-f87b84d5c651"><th id="G\;X" class="simple-table-header-color simple-table-header" style="width:229.64488220214844px">Nome</th><th id="GR[=" class="simple-table-header-color simple-table-header" style="width:219.6676025390625px">Descrizione</th><th id="_KQ:" class="simple-table-header-color simple-table-header" style="width:210.65908813476562px">Tipo/vincoli</th></tr></thead><tbody><tr id="a7b5853f-0560-4ae4-8712-f70393cf354e"><td id="G\;X" class="" style="width:229.64488220214844px">scelta</td><td id="GR[=" class="" style="width:219.6676025390625px">rappresenta l’azione che l’utente vuole effettuare<br/>0: Esci<br/>1: Stampare le regole del gioco<br/>2:Stampare il manuale<br/></td><td id="_KQ:" class="" style="width:210.65908813476562px">SCELTA_USCIRE_DAL_MENU ≤ Intero ≤ SCELTA_STAMPARE_MANUALE</td></tr><tr id="53797911-1905-4f82-994c-e91e7dea4d3a"><td id="G\;X" class="" style="width:229.64488220214844px">NOME_FILE_REGOLE_GIOCO</td><td id="GR[=" class="" style="width:219.6676025390625px">nome del file regole_gioco</td><td id="_KQ:" class="" style="width:210.65908813476562px">array a una dimensione di caratteri</td></tr><tr id="b32e0bd7-0888-4808-8a6c-768157dd7af9"><td id="G\;X" class="" style="width:229.64488220214844px">NOME_FILE_MANUALE_GIOCO</td><td id="GR[=" class="" style="width:219.6676025390625px">nome del file manuale_gioco</td><td id="_KQ:" class="" style="width:210.65908813476562px">array a una dimensione di caratteri</td></tr><tr id="9e473a0e-593b-4ad0-9357-99ea213e8299"><td id="G\;X" class="" style="width:229.64488220214844px">SCELTA_STAMPARE_REGOLE</td><td id="GR[=" class="" style="width:219.6676025390625px">indica il valore da inserire per la visualizzazione delle regole</td><td id="_KQ:" class="" style="width:210.65908813476562px">array a una dimensione di caratteri</td></tr><tr id="fbdeb0a8-13fa-4956-9f72-0b4f8a2388af"><td id="G\;X" class="" style="width:229.64488220214844px">SCELTA_STAMPARE_MANUALE</td><td id="GR[=" class="" style="width:219.6676025390625px">indica il valore da inserire per la visualizzazione del manuale</td><td id="_KQ:" class="" style="width:210.65908813476562px">intero</td></tr><tr id="3be7023f-271e-4f6b-89ce-4360b646d42e"><td id="G\;X" class="" style="width:229.64488220214844px">PRIMA_COORDINATA_SCHERMO</td><td id="GR[=" class="" style="width:219.6676025390625px">valore che corrisponde prima coordinata dello schermo</td><td id="_KQ:" class="" style="width:210.65908813476562px">intero</td></tr></tbody></table><h2 id="620c7377-4e3a-4147-bc6b-91ea7ad69f35" class="">ALGORITMO</h2><p id="9577ba83-c1c8-4a2b-9dc5-0f930ff40754" class="">INIZIO<div class="indented"><p id="8ccc728f-cbc3-4911-82a9-c94bd9146bda" class="">SE (scelta = <mark class="highlight-yellow_background">SCELTA_STAMPARE_REGOLE</mark>)<div class="indented"><p id="fce3004c-f08a-4858-b4b7-8bb163f3a8e4" class="">ALLORA<div class="indented"><p id="257f75e5-b2bc-46d2-882d-c90cf91a56e5" class=""><mark class="highlight-yellow_background">// Stampare le regole del gioco</mark></p><p id="95bfac55-0158-4e05-aecf-d9ec7ed802be" class=""><mark class="highlight-yellow_background">spostare_cursore(PRIMA_COORDINATA_SCHERMO, PRIMA_COORDINATA_SCHERMO)</mark></p><p id="217c18a2-ebc3-42ac-b236-6ad53a97004e" class="">stampare_file_di_testo(<mark class="highlight-yellow_background">NOME_FILE_REGOLE_GIOCO</mark>)</p></div></p><p id="13ee53ab-4607-4ee6-af98-377ffb7e2225" class="">ALTRIMENTI<div class="indented"><p id="c839d554-2cfa-4689-8b6e-757a42aecc6b" class="">SE (scelta = <mark class="highlight-yellow_background">SCELTA_STAMPARE_MANUALE</mark>)<div class="indented"><p id="098cc340-9f37-48cc-a626-4cbcd17893e4" class="">ALLORA<div class="indented"><p id="6659b003-c99c-4297-bfa4-056e38f1da11" class=""><mark class="highlight-yellow_background">// Stampare il manuale del gioco</mark></p><p id="eb6344f8-a08e-4326-bffc-d0b58e2222af" class=""><mark class="highlight-yellow_background">spostare_cursore(PRIMA_COORDINATA_SCHERMO, PRIMA_COORDINATA_SCHERMO)</mark></p><p id="a21efe92-88df-44b3-af59-cd2925922e68" class="">stampare_file_di_testo(<mark class="highlight-yellow_background">NOME_FILE_MANUALE_GIOCO</mark>)</p></div></p></div></p><p id="27583c22-1a41-4902-8073-0725af32450f" class="">FINE</p></div></p></div></p><p id="e274137c-3ca6-4c80-a3c2-3a074cdbaf58" class="">FINE</p></div></p><p id="657c778e-0d83-423e-9096-714559b77a63" class="">FINE</p></div></details><hr id="be5a678f-266a-4207-869d-9843d51b52a2"/><p id="e928264b-08cb-4498-8b5a-783b8e3a2ea3" class="">
+</p></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>

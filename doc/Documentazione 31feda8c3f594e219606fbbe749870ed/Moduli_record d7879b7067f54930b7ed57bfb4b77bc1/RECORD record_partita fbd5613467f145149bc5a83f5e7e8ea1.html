@@ -1,0 +1,682 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>RECORD record_partita</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+	margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(50, 48, 44, 1);
+}
+.highlight-gray {
+	color: rgba(115, 114, 110, 1);
+	fill: rgba(115, 114, 110, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(205, 60, 58, 1);
+	fill: rgba(205, 60, 58, 1);
+}
+.highlight-default_background {
+	color: rgba(50, 48, 44, 1);
+}
+.highlight-gray_background {
+	background: rgba(248, 248, 247, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(248, 243, 252, 1);
+}
+.highlight-pink_background {
+	background: rgba(252, 241, 246, 1);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(115, 114, 110, 1);
+	fill: rgba(115, 114, 110, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(205, 60, 58, 1);
+	fill: rgba(205, 60, 58, 1);
+}
+.block-color-default_background {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray_background {
+	background: rgba(248, 248, 247, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(248, 243, 252, 1);
+}
+.block-color-pink_background {
+	background: rgba(252, 241, 246, 1);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-default { background-color: rgba(84, 72, 49, 0.08); }
+.select-value-color-gray { background-color: rgba(84, 72, 49, 0.15); }
+.select-value-color-brown { background-color: rgba(210, 162, 141, 0.35); }
+.select-value-color-orange { background-color: rgba(224, 124, 57, 0.27); }
+.select-value-color-yellow { background-color: rgba(236, 191, 66, 0.39); }
+.select-value-color-green { background-color: rgba(123, 183, 129, 0.27); }
+.select-value-color-blue { background-color: rgba(93, 165, 206, 0.27); }
+.select-value-color-purple { background-color: rgba(168, 129, 197, 0.27); }
+.select-value-color-pink { background-color: rgba(225, 136, 179, 0.27); }
+.select-value-color-red { background-color: rgba(244, 171, 159, 0.4); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="fbd56134-67f1-4514-9bc5-a83f5e7e8ea1" class="page sans"><header><h1 class="page-title">RECORD record_partita</h1><p class="page-description"></p></header><div class="page-body"><hr id="a3e86122-9d71-4815-9d23-6ae9ab0c8523"/><nav id="79afb682-af87-4851-aad4-01d2e49d3258" class="block-color-gray table_of_contents"><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#44310780-af43-4773-a013-eb98f8190a90">Funzione copiare_record_partita</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#daa1fb78-4eed-411b-944c-d891d7652fe3"><strong>Funzione leggere_percorso_record_partita</strong></a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#1638b19c-6189-4be6-a46a-e42ca01631b3"><strong>Funzione scrivere_percorso_record_partita</strong></a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#9d798104-7577-47db-a9c9-e2d3db95ef37"><strong>Funzione leggere_vet_giocatori_record_partita</strong></a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#d8c6e232-975a-43ca-abd3-666d4505783d"><strong>Funzione scrivere_vet_giocatori_record_partita</strong></a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#6486cdec-1702-4282-a3f5-3fc87eaf3069"><strong>Funzione leggere_indice_giocatore_di_turno_record_partita</strong></a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#1d8e6247-9eed-4220-b76b-b8726f4b5451"><strong>Funzione scrivere_indice_giocatore_di_turno_record_partita</strong></a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#60b1778d-690e-4ee2-acb7-99b758171939"><strong>Funzione leggere_terminata_record_partita</strong></a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#cb864db0-3b2d-43eb-8de5-4d1d92d20ba0"><strong>Funzione leggere_terminata_record_partita</strong></a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#33330ee6-1dc7-4d41-8a64-45ce7a0156bb"><strong>Funzione scrivere_terminata_record_partita</strong></a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#1d530516-2f04-4656-9f60-e89166ecbe14">Funzione leggere_ultimo_lancio_dado_1_record_partita</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#e3c3d481-d1cc-47f8-8bbc-e51981d397f7">Funzione scrivere_ultimo_lancio_dado_1_record_partita</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#dade3e6c-3b05-432a-bcbf-3cd893e68ab8">Funzione leggere_ultimo_lancio_dado_2_record_partita</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#c0f12c97-37cd-4f16-bf63-0cdfa75777ab">Funzione scrivere_ultimo_lancio_dado_2_record_partita</a></div></nav><hr id="f639cf08-67c9-4069-bfe0-06c2051dd909"/><p id="0e745c78-60d1-479f-9489-71ff13d22966" class="">RECORD record_partita, contiene tutti i dati relativi ad una partita:</p><ul id="4b9d0203-dc83-4a09-8ccd-9fd6086fecfa" class="bulleted-list"><li style="list-style-type:disc">percorso,	record che contiene il percorso, record_percorso</li></ul><ul id="949bc672-385e-4f64-acf7-34d15f35f21f" class="bulleted-list"><li style="list-style-type:disc">vet_giocatori, record che contiene tutti i giocatori, record_vet_giocatori</li></ul><ul id="47064f69-0d18-499c-b516-a861fdd51e6f" class="bulleted-list"><li style="list-style-type:disc">indice_giocatore_di_turno, NUMERO_MINIMO_GIOCATORI≤intero≤campo dimensione di vet_giocatori</li></ul><ul id="2572dca6-032b-4382-8dfc-33ecb3381b9e" class="bulleted-list"><li style="list-style-type:disc">ultimo_lancio_dado_1, ultimo lancio del primo dado effettuato dal giocatore, NUMERO_MINIMO_DADO≤intero≤NUMERO_MASSIMO_DADO</li></ul><ul id="19a463d5-fe87-4b0a-843b-9e7f542a18a5" class="bulleted-list"><li style="list-style-type:disc">ultimo_lancio_dado_2, ultimo lancio del secondo dado effettuato dal giocatore, NUMERO_MINIMO_DADO≤intero≤NUMERO_MASSIMO_DADO</li></ul><ul id="93738c7a-edd8-4384-a006-a82c0351e72b" class="bulleted-list"><li style="list-style-type:disc">nuova_partita, indica se l’utente vuole creare una nuova partita e di quella in corso, booleano</li></ul><ul id="c5a8c8b3-4926-4df6-a29b-1bffbf4f9c7d" class="bulleted-list"><li style="list-style-type:disc">abbandona_partita, indica se l’utente vuole abbandonare la partita corrente, booleano</li></ul><ul id="639d1ac4-1868-406a-a881-5daee9303740" class="bulleted-list"><li style="list-style-type:disc">terminata, indica se la partita è terminata, booleano</li></ul><ul id="a053d0b9-cb68-45a9-8d7c-ef73a4e08635" class="bulleted-list"><li style="list-style-type:disc">salvare_partita, indica se l’utente vuole salvare la partita, booleano</li></ul><hr id="e8009445-2ccc-4304-a24c-0ee2417044c8"/><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0">Funzione copiare_record_partita</summary><div class="indented"><p id="2f32d2af-79ea-4f11-bc7b-de9597b8ef6c" class="">Copia i dati di una partita in un’altra.</p><p id="f80abe05-b3c4-4e85-983c-735fa3c87e53" class="">INPUT</p><p id="5fc558a0-8c54-4b60-9d07-2ce215d6ca90" class="">partita_in_cui_copiare, partita in cui copiare, record_partita</p><p id="716367ff-aefa-43d1-b4f7-28f4b8b62d64" class="">partita_da_copiare, partita da copiare, record_partita</p><p id="25ee60f2-42e8-483f-b6cf-e82e0f6c3f51" class="">OUTPUT</p><p id="9bfe77dc-846b-42ac-b1f9-a980fd42fa71" class="">partita_in_cui_copiare, partita con dati copiati, record_partita</p><p id="dfc7280b-a880-4c83-b91a-fe17c24bfe56" class="">ALGORITMO</p><p id="006b17e8-c565-4c77-a1b1-841179135b8d" class="">INIZIO<div class="indented"><p id="e7db19dc-5a19-492d-819b-084794f897f0" class="">campo percorso di partita_in_cui_copiare= copiare_record_percorso(campo percorso di partita_in_cui_copiare, campo percorso di partita_da_copiare)</p><p id="68a7797d-f68a-4b54-8ffb-8127f7cec8e6" class="">campo vet_giocatori di partita_in_cui_copiare= copiare_record_vet_giocatori(campo vet_giocatori di partita_in_cui_copiare, campo vet_giocatori di partita_da_copiare)</p><p id="11b9f0f0-dca9-43a1-96ef-81e3c7151ccc" class="">campo indice_giocatore_di_turno di partita_in_cui_copiare= campo indice_giocatore_di_turno di partita_da_copiare</p><p id="afffb38d-07d1-469e-9e27-15b8127336c5" class="">campo terminata di partita_in_cui_copiare= campo terminata di partita_da_copiare</p><p id="0c183062-474d-4c9c-86a8-0cb8a73e1ac0" class="">campo ultimo_lancio_dado_1 di partita_in_cui_copiare= campo ultimo_lancio_dado_1 di partita_da_copiare</p><p id="3ddbafae-7c94-4841-bdaa-3800c88c3166" class="">campo ultimo_lancio_dado_2 di partita_in_cui_copiare= campo ultimo_lancio_dado_2 di partita_da_copiare</p><p id="fd13ec2a-e1ad-45fd-8aad-50ac05a10406" class="">campo nuova_partita di partita_in_cui_copiare= campo nuova_partita di partita_da_copiare</p><p id="2eb17264-24f5-4558-8f38-4bcabc9fcd70" class="">campo abbandona_partita di partita_in_cui_copiare= campo abbandona_partita di partita_da_copiare</p></div></p><p id="3d21a4c7-dcd8-4092-afc8-68801c271efb" class="">FINE</p></div></details><hr id="892b31fa-5bed-4a85-8547-78e2c0821a59"/><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0"><strong>Funzione leggere_percorso_record_partita</strong></summary><div class="indented"><p id="d3a030d3-a576-4fc8-a904-55185e538f8c" class="">Legge il percorso della partita.</p><p id="5d7be456-5f0b-45b1-b0cb-425f8ab38fe8" class="">INPUT<br/>partita, partita di cui leggere il percorso, record_partita<br/></p><p id="1f3d2eca-2057-457d-a040-54bfba02e908" class="">OUTPUT<br/>percorso, percorso della partita, record_percorso<br/></p><p id="ac065e1a-65ce-4564-87c3-ab5e4e0d0e01" class="">ALGORITMO<br/>INIZIO<br/><div class="indented"><p id="3d5aa937-3c71-4707-86be-bdd7f01efab0" class="">percorso = copiare_record_percorso(percorso, elemento del campo percorso di partita)</p></div></p><p id="666d46cf-34d9-43ba-a21d-e069d1a9e3e5" class="">FINE</p></div></details><hr id="dc97e4c6-2fd3-4d83-84eb-64de85c864c8"/><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0"><strong>Funzione scrivere_percorso_record_partita</strong></summary><div class="indented"><p id="14c3381a-dac7-41b1-953e-21c7b50bca20" class="">Scrive il percorso della partita.</p><p id="5c3755ad-70af-4e4d-8879-fa07aa0fa3e2" class="">INPUT<br/>partita, partita di cui scrivere il percorso, record_partita<br/>percorso, nuovo percorso della partita, record_percorso<br/></p><p id="9569e0a6-3f29-4f72-92b7-1c2468b95953" class="">OUTPUT<br/>partita, partita con il nuovo percorso, record_partita<br/></p><p id="ced55a72-0bdb-4fdb-9136-852beb876ab4" class="">ALGORITMO<br/>INIZIO<br/><div class="indented"><p id="8555c911-4964-4f9d-8237-f604c5b404e2" class="">elemento del campo percorso di partita = copiare_record_percorso(elemento del campo percorso di partita, percorso)</p></div></p><p id="2c764ee0-d3c2-420b-b5bc-9a8520547d69" class="">FINE</p></div></details><hr id="02645c83-8dab-4b07-98b0-4c45b041f733"/><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0"><strong>Funzione leggere_vet_giocatori_record_partita</strong></summary><div class="indented"><p id="1d4ea498-5c64-4693-987b-7cd19869d50e" class="">Legge i giocatori della partita.</p><p id="edea85af-6c84-4357-8ee1-1fbbd4af044b" class="">INPUT<br/>partita, partita di cui leggere i giocatori, record_partita<br/></p><p id="1c5e5cad-3d1b-4d1f-a1af-023bd6228113" class="">OUTPUT<br/>vet_giocatori, giocatori della partita, record_vet_giocatori<br/></p><p id="790bb7a4-2d8e-4d10-9ab6-60fd084252a5" class="">ALGORITMO<br/>INIZIO<br/><div class="indented"><p id="a3f680b6-548d-465e-ab3e-db44fcbe1093" class="">vet_giocatori = copiare_record_vet_giocatori(vet_giocatori, elemento del campo vet_giocatori di partita)</p></div></p><p id="d04cbe02-83ff-4792-a23b-44909b7ee4e4" class="">FINE</p></div></details><hr id="13a912cb-cae1-4403-8718-29e25491e3fa"/><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0"><strong>Funzione scrivere_vet_giocatori_record_partita</strong></summary><div class="indented"><p id="dc950515-190b-4611-a6eb-5caf637fbca5" class="">Scrive i giocatori della partita.</p><p id="38ad9cf3-0bdb-49b3-b9e6-853a78e3db8a" class="">INPUT<br/>partita, partita di cui scrivere i giocatori, record_partita<br/>vet_giocatori, nuovi giocatori della partita, record_vet_giocatori<br/></p><p id="7ab66104-6f68-4937-8f25-bff5e1c7169f" class="">OUTPUT<br/>partita, partita con i nuovi giocatori, record_partita<br/></p><p id="07348c22-b7d0-4b56-bfef-1b88097cbd19" class="">ALGORITMO<br/>INIZIO<br/><div class="indented"><p id="ba84a043-525b-4419-80b7-bfa27d5ec531" class="">elemento del campo vet_giocatori di partita = copiare_record_vet_giocatori(elemento del campo vet_giocatori di partita, vet_giocatori)</p></div></p><p id="94dfc309-6616-47ab-afd2-06cec126a9c5" class="">FINE</p></div></details><hr id="3dc9763e-329f-45cb-ba6b-bfeea951186a"/><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0"><strong>Funzione leggere_indice_giocatore_di_turno_record_partita</strong></summary><div class="indented"><p id="4ca3a275-057a-453d-afed-358e80e9e3be" class="">Legge l&#x27;indice del giocatore di turno della partita.</p><p id="b1932fdd-be06-4c08-bb8a-2ccabd975bc3" class="">INPUT<br/>partita, partita di cui leggere l&#x27;indice del giocatore di turno, record_partita<br/></p><p id="10588876-2190-4d19-bf1d-b2b920e4b8bd" class="">OUTPUT<br/>indice_giocatore_di_turno, indice del giocatore di turno della partita, NUMERO_MINIMO_GIOCATORI≤intero≤dimensione di vet_giocatori<br/></p><p id="6bd79acd-e290-4d47-b949-f70457a7044e" class="">ALGORITMO<br/>INIZIO<br/><div class="indented"><p id="7643fd7e-c60c-436b-b074-577d78e95378" class="">indice_giocatore_di_turno = elemento del campo indice_giocatore_di_turno di partita</p></div></p><p id="1792d00a-467c-4e97-8412-13d9f92915a4" class="">FINE</p></div></details><hr id="d9c75e29-447e-4836-81e5-4881378d410c"/><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0"><strong>Funzione scrivere_indice_giocatore_di_turno_record_partita</strong></summary><div class="indented"><p id="8477a2d7-50aa-4d9f-98b1-7f241a69b90a" class="">Scrive l&#x27;indice del giocatore di turno della partita.</p><p id="43cc77a8-3918-43c5-bb06-deb8164c4ced" class="">INPUT<br/>partita, partita di cui scrivere l&#x27;indice del giocatore di turno, record_partita<br/>indice_giocatore_di_turno, nuovo indice del giocatore di turno della partita, NUMERO_MINIMO_GIOCATORI≤intero≤dimensione di vet_giocatori<br/></p><p id="d2b09abb-18cb-4326-9187-7d6cda4b747f" class="">OUTPUT<br/>partita, partita con il nuovo indice del giocatore di turno, record_partita<br/></p><p id="cc703828-54be-4b74-a793-c6c0b533088b" class="">ALGORITMO<br/>INIZIO<br/><div class="indented"><p id="77aab6e7-b102-491c-9669-aabac4f27101" class="">elemento del campo indice_giocatore_di_turno di partita = indice_giocatore_di_turno</p></div></p><p id="eb7876d2-61d5-4650-9140-1991b8d7e8cd" class="">FINE</p></div></details><hr id="b8ed9982-e1ce-4bff-9997-25542f0fc463"/><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0"><strong>Funzione leggere_terminata_record_partita</strong></summary><div class="indented"><p id="37eb2454-128f-45e2-8574-962839f0e380" class="">Legge lo stato della partita (terminata o meno).</p><p id="754add11-a7c4-4303-a078-32bb7c52e656" class="">INPUT<br/>partita, partita di cui leggere lo stato, record_partita<br/></p><p id="bc3c4a87-cf56-43ec-9c82-09d6f3129b18" class="">OUTPUT<br/>terminata, stato della partita (vero se è terminata, falso altrimenti), booleano<br/></p><p id="9765f742-9e20-470c-8e62-b7f9030756e8" class="">ALGORITMO<br/>INIZIO<br/><div class="indented"><p id="a43cc0b9-8125-4954-9114-6bd975f607da" class="">terminata = elemento del campo terminata di partita</p></div></p><p id="d7244a7b-2d01-4db3-9537-590b20bd636e" class="">FINE</p></div></details><hr id="1b669045-9bc0-4e50-be89-82936cb6b326"/><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0"><strong>Funzione leggere_terminata_record_partita</strong></summary><div class="indented"><p id="85124a9e-d94a-44e4-bd78-33e8c0bc74c4" class="">Legge il valore di &quot;terminata&quot; dal record &quot;record_partita&quot;.</p><p id="bff3bc2c-516b-4a6a-8592-15e3e47710eb" class="">INPUT<br/>partita, record della partita, record_partita<br/></p><p id="a7023917-79b9-4724-839d-d6cc6b1e8ef7" class="">OUTPUT<br/>terminata, indica se la partita è terminata, booleano<br/></p><p id="45c2cded-f7c3-4471-8d5f-8f8b1352e2e7" class="">ALGORITMO<br/>INIZIO<br/><div class="indented"><p id="e73b1921-71fc-4395-a5c3-d19ce3f73cca" class="">terminata = elemento del campo terminata di partita</p></div></p><p id="18ed00db-2b2e-41fb-b975-e910f8b858cf" class="">FINE</p></div></details><hr id="8b4aae7b-94f3-4a42-b417-f9b31d8002f9"/><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0"><strong>Funzione scrivere_terminata_record_partita</strong></summary><div class="indented"><p id="b1e92408-e505-48a7-b3af-b3c4f08e7244" class="">Scrive il valore di &quot;terminata&quot; nel record &quot;record_partita&quot;.</p><p id="51d130b3-0f9b-4ee6-8fe6-91a2cffdeff6" class="">INPUT<br/>partita, record della partita, record_partita<br/>terminata, indica se la partita è terminata, booleano<br/></p><p id="3470ff55-1f60-41e3-862c-6ee8e7a30c07" class="">OUTPUT<br/>partita, record della partita con il valore di &quot;terminata&quot; aggiornato, record_partita<br/></p><p id="50ca9e5e-28d3-41d1-a037-9391846956b9" class="">ALGORITMO<br/>INIZIO<br/><div class="indented"><p id="8e8fbad4-6815-4156-8a09-977396aa68e9" class="">elemento del campo terminata di partita = terminata</p></div></p><p id="2cd316ba-5440-4b01-a132-677cca54f311" class="">FINE</p></div></details><hr id="25c9c162-56b9-4cdc-87a7-1c1c641820a5"/><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0">Funzione leggere_ultimo_lancio_dado_1_record_partita</summary><div class="indented"><p id="308e2ca6-2190-4877-8251-ba0037aaeb5b" class="">Legge l&#x27;ultimo lancio del primo dado effettuato dal giocatore.</p><p id="90b28dbd-e471-4e74-90b6-c3c2235c21bd" class="">INPUT<br/>partita, partita di cui leggere l&#x27;ultimo lancio del primo dado, record_partita<br/></p><p id="6d5022b9-6771-4c4f-8a4a-f4e8378017ee" class="">OUTPUT<br/>ultimo_lancio_dado_1, ultimo lancio del primo dado effettuato dal giocatore, NUMERO_MINIMO_DADO≤intero≤NUMERO_MASSIMO_DADO<br/></p><p id="010d903c-3529-41d8-a799-ba032c184a75" class="">ALGORITMO<br/>INIZIO<br/><div class="indented"><p id="87f5bfab-da09-42b9-b11a-d884c4aebde5" class="">ultimo_lancio_dado_1 = campo ultimo_lancio_dado_1 di partita</p></div></p><p id="f53169f1-619d-4ad3-833a-83e3f1667484" class="">FINE</p></div></details><hr id="69752068-0a57-43db-a0d7-3f2515caef81"/><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0">Funzione scrivere_ultimo_lancio_dado_1_record_partita</summary><div class="indented"><p id="fc917913-f064-4894-befd-57ad17bbd0e2" class="">Scrive l&#x27;ultimo lancio del primo dado effettuato dal giocatore.</p><p id="19b79378-1374-4a5a-836d-8dc8394f25f2" class="">INPUT<br/>partita, partita di cui scrivere l&#x27;ultimo lancio del primo dado, record_partita<br/>ultimo_lancio_dado_1, nuovo valore dell&#x27;ultimo lancio del primo dado effettuato dal giocatore, NUMERO_MINIMO_DADO≤intero≤NUMERO_MASSIMO_DADO<br/></p><p id="b1c09216-9c7a-48d6-af7d-24b3444787eb" class="">OUTPUT<br/>partita, partita con il nuovo valore dell&#x27;ultimo lancio del primo dado, record_partita<br/></p><p id="0ca97818-23d0-44dd-9bdb-6bc7bdb5641d" class="">ALGORITMO<br/>INIZIO<br/><div class="indented"><p id="60b6ce3d-fa2e-4bda-b22b-12327babb1ca" class="">campo ultimo_lancio_dado_1 di partita = ultimo_lancio_dado_1</p></div></p><p id="18e284bf-870b-44b4-a677-defb4ab1e82a" class="">FINE</p></div></details><hr id="cfff2dea-67b9-4a1e-b519-f60b0385a65c"/><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0">Funzione leggere_ultimo_lancio_dado_2_record_partita</summary><div class="indented"><p id="4852a323-7171-425c-9c6f-ca0b64499897" class="">Legge l&#x27;ultimo lancio del secondo dado effettuato dal giocatore.</p><p id="00475770-d470-4e74-a137-8513e98d8b72" class="">INPUT<br/>partita, partita di cui leggere l&#x27;ultimo lancio del secondo dado, record_partita<br/></p><p id="f8d59405-7597-4a38-81bf-11e5424f0da0" class="">OUTPUT<br/>ultimo_lancio_dado_2, ultimo lancio del secondo dado effettuato dal giocatore, NUMERO_MINIMO_DADO≤intero≤NUMERO_MASSIMO_DADO<br/></p><p id="acd353a9-8bdc-470b-9d22-2d87b664eb6f" class="">ALGORITMO<br/>INIZIO<br/><div class="indented"><p id="d7c47a81-7312-4e81-9f0f-9c702b95282b" class="">ultimo_lancio_dado_2 = campo ultimo_lancio_dado_2 di partita</p></div></p><p id="385db5e9-427c-4d5a-8ca0-a67494132f95" class="">FINE</p></div></details><hr id="7a607f9a-f4fb-4f8d-a9fc-b128e02ccfca"/><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0">Funzione scrivere_ultimo_lancio_dado_2_record_partita</summary><div class="indented"><p id="ae11fba5-4793-49d3-95dc-61e941cc00dc" class="">Scrive l&#x27;ultimo lancio del secondo dado effettuato dal giocatore.</p><p id="a63169e9-4089-4ddc-be7e-cb4ea39ae76e" class="">INPUT<br/>partita, partita di cui scrivere l&#x27;ultimo lancio del secondo dado, record_partita<br/>ultimo_lancio_dado_2, nuovo valore dell&#x27;ultimo lancio del secondo dado effettuato dal giocatore, NUMERO_MINIMO_DADO≤intero≤NUMERO_MASSIMO_DADO<br/></p><p id="05953b43-d923-4a70-bd0a-367f380ed006" class="">OUTPUT<br/>partita, partita con il nuovo valore dell&#x27;ultimo lancio del secondo dado, record_partita<br/></p><p id="7fac842b-30ed-48c8-a425-2607bbfaea89" class="">ALGORITMO<br/>INIZIO<br/><div class="indented"><p id="ed1bb004-e784-45f8-a18c-6b8b264af0e0" class="">campo ultimo_lancio_dado_2 di partita = ultimo_lancio_dado_2</p></div></p><p id="a97ef4d4-1bdc-47fe-bd49-01c27742852b" class="">FINE</p></div></details><hr id="a3c4e37e-6e7f-46e9-8fd7-a3157fef7500"/><p id="6474efce-c437-4b70-aa32-aa93fc79b114" class="">
+</p><p id="b23fe853-a912-44c8-b125-4f4e7494f70c" class="">
+</p></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>

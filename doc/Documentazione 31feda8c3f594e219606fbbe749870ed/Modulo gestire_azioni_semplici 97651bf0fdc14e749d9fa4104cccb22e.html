@@ -1,0 +1,682 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Modulo gestire_azioni_semplici</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+	margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(50, 48, 44, 1);
+}
+.highlight-gray {
+	color: rgba(115, 114, 110, 1);
+	fill: rgba(115, 114, 110, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(205, 60, 58, 1);
+	fill: rgba(205, 60, 58, 1);
+}
+.highlight-default_background {
+	color: rgba(50, 48, 44, 1);
+}
+.highlight-gray_background {
+	background: rgba(248, 248, 247, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(248, 243, 252, 1);
+}
+.highlight-pink_background {
+	background: rgba(252, 241, 246, 1);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(115, 114, 110, 1);
+	fill: rgba(115, 114, 110, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(205, 60, 58, 1);
+	fill: rgba(205, 60, 58, 1);
+}
+.block-color-default_background {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray_background {
+	background: rgba(248, 248, 247, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(248, 243, 252, 1);
+}
+.block-color-pink_background {
+	background: rgba(252, 241, 246, 1);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-default { background-color: rgba(84, 72, 49, 0.08); }
+.select-value-color-gray { background-color: rgba(84, 72, 49, 0.15); }
+.select-value-color-brown { background-color: rgba(210, 162, 141, 0.35); }
+.select-value-color-orange { background-color: rgba(224, 124, 57, 0.27); }
+.select-value-color-yellow { background-color: rgba(236, 191, 66, 0.39); }
+.select-value-color-green { background-color: rgba(123, 183, 129, 0.27); }
+.select-value-color-blue { background-color: rgba(93, 165, 206, 0.27); }
+.select-value-color-purple { background-color: rgba(168, 129, 197, 0.27); }
+.select-value-color-pink { background-color: rgba(225, 136, 179, 0.27); }
+.select-value-color-red { background-color: rgba(244, 171, 159, 0.4); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="97651bf0-fdc1-4e74-9d9f-a4104cccb22e" class="page sans"><header><h1 class="page-title">Modulo gestire_azioni_semplici</h1><p class="page-description"></p></header><div class="page-body"><hr id="ab54d4f4-8fb3-4d49-af29-d0fc687c03a3"/><nav id="258d2869-8221-491e-895a-d7b0a723245f" class="block-color-gray table_of_contents"><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#953b2fed-7bef-4593-bd93-118d324a4050">Descrizione</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#817f87ec-e355-4f86-b926-40e0d074d1ea">Costanti</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#25cc10d6-07ab-4fbf-98eb-b9aa4ec4d359">Funzione chiedere_intero</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#431048c4-1351-4225-8913-d335aa2b07bb">Funzione calcolare_proporzione</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#ade0c3b8-5edd-4d14-b686-8d0f8d99aaae">Funzione stampare_riga_vuota</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#0b812210-88b2-4664-9b76-9784f26524a4">Funzione copiare_stringa</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#515ffb12-4a38-4c43-922e-e3f3294e105b">Funzione trovare_parte_intera</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#5f1d2e93-9a9f-461c-bb3f-632122421502">Funzione ottenere_riga_cursore</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#232e0f71-078d-4bf0-af47-0909858d5b34">Funzione ottenere_colonna_cursore</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#4a167f1e-4a06-45c4-95a2-f26b27b5bb3f">Funzione calcolare_resto </a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#33a3e758-3b19-4c9d-89dd-7a8b57a1aaed">Funzione generare_numero_casuale</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#40c4bb4a-7fb1-482b-ba38-e27cde7a1a99">Funzione calcolare_lunghezza_stringa</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#f0deda99-3393-40e6-9cd2-8bdd97434d21">Funzione comparare_stringa</a></div></nav><hr id="3f14c14f-7603-48a4-a7c2-16a9b3dc61de"/><h2 id="953b2fed-7bef-4593-bd93-118d324a4050" class="">Descrizione</h2><p id="5440de7a-0fb5-4393-8729-70d3d8f21d99" class="">Contiene tutte le azioni semplici.</p><hr id="7373b95a-663f-4559-96c8-3ebc27eb06f6"/><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0">Costanti</summary><div class="indented"><table id="5a29219d-31bc-4b65-8a50-2758515d0c8f" class="simple-table"><thead class="simple-table-header"><tr id="d2665586-3a20-4818-8134-90f1072e8091"><th id="G\;X" class="simple-table-header-color simple-table-header" style="width:202.65625px">Nome</th><th id="GR[=" class="simple-table-header-color simple-table-header" style="width:239.65625px">Descrizione</th><th id="_KQ:" class="simple-table-header-color simple-table-header" style="width:262.6704406738281px">Valore</th></tr></thead><tbody><tr id="f14e4818-bbca-4b3c-8b7e-7b802820515c"><td id="G\;X" class="" style="width:202.65625px">MESSAGGIO_ERRORE</td><td id="GR[=" class="" style="width:239.65625px">messaggio di errore per la richiesta dell’intero”</td><td id="_KQ:" class="" style="width:262.6704406738281px">“Il valore deve essere compreso tra e, riprova.”</td></tr><tr id="e8cf0e62-8565-4078-941c-d971cca96ca1"><td id="G\;X" class="" style="width:202.65625px">CARATTERE_SPAZIO_VUOTO</td><td id="GR[=" class="" style="width:239.65625px">carattere che rappresenta lo spazioe vuoto</td><td id="_KQ:" class="" style="width:262.6704406738281px"> ‘ ‘</td></tr></tbody></table><hr id="b1dc808e-1d1b-4563-a29f-f0d49d16f167"/></div></details><hr id="5d61efc8-6673-4560-bc12-f25459c4d61f"/><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0">Funzione chiedere_intero</summary><div class="indented"><p id="beb2ad76-2ad6-4c58-9b47-0bd72bf8aaaa" class="">Richiede all&#x27;utente un numero intero e si assicura che sia compreso tra il valore minimo consentito e il valore massimo consentito.</p><h2 id="88448635-5b88-4e3e-be8d-b01643066ed0" class="">INPUT</h2><table id="60bce7f0-0786-4e17-9550-54e91e868d26" class="simple-table"><thead class="simple-table-header"><tr id="5050c5b2-2ff9-4070-a5b9-07e0dc04cb7b"><th id="G\;X" class="simple-table-header-color simple-table-header" style="width:222.6836954752604px">Nome</th><th id="GR[=" class="simple-table-header-color simple-table-header" style="width:222.6836954752604px">Descrizione</th><th id="_KQ:" class="simple-table-header-color simple-table-header" style="width:214.67044067382812px">Tipo/vincoli</th></tr></thead><tbody><tr id="f9c8c4ad-f0c5-400b-bc15-e969329164ff"><td id="G\;X" class="" style="width:222.6836954752604px">messaggio</td><td id="GR[=" class="" style="width:222.6836954752604px">messaggio da stampare a video all&#x27;utente al momento della richiesta del numero</td><td id="_KQ:" class="" style="width:214.67044067382812px">array a 1 dimensione di caratteri <br/><br/></td></tr><tr id="46ee02a6-2e2b-42ee-a4d8-a85cfe2050ee"><td id="G\;X" class="" style="width:222.6836954752604px">valore_minimo</td><td id="GR[=" class="" style="width:222.6836954752604px">valore minimo consentito del numero che inserisce l&#x27;utente</td><td id="_KQ:" class="" style="width:214.67044067382812px">intero≤valore_massimo</td></tr><tr id="ef905397-982c-4037-9b9d-e001d63655bf"><td id="G\;X" class="" style="width:222.6836954752604px">valore_massimo</td><td id="GR[=" class="" style="width:222.6836954752604px">valore massimo consentito del numero che inserisce l&#x27;utente</td><td id="_KQ:" class="" style="width:214.67044067382812px">valore_minimo≤intero</td></tr><tr id="dd3809db-5e13-4c31-bfb5-821fc9a2d62f"><td id="G\;X" class="" style="width:222.6836954752604px">riga</td><td id="GR[=" class="" style="width:222.6836954752604px">coordinata x dello schermo in cui iniziare a stampare</td><td id="_KQ:" class="" style="width:214.67044067382812px">intero≥0</td></tr><tr id="30fdef81-cedf-4fd2-8579-883621d237d1"><td id="G\;X" class="" style="width:222.6836954752604px">colonna</td><td id="GR[=" class="" style="width:222.6836954752604px">coordinata y dello schermo in cui iniziare a stampare</td><td id="_KQ:" class="" style="width:214.67044067382812px">intero≥0</td></tr><tr id="6bd799a6-81d8-49d6-9981-e3eb8e023dac"><td id="G\;X" class="" style="width:222.6836954752604px"><mark class="highlight-yellow_background">NUMERO_COLONNA_MASSIMA</mark></td><td id="GR[=" class="" style="width:222.6836954752604px">colonna finale dello schermo</td><td id="_KQ:" class="" style="width:214.67044067382812px">intero&gt;0</td></tr></tbody></table><h2 id="25c75a49-71e7-48a1-af0c-debaa2b98584" class="">OUTPUT</h2><table id="1425e591-675e-4844-b93d-6f0999d39cd7" class="simple-table"><thead class="simple-table-header"><tr id="3c297bf9-24a7-4414-9ea2-5ebe7b2cd833"><th id="G\;X" class="simple-table-header-color simple-table-header" style="width:82.67044067382812px">Nome</th><th id="GR[=" class="simple-table-header-color simple-table-header" style="width:267.66192626953125px">Descrizione</th><th id="_KQ:" class="simple-table-header-color simple-table-header" style="width:262.6704406738281px">Tipo/vincoli</th></tr></thead><tbody><tr id="f6193491-5cce-48af-b20a-c569cb454f7b"><td id="G\;X" class="" style="width:82.67044067382812px">num</td><td id="GR[=" class="" style="width:267.66192626953125px">numero compreso tra valore_minimo e valore_massimo</td><td id="_KQ:" class="" style="width:262.6704406738281px">valore_minimo≤intero≤valore_massimo</td></tr></tbody></table><h2 id="2979a09c-6ef2-4e5e-8598-25aa1d97238a" class="">ALGORITMO</h2><p id="b29d7270-a9be-47d7-8b99-2ef3f81984a2" class=""><mark class="highlight-yellow_background">INIZIO</mark></p><p id="fa7411c2-e531-4265-9523-72c8e2d7226d" class=""><mark class="highlight-yellow_background">spostare_cursore(colonna, riga)</mark></p><p id="9ccb2186-4f8c-418a-b4aa-f4a03e40f1ea" class=""><mark class="highlight-yellow_background">stampare_a_video(messaggio)</mark></p><p id="57d9c2b4-dbc9-44fc-afd9-0bf59503d3ff" class=""><mark class="highlight-yellow_background">num = leggere_da_tastiera()</mark></p><p id="93ec2a9f-6e09-4bb4-b39e-0256aef5cc0e" class=""><mark class="highlight-yellow_background">riga_errore = ottenore_riga_cursore()</mark></p><p id="d1aa0a1d-15c6-4dbf-8f12-cb044d0dd2bf" class=""><mark class="highlight-yellow_background">FINCHE(num &lt; valore_minimo OR num &gt; valore_massimo)</mark><div class="indented"><p id="d486463b-b1da-4e25-b9e0-c488e6160592" class=""><mark class="highlight-yellow_background">stampare_a_video(MESSAGGIO_ERRORE)</mark></p><p id="a0a42ee1-20d0-481a-a36b-080aa0670b9e" class=""><mark class="highlight-yellow_background">stampare_a_video(valore_minimo)</mark></p><p id="26ec7ff7-d310-42c5-9778-4fa9e54da8b2" class=""><mark class="highlight-yellow_background">stampare_a_video(valore_massimo)</mark></p><p id="b20459b2-92da-47fd-a2e4-8550cd98bee3" class=""><mark class="highlight-yellow_background">spostare_cursore(colonna, riga)</mark></p><p id="211dfca7-8c85-4eb7-9b18-94a17513b6fa" class="">
+</p><p id="b89948af-81f2-4de6-8ed2-5112a6625f99" class=""><mark class="highlight-yellow_background">stampare_a_video(messaggio)</mark></p><p id="bab954eb-d610-40ac-9562-6e9648538497" class=""><mark class="highlight-yellow_background">num=chiedere_intero()</mark></p></div></p><p id="ef76518e-754f-492b-a855-a875e5dbec64" class=""><mark class="highlight-yellow_background">FINE</mark></p><p id="1e6588ec-b153-46f3-8ad5-d5c21257d277" class=""><mark class="highlight-yellow_background">stampare_riga_vuota(riga_errore, NUMERO_COLONNA_MASSIMA)</mark></p><p id="77c47dc4-cb53-4d0b-b293-70cbda7e67c6" class=""><mark class="highlight-yellow_background">FINE</mark></p></div></details><hr id="c1758db8-89a7-4d4b-b712-891b2e773252"/><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0">Funzione calcolare_proporzione</summary><div class="indented"><p id="45042e08-ae4d-42d7-894d-a51fff9133a6" class="">Calcola il medio destro di una proporzione:</p><p id="4de11ee0-6427-43a1-9be9-0cab50fc2467" class="">n1/d1=n2/d2  n2: incognita (x).</p><h2 id="dd666ecb-c312-4527-9def-10cf5ec3c0f4" class="">INPUT</h2><table id="a283bf61-dea1-4fe6-b3f1-468fb6b11175" class="simple-table"><thead class="simple-table-header"><tr id="27b4ecac-01cb-4ed2-a4fe-97f51ba89c5a"><th id="G\;X" class="simple-table-header-color simple-table-header" style="width:232.66949462890625px">Nome</th><th id="GR[=" class="simple-table-header-color simple-table-header" style="width:232.66949462890625px">Descrizione</th><th id="_KQ:" class="simple-table-header-color simple-table-header" style="width:232.66949462890625px">Tipo/vincoli</th></tr></thead><tbody><tr id="39186239-5dd3-49d7-86b4-07ddac3c160d"><td id="G\;X" class="" style="width:232.66949462890625px">n_1</td><td id="GR[=" class="" style="width:232.66949462890625px">estremo sinistro della proporzione</td><td id="_KQ:" class="" style="width:232.66949462890625px">intero≠0</td></tr><tr id="3538d3bd-5b6a-4847-8449-e801c0be91a1"><td id="G\;X" class="" style="width:232.66949462890625px">d_1</td><td id="GR[=" class="" style="width:232.66949462890625px">medio sinistro della proporzione</td><td id="_KQ:" class="" style="width:232.66949462890625px">intero≠0</td></tr><tr id="24612e36-96b7-4f8d-8d38-f3f6af4f03f5"><td id="G\;X" class="" style="width:232.66949462890625px">d_2</td><td id="GR[=" class="" style="width:232.66949462890625px">estremo destro della proporzione</td><td id="_KQ:" class="" style="width:232.66949462890625px">intero≠0</td></tr></tbody></table><h2 id="93c439c7-7e96-4ce5-9bee-7c450a235cbf" class="">OUTPUT</h2><table id="24ab39a0-3742-4011-874e-8eb4b8036f6a" class="simple-table"><thead class="simple-table-header"><tr id="9357679c-4f77-4679-bbea-e18566809bc7"><th id="G\;X" class="simple-table-header-color simple-table-header" style="width:232.66949462890625px">Nome</th><th id="GR[=" class="simple-table-header-color simple-table-header" style="width:232.66949462890625px">Descrizione</th><th id="_KQ:" class="simple-table-header-color simple-table-header" style="width:232.66949462890625px">Tipo/vincoli</th></tr></thead><tbody><tr id="823648b7-2ee5-4815-80bd-64621a8062fa"><td id="G\;X" class="" style="width:232.66949462890625px">n_2</td><td id="GR[=" class="" style="width:232.66949462890625px">parte intera dell&#x27;incognita della proporzione, che corrisponde al medio destro della proporzione</td><td id="_KQ:" class="" style="width:232.66949462890625px">intero≠0</td></tr></tbody></table><h2 id="305aede8-f779-4d65-911f-5ac6862a268e" class="">DATI DI LAVORO</h2><table id="f542ef08-5c5f-4b82-bf1f-e6d91c1daa2a" class="simple-table"><thead class="simple-table-header"><tr id="e512c064-d4ee-49cd-b1ab-f7658a7e1083"><th id="G\;X" class="simple-table-header-color simple-table-header" style="width:232.66949462890625px">Nome</th><th id="GR[=" class="simple-table-header-color simple-table-header" style="width:232.66949462890625px">Descrizione</th><th id="_KQ:" class="simple-table-header-color simple-table-header" style="width:232.66949462890625px">Tipo/vincoli</th></tr></thead><tbody><tr id="a63898e0-d48d-4bea-aa5f-277eccdb1324"><td id="G\;X" class="" style="width:232.66949462890625px">x</td><td id="GR[=" class="" style="width:232.66949462890625px">incognita della proporzione</td><td id="_KQ:" class="" style="width:232.66949462890625px">reale</td></tr></tbody></table><h2 id="d06f8b65-3cdd-43b1-9840-5b26b2933c3f" class="">ALGORITMO</h2><p id="9f71fb3a-85f2-4e84-b01a-72d3f6e03e92" class="">INIZIO<br/>    x=n_1*d_2/d_1<br/>    n_2=trovare_parte_intera(x)<br/>FINE<br/></p></div></details><hr id="d1f93138-fe75-4740-b784-bd80d5ee8eff"/><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0">Funzione stampare_riga_vuota</summary><div class="indented"><h2 id="fffa7095-1ea7-4ff5-a23d-f0e05bc049aa" class="">INPUT</h2><table id="eb01fff9-eb51-4d21-b537-d9fd7fde3a83" class="simple-table"><thead class="simple-table-header"><tr id="de42305b-ef32-4a7a-b080-9c514b43823c"><th id="G\;X" class="simple-table-header-color simple-table-header" style="width:232.66949462890625px">Nome</th><th id="GR[=" class="simple-table-header-color simple-table-header" style="width:232.66949462890625px">Descrizione</th><th id="_KQ:" class="simple-table-header-color simple-table-header" style="width:232.66949462890625px">Tipo/vincoli</th></tr></thead><tbody><tr id="f74a685d-f53f-40ca-bdc6-d30c48b15ee9"><td id="G\;X" class="" style="width:232.66949462890625px">riga</td><td id="GR[=" class="" style="width:232.66949462890625px">riga in cui stampare la riga vota</td><td id="_KQ:" class="" style="width:232.66949462890625px">intero&gt;0</td></tr><tr id="637d0666-afd5-48b4-95d9-829a36d443f5"><td id="G\;X" class="" style="width:232.66949462890625px">numero_colonna_massima</td><td id="GR[=" class="" style="width:232.66949462890625px">ultima colonna dello schermo</td><td id="_KQ:" class="" style="width:232.66949462890625px">intero&gt;0</td></tr><tr id="d807bfe8-a2b8-4e51-8fe5-b7bfeaa43d77"><td id="G\;X" class="" style="width:232.66949462890625px"><mark class="highlight-yellow_background">PRIMA_COORDINATA_SCHERMO</mark></td><td id="GR[=" class="" style="width:232.66949462890625px">prima coordinata dello schermo</td><td id="_KQ:" class="" style="width:232.66949462890625px">1</td></tr></tbody></table><h2 id="f84a2188-6dc9-4c00-86d6-4a756829de86" class="">DATI DI LAVORO</h2><table id="00b4ed3b-3e81-4db0-bced-b08e720deb1a" class="simple-table"><thead class="simple-table-header"><tr id="b02508bf-474a-48cb-928d-7b5a3f97abf4"><th id="G\;X" class="simple-table-header-color simple-table-header" style="width:232.66949462890625px">Nome</th><th id="GR[=" class="simple-table-header-color simple-table-header" style="width:232.66949462890625px">Descrizione</th><th id="_KQ:" class="simple-table-header-color simple-table-header" style="width:232.66949462890625px">Tipo/vincoli</th></tr></thead><tbody><tr id="a67e258f-7ed7-4815-bf62-1a1c61e86e0a"><td id="G\;X" class="" style="width:232.66949462890625px">colonna</td><td id="GR[=" class="" style="width:232.66949462890625px">colonna in cui sta stampando</td><td id="_KQ:" class="" style="width:232.66949462890625px">intero&gt;0</td></tr></tbody></table><h2 id="e802925f-a9c0-4891-b71b-c6ff50a8a5b6" class="">ALGORITMO</h2><p id="c7136ae3-aefc-44bc-a23d-3c2feb1f7c2e" class=""><mark class="highlight-yellow_background">INIZIO</mark><div class="indented"><p id="832a8ade-4886-434a-8e40-8316ca1d6690" class=""><mark class="highlight-yellow_background">colonna = PRIMA_COORDINATA_SCHERMO</mark></p><p id="e8357213-0dca-4c96-b55c-a5fb47c2507f" class=""><mark class="highlight-yellow_background">spostare_cursore(colonna, riga)</mark></p></div></p><p id="26b1dcd8-1013-45aa-80b9-343fed8b7749" class=""><mark class="highlight-yellow_background">MENTRE(colonna≤numero_colonna_masssima)</mark><div class="indented"><p id="a0bdc599-df3b-4311-ba76-eb4ea8c38dad" class=""><mark class="highlight-yellow_background">stampare_a_video(CARATTERE_SPAZIO_VUOTO)</mark></p><p id="fecebbbc-9ce9-42ba-955b-91eac6630d67" class=""><mark class="highlight-yellow_background">colonna = colonna + 1</mark></p></div></p><p id="e98e6297-3ed8-4172-90e7-8c35dc424f8a" class=""><mark class="highlight-yellow_background">FINE</mark></p><p id="c8f8a0b0-7449-4291-877e-b99243de7506" class=""><mark class="highlight-yellow_background">FINE</mark></p></div></details><hr id="b6096216-b869-4369-86f7-83c704c1cdf8"/><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0">Funzione copiare_stringa</summary><div class="indented"><p id="108c5639-3f63-4af4-91a3-81a4c20b6a28" class="">Copia la stringa indicata come secondo input nella stringa indicata come primo input.</p><h2 id="cd64fd5d-05a1-4b46-9d5b-89e756c66129" class="">INPUT</h2><table id="01c10849-bd53-45f4-93fd-6fe857220d68" class="simple-table"><thead class="simple-table-header"><tr id="4f236f6e-05c0-4853-b6eb-5b811edfe6c4"><th id="aM`z" class="simple-table-header-color simple-table-header">Nome</th><th id="=He=" class="simple-table-header-color simple-table-header">Descrizione</th><th id="SMN_" class="simple-table-header-color simple-table-header">Tipo/vincoli</th></tr></thead><tbody><tr id="4658e676-fd9d-4735-a1a5-2eacbb0cd9a3"><td id="aM`z" class="">stringa_in_cui_copiare</td><td id="=He=" class="">stringa in cui copiare i caratteri di stringa_da_copiare</td><td id="SMN_" class="">array a 1 dimensione di caratteri terminato dal carattere FINE_STRINGA di dimensione ≥ dimensione di stringa_da_copiare</td></tr><tr id="17eb0f18-60a8-4fff-a42e-c8677d2262d9"><td id="aM`z" class="">stringa_da_copiare</td><td id="=He=" class="">stringa da cui copiare i caratteri da scrivere in stringa_in_cui_copiare</td><td id="SMN_" class="">array a 1 dimensione di caratteri terminato dal carattere FINE_STRINGA</td></tr></tbody></table><h2 id="0900b18f-d054-4acc-85df-6c81b765bbc2" class="">OUTPUT</h2><table id="60e3aea5-0662-44a7-bcac-f6dbb4f9835c" class="simple-table"><thead class="simple-table-header"><tr id="ca4d560d-938e-4985-8ed0-e8faccc9968d"><th id="NwFE" class="simple-table-header-color simple-table-header">Nome</th><th id="_qkg" class="simple-table-header-color simple-table-header">Descrizione</th><th id="Y\C@" class="simple-table-header-color simple-table-header">Tipo/vincoli</th></tr></thead><tbody><tr id="23969d18-3505-4bd9-9470-b9e4799dc7fb"><td id="NwFE" class="">stringa_in_cui_copiare</td><td id="_qkg" class="">stringa con caratteri di stringa_da_copiare copiati</td><td id="Y\C@" class="">array a 1 dimensione di caratteri terminato dal carattere FINE_STRINGA</td></tr></tbody></table><h2 id="5defd4fc-628a-4f94-b32b-1b17c3989169" class="">LAVORO</h2><table id="b8afd56a-4792-4d3e-9189-2086dec0367e" class="simple-table"><thead class="simple-table-header"><tr id="e84814b2-90fe-4e7d-9d39-b8b39a8fb1d5"><th id="y~:l" class="simple-table-header-color simple-table-header">Nome</th><th id="gLqg" class="simple-table-header-color simple-table-header">Descrizione</th><th id="qMig" class="simple-table-header-color simple-table-header">Tipo/vincoli</th></tr></thead><tbody><tr id="ebdb2e34-830a-46db-b596-6f7d069394cb"><td id="y~:l" class="">i</td><td id="gLqg" class="">indice delle stringhe</td><td id="qMig" class="">PRIMO_INDICE_STRINGA≤intero ≤dimensione di stringa_da_copiare</td></tr></tbody></table><h2 id="94838a31-bdec-4df5-bf93-44a67c48f7b5" class="">ALGORITMO</h2><p id="0b36d751-9322-418d-a01e-1cbb6080d762" class="">INIZIO<div class="indented"><p id="478826ee-973f-4874-89b1-937780aefa0c" class="">i = PRIMO_INDICE_STRINGA</p><p id="1b80daee-4a77-4bba-90e7-f8b511cd5a11" class="">MENTRE (stringa_da_copiare in posizione i != FINE_STRINGA)<div class="indented"><p id="36459243-af11-413c-8283-dc2ee88cde6b" class="">stringa_in_cui_copiare in posizione i = stringa_da_copiare in posizione i</p></div></p><p id="898646a2-8ad6-4520-b081-e71747d7796b" class="">i = i + 1</p><p id="c42d4a05-e127-434c-b770-6e8cb23e8662" class="">FINE</p><p id="c16c1dc9-13b5-4e83-b838-046b6fb78052" class="">stringa_in_cui_copiare in posizione i = FINE_STRINGA</p></div></p><p id="5e555352-b705-40e6-9cfa-12ca08e2ddfc" class="">FINE</p></div></details><hr id="27dd62e5-cc16-4837-a276-e59768f6ab3b"/><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0">Funzione trovare_parte_intera</summary><div class="indented"><p id="680c28b1-6bc8-4be1-a242-92bb17924b80" class="">Seleziona la parte intera di un numero reale.</p><h2 id="e9b8e640-600d-4383-8d20-0e7409eb4049" class="">INPUT</h2><table id="48053a08-d933-4fd6-84ac-301560cd675c" class="simple-table"><thead class="simple-table-header"><tr id="f6b8163e-6ca0-44d5-b759-a1abcc83f5a4"><th id="G\;X" class="simple-table-header-color simple-table-header" style="width:67.65623474121094px">Nome</th><th id="GR[=" class="simple-table-header-color simple-table-header" style="width:176.65623474121094px">Descrizione</th><th id="_KQ:" class="simple-table-header-color simple-table-header" style="width:232.66949462890625px">Tipo/vincoli</th></tr></thead><tbody><tr id="681c99c1-b467-48ea-bb1a-d994996b9d80"><td id="G\;X" class="" style="width:67.65623474121094px">x</td><td id="GR[=" class="" style="width:176.65623474121094px">numero reale di cui prendere la parte intera</td><td id="_KQ:" class="" style="width:232.66949462890625px">reale≥0</td></tr></tbody></table><h2 id="07c3736c-e1c0-4ffe-a450-1273951866be" class="">OUTPUT</h2><table id="0108b439-0d23-42e2-b099-b4caa0be2e70" class="simple-table"><thead class="simple-table-header"><tr id="9b85ade5-76f7-4241-8d89-12379fafb435"><th id="G\;X" class="simple-table-header-color simple-table-header" style="width:70.65623474121094px">Nome</th><th id="GR[=" class="simple-table-header-color simple-table-header" style="width:130.65623474121094px">Descrizione</th><th id="_KQ:" class="simple-table-header-color simple-table-header" style="width:232.66949462890625px">Tipo/vincoli</th></tr></thead><tbody><tr id="dda0e1d6-c949-41ce-9956-ee522eb51bfd"><td id="G\;X" class="" style="width:70.65623474121094px">n</td><td id="GR[=" class="" style="width:130.65623474121094px">parte intera di x</td><td id="_KQ:" class="" style="width:232.66949462890625px">intero</td></tr></tbody></table><h2 id="4ebcc289-7cb6-466b-8ba4-b6b4ef88f73e" class="">LAVORO</h2><table id="bdbe0605-e55d-439f-b14e-ecb9582b964d" class="simple-table"><thead class="simple-table-header"><tr id="1564300a-9ae7-487c-aa5c-087ed1de05c4"><th id="G\;X" class="simple-table-header-color simple-table-header" style="width:114.65623474121094px">Nome</th><th id="GR[=" class="simple-table-header-color simple-table-header" style="width:137.65623474121094px">Descrizione</th><th id="_KQ:" class="simple-table-header-color simple-table-header" style="width:99.65623474121094px">Tipo/vincoli</th></tr></thead><tbody><tr id="69b0fe03-ad14-491f-b617-2521bdaac2c0"><td id="G\;X" class="" style="width:114.65623474121094px">parte_decimale</td><td id="GR[=" class="" style="width:137.65623474121094px">parte decimale di x</td><td id="_KQ:" class="" style="width:99.65623474121094px">reale≥0</td></tr></tbody></table><h2 id="c1f52122-7905-404c-a77f-09a5cb5a022a" class="">ALGORITMO</h2><p id="6729c0ee-e9c2-4d29-acbe-fa9ac32c322f" class="">INIZIO<br/>      parte_decimale = x<br/><div class="indented"><p id="2e88622b-9414-479c-bdf0-7bb857606606" class="">MENTRE (parte_decimale ≥ 1)<div class="indented"><p id="94a84155-d9ab-4fc4-8475-e679509a6f06" class="">parte_decimale = parte_decimale - 1</p></div></p><p id="87c1b0ab-bea4-47a9-aef4-ee6a33ee9373" class="">FINE</p><p id="e5cea143-6abb-404f-8f4f-e775a6dcb071" class="">n=x-parte_decimale</p></div></p><p id="edc3a4bb-b217-48a9-bb1d-b183a442bc1d" class="">FINE</p></div></details><hr id="5c616981-93f1-4574-bb80-119cb15c1db0"/><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0">Funzione ottenere_riga_cursore</summary><div class="indented"><h2 id="d565475e-0fd8-4b94-b23e-f565fa5cc578" class="">OUTPUT</h2><table id="738bae94-fe07-4dd6-9f01-08c86c94d89e" class="simple-table"><thead class="simple-table-header"><tr id="ed5cebb6-8206-426e-b88e-dfb66db0be32"><th id="G\;X" class="simple-table-header-color simple-table-header" style="width:207.65625px">Nome</th><th id="GR[=" class="simple-table-header-color simple-table-header" style="width:316.65625px">Descrizione</th><th id="_KQ:" class="simple-table-header-color simple-table-header" style="width:117.65625px">Tipo/vincoli</th></tr></thead><tbody><tr id="36cf3f29-5e53-4738-97b2-758149426acb"><td id="G\;X" class="" style="width:207.65625px">riga</td><td id="GR[=" class="" style="width:316.65625px">riga in cui si trova il cursore</td><td id="_KQ:" class="" style="width:117.65625px">intero&gt;0</td></tr></tbody></table></div></details><hr id="a42bda13-82d1-421e-959b-f3ebf341b83e"/><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0">Funzione ottenere_colonna_cursore</summary><div class="indented"><h2 id="c9718efe-fe96-4862-9db3-624eb7ffee8c" class="">OUTPUT</h2><table id="248c72a7-dbd4-4327-81ea-b74bab69abb4" class="simple-table"><thead class="simple-table-header"><tr id="040a6e6c-d812-40f0-9c6d-e51b26ad4bb7"><th id="G\;X" class="simple-table-header-color simple-table-header" style="width:207.65625px">Nome</th><th id="GR[=" class="simple-table-header-color simple-table-header" style="width:316.65625px">Descrizione</th><th id="_KQ:" class="simple-table-header-color simple-table-header" style="width:117.65625px">Tipo/vincoli</th></tr></thead><tbody><tr id="41136be1-f67a-4f6e-be24-1e9ddb947e1d"><td id="G\;X" class="" style="width:207.65625px">colonna</td><td id="GR[=" class="" style="width:316.65625px">colonna in cui si trova il cursore</td><td id="_KQ:" class="" style="width:117.65625px">intero&gt;0</td></tr></tbody></table></div></details><hr id="29a69a78-3d0f-4cc3-bb0a-d60581b71c23"/><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0">Funzione calcolare_resto </summary><div class="indented"><p id="bd9dcaf8-3d0c-4aa7-9efe-52a78e8a741e" class="">Calcola il resto di una divisione.</p><h2 id="213093b4-8bc9-4481-bc04-fcb977fe6dc2" class="">INPUT</h2><table id="e1e4e321-453f-4a10-9d8e-731435a08f09" class="simple-table"><thead class="simple-table-header"><tr id="168e0a04-07d5-434f-8f58-c6143ec4c91f"><th id="G\;X" class="simple-table-header-color simple-table-header" style="width:232.66949462890625px">Nome</th><th id="GR[=" class="simple-table-header-color simple-table-header" style="width:232.66949462890625px">Descrizione</th><th id="_KQ:" class="simple-table-header-color simple-table-header" style="width:232.66949462890625px">Tipo/vincoli</th></tr></thead><tbody><tr id="813e8844-c94a-4bcb-8fad-1861bcd36095"><td id="G\;X" class="" style="width:232.66949462890625px">dividendo</td><td id="GR[=" class="" style="width:232.66949462890625px">dividendo della divisione</td><td id="_KQ:" class="" style="width:232.66949462890625px">intero≥0</td></tr><tr id="02f0172f-f0bd-4de0-9bfb-52d6dc067940"><td id="G\;X" class="" style="width:232.66949462890625px">divisore</td><td id="GR[=" class="" style="width:232.66949462890625px">divisore della divisione</td><td id="_KQ:" class="" style="width:232.66949462890625px">intero≥1</td></tr></tbody></table><h2 id="1bb40b41-62de-4580-b3be-af70cb924de9" class="">OUTPUT</h2><table id="6d1413c8-ea20-4ab3-9835-2e96ba41a13c" class="simple-table"><thead class="simple-table-header"><tr id="33e19d63-b80d-450d-ba94-f8fb72d50d9e"><th id="G\;X" class="simple-table-header-color simple-table-header" style="width:232.66949462890625px">Nome</th><th id="GR[=" class="simple-table-header-color simple-table-header" style="width:232.66949462890625px">Descrizione</th><th id="_KQ:" class="simple-table-header-color simple-table-header" style="width:232.66949462890625px">Tipo/vincoli</th></tr></thead><tbody><tr id="f2dc74df-f71e-4a63-8970-c4674278b38d"><td id="G\;X" class="" style="width:232.66949462890625px">resto</td><td id="GR[=" class="" style="width:232.66949462890625px">resto della divisione</td><td id="_KQ:" class="" style="width:232.66949462890625px">0≤intero≤divisore - 1</td></tr></tbody></table><h2 id="e1cb2f4c-f724-4c64-beb7-561236ed454d" class="">ALGORITMO</h2><p id="10669823-109f-492e-86da-7c116b0f3166" class="">INIZIO<div class="indented"><p id="5106b25f-0ef1-4fcf-bb4b-d71d09ee3ca3" class="">resto = dividendo</p><p id="8b2778f6-34ac-4c69-bcb8-3178822e2733" class="">MENTRE (resto ≥ divisore)<div class="indented"><p id="607655b4-4557-47bd-b68f-92c6423f9a02" class="">resto = resto - divisisore</p></div></p><p id="7ab21f65-cb7a-42d2-bf48-6a6f387c25b5" class="">FINE</p></div></p><p id="8eaab76b-e85e-4fb2-9b83-1c095030bd35" class="">FINE</p><p id="2a5ad70d-60e7-4dcd-b328-65a83f9e202e" class="">
+</p></div></details><hr id="b51913a2-0c6e-469e-9f38-2555d68b60e9"/><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0">Funzione generare_numero_casuale</summary><div class="indented"><p id="c4452c33-9338-48d1-9fa4-22fe26095ab2" class="">Calcola un numero casuale compreso tra i due numeri dati in input.</p><h2 id="b4460a07-7851-4a5d-a39a-92adddfde9f2" class="">INPUT</h2><table id="27cc7a4a-89f0-490d-b560-2b728a7fd0c9" class="simple-table"><thead class="simple-table-header"><tr id="07e2aa53-836c-463f-8e9a-551bc8f14adb"><th id="G\;X" class="simple-table-header-color simple-table-header" style="width:232.66949462890625px">Nome</th><th id="GR[=" class="simple-table-header-color simple-table-header" style="width:232.66949462890625px">Descrizione</th><th id="_KQ:" class="simple-table-header-color simple-table-header" style="width:232.66949462890625px">Tipo/vincoli</th></tr></thead><tbody><tr id="1fdd08d0-b9c1-4d3f-b693-3d5843b233c9"><td id="G\;X" class="" style="width:232.66949462890625px">numero_minimo</td><td id="GR[=" class="" style="width:232.66949462890625px">numero minimo ammesso nella generazione del numero </td><td id="_KQ:" class="" style="width:232.66949462890625px">numero_minimo≤intero≤numero_massimo</td></tr><tr id="c58c2bcd-b232-49d4-b664-a5fa61a6b53c"><td id="G\;X" class="" style="width:232.66949462890625px">numero_massimo</td><td id="GR[=" class="" style="width:232.66949462890625px">numero massimo ammesso nella generazione del numero</td><td id="_KQ:" class="" style="width:232.66949462890625px">numero_minimo≤intero≤numero_massimo</td></tr></tbody></table><h2 id="8ee1b920-6804-46b0-b0c8-2609a79fb38b" class="">OUTPUT</h2><table id="f9b3eb2d-3703-4418-a6be-12dd189feded" class="simple-table"><thead class="simple-table-header"><tr id="272ec47d-99fd-4951-b5d1-3d24f0099aa4"><th id="G\;X" class="simple-table-header-color simple-table-header" style="width:232.66949462890625px">Nome</th><th id="GR[=" class="simple-table-header-color simple-table-header" style="width:232.66949462890625px">Descrizione</th><th id="_KQ:" class="simple-table-header-color simple-table-header" style="width:232.66949462890625px">Tipo/vincoli</th></tr></thead><tbody><tr id="ffa0fb28-1feb-490e-af79-6f19b3a8d962"><td id="G\;X" class="" style="width:232.66949462890625px">numero_generato</td><td id="GR[=" class="" style="width:232.66949462890625px">numero compreso tra numero_minimo e numero_massimo</td><td id="_KQ:" class="" style="width:232.66949462890625px">numero_minimo≤intero≤numero_massimo</td></tr></tbody></table></div></details><hr id="2d04dc86-ca73-4f57-96a7-be83ce4b8933"/><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0">Funzione calcolare_lunghezza_stringa</summary><div class="indented"><p id="190ce763-7c88-4b31-89c4-72c3ac0f223d" class="">Calcola la lunghezza di una stringa.</p><h2 id="c245665e-cafb-4cb1-b898-a47c631380a9" class="">INPUT</h2><table id="2ff831b7-e7dc-4cf7-b076-bce5e3153383" class="simple-table"><thead class="simple-table-header"><tr id="06341584-93eb-4384-a30c-f9fd0dbf3507"><th id="G\;X" class="simple-table-header-color simple-table-header" style="width:111.65623474121094px">Nome</th><th id="GR[=" class="simple-table-header-color simple-table-header" style="width:232.66949462890625px">Descrizione</th><th id="_KQ:" class="simple-table-header-color simple-table-header" style="width:232.66949462890625px">Tipo/vincoli</th></tr></thead><tbody><tr id="97058824-bd78-43c1-9800-59e25d7b0208"><td id="G\;X" class="" style="width:111.65623474121094px">stringa</td><td id="GR[=" class="" style="width:232.66949462890625px">stringa di cui calcolare la lunghezza</td><td id="_KQ:" class="" style="width:232.66949462890625px">array a una dimensione di caratteri</td></tr></tbody></table><h2 id="4773e3ef-2228-48dd-b89e-167be55c315a" class="">OUTPUT</h2><table id="b038fde3-bc5d-4a15-a32d-218004b254a6" class="simple-table"><thead class="simple-table-header"><tr id="ab756cc5-5549-4204-8c1a-946ae553347b"><th id="G\;X" class="simple-table-header-color simple-table-header" style="width:131.65056610107422px">Nome</th><th id="GR[=" class="simple-table-header-color simple-table-header" style="width:232.66949462890625px">Descrizione</th><th id="_KQ:" class="simple-table-header-color simple-table-header" style="width:232.66949462890625px">Tipo/vincoli</th></tr></thead><tbody><tr id="f1271791-dde5-46b3-849c-e1eb6c3d4ac4"><td id="G\;X" class="" style="width:131.65056610107422px">lunghezza_stringa</td><td id="GR[=" class="" style="width:232.66949462890625px">numero di caratteri della stringa</td><td id="_KQ:" class="" style="width:232.66949462890625px">intero &gt; 0</td></tr></tbody></table></div></details><hr id="463b87e5-0000-48b3-bb6d-4305c32a484d"/><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0">Funzione comparare_stringa</summary><div class="indented"><p id="6c256d96-5e7f-4c8b-b37a-38e0198ca8d3" class="">Confronta due stringhe e restituisce -1 se la prima stringa ha un peso ascii maggiore della seconda stringa (stringa_1 &gt; stringa_2), 0 se le stringhe sono uguali, 1 se la prima stringa ha un peso ascii minore della seconda stringa (stringa_1 &lt; stringa_2).</p><h2 id="c2436af5-16ad-4d5a-a3a8-eaa705803465" class="">INPUT</h2><table id="450d8dff-a19b-4974-a52c-5a14776f5591" class="simple-table"><thead class="simple-table-header"><tr id="8b687609-afb9-4db0-b787-506b144afb66"><th id="G\;X" class="simple-table-header-color simple-table-header" style="width:214.64488220214844px">Nome</th><th id="GR[=" class="simple-table-header-color simple-table-header" style="width:212.6420440673828px">Descrizione</th><th id="_KQ:" class="simple-table-header-color simple-table-header" style="width:232.66949462890625px">Tipo/vincoli</th></tr></thead><tbody><tr id="745a3927-e25e-47f4-ba39-7e949be71637"><td id="G\;X" class="" style="width:214.64488220214844px">prima_stringa_da_comparare</td><td id="GR[=" class="" style="width:212.6420440673828px">prima stringa di cui comparare i caratteri</td><td id="_KQ:" class="" style="width:232.66949462890625px">array a una dimensione di caratteri</td></tr><tr id="5c901628-56f3-4a41-aedd-3abb66539e59"><td id="G\;X" class="" style="width:214.64488220214844px">seconda_stringa_da_comparare</td><td id="GR[=" class="" style="width:212.6420440673828px">seconda stringa di cui comparare i caratteri</td><td id="_KQ:" class="" style="width:232.66949462890625px">array a una dimensione di caratteri</td></tr></tbody></table><h2 id="8e85bd9b-0ff2-4c93-a86f-fb7629c1acf5" class="">OUTPUT</h2><table id="6ca826e8-ece0-420a-a94c-781aae69de19" class="simple-table"><thead class="simple-table-header"><tr id="5cafda98-c8b6-4bb6-a4a9-254ccdab1e64"><th id="G\;X" class="simple-table-header-color simple-table-header" style="width:131.65056610107422px">Nome</th><th id="GR[=" class="simple-table-header-color simple-table-header" style="width:232.66949462890625px">Descrizione</th><th id="_KQ:" class="simple-table-header-color simple-table-header" style="width:232.66949462890625px">Tipo/vincoli</th></tr></thead><tbody><tr id="bfccbd01-de04-4df1-955b-a1700c4a10ee"><td id="G\;X" class="" style="width:131.65056610107422px">risultato</td><td id="GR[=" class="" style="width:232.66949462890625px">1 se prima_stringa_da_comparare ha un peso ascii maggiore di seconda_stringa_da_comparare (stringa_1 &gt; stringa_2), 0 se le stringhe sono uguali, -1 se prima_stringa_da_comparare ha un peso ascii minore di seconda_stringa_da_comparare (stringa_1 &lt; stringa_2)</td><td id="_KQ:" class="" style="width:232.66949462890625px">intero &gt; 0</td></tr></tbody></table><h2 id="298fbabb-9a4b-4007-aa51-8edec4a4cf54" class="">LAVORO</h2><table id="dca7a5c9-31d1-403f-bdbd-9fc8486e191a" class="simple-table"><thead class="simple-table-header"><tr id="7ea9957e-cbc1-4697-bc16-811f96088fc9"><th id="G\;X" class="simple-table-header-color simple-table-header" style="width:142.64772033691406px">Nome</th><th id="GR[=" class="simple-table-header-color simple-table-header" style="width:232.66949462890625px">Descrizione</th><th id="_KQ:" class="simple-table-header-color simple-table-header" style="width:232.66949462890625px">Tipo/vincoli</th></tr></thead><tbody><tr id="41d12c3b-58d2-4b91-9532-32b470a9d3c4"><td id="G\;X" class="" style="width:142.64772033691406px">i</td><td id="GR[=" class="" style="width:232.66949462890625px">indice delle stringhe</td><td id="_KQ:" class="" style="width:232.66949462890625px">intero &gt; 0 &lt;= dimensione di stringa più corta</td></tr><tr id="4ba5b1be-b44f-4e1a-82fe-686ee235198d"><td id="G\;X" class="" style="width:142.64772033691406px">stringa_lunga</td><td id="GR[=" class="" style="width:232.66949462890625px">tiene traccia del risultato se le stringhe hanno lunghezze diverse ma stessi caratteri, cioè una stringa è contenuta nell&#x27;altra, e considera anche il caso in cui le stringhe sono identiche</td><td id="_KQ:" class="" style="width:232.66949462890625px"> intero [-1, 1]</td></tr><tr id="0bca6327-666a-467b-91c1-d5be792de145"><td id="G\;X" class="" style="width:142.64772033691406px">lunghezza_minima</td><td id="GR[=" class="" style="width:232.66949462890625px">contiene la lunghezza della stringa più corta</td><td id="_KQ:" class="" style="width:232.66949462890625px">intero &gt; 0 &lt;= dimensione stringa più corta</td></tr></tbody></table><h2 id="ca9bbaac-d843-468d-a671-2fd7636e324a" class="">ALGORITMO</h2><p id="86f51099-cf40-4977-9171-a12c88e2a3f2" class="">INIZIO<div class="indented"><p id="30ec3f7e-9fcf-4f3e-91b1-49b638a1f224" class="">SE (calcolare_lunghezza_stringa(stringa_2) &lt; calcolare_lunghezza_stringa(stringa_1))<div class="indented"><p id="75bc5502-48f6-4410-bf9d-36e4aa14f82c" class="">ALLORA<div class="indented"><p id="0cf35985-b12e-4010-9663-98cb7805dc66" class="">lunghezza_minima = calcolare_lunghezza_stringa(stringa_2)</p><p id="05964433-7145-4ada-80d2-18eefb639767" class="">stringa_lunga = 1</p></div></p><p id="9fa44211-d401-4b22-8a9a-1d06d899a606" class="">ALTRIMENTI<div class="indented"><p id="51bbf0de-a9d2-4258-979a-8dfaf70f9a53" class="">lunghezza_minima = calcolare_lunghezza_stringa(stringa_1)</p><p id="a2fdaae3-c3e5-46ff-9431-a71ffb75311d" class="">SE (calcolare_lunghezza_stringa(stringa_1) &lt; calcolare_lunghezza_stringa(stringa_2))<div class="indented"><p id="ec0dc031-dc15-427e-b345-29456472d2f2" class="">ALLORA<div class="indented"><p id="1a01d4eb-485a-4933-a0ab-44eb004e5146" class="">stringa_lunga = -1</p></div></p><p id="d32ec6bf-6c56-4c14-8792-1e8aa224f4af" class="">ALTRIMENTI <div class="indented"><p id="5d82964f-1f1a-4587-bfe6-222681a09704" class="">stringa_lunga = 0</p></div></p></div></p><p id="d220ed7b-29e2-4820-8e4c-03ec45bd2c56" class="">FINE</p></div></p></div></p><p id="0491f26f-4baf-430a-a824-58791248814f" class="">FINE</p><p id="a934080e-4935-4740-bcec-38f9dc598184" class="">risultato = 0</p><p id="49e89421-7876-446b-9093-9c121de12327" class="">i = PRIMO_INDICE_STRINGA</p><p id="9dbd0331-9c2a-423e-a96c-c8fd370ba70f" class="">MENTRE (i &lt;= lunghezza_minima AND risultato = 0)<div class="indented"><p id="9f45cbdb-5397-4967-823a-c7f67dbd790e" class="">risultato = 0</p><p id="78394316-04fd-4c12-a94f-d95b7417c2bf" class="">SE (stringa_1 in posizione i &gt; stringa_2 in posizione i)<div class="indented"><p id="e4e918ae-3141-450f-8f9b-333a1bb1c8c6" class="">ALLORA<div class="indented"><p id="35623631-6fd7-4100-bfe5-3bb7d54cc9ca" class="">risultato = 1</p></div></p><p id="413171b6-99ee-4058-9efc-3c8d48f6c6b9" class="">ALTRIMENTI<div class="indented"><p id="77351610-133c-4f17-81a4-1824d9d6c38d" class="">SE (stringa_1 in posizione i &lt; stringa_2 in posizione i)<div class="indented"><p id="c0ab5387-904e-4b1c-8782-ffaaf2887ebf" class="">ALLORA<div class="indented"><p id="e384bb75-04e1-4ad8-8c1d-2aa9b78b125d" class="">risultato = -1</p></div></p></div></p><p id="2e411c09-e07f-4e39-8b39-35410d4a4391" class="">FINE</p></div></p></div></p><p id="5af0685d-08c2-4f34-8f1b-64dabd361375" class="">FINE</p><p id="e73b6622-2008-439a-84f5-63abf9af2c0d" class="">risultato = confrontare_caratteri(stringa_1 in posizione i, stringa_2 in posizione i)</p><p id="8e7f9329-130b-4225-9dd0-76fe288266b6" class="">i = i + 1</p></div></p><p id="ea50e869-ef1b-4c90-a1e5-ffcc30584b57" class="">FINE</p><p id="33ecfd34-6a46-4be5-97b2-5c49349c4152" class="">SE (risultato = 0)<div class="indented"><p id="6f2ae168-ff76-4f2f-9ebb-8dbeb4e6f9e1" class="">ALLORA  risultato = stringa_lunga</p></div></p><p id="5a758014-736d-4e37-8503-c6f607a8f751" class="">FINE</p></div></p><p id="7b97d3e5-c1cc-4869-b982-94d6cd7c1e0b" class="">FINE</p></div></details><hr id="486dd51f-7fba-494a-b772-25a94eaf2cd3"/></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>

@@ -1,0 +1,8 @@
+				Gioco dell'oca
+--------------------------------------------------------------------------------
+1. Menu nuova partita
+2. Menu partita salvate
+3. Menu classifica
+4. Menu aiuto
+0. Chiudi programma
+--------------------------------------------------------------------------------

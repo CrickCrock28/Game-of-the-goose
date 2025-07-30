@@ -1,0 +1,683 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Modulo gestire_partite_salvate</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+	margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(50, 48, 44, 1);
+}
+.highlight-gray {
+	color: rgba(115, 114, 110, 1);
+	fill: rgba(115, 114, 110, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(205, 60, 58, 1);
+	fill: rgba(205, 60, 58, 1);
+}
+.highlight-default_background {
+	color: rgba(50, 48, 44, 1);
+}
+.highlight-gray_background {
+	background: rgba(248, 248, 247, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(248, 243, 252, 1);
+}
+.highlight-pink_background {
+	background: rgba(252, 241, 246, 1);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(115, 114, 110, 1);
+	fill: rgba(115, 114, 110, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(205, 60, 58, 1);
+	fill: rgba(205, 60, 58, 1);
+}
+.block-color-default_background {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray_background {
+	background: rgba(248, 248, 247, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(248, 243, 252, 1);
+}
+.block-color-pink_background {
+	background: rgba(252, 241, 246, 1);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-default { background-color: rgba(84, 72, 49, 0.08); }
+.select-value-color-gray { background-color: rgba(84, 72, 49, 0.15); }
+.select-value-color-brown { background-color: rgba(210, 162, 141, 0.35); }
+.select-value-color-orange { background-color: rgba(224, 124, 57, 0.27); }
+.select-value-color-yellow { background-color: rgba(236, 191, 66, 0.39); }
+.select-value-color-green { background-color: rgba(123, 183, 129, 0.27); }
+.select-value-color-blue { background-color: rgba(93, 165, 206, 0.27); }
+.select-value-color-purple { background-color: rgba(168, 129, 197, 0.27); }
+.select-value-color-pink { background-color: rgba(225, 136, 179, 0.27); }
+.select-value-color-red { background-color: rgba(244, 171, 159, 0.4); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="5fa26469-4f80-4f1a-ae4b-ccc491154f68" class="page sans"><header><h1 class="page-title">Modulo gestire_partite_salvate</h1><p class="page-description"></p></header><div class="page-body"><hr id="fa4fc3d0-14f6-4d62-a692-1fc43637e552"/><nav id="2da170d2-5726-4f59-8c08-584dcf4943a0" class="block-color-gray table_of_contents"><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#777cb71f-af45-4505-a12b-da288f08d16d">Descrizione</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#65116a61-300f-4bff-9c76-59dd48ff6d3a">Costanti</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#81145782-b857-4e7d-83bc-ac38935e9f9a">Funzione gestire_menu_partite_salvate</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#0323277c-d5d6-4b5f-ab65-ba072a3e085b">Funzione contare_partite_salvate</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#94e2eb5a-ad7a-4e83-9c1d-cc71c0527050">Funzione aggiungere_partita_su_file</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#8d05c76f-5437-485c-a40e-12bb8e7ec23c">Funzione leggere_partita_scelta</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#8ac896b5-a6d3-47fe-9fd4-2f4cd1bf3f98">Funzione salvare_partita</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#e1e9678e-6c2d-4403-8c95-6f9589b34917">Funzione stampare_partite_salvate </a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#ef2a73af-ad45-4a62-8f0e-5b69ff43372d">Funzione cancellare_partita_da_file</a></div></nav><hr id="0ce1a767-5f41-4789-822b-2429f915a009"/><h2 id="777cb71f-af45-4505-a12b-da288f08d16d" class="">Descrizione</h2><p id="3467f4fb-cdeb-4917-882a-fd251f049ada" class="">Gestisce il sottomenu delle partite salvate.</p><hr id="4a14aa20-6c4a-411b-a85c-3a426d407f86"/><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0">Costanti</summary><div class="indented"><table id="5bca0354-77ba-4a42-b24c-eb282912dd48" class="simple-table"><thead class="simple-table-header"><tr id="941d3322-4bba-40c5-8fd9-e8a3faa544c3"><th id="}pnz" class="simple-table-header-color simple-table-header" style="width:238.65623474121094px">Nome</th><th id="j|B`" class="simple-table-header-color simple-table-header" style="width:170.6533966064453px">Valore</th><th id="H]]Y" class="simple-table-header-color simple-table-header" style="width:241.65341186523438px">Descrizione</th></tr></thead><tbody><tr id="0f71ff60-4333-4f96-9fd1-a74cbdb21321"><td id="}pnz" class="" style="width:238.65623474121094px">MESSAGGIO_SOVRASCRIVERE_PARTITA</td><td id="j|B`" class="" style="width:170.6533966064453px">“Inserisci il numero della partita da cancellare per poter salvare la partita corrente (oppure 0 se non vuoi salvare nessuna partita): “</td><td id="H]]Y" class="" style="width:241.65341186523438px">messaggio per indicare ai giocatori che per poter salvare la partita che stanno giocando, devono prima scegliere la partita da cancellare(da quelle salvate), per poter sovrascrivere la partita da salvare. Oppure non salvare la partita che stanno giocando e quindi non cancellare nessuna partita</td></tr><tr id="43ab2a21-a06e-4f3e-8df9-c233c94b7441"><td id="}pnz" class="" style="width:238.65623474121094px">MESSAGGIO_CANCELLARE_PARTITA</td><td id="j|B`" class="" style="width:170.6533966064453px">“Inserisci il numero corrispondente alla partita da cancellare (oppure 0 se non vuoi cancellare nessuna partita): “</td><td id="H]]Y" class="" style="width:241.65341186523438px">messaggio per indicare ai giocatori che devono scegliere la partita da cancellare(da quelle salvate) oppure scegliere di non cancellare nessuna partita</td></tr><tr id="27ca7780-4fe1-4843-a8e8-98dae47169d9"><td id="}pnz" class="" style="width:238.65623474121094px">MESSAGGIO_CARICARE_PARTITA</td><td id="j|B`" class="" style="width:170.6533966064453px">“Inserisci il numero corrispondente alla partita da caricare (oppure 0 se non vuoi caricare nessuna” partita): “</td><td id="H]]Y" class="" style="width:241.65341186523438px">messaggio per indicare ai giocatori che devono scegliere la partita da eseguire(caricare)</td></tr><tr id="6ec3a79c-142e-4b6a-b9d7-9cae14652bb6"><td id="}pnz" class="" style="width:238.65623474121094px">MESSAGGIO_PARTITA_SALVATA</td><td id="j|B`" class="" style="width:170.6533966064453px">“La partita in corso e&#x27; stata salvata”</td><td id="H]]Y" class="" style="width:241.65341186523438px">messaggio per indicare che la partita che si sta giocando in quel momento e’ stata salvata</td></tr><tr id="b207745b-11da-4cc4-8164-b240ad38e89a"><td id="}pnz" class="" style="width:238.65623474121094px">MESSAGGIO_PARTITA_CANCELLATA</td><td id="j|B`" class="" style="width:170.6533966064453px">“La partita numero e&#x27; stata cancellata”</td><td id="H]]Y" class="" style="width:241.65341186523438px">messaggio per indicare la partita che e’ stata cancellata </td></tr><tr id="da32c944-4d6b-479c-b3ae-bfafddf8df3e"><td id="}pnz" class="" style="width:238.65623474121094px">MESSAGGIO_NUMERO_PARTITA</td><td id="j|B`" class="" style="width:170.6533966064453px">“- Partita :</td><td id="H]]Y" class="" style="width:241.65341186523438px">messaggio per indicare il numero della partita </td></tr><tr id="7f338423-3d30-441a-b6db-4f6bbd3a383f"><td id="}pnz" class="" style="width:238.65623474121094px">MESSAGGIO_DIMENSIONE_PERCORSO</td><td id="j|B`" class="" style="width:170.6533966064453px">“Dimensione del percorso: ”</td><td id="H]]Y" class="" style="width:241.65341186523438px">messaggio per indicare il numero delle caselle del percorso</td></tr><tr id="c8d18bd5-9eb7-4dcf-9316-116813f2c856"><td id="}pnz" class="" style="width:238.65623474121094px">MESSAGGIO_POSIZIONE_GIOCATORE</td><td id="j|B`" class="" style="width:170.6533966064453px">“Posizione giocatore : &quot;</td><td id="H]]Y" class="" style="width:241.65341186523438px">messaggio per indicare la posizione, all’interno del percorso,  di un determinato giocatore </td></tr><tr id="42b15e5d-95ed-4ebf-abd1-46dda3a73cc2"><td id="}pnz" class="" style="width:238.65623474121094px">MESSAGGIO_GIOCATORE_NON_PRESENTE</td><td id="j|B`" class="" style="width:170.6533966064453px">“Giocatore : non presente”</td><td id="H]]Y" class="" style="width:241.65341186523438px">messaggio per indicare che giocatore non e’ presente per giocare</td></tr><tr id="4de577b9-b72d-4ab0-967d-3f9c0684997c"><td id="}pnz" class="" style="width:238.65623474121094px">MESSAGGIO_NESSUNA_PARTITA_SALVATA</td><td id="j|B`" class="" style="width:170.6533966064453px">“Non ci sono partite salvate”</td><td id="H]]Y" class="" style="width:241.65341186523438px">messaggio per avvisare i giocatori che non ci sono partite salvate</td></tr><tr id="aafdc653-f141-4558-9a09-2b482d849701"><td id="}pnz" class="" style="width:238.65623474121094px">COLONNA_STAMPA_PARTITE_PARI</td><td id="j|B`" class="" style="width:170.6533966064453px">40</td><td id="H]]Y" class="" style="width:241.65341186523438px"></td></tr><tr id="20fbd755-4f43-4dfd-9616-95ea0e63eb7b"><td id="}pnz" class="" style="width:238.65623474121094px">SCELTA_CANCELLA_PARTITA</td><td id="j|B`" class="" style="width:170.6533966064453px">1</td><td id="H]]Y" class="" style="width:241.65341186523438px">scelta se si vuole cancellare una partita da quelle salvate</td></tr><tr id="b6b099ee-74c4-40dc-a893-24f152439e30"><td id="}pnz" class="" style="width:238.65623474121094px">SCELTA_CARICA_PARTITA</td><td id="j|B`" class="" style="width:170.6533966064453px">2</td><td id="H]]Y" class="" style="width:241.65341186523438px">scelta se si vuole avviare(caricare) una partita </td></tr><tr id="ef41b1e3-058a-4b47-86fc-e128efbd3bbb"><td id="}pnz" class="" style="width:238.65623474121094px">NUMERO_MASSIMO_PARTITE_SALVATE</td><td id="j|B`" class="" style="width:170.6533966064453px">5</td><td id="H]]Y" class="" style="width:241.65341186523438px">numero massimo di partite che si possono salvare </td></tr></tbody></table></div></details><hr id="98c2f6ee-96ec-4dfd-8513-b15d7ecb59a5"/><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0">Funzione gestire_menu_partite_salvate</summary><div class="indented"><p id="222a545b-e93c-499c-be67-1275d8a07ae1" class="">Cancella o carica la partita selezionata.</p><h2 id="c10e1a34-d0aa-4bc0-8d1a-49e757055872" class="">INPUT</h2><table id="b6df0ecd-2a5b-4af7-af02-a4beacf9eb13" class="simple-table"><thead class="simple-table-header"></thead><tbody><tr id="502b497c-a797-473f-b31c-2ed6f6665e58"><td id="G\;X" class="" style="width:219.65908813476562px">salvataggi</td><td id="GR[=" class="" style="width:219.6676025390625px">nel momento dell’input contiene solo il file con le partite salvate</td><td id="_KQ:" class="" style="width:219.6676025390625px">record_partite_salvate</td></tr><tr id="2e35d81b-29aa-49b2-a602-21747d40f784"><td id="G\;X" class="" style="width:219.65908813476562px">NOME_FILE_PARTITE_SALVATE</td><td id="GR[=" class="" style="width:219.6676025390625px">file delle partite salvate che vogliamo stampare</td><td id="_KQ:" class="" style="width:219.6676025390625px">array a 1 dimensione di caratteri </td></tr><tr id="115f7b70-1974-4891-a0c3-2724cbd36491"><td id="G\;X" class="" style="width:219.65908813476562px">DIMENSIONE_MASSIMA_PERCORSO_FILE</td><td id="GR[=" class="" style="width:219.6676025390625px">numero massimo delle caselle che ci possono essere in un percorso di una partita</td><td id="_KQ:" class="" style="width:219.6676025390625px">intero</td></tr><tr id="025a0577-dea1-477c-a505-c42681c4273e"><td id="G\;X" class="" style="width:219.65908813476562px">MESSAGGIO_SCELTA_AZIONE_MENU</td><td id="GR[=" class="" style="width:219.6676025390625px">messaggio per far inserire ai giocatori la scelta desiderata in base all’azione da voler eseguire</td><td id="_KQ:" class="" style="width:219.6676025390625px">array a 1 dimensione di caratteri</td></tr><tr id="44003d01-fbe2-4cff-b563-f54c34284147"><td id="G\;X" class="" style="width:219.65908813476562px">SCELTA_USCIRE_DAL_MENU</td><td id="GR[=" class="" style="width:219.6676025390625px">il valore della scelta corrispondente se si vuole uscire dal menu corrente</td><td id="_KQ:" class="" style="width:219.6676025390625px">intero = 0</td></tr><tr id="f39b91a7-6198-487b-8c94-416002963479"><td id="G\;X" class="" style="width:219.65908813476562px">SCELTA_CARICA_PARTITA</td><td id="GR[=" class="" style="width:219.6676025390625px">il valore della scelta corrispondente se si vuole caricare una partita dalle partite salvate</td><td id="_KQ:" class="" style="width:219.6676025390625px">intero = 2</td></tr><tr id="ada6f14c-e92c-41d1-859d-02c72f0adfe7"><td id="G\;X" class="" style="width:219.65908813476562px">PRIMA_COORDINATA_SCHERMO</td><td id="GR[=" class="" style="width:219.6676025390625px">valore della prima coordinata dello schermo</td><td id="_KQ:" class="" style="width:219.6676025390625px">intero = 0</td></tr><tr id="dc7d672c-091d-47f8-be84-2992dfe724a9"><td id="G\;X" class="" style="width:219.65908813476562px">MESSAGGIO_CANCELLARE_PARTITA</td><td id="GR[=" class="" style="width:219.6676025390625px">messaggio per indicare ai giocatori che devono scegliere la partita da cancellare(da quelle salvate) oppure scegliere di non cancellare nessuna partita</td><td id="_KQ:" class="" style="width:219.6676025390625px">array a 1 dimensione di caratteri</td></tr><tr id="a0fd7acb-30d7-4236-a066-93b3806e6f99"><td id="G\;X" class="" style="width:219.65908813476562px">CARATTERE_NUOVA_RIGA</td><td id="GR[=" class="" style="width:219.6676025390625px">dato che ci permette di creare una nuova riga andando a capo</td><td id="_KQ:" class="" style="width:219.6676025390625px">carattere</td></tr><tr id="5baa9f47-7855-4805-81ed-ad66c1425899"><td id="G\;X" class="" style="width:219.65908813476562px">MESSAGGIO_NESSUNA_PARTITA_SALVATA</td><td id="GR[=" class="" style="width:219.6676025390625px">messaggio per avvisare i giocatori che non ci sono partite salvate</td><td id="_KQ:" class="" style="width:219.6676025390625px">array a 1 dimensione di caratteri</td></tr></tbody></table><h2 id="b9789b7a-baf2-4118-be82-3ff01eaf7988" class="">OUTPUT</h2><table id="044ca79a-0223-495c-949f-48cfa448e786" class="simple-table"><thead class="simple-table-header"><tr id="ac1c499b-75c5-4bdc-95cf-a2bae0b0fccb"><th id="G\;X" class="simple-table-header-color simple-table-header" style="width:219.6676025390625px">Nome</th><th id="GR[=" class="simple-table-header-color simple-table-header" style="width:219.6676025390625px">Descrizione</th><th id="_KQ:" class="simple-table-header-color simple-table-header" style="width:219.6676025390625px">Tipo/vincoli</th></tr></thead><tbody><tr id="b4075506-79fd-47c2-9d97-a4d3ae910f14"><td id="G\;X" class="" style="width:219.6676025390625px">salvataggi</td><td id="GR[=" class="" style="width:219.6676025390625px">contiene le partite salvate e la partita scelta dall’utente se scelta</td><td id="_KQ:" class="" style="width:219.6676025390625px">record_partite_salvate</td></tr></tbody></table><h2 id="d828abb9-1ce5-41ca-93da-9f712fabceb4" class="">LAVORO</h2><table id="645a2434-29c6-44cc-a906-9cb6634c17b1" class="simple-table"><thead class="simple-table-header"><tr id="ab88e380-214b-4de3-a7d4-b946fccd705c"><th id="G\;X" class="simple-table-header-color simple-table-header" style="width:219.6676025390625px">Nome</th><th id="GR[=" class="simple-table-header-color simple-table-header" style="width:219.6676025390625px">Descrizione</th><th id="_KQ:" class="simple-table-header-color simple-table-header" style="width:219.6676025390625px">Tipo/vincoli</th></tr></thead><tbody><tr id="a1d73320-3c1e-4158-b03f-e3f876333020"><td id="G\;X" class="" style="width:219.6676025390625px">scelta</td><td id="GR[=" class="" style="width:219.6676025390625px">azione scelta in base alle richieste del menu </td><td id="_KQ:" class="" style="width:219.6676025390625px">0≤intero</td></tr><tr id="b7aafd28-99d2-4c2b-86c6-58b6a978fc39"><td id="G\;X" class="" style="width:219.6676025390625px">numero_partita</td><td id="GR[=" class="" style="width:219.6676025390625px">numero della partita scelta</td><td id="_KQ:" class="" style="width:219.6676025390625px">intero≥0</td></tr><tr id="93050c51-eff9-43b4-be59-6b240755a69a"><td id="G\;X" class="" style="width:219.6676025390625px">riga</td><td id="GR[=" class="" style="width:219.6676025390625px">riga dove si trova il cursore in quell’istante</td><td id="_KQ:" class="" style="width:219.6676025390625px">intero≥0</td></tr><tr id="760f2164-8d1f-4e67-b617-42c104ad449f"><td id="G\;X" class="" style="width:219.6676025390625px">numero_partite_salvate</td><td id="GR[=" class="" style="width:219.6676025390625px">numero partite salvate dai giocatori</td><td id="_KQ:" class="" style="width:219.6676025390625px">intero ≥0</td></tr><tr id="8e0aa8e9-8bde-45ba-a8d7-ac68291791c1"><td id="G\;X" class="" style="width:219.6676025390625px">partite_salvate</td><td id="GR[=" class="" style="width:219.6676025390625px">file contenente al suo interno le partite salvate dai giocatori </td><td id="_KQ:" class="" style="width:219.6676025390625px">file</td></tr><tr id="b3c2fd53-5b09-455d-b669-6199fc9a6cf0"><td id="G\;X" class="" style="width:219.6676025390625px">partita_scelta</td><td id="GR[=" class="" style="width:219.6676025390625px">partita scelta dai giocatori </td><td id="_KQ:" class="" style="width:219.6676025390625px">record_partita</td></tr></tbody></table><h2 id="6afbf1a0-b0c6-4232-a857-e6cc0f4ae278" class="">ALGORITMO</h2><p id="bdda62a3-a836-4933-b5dc-0ea04c55bac8" class=""><mark class="highlight-yellow_background">INIZIO  <br/>salvataggi = scrivere_partita_presente_record_partite_salvate(salvataggi, 0)<br/>    ESEGUI<br/>    	spostare_cursore(PRIMA_COORDINATA_SCHERMO, PRIMA_COORDINATA_SCHERMO)<br/>        stampare_file_di_testo(NOME_FILE_PARTITE_SALVATE)<br/>        riga = ottenere_riga_cursore()<br/>        scelta = chiedere_intero(MESSAGGIO_SCELTA_AZIONE_MENU, SCELTA_USCIRE_DAL_MENU, SCELTA_CARICA_PARTITA, riga, PRIMA_COORDINATA_SCHERMO)<br/><br/>        leggere_percorso_file_partite_salvate_record_partite_salvate(salvataggi, partite_salvate)<br/>        stampare_partite_salvate(partite_salvate)<br/>        riga = ottenere_riga_cursore()<br/><br/>        numero_partite_salvate = contare_partite_salvate(partite_salvate)<br/><br/>     SE(numero_partite_salvate &gt; 0)<br/></mark></p><p id="2e556ca8-84fc-498d-97c9-02165682a6c4" class=""><mark class="highlight-yellow_background">          ALLORA<br/>              SE(scelta = SCELTA_CANCELLA_PARTITA)<br/></mark></p><p id="89b8dd43-b04d-484d-986f-eb6c87b55746" class=""><mark class="highlight-yellow_background">                   ALLORA<br/>                       numero_partita = chiedere_intero(MESSAGGIO_CANCELLARE_PARTITA, SCELTA_USCIRE_DAL_MENU, numero_partite_salvate, riga, PRIMA_COORDINATA_SCHERMO)<br/>			SE(numero_partita != SCELTA_USCIRE_DAL_MENU)<br/>                            ALLORA<br/>		                cancellare_partita_da_file(file_partite_salvate, numero_partita)<br/>				stampare_a_video(CARATTERE_NUOVA_RIGA)<br/>			     ALTRIMENTI<br/>			         SE(scelta = SCELTA_CARICA_PARTITA)<br/>                                     ALLORA<br/>				         numero_partita = chiedere_intero(MESSAGGIO_CARICARE_PARTITA, SCELTA_USCIRE_DAL_MENU, numero_partite_salvate,  riga, PRIMA_COORDINATA_SCHERMO)<br/>				      SE(numero_partita != SCELTA_USCIRE_DAL_MENU)<br/>                                           ALLORA<br/>					       partita_scelta = leggere_partita_scelta(partite_salvate, numero_partita)<br/>						salvataggi = scrivere_partita_opzionale_record_partite_salvate(salvataggi, partita_scelta)<br/>						salvataggi = scrivere_partita_presente_record_partite_salvate(salvataggi, 1)<br/>						scelta = SCELTA_USCIRE_DAL_MENU<br/>					FINE<br/>				FINE<br/>			FINE<br/>        ALTRIMENTI<br/>        	 SE(scelta != SCELTA_USCIRE_DAL_MENU)<br/>                     ALLORA<br/>		         stampare_a_video(MESSAGGIO_NESSUNA_PARTITA_SALVATA)<br/>			 stampare_a_video(CARATTERE_NUOVA_RIGA)<br/>	         FINE<br/>       FINE<br/><br/>    FINCHE(scelta != SCELTA_USCIRE_DAL_MENU)<br/>FINE<br/></mark></p></div></details><hr id="04f32b2b-db1e-40e7-bbff-e14c849c8ef2"/><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0">Funzione contare_partite_salvate</summary><div class="indented"><p id="8757e59f-0222-4fe7-a933-1ccac0c32825" class="">Funzione che legge una partita, scelta dai giocatori, dal file delle partite salvate</p><h2 id="4e967344-2c92-42f3-8f77-a4bf346eaf8e" class="">INPUT</h2><table id="9b7eb5f8-02de-484e-af75-989457a5aeb4" class="simple-table"><thead class="simple-table-header"><tr id="050684b6-e4a5-4992-bae4-2209631c5714"><th id="G\;X" class="simple-table-header-color simple-table-header" style="width:219.6676025390625px">Nome</th><th id="GR[=" class="simple-table-header-color simple-table-header" style="width:219.6676025390625px">Descrizione</th><th id="_KQ:" class="simple-table-header-color simple-table-header" style="width:219.6676025390625px">Tipo/vincoli</th></tr></thead><tbody><tr id="9e696df7-b760-4407-a212-a4bc3ee9fe06"><td id="G\;X" class="" style="width:219.6676025390625px">NOME_FILE_PARTITE_SALVATE</td><td id="GR[=" class="" style="width:219.6676025390625px">file contenente al suo interno le partite salvate dai giocatori </td><td id="_KQ:" class="" style="width:219.6676025390625px">file</td></tr></tbody></table><h2 id="6593bacc-f7ba-43cf-9a56-7b4cdabb1fd7" class="">OUTPUT</h2><table id="b4f1e73f-464b-427d-82c5-5321dc412d69" class="simple-table"><thead class="simple-table-header"><tr id="03e782ef-59b2-442f-8989-32d322557c4c"><th id="G\;X" class="simple-table-header-color simple-table-header" style="width:219.6676025390625px">Nome</th><th id="GR[=" class="simple-table-header-color simple-table-header" style="width:219.6676025390625px">Descrizione</th><th id="_KQ:" class="simple-table-header-color simple-table-header" style="width:219.6676025390625px">Tipo/vincoli</th></tr></thead><tbody><tr id="4e789799-9af7-4e4a-a236-a6bc68a6659d"><td id="G\;X" class="" style="width:219.6676025390625px">numero_partite_salvate</td><td id="GR[=" class="" style="width:219.6676025390625px">numero partite salvate dai giocatori</td><td id="_KQ:" class="" style="width:219.6676025390625px">intero≥0</td></tr></tbody></table><h2 id="a3600d2a-ba92-47ae-b05c-6cbd09e6db69" class="">LAVORO</h2><table id="20cbb60b-865f-4e75-9606-e763a5dd5b7f" class="simple-table"><thead class="simple-table-header"><tr id="595ee31c-640f-4817-ae6b-c8f9ff3cccb6"><th id="G\;X" class="simple-table-header-color simple-table-header" style="width:219.6676025390625px">Nome</th><th id="GR[=" class="simple-table-header-color simple-table-header" style="width:219.6676025390625px">Descrizione</th><th id="_KQ:" class="simple-table-header-color simple-table-header" style="width:219.6676025390625px">Tipo/vincoli</th></tr></thead><tbody><tr id="b06d7a87-9ad8-493d-9091-9f704feef84a"><td id="G\;X" class="" style="width:219.6676025390625px">dimensione</td><td id="GR[=" class="" style="width:219.6676025390625px">posizione all’interno </td><td id="_KQ:" class="" style="width:219.6676025390625px">file</td></tr></tbody></table><h2 id="26136579-5aec-49d8-a2ac-4e50af619041" class="">ALGORITMO</h2><p id="aaf2e1b1-f70a-425d-80da-5df5459ab79a" class=""><mark class="highlight-yellow_background">INIZIO </mark></p><p id="a247e44e-2951-47b4-823b-79eee9fd5d4d" class=""><mark class="highlight-yellow_background">   file = aprire_file(NOME_FILE_PARTITE_SALVATE)   <br/>   file  = spostare_su_file(file, 0, ultima_posizione_file)<br/>   dimensione = posizione del cursore all&#x27;interno del file<br/>   numero_partite_salvate = dimensione / dimensione di record_partita<br/></mark></p><p id="89e3b913-c05e-40ce-ba5a-2b67018904aa" class=""><mark class="highlight-yellow_background">FINE </mark></p></div></details><hr id="9cccfd7a-efbe-46c4-b0fd-5c6d20c82c7c"/><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0">Funzione aggiungere_partita_su_file</summary><div class="indented"><p id="6aca4a3a-e904-41fe-96f7-76cb0c0e7497" class="">Funzione che legge una partita, scelta dai giocatori, dal file delle partite salvate</p><h2 id="7640e659-abcc-48ea-8a27-c1ceb1c5fb12" class="">INPUT</h2><table id="2ad31f6f-84a0-4c5a-837e-f5186f3ffd9e" class="simple-table"><thead class="simple-table-header"><tr id="e01099bb-cdf0-417d-8d0f-9966524326e0"><th id="G\;X" class="simple-table-header-color simple-table-header" style="width:219.6676025390625px">Nome</th><th id="GR[=" class="simple-table-header-color simple-table-header" style="width:219.6676025390625px">Descrizione</th><th id="_KQ:" class="simple-table-header-color simple-table-header" style="width:219.6676025390625px">Tipo/vincoli</th></tr></thead><tbody><tr id="fefea59b-d053-4121-bd0a-6750f0ea8826"><td id="G\;X" class="" style="width:219.6676025390625px">NOME_FILE_PARTITE_SALVATE</td><td id="GR[=" class="" style="width:219.6676025390625px">file contenente al suo interno le partite salvate dai giocatori </td><td id="_KQ:" class="" style="width:219.6676025390625px">file</td></tr><tr id="9fb33288-689d-4bc3-9ece-57205ece42f3"><td id="G\;X" class="" style="width:219.6676025390625px">partita</td><td id="GR[=" class="" style="width:219.6676025390625px">partita da aggiungere sul file partite_salvate</td><td id="_KQ:" class="" style="width:219.6676025390625px">record_parttita</td></tr></tbody></table><h2 id="fc2df05a-0929-44a8-8d3e-368b78959563" class="">OUTPUT</h2><table id="4acd49c4-3f56-4a96-b01f-2dd46585f952" class="simple-table"><thead class="simple-table-header"><tr id="203c2534-fc57-4196-bfd5-ae476df7b7c2"><th id="G\;X" class="simple-table-header-color simple-table-header" style="width:219.6676025390625px">Nome</th><th id="GR[=" class="simple-table-header-color simple-table-header" style="width:219.6676025390625px">Descrizione</th><th id="_KQ:" class="simple-table-header-color simple-table-header" style="width:219.6676025390625px">Tipo/vincoli</th></tr></thead><tbody><tr id="aa98d132-1410-4b8d-9b6f-ee5552895b20"><td id="G\;X" class="" style="width:219.6676025390625px">file_partite_salvate</td><td id="GR[=" class="" style="width:219.6676025390625px">file contenente al suo interno le partite salvate dai giocatori </td><td id="_KQ:" class="" style="width:219.6676025390625px">file</td></tr></tbody></table><h2 id="4a621a50-1cbc-4211-98b6-41ab4f57c66d" class="">ALGORITMO</h2><p id="dd93c48c-c6f1-4d2d-b30e-71693c9da960" class=""><mark class="highlight-yellow_background">INIZIO </mark></p><p id="3dba0184-8580-4437-bd24-a0938b750258" class=""><mark class="highlight-yellow_background">   file_partite_salvate = aprire_file(NOME_FILE_PARTITE_SALVATE)<br/>   scrivere_su_file(partita, record_partita, 1, file_partite_salvate)<br/></mark></p><p id="461cf379-375e-4001-8a87-381c5c40dd47" class=""><mark class="highlight-yellow_background">FINE </mark></p></div></details><hr id="05cfbe0a-8a7d-4a41-a6d8-1434c5133df2"/><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0">Funzione leggere_partita_scelta</summary><div class="indented"><p id="d8bcf2c5-8931-4e69-ba07-0611dd2b5351" class="">Funzione che legge una partita, scelta dai giocatori, dal file delle partite salvate</p><h2 id="c29f9d7e-02df-4c7a-9f4d-b59e4d100ead" class="">INPUT</h2><table id="a0803f2b-15f7-435f-8d5e-8e23ada2dd2c" class="simple-table"><thead class="simple-table-header"><tr id="5409fcb2-e400-491f-a754-08185dfffa80"><th id="G\;X" class="simple-table-header-color simple-table-header" style="width:219.6676025390625px">Nome</th><th id="GR[=" class="simple-table-header-color simple-table-header" style="width:219.6676025390625px">Descrizione</th><th id="_KQ:" class="simple-table-header-color simple-table-header" style="width:219.6676025390625px">Tipo/vincoli</th></tr></thead><tbody><tr id="26dea99b-f95b-4ee6-99e5-fb9ac1116497"><td id="G\;X" class="" style="width:219.6676025390625px">NOME_FILE_PARTITE_SALVATE</td><td id="GR[=" class="" style="width:219.6676025390625px">file contenente al suo interno le partite salvate dai giocatori </td><td id="_KQ:" class="" style="width:219.6676025390625px">file</td></tr><tr id="8039fca8-542d-4b5e-88bc-050e78f64426"><td id="G\;X" class="" style="width:219.6676025390625px">numero_partita</td><td id="GR[=" class="" style="width:219.6676025390625px">numero della partita scelta</td><td id="_KQ:" class="" style="width:219.6676025390625px">0&lt;intero≤NUMERO_MASSIMO_PARTITE_SALVATE</td></tr></tbody></table><h2 id="a9c403ab-f5d0-46bf-9b03-acdf73a327c8" class="">OUTPUT</h2><table id="4585c832-579c-4ec8-bdeb-72046e75c34a" class="simple-table"><thead class="simple-table-header"><tr id="db3f1451-894f-45f8-9dec-f63dd9dc8e9c"><th id="G\;X" class="simple-table-header-color simple-table-header" style="width:219.6676025390625px">Nome</th><th id="GR[=" class="simple-table-header-color simple-table-header" style="width:219.6676025390625px">Descrizione</th><th id="_KQ:" class="simple-table-header-color simple-table-header" style="width:219.6676025390625px">Tipo/vincoli</th></tr></thead><tbody><tr id="177d1cff-0a19-4ae1-acac-b5a4f7635a26"><td id="G\;X" class="" style="width:219.6676025390625px">partita_scelta</td><td id="GR[=" class="" style="width:219.6676025390625px">partita che si e’ scelta di giocare</td><td id="_KQ:" class="" style="width:219.6676025390625px">record_partita</td></tr></tbody></table><h2 id="33737a1b-e0cd-46a8-b5ff-5d754bf122eb" class="">LAVORO</h2><table id="0ad1b4a6-d99a-499f-b6d4-fd78ce22a357" class="simple-table"><thead class="simple-table-header"><tr id="d0a75709-dcef-413d-ad01-44e3970a0cda"><th id="G\;X" class="simple-table-header-color simple-table-header" style="width:219.6676025390625px">Nome</th><th id="GR[=" class="simple-table-header-color simple-table-header" style="width:219.6676025390625px">Descrizione</th><th id="_KQ:" class="simple-table-header-color simple-table-header" style="width:219.6676025390625px">Tipo/vincoli</th></tr></thead><tbody><tr id="871c18ee-0932-4561-8c01-f3296fa04d97"><td id="G\;X" class="" style="width:219.6676025390625px">file_partite_salvate</td><td id="GR[=" class="" style="width:219.6676025390625px">file contenente al suo interno le partite salvate dai giocatori </td><td id="_KQ:" class="" style="width:219.6676025390625px">file</td></tr><tr id="cc146e7b-a041-4d00-8639-c8a6460ab8a4"><td id="G\;X" class="" style="width:219.6676025390625px">partita_scelta</td><td id="GR[=" class="" style="width:219.6676025390625px">partita che si vuole leggere dal file</td><td id="_KQ:" class="" style="width:219.6676025390625px">record_partita</td></tr><tr id="9e5fbdd8-99e0-4bab-a41e-0501b63ba2d8"><td id="G\;X" class="" style="width:219.6676025390625px">posizione</td><td id="GR[=" class="" style="width:219.6676025390625px">poszione al’interno del file dove ci posizioniamo </td><td id="_KQ:" class="" style="width:219.6676025390625px">intero≥0</td></tr></tbody></table><h2 id="ccbd5d33-e380-4842-be13-84644c8c69ae" class="">ALGORITMO</h2><p id="d0ea8258-f165-4ee7-8638-cf0bcab50fc9" class=""><mark class="highlight-yellow_background">INIZIO </mark></p><p id="4ff4c38a-a872-410c-83da-ac93a230c148" class=""><mark class="highlight-yellow_background">   file_partite_salvate = aprire_file(NOME_FILE_PARTITE_SALVATE)<br/><br/>   posizione = (numero_partita - 1) * record_partita<br/>    <br/>   spostare_su_file(file_partite_salvate, posizione, 1)<br/>  <br/>   leggere_da_file(partita_scelta, record_partita, 1, file_partite_salvate)<br/></mark></p><p id="57c482b3-53de-4139-8ce8-0cabe07fba13" class=""><mark class="highlight-yellow_background">FINE </mark></p></div></details><hr id="b05538b7-a8d1-413d-a0ef-401cbad28dd6"/><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0">Funzione salvare_partita</summary><div class="indented"><p id="0f780b58-ee32-4906-b91f-f1bc924979a1" class="">Salva la partita corrente (passata in input) nel file delle partite salvate (passato in input).</p><h2 id="c3e6ed11-5e8c-48b3-bc14-86925f2db008" class="">INPUT</h2><table id="acb1f5e2-7549-4e2c-b4ab-d9a91e2d04d8" class="simple-table"><thead class="simple-table-header"><tr id="c76a1ce0-1856-4005-8001-139821a0fd1c"><th id="G\;X" class="simple-table-header-color simple-table-header" style="width:222.6836954752604px">Nome</th><th id="GR[=" class="simple-table-header-color simple-table-header" style="width:222.6836954752604px">Descrizione</th><th id="_KQ:" class="simple-table-header-color simple-table-header" style="width:202.67044067382812px">Tipo/vincoli</th></tr></thead><tbody><tr id="e1225214-9c34-41b9-9bcd-a76012d33e84"><td id="G\;X" class="" style="width:222.6836954752604px">partita</td><td id="GR[=" class="" style="width:222.6836954752604px">contiene la partita da salvare</td><td id="_KQ:" class="" style="width:202.67044067382812px">record_partita</td></tr><tr id="52442b76-be80-4089-b6f3-4c28fc892983"><td id="G\;X" class="" style="width:222.6836954752604px">NUMERO_MASSIMO_PARTITE_SALVATE</td><td id="GR[=" class="" style="width:222.6836954752604px">numero massimo di partite che si possono salvare</td><td id="_KQ:" class="" style="width:202.67044067382812px">intero = 5</td></tr><tr id="bfcbcd08-1c03-4539-a142-ff30689fd5e0"><td id="G\;X" class="" style="width:222.6836954752604px">MESSAGGIO_SOVRASCRIVERE_PARTITA</td><td id="GR[=" class="" style="width:222.6836954752604px">messaggio per indicare ai giocatori che per poter salvare la partita che stanno giocando, devono prima scegliere la partita da cancellare(da quelle salvate), per poter sovrascrivere la partita da salvare. Oppure non salvare la partita che stanno giocando e quindi non cancellare nessuna partita</td><td id="_KQ:" class="" style="width:202.67044067382812px">array a 1 dimensione di caratteri</td></tr><tr id="a0deb423-539a-406d-8ffb-680df99777b6"><td id="G\;X" class="" style="width:222.6836954752604px">SCELTA_USCIRE_DAL_MENU</td><td id="GR[=" class="" style="width:222.6836954752604px">il valore della scelta corrispondente se si vuole uscire dal menu corrente</td><td id="_KQ:" class="" style="width:202.67044067382812px">intero = 0</td></tr><tr id="da48f924-e522-494f-bce5-85570b471624"><td id="G\;X" class="" style="width:222.6836954752604px">PRIMA_COORDINATA_SCHERMO</td><td id="GR[=" class="" style="width:222.6836954752604px">valore della prima coordinata dello schermo</td><td id="_KQ:" class="" style="width:202.67044067382812px">intero = 0</td></tr><tr id="770e3c73-078f-41c9-9b83-0e83459c07c1"><td id="G\;X" class="" style="width:222.6836954752604px">MESSAGGIO_PARTITA_SALVATA</td><td id="GR[=" class="" style="width:222.6836954752604px">messaggio per indicare che la partita che si sta giocando in quel momento e’ stata salvata</td><td id="_KQ:" class="" style="width:202.67044067382812px">array a 1 dimensione di caratteri</td></tr><tr id="3aeb338d-0533-467f-b396-95502836048b"><td id="G\;X" class="" style="width:222.6836954752604px">CARATTERE_NUOVA_RIGA</td><td id="GR[=" class="" style="width:222.6836954752604px">dato che ci permette di creare una nuova riga andando a capo</td><td id="_KQ:" class="" style="width:202.67044067382812px">carattere = \n</td></tr></tbody></table><h2 id="b6a3762a-f0c8-4c15-a2e8-018962afe505" class="">OUTPUT</h2><table id="04f85d87-d673-4a9b-8068-98c466ec7e60" class="simple-table"><thead class="simple-table-header"><tr id="9e6f1825-bb08-4bf8-b970-3fe3b2667bb6"><th id="G\;X" class="simple-table-header-color simple-table-header" style="width:222.6836954752604px">Nome</th><th id="GR[=" class="simple-table-header-color simple-table-header" style="width:222.6836954752604px">Descrizione</th><th id="_KQ:" class="simple-table-header-color simple-table-header" style="width:202.67044067382812px">Tipo/vincoli</th></tr></thead><tbody><tr id="81135582-601b-437f-ae1a-62a9202b6007"><td id="G\;X" class="" style="width:222.6836954752604px">partite_salvate</td><td id="GR[=" class="" style="width:222.6836954752604px">file contenente al suo interno le partite salvate dai giocatori </td><td id="_KQ:" class="" style="width:202.67044067382812px">file </td></tr></tbody></table><h2 id="cccbcd21-c8d9-48c5-b1ad-41008f47148d" class="">LAVORO</h2><p id="3bcb76e6-1fe2-4f93-b4c8-713bd9590ecb" class="">
+</p><table id="f600319f-7242-4487-96b3-95ce365fc369" class="simple-table"><thead class="simple-table-header"><tr id="71c7838e-1802-465a-b236-5d1842e99360"><th id="G\;X" class="simple-table-header-color simple-table-header" style="width:222.6836954752604px">Nome</th><th id="GR[=" class="simple-table-header-color simple-table-header" style="width:206.67044067382812px">Descrizione</th><th id="_KQ:" class="simple-table-header-color simple-table-header" style="width:222.6836954752604px">Tipo/vincoli</th></tr></thead><tbody><tr id="773908fd-a0e0-4809-8aa4-1d9192ffb543"><td id="G\;X" class="" style="width:222.6836954752604px">numero_partite_salvate</td><td id="GR[=" class="" style="width:206.67044067382812px">numero partite salvate dai giocatori</td><td id="_KQ:" class="" style="width:222.6836954752604px">MASSIMO_PARTITE_SALVATE≥intero≥0</td></tr><tr id="55ab4c55-3478-4a5c-8a0f-d017d69fa91d"><td id="G\;X" class="" style="width:222.6836954752604px">numero_partita_da_cancellare</td><td id="GR[=" class="" style="width:206.67044067382812px">numero partita da cancellare da quelle salvate </td><td id="_KQ:" class="" style="width:222.6836954752604px">MASSIMO_PARTITE_SALVATE≥intero≥0</td></tr><tr id="c9cd0b1b-8fac-4f40-a040-8c0f016c5d9b"><td id="G\;X" class="" style="width:222.6836954752604px">riga</td><td id="GR[=" class="" style="width:206.67044067382812px">riga dove si trova il cursore in quell’istante</td><td id="_KQ:" class="" style="width:222.6836954752604px">int≥0</td></tr></tbody></table><h2 id="f5ad1aa6-ee1a-4799-a19c-cae0dea86399" class=""><strong>ALGORITMO</strong></h2><p id="e2a8627c-6226-41e4-9213-c4e088c2669b" class=""><mark class="highlight-yellow_background">INIZIO </mark></p><p id="7a5a60a7-1532-4c07-93df-7361708ebe32" class=""><mark class="highlight-yellow_background">  numero_partite_salvate = contare_partite_salvate(partite_salvate)<br/>   <br/>    SE(numero_partite_salvate = NUMERO_MASSIMO_PARTITE_SALVATE)<br/>     ALLORA<br/>        stampare_partite_salvate(partite_salvate)<br/>        riga = ottenere_riga_cursore()<br/>        numero_partita_da_cancellare = chiedere_intero(MESSAGGIO_SOVRASCRIVERE_PARTITA, SCELTA_USCIRE_DAL_MENU, NUMERO_MASSIMO_PARTITE_SALVATE, riga, PRIMA_COORDINATA_SCHERMO)<br/>        <br/>        SE(numero_partita_da_cancellare != 0)<br/>         ALLORA<br/>            cancellare_partita_da_file(partite_salvate, numero_partita_da_cancellare)<br/>            stampare_a_video(CARATTERE_NUOVA_RIGA)<br/>            aggiungere_partita_su_file(partite_salvate, partita)<br/>            stampare_a_video(MESSAGGIO_PARTITA_SALVATA)<br/>	    stampare_a_video(CARATTERE_NUOVA_RIGA)<br/>        <br/>     ALTRIMENTI<br/>        aggiungere_partita_su_file(partite_salvate, partita)<br/>		    stampare_a_video(CARATTERE_NUOVA_RIGA)<br/>        stampare_a_video(MESSAGGIO_PARTITA_SALVATA)<br/>		    stampare_a_video(CARATTERE_NUOVA_RIGA)<br/>    FINE<br/></mark></p><p id="cb60f975-5249-41d5-b7fe-fd488b0b958b" class=""><mark class="highlight-yellow_background">FINE </mark></p></div></details><hr id="62463e92-bdd7-48fe-85ff-5a62ccc2401f"/><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0">Funzione stampare_partite_salvate </summary><div class="indented"><p id="148a50d5-0b0b-44b7-8c65-c7e9ac403f3d" class="">Stampa a video tutte le partite salvate con le posizioni dei giocatori e la lunghezza del percorso in modo da poter rendere semplice la scelta dell&#x27;utente.</p><h2 id="9d4e19ce-22b6-410d-8998-edb6acbf8159" class="">INPUT</h2><table id="3e1d26a0-3628-4e94-b2cb-c54d7ad8481e" class="simple-table"><thead class="simple-table-header"><tr id="f5b99122-9104-4a2f-8486-0a18752b9a45"><th id="G\;X" class="simple-table-header-color simple-table-header" style="width:219.6676025390625px">Nome</th><th id="GR[=" class="simple-table-header-color simple-table-header" style="width:219.6676025390625px">Descrizione</th><th id="_KQ:" class="simple-table-header-color simple-table-header" style="width:219.6676025390625px">Tipo/vincoli</th></tr></thead><tbody><tr id="d3d5c515-b13d-441b-b1f9-814626cfb487"><td id="G\;X" class="" style="width:219.6676025390625px">partite_salvate</td><td id="GR[=" class="" style="width:219.6676025390625px">file contenente al suo interno le partite salvate dai giocatori </td><td id="_KQ:" class="" style="width:219.6676025390625px">file </td></tr><tr id="1f8cdc4e-f78a-4b90-9b97-6701c015259d"><td id="G\;X" class="" style="width:219.6676025390625px">PRIMA_COORDINATA_SCHERMO</td><td id="GR[=" class="" style="width:219.6676025390625px">prima posizione disponibile all’interno del percorso</td><td id="_KQ:" class="" style="width:219.6676025390625px">intero = 0</td></tr><tr id="bd5f1f69-b308-429d-8af1-6a63f0aecd5b"><td id="G\;X" class="" style="width:219.6676025390625px">titolo</td><td id="GR[=" class="" style="width:219.6676025390625px">titolo del gioco</td><td id="_KQ:" class="" style="width:219.6676025390625px">file</td></tr><tr id="35d1fac0-39b2-4c10-993c-a1e08c682ebc"><td id="G\;X" class="" style="width:219.6676025390625px">COLONNA_STAMPA_PARTITE_PARI</td><td id="GR[=" class="" style="width:219.6676025390625px">colonna del percorso per poter stampare le partite pari</td><td id="_KQ:" class="" style="width:219.6676025390625px">intero = 40</td></tr><tr id="66ec1f4e-bdb5-4078-a116-e61de748544e"><td id="G\;X" class="" style="width:219.6676025390625px">MESSAGGIO_NUMERO_PARTITA</td><td id="GR[=" class="" style="width:219.6676025390625px">messaggio per indicare il numero della partita</td><td id="_KQ:" class="" style="width:219.6676025390625px">array a 1 dimensione di caratteri</td></tr><tr id="ff19c71d-8431-47b5-b120-1175eddf012a"><td id="G\;X" class="" style="width:219.6676025390625px">MESSAGGIO_DIMENSIONE_PERCORSO</td><td id="GR[=" class="" style="width:219.6676025390625px">messaggio per indicare il numero delle caselle del percorso</td><td id="_KQ:" class="" style="width:219.6676025390625px">array a 1 dimensione di caratteri</td></tr><tr id="1fa10321-08b2-4181-a265-3f3351166f12"><td id="G\;X" class="" style="width:219.6676025390625px">PRIMO_INDICE_ARRAY</td><td id="GR[=" class="" style="width:219.6676025390625px">posizione del primo elemento di ogni array</td><td id="_KQ:" class="" style="width:219.6676025390625px">intero = 0</td></tr><tr id="ae381024-e050-4fc5-9f35-1b3877b4b6c4"><td id="G\;X" class="" style="width:219.6676025390625px">NUMERO_MASSIMO_GIOCATORI</td><td id="GR[=" class="" style="width:219.6676025390625px">numero massimo dei giocatori che possono giocare ad una partita contemporaneamente</td><td id="_KQ:" class="" style="width:219.6676025390625px">intero = 4</td></tr><tr id="e4e038b1-6ea0-4078-9c3d-11f1598cf130"><td id="G\;X" class="" style="width:219.6676025390625px">POSIZIONE_GIOCATORE_NON_PARTECIPANTE</td><td id="GR[=" class="" style="width:219.6676025390625px">posizione all’interno del percorso del giocatore che non partecipa a la partita corrente</td><td id="_KQ:" class="" style="width:219.6676025390625px">intero = -2</td></tr><tr id="b86d0dc9-bc44-4338-b1f2-20422288baf3"><td id="G\;X" class="" style="width:219.6676025390625px">MESSAGGIO_POSIZIONE_GIOCATORE</td><td id="GR[=" class="" style="width:219.6676025390625px">messaggio per indicare la posizione, all’interno del percorso,  di un determinato giocatore</td><td id="_KQ:" class="" style="width:219.6676025390625px">array a 1 dimensione di caratteri</td></tr><tr id="d272603a-43f3-450d-8d2c-79256ede6000"><td id="G\;X" class="" style="width:219.6676025390625px">MESSAGGIO_GIOCATORE_NON_PRESENTE</td><td id="GR[=" class="" style="width:219.6676025390625px">messaggio per indicare che giocatore non e’ presente per giocare</td><td id="_KQ:" class="" style="width:219.6676025390625px">array a 1 dimensione di caratteri</td></tr><tr id="f1dfccb0-98b6-4475-8782-ffb134321cd1"><td id="G\;X" class="" style="width:219.6676025390625px">NUMERO_MASSIMO_PARTITE_SALVATE</td><td id="GR[=" class="" style="width:219.6676025390625px">numero massimo di partite che si possono salvare</td><td id="_KQ:" class="" style="width:219.6676025390625px">intero = 5</td></tr><tr id="97746e39-9276-47f2-a72b-11ba35602a49"><td id="G\;X" class="" style="width:219.6676025390625px">CARATTERE_NUOVA_RIGA</td><td id="GR[=" class="" style="width:219.6676025390625px">dato che ci permette di creare una nuova riga andando a capo</td><td id="_KQ:" class="" style="width:219.6676025390625px">carattere = \n</td></tr></tbody></table><h2 id="bac2f12b-ec26-4d65-aedc-6e2c332f78e6" class="">LAVORO</h2><table id="a317897c-a073-4d62-9149-dcc231b4d3f6" class="simple-table"><thead class="simple-table-header"><tr id="23944348-e280-4c3c-ad15-507c63aca159"><th id="G\;X" class="simple-table-header-color simple-table-header" style="width:219.6676025390625px">Nome</th><th id="GR[=" class="simple-table-header-color simple-table-header" style="width:219.6676025390625px">Descrizione</th><th id="_KQ:" class="simple-table-header-color simple-table-header" style="width:219.6676025390625px">Tipo/vincoli</th></tr></thead><tbody><tr id="65ac7fe9-f296-48b2-9ac9-804d25cc15dc"><td id="G\;X" class="" style="width:219.6676025390625px">file_partite_salvate</td><td id="GR[=" class="" style="width:219.6676025390625px">file contenente al suo interno le partite salvate dai giocatori </td><td id="_KQ:" class="" style="width:219.6676025390625px">file</td></tr><tr id="60bd0cd4-3c15-401d-b55c-a469f976195a"><td id="G\;X" class="" style="width:219.6676025390625px">numero_partite_salvate </td><td id="GR[=" class="" style="width:219.6676025390625px">numero delle partite salvate sul file</td><td id="_KQ:" class="" style="width:219.6676025390625px">intero≥0</td></tr><tr id="53b8eb46-656c-474f-b2b1-b392c5361e78"><td id="G\;X" class="" style="width:219.6676025390625px">file_partite_salvate</td><td id="GR[=" class="" style="width:219.6676025390625px">contiene tutte le partite salvate</td><td id="_KQ:" class="" style="width:219.6676025390625px">File binario: costituito da un intero n seguito da nrecord_partita</td></tr><tr id="ec4b6d18-605e-4366-9175-972bb9c426a0"><td id="G\;X" class="" style="width:219.6676025390625px">numero_partita </td><td id="GR[=" class="" style="width:219.6676025390625px">indice della partita presa in considerazione</td><td id="_KQ:" class="" style="width:219.6676025390625px">PRIMO_INDICE_ARRAY≤intero≤NUMERO_MASSIMO_PARTITE_SALVATE</td></tr><tr id="fe26caa9-45f3-4062-80de-a303a7d8d6c1"><td id="G\;X" class="" style="width:219.6676025390625px">numero_giocatore </td><td id="GR[=" class="" style="width:219.6676025390625px">indice del giocatore preso in considerazione</td><td id="_KQ:" class="" style="width:219.6676025390625px">PRIMO_INDICE_ARRAY≤intero≤NUMERO_MASSIMO_GIOCATORI</td></tr><tr id="290e3532-3dc9-489e-9aee-41223e012952"><td id="G\;X" class="" style="width:219.6676025390625px">posizione_giocatore</td><td id="GR[=" class="" style="width:219.6676025390625px">posizione di quel determinato giocatore all’interno del percorso </td><td id="_KQ:" class="" style="width:219.6676025390625px">intero≥0</td></tr><tr id="5e3bb2db-a49a-479e-aa30-e20d9f485cbf"><td id="G\;X" class="" style="width:219.6676025390625px">riga</td><td id="GR[=" class="" style="width:219.6676025390625px">riga del percorso dove spostarsi</td><td id="_KQ:" class="" style="width:219.6676025390625px">intero≥0</td></tr><tr id="cfa0e1b6-cb81-401c-af5b-b13862668431"><td id="G\;X" class="" style="width:219.6676025390625px">riga_iniziale</td><td id="GR[=" class="" style="width:219.6676025390625px">riga dove si e’ posizionati inizialmente all’inerno del percorso</td><td id="_KQ:" class="" style="width:219.6676025390625px">intero≥0</td></tr><tr id="bbbb5a52-d1c6-4775-8302-8410cb96d83b"><td id="G\;X" class="" style="width:219.6676025390625px">colonna</td><td id="GR[=" class="" style="width:219.6676025390625px">colonna dove si e’ posizionati inizialmente all’inerno del percorso</td><td id="_KQ:" class="" style="width:219.6676025390625px">intero≥0</td></tr><tr id="71a5d38d-489f-407f-b3f3-b15f999c3760"><td id="G\;X" class="" style="width:219.6676025390625px">titolo</td><td id="GR[=" class="" style="width:219.6676025390625px">titolo del gioco</td><td id="_KQ:" class="" style="width:219.6676025390625px">file</td></tr></tbody></table><h2 id="094102ef-35fc-4672-ba23-d4feb4fc0f3c" class="">ALGORITMO</h2><p id="bf8f7b1c-c78b-43e5-aa74-f6cf94326788" class=""><mark class="highlight-yellow_background">INIZIO <br/>   spostare_cursore(PRIMA_COORDINATA_SCHERMO, PRIMA_COORDINATA_SCHERMO)<br/>   stampare_file_di_testo(file_titolo)<br/>   riga_iniziale = ottenere_riga_cursore()<br/><br/>    file_partite_salvate = aprire_file(partite_salvate)<br/><br/>    numero_partita = 1<br/>    MENTRE(leggere_da_file(partita, record_partita, 1, file_partite_salvate))<br/>    	 SE(calcolare_resto(numero_partita, 2) = 1)<br/>        ALLORA<br/>    		 colonna = PRIMA_COORDINATA_SCHERMO<br/>    	  ALTRIMENTI<br/>    		 colonna = COLONNA_STAMPA_PARTITE_PARI<br/>    	  FINE<br/><br/>    	riga = riga_iniziale<br/>    	spostare_cursore(colonna, riga)<br/><br/>        stampare_a_video(MESSAGGIO_NUMERO_PARTITA)<br/></mark></p><p id="e281832a-7919-4a75-9883-96c53913d33b" class=""><mark class="highlight-yellow_background">        stampare_a_video(numero_partita)<br/>        riga=riga+1<br/>    	spostare_cursore(colonna, riga)<br/>        stampare_a_video(MESSAGGIO_DIMENSIONE_PERCORSO)                              <br/></mark></p><p id="702e0516-24ca-4b8b-bb7d-0b9de2467013" class=""><mark class="highlight-yellow_background">stampare_a_video(leggere_dimensione_record_percorso(leggere_percorso_record_partita(partita))<br/>        riga=riga+1<br/>        numero_giocatore = PRIMO_INDICE_ARRAY<br/>        MENTRE(numero_giocatore &lt; NUMERO_MASSIMO_GIOCATORI)<br/>            posizione_giocatore = leggere_posizione_record_giocatore(leggere_giocatore_record_vet_giocatori(leggere_vet_giocatori_record_partita(partita), numero_giocatore))<br/>            SE(posizione_giocatore != POSIZIONE_GIOCATORE_NON_PARTECIPANTE)<br/>             ALLORA<br/>            	spostare_cursore(colonna, riga)<br/>            	stampare_a_video(MESSAGGIO_POSIZIONE_GIOCATORE)<br/></mark></p><p id="9cc9c730-b676-4ee9-9664-bfa808a1e758" class=""><mark class="highlight-yellow_background">            	stampare_a_video(numero_giocatore+1)<br/>            	stampare_a_video(posizione_giocatore)<br/><br/>            	riga=riga+1<br/>             ALTRIMENTI<br/>            	spostare_cursore(colonna, riga)<br/>            	stampare_a_video(MESSAGGIO_GIOCATORE_NON_PRESENTE)<br/></mark></p><p id="5da7289c-b79f-41df-8ac2-5f34fdf52a37" class=""><mark class="highlight-yellow_background">            	stampare_a_video(numero_giocatore+1)<br/>            	riga=riga+1<br/>             FINE<br/>            numero_giocatore=numero_giocatore+1<br/>        FINE<br/>    	SE(calcolare_resto(numero_partita, 2) = 1 AND numero_partita!=NUMERO_MASSIMO_PARTITE_SALVATE)<br/>       ALLORA<br/>    		riga = riga_iniziale<br/>    	 ALTRIMENTI<br/>    		riga_iniziale = riga<br/>    	 FINE<br/>        numero_partita=numero_partita+1<br/>    FINE<br/><br/>    stampare_a_video(CARATTERE_NUOVA_RIGA)<br/>FINE<br/></mark></p></div></details><hr id="63de44b3-f4a0-4385-ae38-239a06686bd5"/><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0">Funzione cancellare_partita_da_file</summary><div class="indented"><p id="f1da8a29-6a6a-492c-982c-a243ac1ca1ae" class="">Cancella una partita dal file delle partite salvate.</p><h2 id="08b85f2b-a44e-488a-a0c4-30464f436cc6" class="">INPUT</h2><table id="cf8542a2-efdc-486d-af6e-8b41813d68f7" class="simple-table"><thead class="simple-table-header"></thead><tbody><tr id="f597a274-3f8c-4c29-b2b9-64860e05e308"><td id="G\;X" class="" style="width:219.65908813476562px">NOME_FILE_PARTITE_SALVATE</td><td id="GR[=" class="" style="width:219.6676025390625px">nome del file contenente le partite salvate dai giocatori </td><td id="_KQ:" class="" style="width:219.6676025390625px">file</td></tr><tr id="c75d0cf1-9d01-4d06-b952-dee4186d561c"><td id="G\;X" class="" style="width:219.65908813476562px">numero_partita_da_cancellare</td><td id="GR[=" class="" style="width:219.6676025390625px">numero della partita da cancellare, tra quelle salvate</td><td id="_KQ:" class="" style="width:219.6676025390625px">0≤intero≤NUMERO_MASSIMO_PARTITE_SALVATE</td></tr><tr id="e8927e78-b12e-4124-9a9f-9358ffb74667"><td id="G\;X" class="" style="width:219.65908813476562px">PRIMA_COORDINATA_SCHERMO</td><td id="GR[=" class="" style="width:219.6676025390625px">prima posizione disponibile all’interno del percorso</td><td id="_KQ:" class="" style="width:219.6676025390625px">intero = 0</td></tr><tr id="010beef0-9972-4b1b-8520-853f119f43e9"><td id="G\;X" class="" style="width:219.65908813476562px">MESSAGGIO_PARTITA_CANCELLATA</td><td id="GR[=" class="" style="width:219.6676025390625px">Messaggio per indicare la partita che e’ stata cancellata</td><td id="_KQ:" class="" style="width:219.6676025390625px">array a 1 dimensione di caratteri</td></tr></tbody></table><h2 id="dd0e95a5-3ad3-479f-b810-08704d6fd585" class="">OUTPUT</h2><table id="a75ebaf8-3284-47f3-81d7-b792581947df" class="simple-table"><thead class="simple-table-header"><tr id="a539d5bb-006a-4ba0-854f-da0c50bd24e8"><th id="G\;X" class="simple-table-header-color simple-table-header" style="width:222.6836954752604px">Nome</th><th id="GR[=" class="simple-table-header-color simple-table-header" style="width:222.6836954752604px">Descrizione</th><th id="_KQ:" class="simple-table-header-color simple-table-header" style="width:202.67044067382812px">Tipo/vincoli</th></tr></thead><tbody><tr id="3a7fafc8-3b20-440e-96b4-6a55378f6b86"><td id="G\;X" class="" style="width:222.6836954752604px">partite_salvate</td><td id="GR[=" class="" style="width:222.6836954752604px">file contenente al suo interno le partite salvate dai giocatori </td><td id="_KQ:" class="" style="width:202.67044067382812px">file </td></tr></tbody></table><h2 id="7f7906da-317f-4b6c-870e-452c7bc7d217" class="">LAVORO</h2><table id="2c274146-9f1e-48da-979f-c1c3e6d59f02" class="simple-table"><thead class="simple-table-header"><tr id="fb4297ae-ca8f-4834-8825-a231fe6ef581"><th id="G\;X" class="simple-table-header-color simple-table-header" style="width:219.6676025390625px">Nome</th><th id="GR[=" class="simple-table-header-color simple-table-header" style="width:219.6676025390625px">Descrizione</th><th id="_KQ:" class="simple-table-header-color simple-table-header" style="width:219.6676025390625px">Tipo/vincoli</th></tr></thead><tbody><tr id="f567ad29-f37c-49dc-a751-de89009beb1a"><td id="G\;X" class="" style="width:219.6676025390625px">file_binario_temporaneo</td><td id="GR[=" class="" style="width:219.6676025390625px"></td><td id="_KQ:" class="" style="width:219.6676025390625px">file </td></tr><tr id="c91133f4-7f80-4d85-9468-6307a73c4f8a"><td id="G\;X" class="" style="width:219.6676025390625px">file_temporaneo</td><td id="GR[=" class="" style="width:219.6676025390625px"></td><td id="_KQ:" class="" style="width:219.6676025390625px">file</td></tr><tr id="1ed036b7-321d-4996-ae4c-9188f14655cb"><td id="G\;X" class="" style="width:219.6676025390625px">partita</td><td id="GR[=" class="" style="width:219.6676025390625px">contiene la partita da cancellare</td><td id="_KQ:" class="" style="width:219.6676025390625px">record_parttita</td></tr><tr id="70c468ce-ca77-4716-b903-45114d00b488"><td id="G\;X" class="" style="width:219.6676025390625px">numero_partite</td><td id="GR[=" class="" style="width:219.6676025390625px">numero delle partite salvate sul file temporaneo</td><td id="_KQ:" class="" style="width:219.6676025390625px">intero &gt;0</td></tr></tbody></table><h2 id="c7864ee9-eef3-4ab6-9cca-8a2f5df1ef4c" class="">ALGORITMO</h2><p id="75b45597-ee4f-4186-9c90-2fc096988da1" class=""><mark class="highlight-yellow_background">INIZIO</mark></p><p id="e7e093f1-73bb-4000-a63d-1f6cc1e07a6f" class=""><mark class="highlight-yellow_background">   file_partite_salvate = aprire_file(partite_salvate)<br/>    file_temporaneo = aprire_file(FILE_BINARIO_TEMPORANEO)<br/><br/>    numero_partite = 0<br/>    <br/>    MENTRE(leggere-da-file(partita, record_partita, 1, file_partite_salvate)) <br/>    	numero_partite++<br/>        SE(numero_partite != numero_partita_da_cancellare) <br/>          ALLORA<br/>            leggere_da_file(partita, record_partita, 1, file_temporaneo)<br/>          ALTRIMENTI<br/>             spostare_cursore(PRIMA_COORDINATA_SCHERMO, ottenere_riga_cursore())<br/>             stampare_a_video(MESSAGGIO_PARTITA_CANCELLATA)<br/></mark></p><p id="ec7cccf5-dfe3-45bc-ba2d-dfe3311b1049" class=""><mark class="highlight-yellow_background">             stampare_a_video(numero_partita_da_cancellare)<br/>         FINE<br/>    FINE<br/><br/><br/>    eliminare_file(percorso_file_partite_salvate)<br/>    rinominare_file(PERCORSO_FILE_BINARIO_TEMPORANEO, percorso_file_partite_salvate)<br/></mark></p><p id="2e94f350-979f-42e7-8af7-a054bca15e63" class=""><mark class="highlight-yellow_background">FINE</mark></p><p id="1ddfb223-956c-4f04-8f8e-a02315867a22" class="">
+</p></div></details><hr id="7ce761c4-d731-40ab-aac8-55854a561f30"/><p id="a3a122cb-101a-421b-ae17-1bba4dd5e748" class="">
+</p></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>

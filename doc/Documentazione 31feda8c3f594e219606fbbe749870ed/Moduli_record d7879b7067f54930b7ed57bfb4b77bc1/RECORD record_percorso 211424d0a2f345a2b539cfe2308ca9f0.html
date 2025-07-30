@@ -1,0 +1,682 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>RECORD record_percorso</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+	margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(50, 48, 44, 1);
+}
+.highlight-gray {
+	color: rgba(115, 114, 110, 1);
+	fill: rgba(115, 114, 110, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(205, 60, 58, 1);
+	fill: rgba(205, 60, 58, 1);
+}
+.highlight-default_background {
+	color: rgba(50, 48, 44, 1);
+}
+.highlight-gray_background {
+	background: rgba(248, 248, 247, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(248, 243, 252, 1);
+}
+.highlight-pink_background {
+	background: rgba(252, 241, 246, 1);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(115, 114, 110, 1);
+	fill: rgba(115, 114, 110, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(205, 60, 58, 1);
+	fill: rgba(205, 60, 58, 1);
+}
+.block-color-default_background {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray_background {
+	background: rgba(248, 248, 247, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(248, 243, 252, 1);
+}
+.block-color-pink_background {
+	background: rgba(252, 241, 246, 1);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-default { background-color: rgba(84, 72, 49, 0.08); }
+.select-value-color-gray { background-color: rgba(84, 72, 49, 0.15); }
+.select-value-color-brown { background-color: rgba(210, 162, 141, 0.35); }
+.select-value-color-orange { background-color: rgba(224, 124, 57, 0.27); }
+.select-value-color-yellow { background-color: rgba(236, 191, 66, 0.39); }
+.select-value-color-green { background-color: rgba(123, 183, 129, 0.27); }
+.select-value-color-blue { background-color: rgba(93, 165, 206, 0.27); }
+.select-value-color-purple { background-color: rgba(168, 129, 197, 0.27); }
+.select-value-color-pink { background-color: rgba(225, 136, 179, 0.27); }
+.select-value-color-red { background-color: rgba(244, 171, 159, 0.4); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="211424d0-a2f3-45a2-b539-cfe2308ca9f0" class="page sans"><header><h1 class="page-title">RECORD record_percorso</h1><p class="page-description"></p></header><div class="page-body"><hr id="035bd152-00dd-41c5-b41e-4139df1171cd"/><nav id="ea7954ab-f619-4ffd-a4c8-9ee60df10ae3" class="block-color-gray table_of_contents"><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#1be43a3b-3ef8-4575-830c-e4beeec21c8f"><strong>Funzione leggere_dimensione_record_percorso</strong></a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#a25b826e-a354-4e0c-9984-8f0ba863f9be"><strong>Funzione scrivere_dimensione_record_percorso</strong></a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#5f105657-b3f5-4002-848e-f66266b6a62f"><strong>Funzione leggere_casella_record_percorso</strong></a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#d2b2a8f4-b9b6-41b5-b6c1-693da7334e6f"><strong>Funzione scrivere_casella_record_percorso</strong></a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#79bc7590-d07f-4537-a080-4b08be04cee4">Funzione copiare_record_percorso</a></div></nav><hr id="6aaa6e43-2e43-4ab6-8bfe-ad28398cc567"/><p id="581b95b7-0d6e-49ff-b5bf-388891ac460c" class="">RECORD record_percorso, contiene i dati del percorso:</p><ul id="044f1fcd-18fe-4a21-a9d4-0fcc6f0506b6" class="bulleted-list"><li style="list-style-type:disc">dimensione, numero di caselle del percorso, NUMERO_MINIMO_CASELLE&lt;=intero&lt;=NUMERO_MASSIMO_CASELLE</li></ul><ul id="9c599ea5-d2f5-4abf-ba33-bd93e245a554" class="bulleted-list"><li style="list-style-type:disc">caselle, insieme delle caselle del percorso, array a 1 dimensione di caratteri, di lunghezza NUMERO_MASSIMO_CASELLE</li></ul><hr id="1a3627f0-5984-4fc6-8d4a-c27e0b1e20d1"/><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0"><strong>Funzione leggere_dimensione_record_percorso</strong></summary><div class="indented"><p id="acc6c0ac-e202-44d2-9ccf-77a6991d541c" class="">Legge la dimensione del percorso.</p><p id="8226c14c-1dd6-4627-b9c0-c6ca7a288407" class="">INPUT<br/>percorso, percorso di cui leggere la dimensione, record_percorso<br/></p><p id="dc411720-1172-449b-ae94-95ce8e83afd8" class="">OUTPUT<br/>dimensione, dimensione del percorso, NUMERO_MINIMO_CASELLE≤intero≤NUMERO_MASSIMO_CASELLE<br/></p><p id="28ace60e-5a43-4f18-940b-067bd0c0db33" class="">ALGORITMO<br/>INIZIO<br/><div class="indented"><p id="99d25537-2d40-4edb-b22a-2bee6f9e077b" class="">dimensione = campo dimensione di percorso</p></div></p><p id="de84beb3-f05c-4f80-abe1-f80eb6cd6c9f" class="">FINE</p></div></details><hr id="ea1d488e-7621-495f-9698-6822dccf5c82"/><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0"><strong>Funzione scrivere_dimensione_record_percorso</strong></summary><div class="indented"><p id="b48f8ac8-6c87-4a65-a391-bc1229593f1a" class="">Scrive la dimensione del percorso.</p><p id="6d4fa55f-301c-4cda-a70f-c06cacabbadd" class="">INPUT<br/>percorso, percorso di cui scrivere la dimensione, record_percorso<br/>dimensione, nuova dimensione del percorso, NUMERO_MINIMO_CASELLE≤intero≤NUMERO_MASSIMO_CASELLE<br/></p><p id="c69d9a85-191b-46af-9f5c-2839d77a98ae" class="">OUTPUT<br/>percorso, percorso con la nuova dimensione, record_percorso<br/></p><p id="24e061fd-bec6-447a-93f7-4417ff9e7185" class="">ALGORITMO<br/>INIZIO<br/><div class="indented"><p id="feac4316-9313-4469-b14c-9f4b96816e51" class="">campo dimensione di percorso = dimensione</p></div></p><p id="f19c3182-dc29-4535-9849-5a112231166a" class="">FINE</p></div></details><hr id="eab5ae17-f78f-4209-9f1b-256a3e4239bc"/><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0"><strong>Funzione leggere_casella_record_percorso</strong></summary><div class="indented"><p id="adf56eef-51ea-4032-a157-cf983c8e1edb" class="">Legge la casella del percorso.</p><p id="0b1f3729-cd3e-4f46-8794-9f0ee8da3233" class="">INPUT<br/>percorso, percorso di cui leggere la casella, record_percorso<br/>posizione, posizione della casella all&#x27;interno del percorso, PRIMO_INDICE_ARRAY ≤ intero ≤ dimensione del percorso<br/></p><p id="82606792-0e01-4d9b-b13e-c8eb0e37bc62" class="">OUTPUT<br/>casella, casella del percorso alla posizione indicata, carattere, deve essere uguale a uno di questi caratteri TIPO_CASELLA_OCA, TIPO_CASELLA_PONTE, TIPO_CASELLA_LOCANDA, TIPO_CASELLA_POZZO, TIPO_CASELLA_LABIRINTO, TIPO_CASELLA_SCHELETRO, TIPO_CASELLA_PRIGIONE e TIPO_CASELLA_FINE<br/></p><p id="1cc7154c-1221-4c23-af5c-646effefe45e" class="">ALGORITMO<br/>INIZIO<br/><div class="indented"><p id="9626bdb4-826a-4c32-8aac-c0144d0f9ca8" class="">casella = campo caselle in posizione posizione di percorso </p></div></p><p id="757f53cb-97ba-4294-baf2-a6ff5a6bf973" class="">FINE</p></div></details><hr id="b222d634-aacc-42bd-af32-ba2cdca64d9c"/><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0"><strong>Funzione scrivere_casella_record_percorso</strong></summary><div class="indented"><p id="7d425b79-8f0b-4a48-8047-5ef349d89dc5" class="">Scrive la casella del percorso.</p><p id="5d46aa57-cff4-43c6-94fd-3cbcd5f45b56" class="">INPUT<br/>percorso, percorso di cui scrivere la casella, record_percorso<br/>posizione, posizione della casella all&#x27;interno del percorso, PRIMO_INDICE_ARRAY ≤ intero ≤ dimensione del percorso<br/>casella, nuova casella da scrivere nella posizione indicata, carattere, deve essere uguale a uno di questi caratteri TIPO_CASELLA_OCA, TIPO_CASELLA_PONTE, TIPO_CASELLA_LOCANDA, TIPO_CASELLA_POZZO, TIPO_CASELLA_LABIRINTO, TIPO_CASELLA_SCHELETRO, TIPO_CASELLA_PRIGIONE e TIPO_CASELLA_FINE<br/></p><p id="b2d58bc1-bb7a-4a32-b620-774cf7d0a571" class="">OUTPUT<br/>percorso, percorso con la casella scritta nella posizione indicata, record_percorso<br/></p><p id="2d065d7a-93f6-47ac-bb51-657708b7433c" class="">ALGORITMO<br/>INIZIO<br/><div class="indented"><p id="b6bf018c-11dd-4f34-a629-b33feac5907a" class="">campo caselle in posizione posizione di percorso = casella</p></div></p><p id="a7b7245d-378c-4023-a239-16a16fb6eb9a" class="">FINE</p><p id="2a0926db-ddba-4536-89e9-0d3825937e54" class="">
+</p></div></details><hr id="17dd4f0b-9104-4d82-b1d1-324ff10a9627"/><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0">Funzione copiare_record_percorso</summary><div class="indented"><p id="306d957d-b146-4433-a4ad-4cf2a5ff0147" class="">Copia i dati del secondo percorso dato in input all’interno del primo percorso dato in input.</p><p id="3ec2f1a0-40c2-41bd-9820-15fb184c7e7d" class="">INPUT</p><p id="cde1b1e0-7c1e-44ed-9413-5cd528b54fc9" class="">percorso_1, percorso in cui copiare i dati di percorso_2, record_percorso</p><p id="3d3e275b-0db8-46c3-a881-a5806b07c860" class="">percorso_2, percorso da cui copiare i dati in percorso_1, record_percorso</p><p id="fcab2825-5b75-4dc5-b8a3-a6730c3cedb0" class="">OUTPUT</p><p id="2303a0dd-0423-4502-b1e8-5f27247b728e" class="">percorso_1, percorso con i dati di percorso_2 copiati, record_percorso</p><p id="17664c31-ccdd-462b-8b3a-c7b5067b8c27" class="">LAVORO</p><p id="f9ac11fc-58e1-4eb0-a938-31351e5b7ea4" class="">i, indice di percorso, NUMERO_MINIMO_CASELLE≤intero≤NUMERO_MASSIMO_CASELLE</p><p id="0e411c77-835e-4018-8d3d-28bd0e8e9bc3" class="">ALGORITMO</p><p id="9ec1b88e-29e5-4d37-8103-7b018b6925b8" class="">INIZIO<div class="indented"><p id="884ac664-42dc-4ba2-8c15-326f76f77e5a" class="">percorso_1 = scrivere_dimensione_record_percorso(percorso_1, leggere_dimensione_record_percorso(percorso_2))</p><p id="19615e78-9050-4c5e-bccd-fc18509734fc" class="">i = PRIMO_INDICE_STRINGA</p><p id="37851e9a-b0db-480e-9393-4b0e3cce9a48" class="">MENTRE (i ≤ NUMERO_MASSIMO_CASELLE)<div class="indented"><p id="9517ec66-5886-4561-bb7d-cedb10a16df2" class="">percorso_1 = scrivere_casella_record_percorso(percorso_1, i, leggere_casella_record_percorso(percorso_2, i))</p><p id="f01dc5b5-750c-42d3-9988-c762d82cd2f0" class="">i = i + 1</p></div></p><p id="fbd3b72d-f7fa-496c-b365-d8ef22b14bd4" class="">FINE</p></div></p><p id="5ca45f71-8d42-47e2-9672-a46c03bb682c" class="">FINE</p></div></details><hr id="067ce146-8df6-4a81-b267-84e9a28cd7a6"/><p id="2a6afd7b-2130-4679-a6f2-5e6d9f8d59bd" class="">
+</p></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>

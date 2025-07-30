@@ -1,0 +1,682 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Modulo gestire_file</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+	margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(50, 48, 44, 1);
+}
+.highlight-gray {
+	color: rgba(115, 114, 110, 1);
+	fill: rgba(115, 114, 110, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(205, 60, 58, 1);
+	fill: rgba(205, 60, 58, 1);
+}
+.highlight-default_background {
+	color: rgba(50, 48, 44, 1);
+}
+.highlight-gray_background {
+	background: rgba(248, 248, 247, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(248, 243, 252, 1);
+}
+.highlight-pink_background {
+	background: rgba(252, 241, 246, 1);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(115, 114, 110, 1);
+	fill: rgba(115, 114, 110, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(205, 60, 58, 1);
+	fill: rgba(205, 60, 58, 1);
+}
+.block-color-default_background {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray_background {
+	background: rgba(248, 248, 247, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(248, 243, 252, 1);
+}
+.block-color-pink_background {
+	background: rgba(252, 241, 246, 1);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-default { background-color: rgba(84, 72, 49, 0.08); }
+.select-value-color-gray { background-color: rgba(84, 72, 49, 0.15); }
+.select-value-color-brown { background-color: rgba(210, 162, 141, 0.35); }
+.select-value-color-orange { background-color: rgba(224, 124, 57, 0.27); }
+.select-value-color-yellow { background-color: rgba(236, 191, 66, 0.39); }
+.select-value-color-green { background-color: rgba(123, 183, 129, 0.27); }
+.select-value-color-blue { background-color: rgba(93, 165, 206, 0.27); }
+.select-value-color-purple { background-color: rgba(168, 129, 197, 0.27); }
+.select-value-color-pink { background-color: rgba(225, 136, 179, 0.27); }
+.select-value-color-red { background-color: rgba(244, 171, 159, 0.4); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="9a5a3855-3b4d-4a51-9563-e890e30238ac" class="page sans"><header><h1 class="page-title">Modulo gestire_file</h1><p class="page-description"></p></header><div class="page-body"><hr id="05f395db-2032-46ea-97d3-9ed8115221da"/><nav id="d10bbae9-8238-46b1-bf4c-ca5441fb038d" class="block-color-gray table_of_contents"><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#c6e4798a-c5d1-4868-bc5c-444f48246c51">Descrizione</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#f392eb8a-11c9-4a84-a3ae-907a1ba126e0">Costanti </a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#084a4f98-647c-4657-820d-658ea6b5a92c"><mark class="highlight-yellow_background">Funzione verificare_file_esistente </mark></a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#1510bc22-ae42-4653-b81f-63cb3a6f496f"><mark class="highlight-yellow_background">Funzione verificare_esistenza_tutti_file</mark></a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#9e7ec091-cea8-4db3-97cf-574c6c6aabba">Funzione leggere_carattere_file</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#2258dd20-bd74-46f9-b7e2-f5423cc78d88">Funzione verificare_file_di_testo_terminato</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#e139909e-139c-4a65-8f57-4eb3e2f4f515">Funzione leggere_riga_file</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#c006588e-54e1-43da-b044-6ae28f6f6dc8">Funzione verificare_file_binario_terminato</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#e42908fd-92a0-49dd-80b4-813454d73945">Funzione accodare_a_file_binario</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#f80cd2f5-5707-4e09-b141-3b362ed92c6f"><mark class="highlight-yellow_background">Funzione leggere_da_file</mark></a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#e4e6da8d-bd95-4389-8cd5-c89513d6bbfb"><mark class="highlight-yellow_background">Funzione scrivere_su_file</mark></a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#8b46f9cc-e12a-4fab-8a79-fbfe73b4538d"><mark class="highlight-yellow_background">Funzione spostare_su_file</mark></a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#3656114a-43e9-4fcc-8024-af858976806d"><mark class="highlight-yellow_background">Funzione aprire_file</mark></a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#fdfdd4ca-3bda-4a9c-96be-23a510d5df11"><mark class="highlight-yellow_background">Funzione rinominare_file</mark></a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#ea9b33b2-9bd8-4d97-8764-803a882eab99"><mark class="highlight-yellow_background">Funzione eliminare_file</mark></a></div></nav><hr id="c6db5156-55e7-4b01-b2ef-9a2bfcf8579e"/><h2 id="c6e4798a-c5d1-4868-bc5c-444f48246c51" class="">Descrizione</h2><p id="7fd4dcb1-a4a1-408b-bf74-8df580994b33" class="">Gestisce i file di testo e i file binari.</p><hr id="dddc54d0-b64c-49d7-85a7-c988e8ec80ff"/><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0">Costanti </summary><div class="indented"><table id="c9a66e2c-aad9-4551-9ec9-c82cedb15240" class="simple-table"><thead class="simple-table-header"><tr id="554624c3-c74d-4169-914f-0c407794a0a3"><th id="G\;X" class="simple-table-header-color simple-table-header" style="width:235.65908813476562px">Nome</th><th id="GR[=" class="simple-table-header-color simple-table-header" style="width:219.6676025390625px">Valore</th><th id="_KQ:" class="simple-table-header-color simple-table-header" style="width:219.6676025390625px">Descrizione </th></tr></thead><tbody><tr id="a1e06f5d-3dc6-4182-9b87-a8877fbb81df"><td id="G\;X" class="" style="width:235.65908813476562px">MESSAGGIO_FILE_NON_TROVATO</td><td id="GR[=" class="" style="width:219.6676025390625px">“Impossibile trovare il file:”</td><td id="_KQ:" class="" style="width:219.6676025390625px">messaggio per avvisare i giocatori che il file in considerazione non e’ stato trovato o non esiste</td></tr></tbody></table></div></details><hr id="50eba4e0-5c17-4c76-9b7a-24834c2a4adf"/><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0"><mark class="highlight-yellow_background">Funzione verificare_file_esistente </mark></summary><div class="indented"><p id="44b52ce9-02bd-4e6b-9ddc-eb37af5f3504" class="">Questa funzione verifica l’esistenza di un determinato file dato il suo percorso.</p><h2 id="0e0fd3db-4093-406e-88da-7ff6f9c03ad2" class="">INPUT</h2><table id="dd7f2353-4dea-485d-b6a9-04ab333ea096" class="simple-table"><thead class="simple-table-header"><tr id="cec16025-d34a-4769-9b82-becca51787d1"><th id="G\;X" class="simple-table-header-color simple-table-header" style="width:219.6676025390625px">Nome</th><th id="GR[=" class="simple-table-header-color simple-table-header" style="width:219.6676025390625px">Descrizione</th><th id="_KQ:" class="simple-table-header-color simple-table-header" style="width:219.6676025390625px">Tipo/vincoli</th></tr></thead><tbody><tr id="005a7f6f-33bb-4b16-b0e6-d886c86f2ec2"><td id="G\;X" class="" style="width:219.6676025390625px">nome_file</td><td id="GR[=" class="" style="width:219.6676025390625px">nome del file di cui vogliamo verificare l’esistenza</td><td id="_KQ:" class="" style="width:219.6676025390625px">array a una dimensione di caratteri</td></tr></tbody></table><h2 id="ef8562fd-169c-46c9-8bc8-1be0b56c26a0" class="">OUTPUT</h2><table id="8c668cb7-2f57-4eeb-921f-9e6dd3deaa03" class="simple-table"><thead class="simple-table-header"><tr id="2fa8cad0-e678-4fca-bcc4-ca1f8216b3ed"><th id="G\;X" class="simple-table-header-color simple-table-header" style="width:219.6676025390625px">Nome</th><th id="GR[=" class="simple-table-header-color simple-table-header" style="width:219.6676025390625px">Descrizione</th><th id="_KQ:" class="simple-table-header-color simple-table-header" style="width:219.6676025390625px">Tipo/vincoli</th></tr></thead><tbody><tr id="84a886b5-b571-4b45-b834-c14655c8ae9c"><td id="G\;X" class="" style="width:219.6676025390625px">file_esistente</td><td id="GR[=" class="" style="width:219.6676025390625px">valore che indica se il file esiste(1) oppure no(0)</td><td id="_KQ:" class="" style="width:219.6676025390625px">booleano</td></tr></tbody></table></div></details><hr id="7ab3794c-f76c-4689-8979-8169b94424ec"/><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0"><mark class="highlight-yellow_background">Funzione verificare_esistenza_tutti_file</mark></summary><div class="indented"><p id="f9a42695-1110-4f5d-b65d-0c8c6df68778" class="">Questa funzione verifica l’esistenza di tutti i file, dati i loro percorsi, che servono al programma per funzionare</p><h2 id="0767c672-63c3-4486-8b5c-d3a5b281367a" class="">INPUT </h2><table id="3fa9832f-1c55-453d-8a07-d3c34ed26736" class="simple-table"><thead class="simple-table-header"><tr id="eacd31fd-b43c-4a0b-8af0-7f95aecfa94a"><th id="G\;X" class="simple-table-header-color simple-table-header" style="width:219.6676025390625px">Nome</th><th id="GR[=" class="simple-table-header-color simple-table-header" style="width:219.6676025390625px">Descrizione</th><th id="_KQ:" class="simple-table-header-color simple-table-header" style="width:219.6676025390625px">Tipo/vincoli</th></tr></thead><tbody><tr id="4a46c314-f0d5-4904-8e6a-697101586020"><td id="G\;X" class="" style="width:219.6676025390625px">MESSAGGIO_FILE_NON_TROVATO</td><td id="GR[=" class="" style="width:219.6676025390625px">“Messaggio per avvisare i giocatori che il file in considerazione non e’ stato trovato o non esiste”</td><td id="_KQ:" class="" style="width:219.6676025390625px">array a 1 dimensione di caratteri </td></tr><tr id="daffd2ae-73e0-4e84-bf1a-ad1430d1d49e"><td id="G\;X" class="" style="width:219.6676025390625px">NOME_FILE_MENU_NUOVA_PARTITA</td><td id="GR[=" class="" style="width:219.6676025390625px">file contenente il menu per la scelta di fare una nuova partita</td><td id="_KQ:" class="" style="width:219.6676025390625px">array a 1 dimensione di caratteri </td></tr><tr id="60e1e395-eca4-4333-963c-7cbedc44ffdd"><td id="G\;X" class="" style="width:219.6676025390625px">NOME_FILE_MENU_PRINCIPALE</td><td id="GR[=" class="" style="width:219.6676025390625px">file contenente il menu principale del gioco </td><td id="_KQ:" class="" style="width:219.6676025390625px">array a 1 dimensione di caratteri </td></tr><tr id="ab9c342e-aa79-453c-b520-f7091cc30ed3"><td id="G\;X" class="" style="width:219.6676025390625px">NOME_FILE_MENU_PARTITA</td><td id="GR[=" class="" style="width:219.6676025390625px">file contenente il menu per la partita in corso</td><td id="_KQ:" class="" style="width:219.6676025390625px">array a 1 dimensione di caratteri </td></tr><tr id="de64f823-7a1a-49b9-8bbb-ed194deef3c5"><td id="G\;X" class="" style="width:219.6676025390625px">NOME_FILE_MENU_PARTITE_SALVATE</td><td id="GR[=" class="" style="width:219.6676025390625px">file contenente il menu per la scelta delle partite salvate</td><td id="_KQ:" class="" style="width:219.6676025390625px">array a 1 dimensione di caratteri </td></tr><tr id="915e890c-760e-46e6-8e22-583491969757"><td id="G\;X" class="" style="width:219.6676025390625px">NOME_FILE_MENU_AIUTO</td><td id="GR[=" class="" style="width:219.6676025390625px">file contenente il menu per la richiesta di aiuto</td><td id="_KQ:" class="" style="width:219.6676025390625px">array a 1 dimensione di caratteri </td></tr><tr id="6f8128a4-ae0b-4aa4-8a27-3ed9b2cb2103"><td id="G\;X" class="" style="width:219.6676025390625px">NOME_FILE_CLASSIFICA</td><td id="GR[=" class="" style="width:219.6676025390625px">file contenente il menu per la richiesta della classifica </td><td id="_KQ:" class="" style="width:219.6676025390625px">array a 1 dimensione di caratteri </td></tr><tr id="43a1bdcc-35e9-48de-83b6-cb496b87fc30"><td id="G\;X" class="" style="width:219.6676025390625px">NOME_FILE_REGOLE_GIOCO</td><td id="GR[=" class="" style="width:219.6676025390625px">file contenente le regole del gioco</td><td id="_KQ:" class="" style="width:219.6676025390625px">array a 1 dimensione di caratteri </td></tr><tr id="b60c4ac8-7be9-4605-a3b9-3fa6a5dbae9f"><td id="G\;X" class="" style="width:219.6676025390625px">NOME_FILE_MANUALE_GIOCO</td><td id="GR[=" class="" style="width:219.6676025390625px">file contenente il manuale del gioco </td><td id="_KQ:" class="" style="width:219.6676025390625px">array a 1 dimensione di caratteri </td></tr><tr id="4f37344a-fa37-4343-9612-8e5fbcb5a8a2"><td id="G\;X" class="" style="width:219.6676025390625px">NOME_FILE_PARTITE_SALVATE</td><td id="GR[=" class="" style="width:219.6676025390625px">file contenente le partite salvate </td><td id="_KQ:" class="" style="width:219.6676025390625px">array a 1 dimensione di caratteri </td></tr><tr id="6744e234-d337-4828-9934-8b656886331a"><td id="G\;X" class="" style="width:219.6676025390625px">NOME_FILE_CLASSIFICA</td><td id="GR[=" class="" style="width:219.6676025390625px">file contenente la classifica generale</td><td id="_KQ:" class="" style="width:219.6676025390625px">array a 1 dimensione di caratteri </td></tr><tr id="f4db43e2-e7b0-4a60-a58e-c7709a4530e8"><td id="G\;X" class="" style="width:219.6676025390625px">NOME_FILE_TITOLO</td><td id="GR[=" class="" style="width:219.6676025390625px">Nome del file che contiene il titolo del gioco</td><td id="_KQ:" class="" style="width:219.6676025390625px">array a 1 dimensione di caratteri </td></tr></tbody></table><h2 id="7c0ada64-87c4-4540-a917-e8b9fc106fa5" class="">OUTPUT</h2><table id="f0c9729f-aa70-438a-bef0-eb844e11eb9f" class="simple-table"><thead class="simple-table-header"><tr id="c54b1d6a-910d-4e68-a61c-17342fedb05d"><th id="G\;X" class="simple-table-header-color simple-table-header" style="width:219.6676025390625px">Nome</th><th id="GR[=" class="simple-table-header-color simple-table-header" style="width:219.6676025390625px">Descrizione</th><th id="_KQ:" class="simple-table-header-color simple-table-header" style="width:219.6676025390625px">Tipo/vincoli</th></tr></thead><tbody><tr id="dd8395ac-46a4-4395-b89b-6c124749f2e7"><td id="G\;X" class="" style="width:219.6676025390625px">tutti_i_file_esistono</td><td id="GR[=" class="" style="width:219.6676025390625px">valore che indica se tutti i file esistono(1) oppure no(0)</td><td id="_KQ:" class="" style="width:219.6676025390625px">booleano</td></tr></tbody></table><h2 id="68dbf545-d92c-456e-8459-610def7fa27d" class="">ALGORITMO</h2><p id="f3f390e1-26db-498e-99d6-262977dc4dbc" class="">INIZIO<div class="indented"><p id="18fba2e5-29cd-4fce-b3ea-e2f28552e6a3" class="">SE (verificare_file_esistente(NOME_FILE_MENU_NUOVA_PARTITA) = FALSO)</p><p id="ab0d8b5c-ba29-4397-b206-55824c21db08" class="">     stampare_a_video(MESSAGGIO_FILE_NON_TROVATO)</p><p id="1dd32cdc-8fa3-4b5a-a017-baf125f3a649" class="">      stampare_a_video(NOME_FILE_MENU_NUOVA_PARTITA)</p><p id="a1a97fca-5a7d-426e-90d3-750e585181c8" class="">     tutti_i_file_esistono = FALSO</p><p id="9ce0f3a8-5fff-439c-a9db-e1e17c40a976" class="">FINE  </p></div></p><p id="83bd3a73-b498-4039-806e-7cfb0299c286" class="">    SE (verificare_file_esistente(NOME_FILE_MENU_NUOVA_PARTITA) = FALSO)<br/>        stampare_a_video(MESSAGGIO_FILE_NON_TROVATO)<br/></p><p id="a4b05541-b4ee-4977-9383-6159ec1aa363" class="">        stampare_a_video(NOME_FILE_MENU_NUOVA_PARTITA)<br/>        tutti_i_file_esistono = FALSO<br/>    FINE<br/><br/>    SE (verificare_file_esistente(NOME_FILE_MENU_PRINCIPALE) = FALSO)<br/>        stampare_a_video(MESSAGGIO_FILE_NON_TROVATO)<br/></p><p id="d32114fb-f8ad-4a0c-844e-f5937494d355" class="">        stampare_a_video(NOME_FILE_MENU_PRINCIPALE)<br/>        tutti_i_file_esistono = FALSO<br/>    FINE<br/><br/>    SE (verificare_file_esistente(NOME_FILE_MENU_PARTITA) = FALSO)<br/>        stampare_a_video(MESSAGGIO_FILE_NON_TROVATO)<br/></p><p id="fe4e7f5c-a6b1-4d9e-babb-c98ee8d93870" class="">        stampare_a_video(NOME_FILE_MENU_PARTITA)<br/>        tutti_i_file_esistono = FALSO<br/>    FINE<br/><br/>    SE (verificare_file_esistente(NOME_FILE_MENU_PARTITE_SALVATE) = FALSO)<br/>        stampare_a_video(MESSAGGIO_FILE_NON_TROVATO)<br/></p><p id="ed3d2547-c1e5-4259-a117-906a69d43456" class="">        stampare_a_video(NOME_FILE_MENU_PARTITE_SALVATE)<br/>        tutti_i_file_esistono = FALSO<br/>    FINE<br/><br/>    SE (verificare_file_esistente(NOME_FILE_MENU_AIUTO) = FALSO)<br/>        stampare_a_video(MESSAGGIO_FILE_NON_TROVATO, NOME_FILE_MENU_AIUTO)<br/>        tutti_i_file_esistono = FALSO<br/>    FINE<br/><br/>    SE (verificare_file_esistente(NOME_FILE_MENU_CLASSIFICA) = FALSO)<br/>        stampare_a_video(MESSAGGIO_FILE_NON_TROVATO)<br/></p><p id="14c44b80-c398-4955-9680-0ffba17b0a4b" class="">        stampare_a_video(NOME_FILE_MENU_CLASSIFICA)<br/>        tutti_i_file_esistono = FALSO<br/>    FINE<br/><br/>    SE (verificare_file_esistente(NOME_FILE_REGOLE_GIOCO) = FALSO)<br/>        stampare_a_video(MESSAGGIO_FILE_NON_TROVATO)<br/></p><p id="8c2a7b06-a29f-400c-8493-ea8e1073b68c" class="">         stampare_a_video(NOME_FILE_REGOLE_GIOCO)<br/>        tutti_i_file_esistono = FALSO<br/>    FINE<br/><br/>    SE (verificare_file_esistente(NOME_FILE_MANUALE_GIOCO) = FALSO)<br/>        stampare_a_video(MESSAGGIO_FILE_NON_TROVATO)<br/></p><p id="9f0ac682-8611-40fa-b205-8acc25d883e1" class="">         stampare_a_video(NOME_FILE_MANUALE_GIOCO)<br/>        tutti_i_file_esistono = FALSO<br/>    FINE<br/><br/>    SE (verificare_file_esistente(NOME_FILE_PARTITE_SALVATE) = FALSO)<br/>        stampare_a_video(MESSAGGIO_FILE_NON_TROVATO)<br/></p><p id="ec787276-ee9a-4d1c-9e57-3e67fb268485" class="">        stampare_a_video(NOME_FILE_PARTITE_SALVATE)<br/>        tutti_i_file_esistono = FALSO<br/>    FINE<br/><br/>    SE (verificare_file_esistente(NOME_FILE_CLASSIFICA) = FALSO)<br/>        stampare_a_video(MESSAGGIO_FILE_NON_TROVATO)<br/></p><p id="b82a205e-f2a8-4445-b58f-9a29601f6b9e" class="">        stampare_a_video(NOME_FILE_PARTITE_SALVATE)<br/>        tutti_i_file_esistono = FALSO<br/>    FINE<br/><br/>    SE (verificare_file_esistente(NOME_FILE_MENU_PRINCIPALE) = FALSO)<br/>        stampare_a_video(MESSAGGIO_FILE_NON_TROVATO)<br/>         stampare_a_video(NOME_FILE_MENU_PRINCIPALE)<br/>        tutti_i_file_esistono = FALSO<br/>    FINE<br/><br/>    SE (verificare_file_esistente(NOME_FILE_MENU_PARTITA) = FALSO)<br/>        stampare_a_video(MESSAGGIO_FILE_NON_TROVATO)<br/>        stampare_a_video(NOME_FILE_MENU_PARTITA)<br/>        tutti_i_file_esistono = FALSO<br/>    FINE<br/><br/>    SE (verificare_file_esistente(NOME_FILE_MENU_PARTITE_SALVATE) = FALSO)<br/>        stampare_a_video(MESSAGGIO_FILE_NON_TROVATO)<br/>        stampare_a_video(NOME_FILE_MENU_PARTITE_SALVATE)<br/>        tutti_i_file_esistono = FALSO<br/>    FINE<br/><br/>    SE (verificare_file_esistente(NOME_FILE_MENU_AIUTO) = FALSO)<br/>        stampare_a_video(MESSAGGIO_FILE_NON_TROVATO, NOME_FILE_MENU_AIUTO)<br/>        tutti_i_file_esistono = FALSO<br/>    FINE<br/><br/>    SE (verificare_file_esistente(NOME_FILE_MENU_CLASSIFICA) = FALSO)<br/>        stampare_a_video(MESSAGGIO_FILE_NON_TROVATO)<br/>        stampare_a_video(NOME_FILE_MENU_CLASSIFICA)<br/>        tutti_i_file_esistono = FALSO<br/>    FINE<br/><br/>    SE (verificare_file_esistente(NOME_FILE_REGOLE_GIOCO) = FALSO)<br/>        stampare_a_video(MESSAGGIO_FILE_NON_TROVATO)<br/>         stampare_a_video(NOME_FILE_REGOLE_GIOCO)<br/>        tutti_i_file_esistono = FALSO<br/>    FINE<br/><br/>    SE (verificare_file_esistente(NOME_FILE_MANUALE_GIOCO) = FALSO)<br/>        stampare_a_video(MESSAGGIO_FILE_NON_TROVATO)<br/>        stampare_a_video(NOME_FILE_MANUALE_GIOCO)<br/>        tutti_i_file_esistono = FALSO<br/>    FINE<br/><br/>    SE (verificare_file_esistente(NOME_FILE_PARTITE_SALVATE) = FALSO)<br/>        stampare_a_video(MESSAGGIO_FILE_NON_TROVATO)<br/>        stampare_a_video(NOME_FILE_PARTITE_SALVATE)<br/>        tutti_i_file_esistono = FALSO<br/>    FINE<br/><br/>    SE (verificare_file_esistente(NOME_FILE_CLASSIFICA) = FALSO)<br/>        stampare_a_video(MESSAGGIO_FILE_NON_TROVATO)<br/></p><p id="890419ad-52ab-454a-a53c-33603a501bf6" class="">         stampare_a_video(NOME_FILE_CLASSIFICA)<br/>        tutti_i_file_esistono = FALSO<br/>    FINE<br/><br/>    SE (verificare_file_esistente(NOME_FILE_TITOLO) = FALSO)<br/>        stampare_a_video(MESSAGGIO_FILE_NON_TROVATO)<br/>        stampare_a_video(NOME_FILE_TITOLO)<br/>        tutti_i_file_esistono = FALSO<br/>    FINE<br/></p><p id="7ec40fd5-b0e2-4bc2-b105-4c376c783eb3" class="">FINE</p></div></details><hr id="56048ecc-131f-4391-a417-06b6cdd997e3"/><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0">Funzione leggere_carattere_file</summary><div class="indented"><p id="c4ab579f-4d94-4b66-9529-4b5e83f7c2a3" class="">Questa funzione legge il carattere all’interno di un file</p><h2 id="8a1d52a7-c317-4f19-8813-d75515e15ae6" class="">INPUT</h2><table id="b3586b7c-6ea0-46cd-aa11-684f58c1afe0" class="simple-table"><thead class="simple-table-header"><tr id="0e24bb94-b353-474a-9300-733df9beb343"><th id="^ftb" class="simple-table-header-color simple-table-header">Nome</th><th id="iS_b" class="simple-table-header-color simple-table-header">Descrizione</th><th id="^bdi" class="simple-table-header-color simple-table-header">Tipo/vincoli</th></tr></thead><tbody><tr id="1bdd2cef-4c9f-4a5b-90c7-7d148aa8e11d"><td id="^ftb" class="">file</td><td id="iS_b" class="">file di cui leggere il carattere</td><td id="^bdi" class="">file di testo, la struttura del file cambia a seconda del file dato in input</td></tr></tbody></table><h2 id="817ac3c0-e27e-4102-8219-f5640146b393" class="">OUTPUT</h2><table id="91c7e3fd-8831-4e71-acd4-1f0eb2b39771" class="simple-table"><thead class="simple-table-header"><tr id="8558c832-d54f-469e-ac63-cf4cd8ece2fb"><th id="Xp`m" class="simple-table-header-color simple-table-header">Nome</th><th id="JL?M" class="simple-table-header-color simple-table-header">Descrizione</th><th id="OdrZ" class="simple-table-header-color simple-table-header">Tipo/vincoli</th></tr></thead><tbody><tr id="bda13899-9c54-4ce8-826c-8237df504d9d"><td id="Xp`m" class="">carattere</td><td id="JL?M" class="">carattere letto dal file di testo</td><td id="OdrZ" class="">char</td></tr></tbody></table><h2 id="7bd69b1e-9c30-4723-9b91-c7a880e6a4d2" class="">ALGORITMO</h2><p id="0762ed9e-da6e-4088-afde-b06743de6875" class="">INZIO <div class="indented"><p id="ebcc083e-0a24-4505-ba4d-147959bdcd8d" class="">SE(file non esiste)<div class="indented"><p id="752ae3fc-3f2d-4fab-9961-3b1e91effd40" class="">ALLORA<br/>    stampare_a_video(MESSAGGIO_FILE_NON_TROVATO)<br/>ALTRIMENTI<br/>    carattere = leggi un carattere dal file<br/></p></div></p><p id="b4508a78-1b18-4ec4-acaf-4680f9856f59" class="">FINE </p></div></p><p id="4075a11d-61a7-46ca-87d5-4308d0051b0b" class="">FINE</p></div></details><hr id="2825c10d-a571-4b81-a2a3-51a80db919f1"/><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0">Funzione verificare_file_di_testo_terminato</summary><div class="indented"><p id="1e91138d-76c6-4d32-b651-d5e639366458" class="">Verifica se il file di testo è terminato.</p><h2 id="edfa41c3-04bd-44d9-826f-77a40f5535ae" class="">INPUT</h2><table id="d51314bb-6e09-4bb0-bd82-0c6efa0039a8" class="simple-table"><thead class="simple-table-header"><tr id="debf1a85-adf6-4078-97a5-a7a180100be1"><th id="LfE|" class="simple-table-header-color simple-table-header">Nome</th><th id="@JZn" class="simple-table-header-color simple-table-header">Descrizione</th><th id="xmki" class="simple-table-header-color simple-table-header">Tipo/vincoli</th></tr></thead><tbody><tr id="e816e5c8-de7f-4b5b-9b02-15aa3684cbb0"><td id="LfE|" class="">file</td><td id="@JZn" class="">file di cui verificare se sono terminati i caratteri da leggere</td><td id="xmki" class="">file di testo, la struttura del file cambia a seconda del file dato in input</td></tr></tbody></table><h2 id="da5547bb-8f1c-4650-b3b2-4901d5572401" class="">OUTPUT</h2><table id="9876cf7b-8858-40cd-b224-154d6ab542a9" class="simple-table"><thead class="simple-table-header"><tr id="e2bbad46-2a8a-4769-9ed4-17a4fe09c880"><th id="&lt;]m}" class="simple-table-header-color simple-table-header">Nome</th><th id="Alvg" class="simple-table-header-color simple-table-header">Descrizione</th><th id="npye" class="simple-table-header-color simple-table-header">Tipo/vincoli</th></tr></thead><tbody><tr id="b00eff54-61e8-4d8e-9f2b-37d3c0a9cd3f"><td id="&lt;]m}" class="">esito</td><td id="Alvg" class="">indica se il file non ha ancora altri caratteri da leggere</td><td id="npye" class="">booleano</td></tr></tbody></table></div></details><hr id="4f7017c8-b822-409d-a13f-c56ebb395ff2"/><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0">Funzione leggere_riga_file</summary><div class="indented"><p id="7b87d194-dbbf-4d75-996d-42f7ee3908e2" class="">Legge la riga all’indice i contenuta nel file dato in input.</p><h2 id="968007f9-3e58-4fe1-8c3d-1db9fede9af8" class="">INPUT</h2><table id="47f2af90-77f6-4c54-8345-df0e494b4600" class="simple-table"><thead class="simple-table-header"><tr id="c5d416b4-6c0d-414b-8633-b56a29e9968e"><th id="^ftb" class="simple-table-header-color simple-table-header">Nome</th><th id="iS_b" class="simple-table-header-color simple-table-header">Descrizione</th><th id="^bdi" class="simple-table-header-color simple-table-header">Tipo/vincoli</th></tr></thead><tbody><tr id="768652e2-76d6-4610-b7ab-8a5aa87e212e"><td id="^ftb" class="">file</td><td id="iS_b" class="">file di cui leggere la riga del file</td><td id="^bdi" class="">file di testo, la struttura del file cambia a seconda del file dato in input</td></tr><tr id="151979a6-1adb-4851-a919-d4b3cf38d1f5"><td id="^ftb" class="">i</td><td id="iS_b" class="">indice della riga da leggere</td><td id="^bdi" class="">0&lt;intero</td></tr></tbody></table><h2 id="261bdc27-5839-4d3d-9c31-1c528b489273" class="">OUTPUT</h2><table id="404e3dcb-09e6-41c7-b310-8c04ba4407a9" class="simple-table"><thead class="simple-table-header"><tr id="d20af904-c7d6-45a6-bf14-aa52666762e6"><th id="Xp`m" class="simple-table-header-color simple-table-header">Nome</th><th id="JL?M" class="simple-table-header-color simple-table-header">Descrizione</th><th id="OdrZ" class="simple-table-header-color simple-table-header">Tipo/vincoli</th></tr></thead><tbody><tr id="d469af0a-28f8-4814-a443-2bf800b2ea5a"><td id="Xp`m" class="">riga</td><td id="JL?M" class="">riga contenuta in file alla riga i</td><td id="OdrZ" class="">array a 1 dimensione di caratteri terminato dal carattere FINE_STRINGA</td></tr></tbody></table></div></details><hr id="e99c37b1-4fc4-4326-9c92-7ede58246134"/><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0">Funzione verificare_file_binario_terminato</summary><div class="indented"><p id="415490c8-e96b-48a2-bbcb-fedf5325dd6a" class="">Verifica se il file binario è terminato.</p><h2 id="0f268133-3151-4043-9436-104700e84b3d" class="">INPUT</h2><table id="bd6c6ce4-1132-441f-8cf2-651d95e27a18" class="simple-table"><thead class="simple-table-header"><tr id="c2368000-6538-47f1-983c-6c2ba5f6171e"><th id="]L@W" class="simple-table-header-color simple-table-header">Nome</th><th id="yX[H" class="simple-table-header-color simple-table-header">Descrizione</th><th id="Xjb@" class="simple-table-header-color simple-table-header">Tipo/vincoli</th></tr></thead><tbody><tr id="92031505-9692-47d4-888f-223e4d68e524"><td id="]L@W" class="">file</td><td id="yX[H" class="">file di cui verificare se sono terminati i caratteri da leggere</td><td id="Xjb@" class="">file binario, la struttura del file cambia a seconda del file dato in input</td></tr></tbody></table><h2 id="1f869a8b-88b4-4045-bd12-81b6db1cc025" class="">OUTPUT</h2><table id="dd1ec83f-2582-4a1a-afdc-69ddd5571ffa" class="simple-table"><thead class="simple-table-header"><tr id="4f52ed80-9d8d-42b2-854a-d0c37e919b82"><th id="Ttxm" class="simple-table-header-color simple-table-header">Nome</th><th id="{~aX" class="simple-table-header-color simple-table-header">Descrizione</th><th id="PfgQ" class="simple-table-header-color simple-table-header">Tipo/vincoli</th></tr></thead><tbody><tr id="f3fc3230-37a6-4e09-8ca8-87ef5c9d3cf9"><td id="Ttxm" class="">esito</td><td id="{~aX" class="">indica se il file non ha ancora altri dati da leggere</td><td id="PfgQ" class="">0≤intero≤1</td></tr></tbody></table><p id="f0043a68-56b0-43db-be3a-7eda8cdbb144" class="">
+</p></div></details><hr id="e7147ef0-180c-46ba-90b6-8f1e1ba3523f"/><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0">Funzione accodare_a_file_binario</summary><div class="indented"><p id="8238fbf6-ef4b-4bad-a2b6-779a4ae1cced" class="">Accoda al file binario un ulteriore elemento.</p><h2 id="0e4d049f-9366-48d4-bec5-3471b1b0c3f0" class="">INPUT</h2><table id="87f05d5d-70fa-45cf-88eb-efb48f220ffb" class="simple-table"><thead class="simple-table-header"><tr id="e9526d6f-d7a9-4d49-a852-2f6ac5235b7b"><th id="Qc&lt;j" class="simple-table-header-color simple-table-header">Nome</th><th id="wvQO" class="simple-table-header-color simple-table-header">Descrizione</th><th id="DmPa" class="simple-table-header-color simple-table-header">Tipo/vincoli</th></tr></thead><tbody><tr id="770742bb-2308-4ee1-968e-44545e492180"><td id="Qc&lt;j" class="">file</td><td id="wvQO" class="">file a cui accodare il dato elemento</td><td id="DmPa" class="">file binario, la struttura varia a seconda del file</td></tr><tr id="8888e1c3-1acd-432d-9818-cf77513d155c"><td id="Qc&lt;j" class="">elemento</td><td id="wvQO" class="">elemento da accodare in file</td><td id="DmPa" class="">il tipo varia a seconda del dato che si deve accodare al file</td></tr></tbody></table><h2 id="8eacece1-70ef-4325-9410-fd79905a0e0c" class="">OUTPUT</h2><table id="d957b5ef-904f-4885-82f3-72ea31a85023" class="simple-table"><thead class="simple-table-header"><tr id="42e9e4ec-03da-404a-a2c0-49ed7b82170a"><th id="FTFo" class="simple-table-header-color simple-table-header">Nome</th><th id="lcwy" class="simple-table-header-color simple-table-header">Descrizione</th><th id="&gt;k}&gt;" class="simple-table-header-color simple-table-header">Tipo/vincoli</th></tr></thead><tbody><tr id="f03e5890-f779-412d-8fd6-cad95a52231d"><td id="FTFo" class="">file</td><td id="lcwy" class="">file con accodato il dato elemento</td><td id="&gt;k}&gt;" class="">file binario, la struttura varia a seconda del file</td></tr></tbody></table></div></details><hr id="c9e73fd4-ba31-444a-bd55-9881690640e1"/><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0"><mark class="highlight-yellow_background">Funzione leggere_da_file</mark></summary><div class="indented"><p id="9c049a58-3ac6-43b3-92a2-460c9b77ac88" class="">Legge un elemento da un file</p><h2 id="36dde32d-cd98-4aee-8a5a-dcedb0198a08" class="">INPUT</h2><table id="50b45f66-691d-4925-bd37-ee25de185068" class="simple-table"><thead class="simple-table-header"><tr id="b03adc9b-35db-468e-a9c7-9ee28e0460b1"><th id="Qc&lt;j" class="simple-table-header-color simple-table-header">Nome</th><th id="wvQO" class="simple-table-header-color simple-table-header">Descrizione</th><th id="DmPa" class="simple-table-header-color simple-table-header">Tipo/vincoli</th></tr></thead><tbody><tr id="34bece16-43da-4d8c-82fd-5458045f098a"><td id="Qc&lt;j" class="">nome_file</td><td id="wvQO" class="">nome del file in cui leggere la riga al numero desiderato</td><td id="DmPa" class="">array a 1 dimensione di caratteri</td></tr><tr id="dd4851e9-03ec-4931-bc65-da827e4e6462"><td id="Qc&lt;j" class="">riga</td><td id="wvQO" class="">numero elementi riga </td><td id="DmPa" class="">intero</td></tr><tr id="12501202-24c6-4ec6-8f70-8a7e88d3a3f7"><td id="Qc&lt;j" class="">dim_elemento_vettore</td><td id="wvQO" class="">dimensione di un singolo elemento dell’array</td><td id="DmPa" class="">intero</td></tr><tr id="35787dd5-1c5e-4845-89dc-fcc46affd37f"><td id="Qc&lt;j" class="">file_da_leggere</td><td id="wvQO" class="">file da cui vogliamo leggere gli elementi</td><td id="DmPa" class="">file</td></tr></tbody></table><h2 id="70be8843-4b9a-4556-80ad-f8446e2fd965" class="">OUTPUT</h2><table id="71e666cf-8f41-4995-88e7-ebc4a9c0415c" class="simple-table"><thead class="simple-table-header"><tr id="ce4e40e2-407f-4469-9dbf-e51bcffeeb23"><th id="FTFo" class="simple-table-header-color simple-table-header">Nome</th><th id="lcwy" class="simple-table-header-color simple-table-header">Descrizione</th><th id="&gt;k}&gt;" class="simple-table-header-color simple-table-header">Tipo/vincoli</th></tr></thead><tbody><tr id="cbd1dea0-55ea-44b9-b6b4-4a1e94a0f636"><td id="FTFo" class="">numero_elementi_letti</td><td id="lcwy" class="">numero degli elementi letti correttamente dal file </td><td id="&gt;k}&gt;" class="">intero≥0</td></tr></tbody></table></div></details><hr id="7c8f2df1-8bfe-4bc5-ba16-377fcfab5121"/><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0"><mark class="highlight-yellow_background">Funzione scrivere_su_file</mark></summary><div class="indented"><p id="052a479b-1f14-4254-b88f-d2d881f0b5f4" class="">Scrive un elemento su un file</p><h2 id="4e2eaab7-db1d-49ae-a7ff-b202278490e7" class="">INPUT</h2><table id="e523ef7e-4bd4-46a9-a155-4df097981c26" class="simple-table"><thead class="simple-table-header"><tr id="5c0784ad-cd14-4601-bcca-62d543a11e64"><th id="Y`m[" class="simple-table-header-color simple-table-header">Nome</th><th id="be=t" class="simple-table-header-color simple-table-header">Descrizione</th><th id="y`dS" class="simple-table-header-color simple-table-header">Tipo/vincoli</th></tr></thead><tbody><tr id="0ed7090b-a37a-473f-a788-11f1f757e1b4"><td id="Y`m[" class="">posizione</td><td id="be=t" class="">rappresenta la poszione di partenza su cui scrivere i dati all’interno del file </td><td id="y`dS" class="">intero≥0</td></tr><tr id="da18b2c5-efe2-4d09-8822-3cc957937955"><td id="Y`m[" class="">dim_elemento</td><td id="be=t" class="">dimensione del singolo dato che si vuole scrivere sul file </td><td id="y`dS" class="">intero</td></tr><tr id="2ee699aa-4a59-48a8-ba7e-a57497790ab4"><td id="Y`m[" class="">num_elementi</td><td id="be=t" class="">numero degli elementi che si voglione scrivere all’interno del file </td><td id="y`dS" class="">intero≥0</td></tr><tr id="ad6cabc5-fb17-49ad-9326-3fad2b1361ba"><td id="Y`m[" class="">file_da _scrivere</td><td id="be=t" class="">file </td><td id="y`dS" class="">file </td></tr></tbody></table><h2 id="ac6da6bb-80eb-4370-9800-022c5f121622" class="">OUTPUT</h2><table id="a67c0fce-6717-42a6-9081-f185709649de" class="simple-table"><thead class="simple-table-header"><tr id="4c1e65eb-b9d4-42d8-9041-59da8119677a"><th id="alFE" class="simple-table-header-color simple-table-header">Nome</th><th id="Hy^{" class="simple-table-header-color simple-table-header">Descrizione</th><th id="i^Vc" class="simple-table-header-color simple-table-header">Tipo/vincoli</th></tr></thead><tbody><tr id="f69db064-b2c6-4082-8d4d-3c5763da37f0"><td id="alFE" class="">file</td><td id="Hy^{" class="">file su cui vogliamo scrivere un elemento</td><td id="i^Vc" class="">file </td></tr></tbody></table></div></details><hr id="0161ee59-7745-41a5-a6a7-5419691ec2be"/><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0"><mark class="highlight-yellow_background">Funzione spostare_su_file</mark></summary><div class="indented"><p id="35f8c5cc-9ee9-4e77-8886-0600108e66d5" class="">Dato un file questa funzioni ci permette di spostarci all’interno di quel file, indicando di quante posizioni vogliamo spostarci e da dove vogliamo partire a spostarci.</p><h2 id="dc8d3c2f-48a0-4671-8ae0-6e1606cb5d2b" class="">INPUT</h2><table id="85bfbbdf-abf4-4295-809f-de62fa65dd3e" class="simple-table"><thead class="simple-table-header"><tr id="5121df62-0f18-4896-9389-9869cdbebda9"><th id="Y`m[" class="simple-table-header-color simple-table-header">Nome</th><th id="be=t" class="simple-table-header-color simple-table-header">Descrizione</th><th id="y`dS" class="simple-table-header-color simple-table-header">Tipo/vincoli</th></tr></thead><tbody><tr id="8ce90bb8-51c0-4f0c-9ca6-1a94778009b8"><td id="Y`m[" class="">file</td><td id="be=t" class="">file di cui vogliamo spostarci al suo interno</td><td id="y`dS" class="">file</td></tr><tr id="54953468-8fc2-40f0-9b4c-e0e0a352081f"><td id="Y`m[" class="">distanza </td><td id="be=t" class="">quante posizioni dobbiamo spostarci all’interno del file</td><td id="y`dS" class="">intero</td></tr><tr id="dc7520d1-6599-447b-bb17-d881862af375"><td id="Y`m[" class="">partenza </td><td id="be=t" class="">la posizione di partenza da dove vogliamo spostarci all’interno del file</td><td id="y`dS" class="">intero</td></tr></tbody></table><h2 id="b9b813ac-922d-44e1-ac12-c11fc66b3b4d" class="">OUTPUT</h2><table id="f347bcbc-3e7f-4e99-a151-1fc3db276faa" class="simple-table"><thead class="simple-table-header"><tr id="d8ab128d-d002-4060-a090-df1cf1b63c65"><th id="alFE" class="simple-table-header-color simple-table-header">Nome</th><th id="Hy^{" class="simple-table-header-color simple-table-header">Descrizione</th><th id="i^Vc" class="simple-table-header-color simple-table-header">Tipo/vincoli</th></tr></thead><tbody><tr id="733afd08-81bf-4e27-9ba1-05b17eae833d"><td id="alFE" class="">esito</td><td id="Hy^{" class="">indica se lo spostamento all’interno del file e’ andato a buon fine(0) o non(=/0)</td><td id="i^Vc" class="">intero≥0</td></tr></tbody></table></div></details><hr id="4d0bc2c3-b33b-4427-87ff-797b120affb3"/><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0"><mark class="highlight-yellow_background">Funzione aprire_file</mark></summary><div class="indented"><p id="d0fb186a-451b-426b-9934-7708cf484a24" class="">Riceve in input  un file e lo apre, poiche’ per poter eseguire qualunque operazione su un determinato file bisogna prima di tutto aprirlo e dopodiche’ operarci  sopra.</p><h2 id="0e263581-4a2f-429c-a272-391e43b0f5fc" class="">INPUT</h2><table id="eea8f2d9-2ae2-495a-992f-0cf4ba7fc335" class="simple-table"><thead class="simple-table-header"><tr id="f2adc9a3-5ade-457d-a9f8-c1a4cdc211b9"><th id="Y`m[" class="simple-table-header-color simple-table-header">Nome</th><th id="be=t" class="simple-table-header-color simple-table-header">Descrizione</th><th id="y`dS" class="simple-table-header-color simple-table-header">Tipo/vincoli</th></tr></thead><tbody><tr id="2001a830-7dd6-4f4e-9322-adf041e01e60"><td id="Y`m[" class="">nome_file</td><td id="be=t" class="">nome del file da aprire</td><td id="y`dS" class="">array a una dimensione di caratteri</td></tr></tbody></table><h2 id="fb046672-34f7-4e0f-b3cb-8c1af455798b" class="">OUTPUT</h2><table id="c24337ee-4051-4586-9e53-886f0f79144a" class="simple-table"><thead class="simple-table-header"><tr id="1b032d79-5b13-401d-9389-d0d2b13061a8"><th id="alFE" class="simple-table-header-color simple-table-header">Nome</th><th id="Hy^{" class="simple-table-header-color simple-table-header">Descrizione</th><th id="i^Vc" class="simple-table-header-color simple-table-header">Tipo/vincoli</th></tr></thead><tbody><tr id="167af731-0d23-414a-a4dd-1f8aa8ec80c7"><td id="alFE" class="">file</td><td id="Hy^{" class="">file aperto</td><td id="i^Vc" class="">file</td></tr></tbody></table></div></details><hr id="f094fffd-407a-47b0-bc94-5028b35d4b51"/><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0"><mark class="highlight-yellow_background">Funzione rinominare_file</mark></summary><div class="indented"><p id="0aa28e1f-01ea-4573-81d1-66e5864cdc44" class="">Riceve in input un file e lo rinomina</p><h2 id="14a42371-7054-4d08-9680-4a066f342adb" class="">INPUT</h2><table id="4e57a1f9-47ea-419d-bf81-16c0f736dece" class="simple-table"><thead class="simple-table-header"><tr id="bd968a57-351a-4e70-a1c3-13be706d12c0"><th id="Y`m[" class="simple-table-header-color simple-table-header">Nome</th><th id="be=t" class="simple-table-header-color simple-table-header">Descrizione</th><th id="y`dS" class="simple-table-header-color simple-table-header">Tipo/vincoli</th></tr></thead><tbody><tr id="ce66179d-18aa-408c-b8d5-a5ffed83e1dd"><td id="Y`m[" class="">file</td><td id="be=t" class="">nome del file da rinominare</td><td id="y`dS" class="">file</td></tr><tr id="40f18ede-d47c-4204-8d7f-b774dcb86697"><td id="Y`m[" class="">nuovo_nome_file</td><td id="be=t" class="">nuovo nome da assegnare al file</td><td id="y`dS" class="">array a una dimensione di caratteri</td></tr></tbody></table><h2 id="561b2bd4-f14e-4bc4-830a-c624f615cbc5" class="">OUTPUT</h2><table id="2ffb2cb8-5645-40c1-a1b4-74214326faeb" class="simple-table"><thead class="simple-table-header"><tr id="6cfa2f74-213c-4df5-b6cb-5eaba250ea39"><th id="alFE" class="simple-table-header-color simple-table-header">Nome</th><th id="Hy^{" class="simple-table-header-color simple-table-header">Descrizione</th><th id="i^Vc" class="simple-table-header-color simple-table-header">Tipo/vincoli</th></tr></thead><tbody><tr id="e8649791-7c1a-44cd-9554-c44c97eb6b46"><td id="alFE" class="">file</td><td id="Hy^{" class="">file aperto</td><td id="i^Vc" class="">file</td></tr></tbody></table></div></details><hr id="2a887eec-fb1e-40a8-912a-551a26ddf326"/><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0"><mark class="highlight-yellow_background">Funzione eliminare_file</mark></summary><div class="indented"><p id="28aaca78-a95a-4c42-aed1-813eb8a4a75f" class="">Riceve in input un file e lo elimina</p><h2 id="d9478012-4f12-4353-aec9-b08b4db4fb11" class="">INPUT</h2><table id="6aeb33c4-1349-468a-b8f0-9c0e6920b845" class="simple-table"><thead class="simple-table-header"><tr id="c12e950f-ed3e-4ea5-ad80-f22acc46beb5"><th id="Y`m[" class="simple-table-header-color simple-table-header">Nome</th><th id="be=t" class="simple-table-header-color simple-table-header">Descrizione</th><th id="y`dS" class="simple-table-header-color simple-table-header">Tipo/vincoli</th></tr></thead><tbody><tr id="50319e33-e4a4-4068-aa9d-d45b6b513c45"><td id="Y`m[" class="">file </td><td id="be=t" class="">nome del file da deallocare</td><td id="y`dS" class="">file </td></tr></tbody></table></div></details><hr id="4624a3d5-bca1-4b31-85f6-64fe22d9f0f4"/><p id="21876227-9346-4be6-b5a3-91b42171b032" class="">
+</p></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>

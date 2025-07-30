@@ -1,0 +1,681 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>RECORD record_classificato</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+	margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(50, 48, 44, 1);
+}
+.highlight-gray {
+	color: rgba(115, 114, 110, 1);
+	fill: rgba(115, 114, 110, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(205, 60, 58, 1);
+	fill: rgba(205, 60, 58, 1);
+}
+.highlight-default_background {
+	color: rgba(50, 48, 44, 1);
+}
+.highlight-gray_background {
+	background: rgba(248, 248, 247, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(248, 243, 252, 1);
+}
+.highlight-pink_background {
+	background: rgba(252, 241, 246, 1);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(115, 114, 110, 1);
+	fill: rgba(115, 114, 110, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(205, 60, 58, 1);
+	fill: rgba(205, 60, 58, 1);
+}
+.block-color-default_background {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray_background {
+	background: rgba(248, 248, 247, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(248, 243, 252, 1);
+}
+.block-color-pink_background {
+	background: rgba(252, 241, 246, 1);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-default { background-color: rgba(84, 72, 49, 0.08); }
+.select-value-color-gray { background-color: rgba(84, 72, 49, 0.15); }
+.select-value-color-brown { background-color: rgba(210, 162, 141, 0.35); }
+.select-value-color-orange { background-color: rgba(224, 124, 57, 0.27); }
+.select-value-color-yellow { background-color: rgba(236, 191, 66, 0.39); }
+.select-value-color-green { background-color: rgba(123, 183, 129, 0.27); }
+.select-value-color-blue { background-color: rgba(93, 165, 206, 0.27); }
+.select-value-color-purple { background-color: rgba(168, 129, 197, 0.27); }
+.select-value-color-pink { background-color: rgba(225, 136, 179, 0.27); }
+.select-value-color-red { background-color: rgba(244, 171, 159, 0.4); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="7d9c2976-5f1e-4f03-b056-afb520b27c83" class="page sans"><header><h1 class="page-title">RECORD record_classificato</h1><p class="page-description"></p></header><div class="page-body"><hr id="67c4e0a1-2854-41a3-b05f-1f0166ca170e"/><nav id="4c05c57e-e0fb-40f7-9843-6e2bf061cd5a" class="block-color-gray table_of_contents"><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#a3cffa08-63c1-445d-80cb-ebcbf73f2491">Funzione leggere_nome_giocatore_record_classificato</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#8f59fd49-f81b-40a3-b891-7f681e72fa9b">Funzione scrivere_nome_gicoatore_record_classificato</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#414e604a-80d5-4764-b385-102d0204f28e">Funzione leggere_tiri_record_classificato</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#f7bee7af-715d-441a-81c2-19438ccbd457">Funzione scrivere_tiri_record_classificato</a></div></nav><hr id="c42a6ea8-0a29-469c-b440-a492289e1960"/><p id="16d37849-59ad-46b7-afb9-b8e36b125500" class="">RECORD record_classificato, rappresenta un giocatore nella classifica:</p><ul id="71d56022-e125-4e34-aa43-da1826c1c02c" class="bulleted-list"><li style="list-style-type:disc">nome_giocatore, nome del giocatore classificato, array a 1 dimensione di caratteri di dimensione LUNGHEZZA_NOME +1 che termina con carattere FINE_STRINGA</li></ul><ul id="c6e9e867-4da8-413f-83e1-eab20cb40c27" class="bulleted-list"><li style="list-style-type:disc">tiri, numero di tiri effettuati del giocatore classificato per arrivare alla vittoria, 0&lt;intero</li></ul><hr id="e6e1fb3e-9f21-4450-b564-2ba980f9ec62"/><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0">Funzione leggere_nome_giocatore_record_classificato</summary><div class="indented"><p id="543befe7-429f-44c5-b680-809061308aec" class="">Legge il nome del giocatore.</p><h2 id="3cbce53d-c330-4911-b75e-90ac3f6542e7" class="">INPUT</h2><table id="c1a23e99-1a82-4eed-8aa8-f74338bf457e" class="simple-table"><thead class="simple-table-header"><tr id="35737b80-b5e7-436f-9b90-34124bc2efef"><th id="G\;X" class="simple-table-header-color simple-table-header" style="width:216.65625px">Nome</th><th id="GR[=" class="simple-table-header-color simple-table-header" style="width:219.6676025390625px">Descrizione</th><th id="_KQ:" class="simple-table-header-color simple-table-header" style="width:219.6676025390625px">Tipo/vincoli</th></tr></thead><tbody><tr id="3c0f61e3-ab71-4543-8c0e-75b1ac84c610"><td id="G\;X" class="" style="width:216.65625px">classificato</td><td id="GR[=" class="" style="width:219.6676025390625px">giocatore che si è classificato</td><td id="_KQ:" class="" style="width:219.6676025390625px">record_classificato</td></tr></tbody></table><h2 id="cb7a26b7-f533-4c67-965f-f5ea5405dc3e" class="">OUTPUT</h2><table id="ef1fd99d-7ebc-4bb9-a04f-d725ce7c38fd" class="simple-table"><thead class="simple-table-header"><tr id="38345c11-69bb-4858-a10c-05954e808bf5"><th id="G\;X" class="simple-table-header-color simple-table-header" style="width:216.65625px">Nome</th><th id="GR[=" class="simple-table-header-color simple-table-header" style="width:219.6676025390625px">Descrizione</th><th id="_KQ:" class="simple-table-header-color simple-table-header" style="width:219.6676025390625px">Tipo/vincoli</th></tr></thead><tbody><tr id="83359c43-a69d-4404-82d6-6b9c1fa5b5cc"><td id="G\;X" class="" style="width:216.65625px">nome</td><td id="GR[=" class="" style="width:219.6676025390625px">nome del giocatore classificato</td><td id="_KQ:" class="" style="width:219.6676025390625px">array di caratteri di dimensione LUNGHEZZA_NOME +1 che termina con carattere FINE_STRINGA</td></tr></tbody></table><h2 id="6753928e-eb14-434f-baed-5dd990d3ec51" class="">ALGORITMO</h2><p id="007e1d87-4450-4a81-81eb-935667c69fe7" class="">INIZIO<div class="indented"><p id="a072594a-7dd4-4e0f-8113-1cb896a321c3" class="">nome = copiare_stringa(nome, elemento del campo nome_giocatore di classificato)</p></div></p><p id="88e143a9-9096-4dc7-9751-a75f4d6a0eea" class="">FINE</p></div></details><hr id="b25df3f2-f7af-4fbe-8f24-761d9cdf02f1"/><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0">Funzione scrivere_nome_gicoatore_record_classificato</summary><div class="indented"><p id="bfe1dc29-9ceb-41a0-bab5-c0ad817958ff" class="">Scrive il nome del giocatore.</p><h2 id="b659e669-40be-4278-bdff-3e5036cb20ca" class="">INPUT</h2><table id="589bcaa7-9982-4ea0-b4e3-076e30ae67ed" class="simple-table"><thead class="simple-table-header"><tr id="62cc15ab-b8f3-4b63-a367-161deceaaaf9"><th id="G\;X" class="simple-table-header-color simple-table-header" style="width:216.65625px">Nome</th><th id="GR[=" class="simple-table-header-color simple-table-header" style="width:219.6676025390625px">Descrizione</th><th id="_KQ:" class="simple-table-header-color simple-table-header" style="width:219.6676025390625px">Tipo/vincoli</th></tr></thead><tbody><tr id="57f124e1-facb-4f8d-a419-0e789e419351"><td id="G\;X" class="" style="width:216.65625px">classificato</td><td id="GR[=" class="" style="width:219.6676025390625px">giocatore che si è classificato</td><td id="_KQ:" class="" style="width:219.6676025390625px">record_classificato</td></tr><tr id="4f14efbe-e8d0-4940-b8ba-3975bdb9b7d7"><td id="G\;X" class="" style="width:216.65625px">nome</td><td id="GR[=" class="" style="width:219.6676025390625px">nome del giocatore classificato</td><td id="_KQ:" class="" style="width:219.6676025390625px">array di caratteri di dimensione LUNGHEZZA_NOME +1 che termina con carattere FINE_STRINGA</td></tr></tbody></table><h2 id="d44e52a0-d29f-4863-bea8-0ea9dc2fc8f0" class="">OUTPUT</h2><table id="c0896466-4ac0-4630-8693-ed43aafcf654" class="simple-table"><thead class="simple-table-header"><tr id="769ef04d-660f-40f4-bc08-ba39e094f770"><th id="G\;X" class="simple-table-header-color simple-table-header" style="width:216.65625px">Nome</th><th id="GR[=" class="simple-table-header-color simple-table-header" style="width:219.6676025390625px">Descrizione</th><th id="_KQ:" class="simple-table-header-color simple-table-header" style="width:219.6676025390625px">Tipo/vincoli</th></tr></thead><tbody><tr id="f9abd847-eae3-4830-9f25-43b6dba87022"><td id="G\;X" class="" style="width:216.65625px">classificato</td><td id="GR[=" class="" style="width:219.6676025390625px">giocatore che si è classificato</td><td id="_KQ:" class="" style="width:219.6676025390625px">record_classificato</td></tr></tbody></table><h2 id="3080ef34-aa86-4f68-abe7-7c3318006bf6" class="">ALGORITMO</h2><p id="18cebf86-4e5a-43ba-850b-ff3874f3af4b" class="">INIZIO<div class="indented"><p id="04831035-d95c-4c14-9170-27f7443e17c9" class="">elemento del campo nome_giocatore in posizione “posizione” di classificato = copiare_stringa(elemento del campo nome_giocatore in posizione “posizione” di classificato,carattere)</p></div></p><p id="23b89a48-8f83-4c32-84fe-195c7dd862ab" class="">FINE</p></div></details><hr id="7c7cb520-c5de-4539-9ef8-e0c2874d001b"/><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0">Funzione leggere_tiri_record_classificato</summary><div class="indented"><p id="60a681bb-3c7e-4c8e-927a-ea417989c68d" class="">Legge il numero di tiri del giocatore classificato.</p><h2 id="bf331238-2195-4b40-8eee-48f16de24467" class="">INPUT</h2><table id="917c7e1a-d2de-4003-a846-fceeac76c9e2" class="simple-table"><thead class="simple-table-header"><tr id="d9ea18ae-b04d-4118-825d-fae14a1cf5b8"><th id="G\;X" class="simple-table-header-color simple-table-header" style="width:216.65625px">Nome</th><th id="GR[=" class="simple-table-header-color simple-table-header" style="width:219.6676025390625px">Descrizione</th><th id="_KQ:" class="simple-table-header-color simple-table-header" style="width:219.6676025390625px">Tipo/vincoli</th></tr></thead><tbody><tr id="806dcb8f-797a-4154-8b71-26b585408059"><td id="G\;X" class="" style="width:216.65625px">classificato</td><td id="GR[=" class="" style="width:219.6676025390625px">giocatore che si è classificato</td><td id="_KQ:" class="" style="width:219.6676025390625px">record_classificato</td></tr></tbody></table><h2 id="04659a97-191b-420a-a263-ba8d953a4a8b" class="">OUTPUT</h2><table id="b91734a0-8198-43b0-961a-4776a03bc68d" class="simple-table"><thead class="simple-table-header"></thead><tbody><tr id="66ecfbaa-5f05-49fc-b98e-986cc1aed644"><td id="G\;X" class="" style="width:216.65625px">tiri</td><td id="GR[=" class="" style="width:219.6676025390625px">numero di tiri del giocatore classificato</td><td id="_KQ:" class="" style="width:219.6676025390625px">intero &gt;0</td></tr></tbody></table><h2 id="403a1f2b-9239-45b8-9455-2f1db7506c28" class="">ALGORITMO</h2><p id="38ab16ff-e80f-4dac-af53-d6e1a335844b" class="">INIZIO<div class="indented"><p id="314a4338-e654-484d-aa9a-55520db67590" class="">tiri = elemento del campo tiri di classificato</p></div></p><p id="dc83c472-143c-4168-bc1b-ce3e4b90c4d0" class="">FINE</p></div></details><hr id="231e73be-4ef1-4667-adda-f55ea9813b1d"/><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0">Funzione scrivere_tiri_record_classificato</summary><div class="indented"><p id="d8100377-9578-4407-b3f5-9732df9c5dd2" class="">Scrive il numero di tiri del giocatore classificato.</p><h2 id="602b9762-3bc2-4a18-a3f5-b074e8e5cab9" class="">INPUT</h2><table id="5fe6bdc1-35cb-418e-bd48-07e0502dbe4a" class="simple-table"><thead class="simple-table-header"><tr id="985ae780-fcef-4017-b32f-40305970ac74"><th id="G\;X" class="simple-table-header-color simple-table-header" style="width:216.65625px">Nome</th><th id="GR[=" class="simple-table-header-color simple-table-header" style="width:219.6676025390625px">Descrizione</th><th id="_KQ:" class="simple-table-header-color simple-table-header" style="width:219.6676025390625px">Tipo/vincoli</th></tr></thead><tbody><tr id="48c4e400-5c94-4e56-916c-bda5d74f1d61"><td id="G\;X" class="" style="width:216.65625px">tiri</td><td id="GR[=" class="" style="width:219.6676025390625px">numero di tiri del giocatore classificato</td><td id="_KQ:" class="" style="width:219.6676025390625px">intero &gt;0</td></tr><tr id="02b9d794-76e5-4e60-8e58-fa622f7dd928"><td id="G\;X" class="" style="width:216.65625px">classificato</td><td id="GR[=" class="" style="width:219.6676025390625px">giocatore che si è classificato</td><td id="_KQ:" class="" style="width:219.6676025390625px">record_classificato</td></tr></tbody></table><h2 id="5180e4de-e334-4abb-87b9-1ff841242760" class="">OUTPUT</h2><table id="b78f9ff5-b45a-4464-b948-6ebe6f2a90ef" class="simple-table"><thead class="simple-table-header"></thead><tbody><tr id="7a0b2dca-154d-4cb4-9fae-c578e9219f75"><td id="G\;X" class="" style="width:216.65625px">classificato</td><td id="GR[=" class="" style="width:219.6676025390625px">giocatore che si è classificato</td><td id="_KQ:" class="" style="width:219.6676025390625px">record_classificato</td></tr></tbody></table><h2 id="d03edb8e-769e-488e-a131-76c260925898" class="">ALGORITMO</h2><p id="901c9749-c804-4620-86c8-3fcc3da2fea2" class="">INIZIO</p><p id="21c72263-c432-471a-bc77-d812cd5e9fa2" class=""> elemento del campo tiri di classificato = tiri</p><p id="da16eec9-46a8-4c8e-afd3-a6a7224fa619" class="">FINE</p></div></details><hr id="5e2aa3ba-311a-4ffb-a35f-1acad3ff1b14"/><p id="744da4e1-dec9-48ee-abb2-9645a86cdf1c" class="">
+</p></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>

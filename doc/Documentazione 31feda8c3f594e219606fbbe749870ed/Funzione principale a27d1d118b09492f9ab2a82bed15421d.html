@@ -1,0 +1,684 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Funzione principale</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+	margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(50, 48, 44, 1);
+}
+.highlight-gray {
+	color: rgba(115, 114, 110, 1);
+	fill: rgba(115, 114, 110, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(205, 60, 58, 1);
+	fill: rgba(205, 60, 58, 1);
+}
+.highlight-default_background {
+	color: rgba(50, 48, 44, 1);
+}
+.highlight-gray_background {
+	background: rgba(248, 248, 247, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(248, 243, 252, 1);
+}
+.highlight-pink_background {
+	background: rgba(252, 241, 246, 1);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(115, 114, 110, 1);
+	fill: rgba(115, 114, 110, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(205, 60, 58, 1);
+	fill: rgba(205, 60, 58, 1);
+}
+.block-color-default_background {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray_background {
+	background: rgba(248, 248, 247, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(248, 243, 252, 1);
+}
+.block-color-pink_background {
+	background: rgba(252, 241, 246, 1);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-default { background-color: rgba(84, 72, 49, 0.08); }
+.select-value-color-gray { background-color: rgba(84, 72, 49, 0.15); }
+.select-value-color-brown { background-color: rgba(210, 162, 141, 0.35); }
+.select-value-color-orange { background-color: rgba(224, 124, 57, 0.27); }
+.select-value-color-yellow { background-color: rgba(236, 191, 66, 0.39); }
+.select-value-color-green { background-color: rgba(123, 183, 129, 0.27); }
+.select-value-color-blue { background-color: rgba(93, 165, 206, 0.27); }
+.select-value-color-purple { background-color: rgba(168, 129, 197, 0.27); }
+.select-value-color-pink { background-color: rgba(225, 136, 179, 0.27); }
+.select-value-color-red { background-color: rgba(244, 171, 159, 0.4); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="a27d1d11-8b09-492f-9ab2-a82bed15421d" class="page sans"><header><h1 class="page-title">Funzione principale</h1><p class="page-description"></p></header><div class="page-body"><hr id="ad35f0dd-7951-41a1-955a-91adb845c4f7"/><nav id="b3910b52-908e-4bb4-8790-9f88e066b87d" class="block-color-gray table_of_contents"><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#88ffbec4-4a6a-4a2a-8319-0e8e78b01679">Descrizione</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#d585fb48-730b-4e80-b054-f77dec8f6109">COSTANTI</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#4384361f-3af3-47f8-bf4c-11c126c6bb43">INPUT</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#07c4c28c-f943-4c81-a601-f94e0b2b4dfe">OUTPUT</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#aea4db8c-88bc-43be-ba03-7f95d2e563c0">LAVORO</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#f25a1433-bde8-4f31-940d-0df748b33802">ALGORITMO</a></div></nav><hr id="84ba2aeb-83fa-4b74-ab25-2701dda8814e"/><h2 id="88ffbec4-4a6a-4a2a-8319-0e8e78b01679" class="">Descrizione</h2><p id="aa7c5ca7-1d82-4558-af23-9d172ea03aa9" class="">Gestisce il funzionamento dell&#x27;intero gioco.</p><hr id="76705021-8c3c-47e6-b415-05430271db7e"/><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0">COSTANTI</summary><div class="indented"><table id="53434180-62a3-4e65-83b6-3d921c327503" class="simple-table"><thead class="simple-table-header"><tr id="854eab04-2b43-4c75-b1c3-128fda0962af"><th id="mkY_" class="simple-table-header-color simple-table-header" style="width:222.6836954752604px">Nome</th><th id="_Khg" class="simple-table-header-color simple-table-header" style="width:161.67044067382812px">Valore</th><th id="XSMa" class="simple-table-header-color simple-table-header" style="width:222.6836954752604px">Descrizione</th></tr></thead><tbody><tr id="57aacb44-f2d4-44cd-95cb-b3f230e9f4f5"><td id="mkY_" class="" style="width:222.6836954752604px">SCELTA_MENU_NUOVA_PARTITA</td><td id="_Khg" class="" style="width:161.67044067382812px">1</td><td id="XSMa" class="" style="width:222.6836954752604px">Scelta corrispondende al menu nuova partita</td></tr><tr id="39d6bbd6-1ff4-420f-9aa4-b426e1157e71"><td id="mkY_" class="" style="width:222.6836954752604px">SCELTA_MENU_PARTITE_SALVATE</td><td id="_Khg" class="" style="width:161.67044067382812px">2</td><td id="XSMa" class="" style="width:222.6836954752604px">Scelta corrispondende al menu delle partite salvate</td></tr><tr id="549b5b2a-2007-4875-8e1d-0c633008e66a"><td id="mkY_" class="" style="width:222.6836954752604px">SCELTA_MENU_CLASSIFICA</td><td id="_Khg" class="" style="width:161.67044067382812px">3</td><td id="XSMa" class="" style="width:222.6836954752604px">Scelta corrispondende al menu classifica</td></tr><tr id="131ca684-385a-40e4-a164-ff66aebeab15"><td id="mkY_" class="" style="width:222.6836954752604px">SCELTA_MENU_AIUTO</td><td id="_Khg" class="" style="width:161.67044067382812px">4</td><td id="XSMa" class="" style="width:222.6836954752604px">Scelta corrispondende al menu aiuto</td></tr></tbody></table></div></details><hr id="90072758-200e-4176-8783-db10ad9a1b8c"/><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0">INPUT</summary><div class="indented"><table id="bc255a8b-3cbe-4301-b61e-921ccca7c15c" class="simple-table"><thead class="simple-table-header"><tr id="89ddcdcf-a995-4e0a-bd90-d5292953aaa4"><th id="G\;X" class="simple-table-header-color simple-table-header" style="width:232.66949462890625px">Nome</th><th id="GR[=" class="simple-table-header-color simple-table-header" style="width:232.66949462890625px">Descrizione</th><th id="_KQ:" class="simple-table-header-color simple-table-header" style="width:232.66949462890625px">Tipo/vincoli</th></tr></thead><tbody><tr id="e77052b1-efd7-4171-8e46-fda6e1d72399"><td id="G\;X" class="" style="width:232.66949462890625px">NOME_FILE_TITOLO</td><td id="GR[=" class="" style="width:232.66949462890625px">Nome del file che contiene il titolo del gioco</td><td id="_KQ:" class="" style="width:232.66949462890625px">array a 1 dimensione di caratteri</td></tr><tr id="a0a02883-f191-410c-a77f-cb8776af6eaa"><td id="G\;X" class="" style="width:232.66949462890625px">NOME_FILE_MENU_NUOVA_PARTITA</td><td id="GR[=" class="" style="width:232.66949462890625px">Nome del file che contiene il menù nuova partita</td><td id="_KQ:" class="" style="width:232.66949462890625px">array a 1 dimensione di caratteri</td></tr><tr id="b2b8f156-e72e-425d-b853-b8920ce50dcb"><td id="G\;X" class="" style="width:232.66949462890625px">NOME_FILE_MENU_PRINCIPALE</td><td id="GR[=" class="" style="width:232.66949462890625px">Nome del file che contiene il menù principale</td><td id="_KQ:" class="" style="width:232.66949462890625px">array a 1 dimensione di caratteri</td></tr><tr id="12c3cfb2-b5d0-483e-a372-2fa6a533129b"><td id="G\;X" class="" style="width:232.66949462890625px">NOME_FILE_MENU_PARTITA</td><td id="GR[=" class="" style="width:232.66949462890625px">Nome del file che contiene il menu della partita in corso</td><td id="_KQ:" class="" style="width:232.66949462890625px">array a 1 dimensione di caratteri</td></tr><tr id="8f68391e-b36c-4b11-a712-2290e1d722fd"><td id="G\;X" class="" style="width:232.66949462890625px">NOME_FILE_MENU_PARTITE_SALVATE</td><td id="GR[=" class="" style="width:232.66949462890625px">Nome del file che contiene il menù delle partite salvate</td><td id="_KQ:" class="" style="width:232.66949462890625px">array a 1 dimensione di caratteri</td></tr><tr id="e3ff5696-9bc6-4008-9ec1-4128e31a7060"><td id="G\;X" class="" style="width:232.66949462890625px">NOME_FILE_MENU_AIUTO</td><td id="GR[=" class="" style="width:232.66949462890625px">Nome del file che contiene il menu aiuto</td><td id="_KQ:" class="" style="width:232.66949462890625px">array a 1 dimensione di caratteri</td></tr><tr id="cd0cebb5-5d43-4531-a11a-7d320a38f5b7"><td id="G\;X" class="" style="width:232.66949462890625px">NOME_FILE_MENU_CLASSIFICA</td><td id="GR[=" class="" style="width:232.66949462890625px">Nome del file che contiene il menù classifica</td><td id="_KQ:" class="" style="width:232.66949462890625px">array a 1 dimensione di caratteri</td></tr><tr id="842a2eeb-3849-4842-9b68-b91a7a10d1f3"><td id="G\;X" class="" style="width:232.66949462890625px">NOME_FILE_REGOLE_GIOCO</td><td id="GR[=" class="" style="width:232.66949462890625px">Nome del file che contiene le regole di gioco</td><td id="_KQ:" class="" style="width:232.66949462890625px">array a 1 dimensione di caratteri</td></tr><tr id="1e5ca634-801a-4ccd-8656-96ca11a3dca2"><td id="G\;X" class="" style="width:232.66949462890625px">NOME_FILE_MANUALE_GIOCO</td><td id="GR[=" class="" style="width:232.66949462890625px">Nome del file che contiene il manuale di gioco</td><td id="_KQ:" class="" style="width:232.66949462890625px">array a 1 dimensione di caratteri</td></tr><tr id="76aafb45-773b-4390-aa05-b1b8414a8175"><td id="G\;X" class="" style="width:232.66949462890625px">NOME_FILE_PARTITE_SALVATE</td><td id="GR[=" class="" style="width:232.66949462890625px">Nome del file che contiene le partite salvate</td><td id="_KQ:" class="" style="width:232.66949462890625px">array a 1 dimensione di caratteri</td></tr><tr id="dcee8ec3-0e69-4bb5-ab7f-ab1f4f6699aa"><td id="G\;X" class="" style="width:232.66949462890625px">NOME_FILE_CLASSIFICA</td><td id="GR[=" class="" style="width:232.66949462890625px">Nome del file che contiene la classifica</td><td id="_KQ:" class="" style="width:232.66949462890625px">array a 1 dimensione di caratteri</td></tr><tr id="70862096-2c4f-4d32-a259-47be7542f5c5"><td id="G\;X" class="" style="width:232.66949462890625px">MESSAGGIO_SCELTA_AZIONE_MENU</td><td id="GR[=" class="" style="width:232.66949462890625px">Indica il messaggio generico da stampare al momento dell’inserimento di una scelta all’interno di un menu</td><td id="_KQ:" class="" style="width:232.66949462890625px">array a 1 dimensione di caratteri</td></tr><tr id="770e86b5-55d3-4adb-9046-bb575489629a"><td id="G\;X" class="" style="width:232.66949462890625px">SCELTA_MENU_NUOVA_PARTITA</td><td id="GR[=" class="" style="width:232.66949462890625px">Scelta corrispondende al menu nuova partita</td><td id="_KQ:" class="" style="width:232.66949462890625px">intero</td></tr><tr id="dcfc2431-f7a9-4403-9f37-33173bb7224d"><td id="G\;X" class="" style="width:232.66949462890625px">SCELTA_MENU_PARTITE_SALVATE</td><td id="GR[=" class="" style="width:232.66949462890625px">Scelta corrispondende al menu delle partite salvate</td><td id="_KQ:" class="" style="width:232.66949462890625px">intero</td></tr><tr id="7735429a-7e48-46a4-b812-b125fe023f9b"><td id="G\;X" class="" style="width:232.66949462890625px">SCELTA_MENU_CLASSIFICA</td><td id="GR[=" class="" style="width:232.66949462890625px">Scelta corrispondende al menu classifica</td><td id="_KQ:" class="" style="width:232.66949462890625px">intero</td></tr><tr id="865e0d58-3a2e-4bf5-8c4f-7fb7a90e2905"><td id="G\;X" class="" style="width:232.66949462890625px">SCELTA_MENU_AIUTO</td><td id="GR[=" class="" style="width:232.66949462890625px">Scelta corrispondende al menu aiuto</td><td id="_KQ:" class="" style="width:232.66949462890625px">intero</td></tr><tr id="cc395673-579b-43f9-9251-91c57948580d"><td id="G\;X" class="" style="width:232.66949462890625px">SCELTA_USCIRE_DAL_MENU</td><td id="GR[=" class="" style="width:232.66949462890625px">scelta di uscire dal menu</td><td id="_KQ:" class="" style="width:232.66949462890625px">intero</td></tr><tr id="dc45a34a-19d8-463e-acc4-faf49b488701"><td id="G\;X" class="" style="width:232.66949462890625px">PRIMA_COORDINATA_SCHERMO</td><td id="GR[=" class="" style="width:232.66949462890625px">valore della prima ascissa/ordinata disonibile</td><td id="_KQ:" class="" style="width:232.66949462890625px">intero</td></tr></tbody></table></div></details><hr id="335b3230-108d-4cb3-a6f9-3ae25d999ddb"/><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0">OUTPUT</summary><div class="indented"><table id="22cda660-b3a8-4af6-88fe-78bc503a873c" class="simple-table"><thead class="simple-table-header"><tr id="8f615586-b1be-45ed-9091-d36d3c72ea09"><th id="G\;X" class="simple-table-header-color simple-table-header" style="width:232.66949462890625px">Nome</th><th id="GR[=" class="simple-table-header-color simple-table-header" style="width:232.66949462890625px">Descrizione</th><th id="_KQ:" class="simple-table-header-color simple-table-header" style="width:232.66949462890625px">Tipo/vincoli</th></tr></thead><tbody><tr id="81453cd8-5750-4c50-b879-7d6cfbbf0434"><td id="G\;X" class="" style="width:232.66949462890625px">partite_salvate</td><td id="GR[=" class="" style="width:232.66949462890625px">File che contiene le partite salvatedall’utente</td><td id="_KQ:" class="" style="width:232.66949462890625px">file binario, contiene come primo dato il numero di partite salvate (da 0 a 5), e successivamente quante volte il numero precedente di partite salvate come record_partita</td></tr><tr id="722d4f02-8eeb-4b86-a9f5-80c613c32f94"><td id="G\;X" class="" style="width:232.66949462890625px">classifica</td><td id="GR[=" class="" style="width:232.66949462890625px">File che contiene la classifica del gioco. vengono mostrati solo i pirmi 10</td><td id="_KQ:" class="" style="width:232.66949462890625px">file binario, i dati salvati sono di tipo record_classificato</td></tr></tbody></table></div></details><hr id="884bd4b6-8dfe-475d-866c-d5949f2c7226"/><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0">LAVORO</summary><div class="indented"><table id="b11b26b4-af56-429a-b94e-594c89512e5d" class="simple-table"><thead class="simple-table-header"><tr id="6196e729-5817-476b-a4d3-f87e975910b7"><th id="G\;X" class="simple-table-header-color simple-table-header" style="width:232.66949462890625px">Nome</th><th id="GR[=" class="simple-table-header-color simple-table-header" style="width:232.66949462890625px">Descrizione</th><th id="_KQ:" class="simple-table-header-color simple-table-header" style="width:232.66949462890625px">Tipo/vincoli</th></tr></thead><tbody><tr id="065fd2d0-c3eb-4b63-bc95-9b8fa951eb7e"><td id="G\;X" class="" style="width:232.66949462890625px">partita_caricata</td><td id="GR[=" class="" style="width:232.66949462890625px">indica se l’utente ha caricato una partita dal file NOME_FILE_PARTITE_SALVATE in ram</td><td id="_KQ:" class="" style="width:232.66949462890625px">booleano</td></tr><tr id="f6d694f6-e72f-4c97-98f8-b76173b4fb3f"><td id="G\;X" class="" style="width:232.66949462890625px">scelta</td><td id="GR[=" class="" style="width:232.66949462890625px">indica la scelta dell&#x27;utente all&#x27;interno del menù principale</td><td id="_KQ:" class="" style="width:232.66949462890625px">0≤intero≤4</td></tr><tr id="def039e4-174d-4049-8fbb-328d63b46bea"><td id="G\;X" class="" style="width:232.66949462890625px">riga</td><td id="GR[=" class="" style="width:232.66949462890625px">indica la riga sulla quale è posizionato il cursore</td><td id="_KQ:" class="" style="width:232.66949462890625px">0≤intero≤25</td></tr><tr id="c3b034ff-e401-4a8c-9373-db01500b8fb8"><td id="G\;X" class="" style="width:232.66949462890625px">partita</td><td id="GR[=" class="" style="width:232.66949462890625px">partita che l’utente giocherà</td><td id="_KQ:" class="" style="width:232.66949462890625px">record_partita</td></tr><tr id="0c8b6c5d-fabd-444e-91bd-61bb6f0d3732"><td id="G\;X" class="" style="width:232.66949462890625px">salvataggi</td><td id="GR[=" class="" style="width:232.66949462890625px">contiene il file delle partite salvate e la partita salvata richiesta dall’utente se scelta</td><td id="_KQ:" class="" style="width:232.66949462890625px">record_partite_salvate </td></tr></tbody></table><hr id="030f28e8-9a8c-4c50-8181-5834929903be"/></div></details><hr id="d1f0c3c7-3b99-4b5a-82a8-d78083a21119"/><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0">ALGORITMO</summary><div class="indented"><p id="35220468-e7ac-4626-93de-5d466f5e5442" class="">INIZIO<div class="indented"><p id="807866fb-473c-47bf-bf7f-9a4d818da8cb" class=""><mark class="highlight-yellow_background">SE (verificare_esistenza_tutti_file(NOME_FILE_TITOLO, NOME_FILE_MENU_NUOVA_PARTITA, NOME_FILE_MENU_PRINCIPALE, NOME_FILE_MENU_PARTITA, NOME_FILE_MENU_PARTITE_SALVATE, NOME_FILE_MENU_AIUTO, NOME_FILE_MENU_CLASSIFICA, NOME_FILE_REGOLE_GIOCO, NOME_FILE_MANUALE_GIOCO, NOME_FILE_PARTITE_SALVATE, NOME_FILE_CLASSIFICA) = VERO)</mark><div class="indented"><p id="bce233e4-783b-4d6d-a775-699a7853f502" class=""><mark class="highlight-yellow_background">ALLORA</mark><div class="indented"><p id="8bbd9d26-231f-4b97-be1f-99ae9a89cdaf" class=""><mark class="highlight-yellow_background">salvataggi = scrivere_percorso_file_partite_salvate_record_partite_salvate(salvataggi, NOME_FILE_PARTITE_SALVATE)</mark></p><p id="30bc8515-c43e-40a4-9db9-fb6c40785855" class=""><mark class="highlight-yellow_background">partita = scrivere_nuova_partita_record_partita(partita, FALSO)</mark></p><p id="d7412e73-4e6b-45af-a72e-e838d06a0cd7" class="">partita_caricata = FALSO // indica se l’utente ha caricato una partita in RAM dal file delle partite salvate</p><p id="9c25367e-ab3f-4178-836c-7014bfc0b38a" class="">ESEGUI<div class="indented"><p id="f9fa4294-7ccb-43db-bc2a-b43d7b4ab8d0" class=""><mark class="highlight-yellow_background">SE (partita_caricata = VERO)</mark><div class="indented"><p id="c50c1411-08e5-4be5-b7c7-ce0c955b26c0" class=""><mark class="highlight-yellow_background">ALLORA</mark><div class="indented"><p id="88b8d057-6a95-463e-a026-16c98171ac92" class=""><mark class="highlight-yellow_background">partita = giocare_partita(partita)</mark></p><p id="547a0b29-5192-4cf7-af44-7ba3a3548c7c" class=""><mark class="highlight-yellow_background">partita_caricata = FALSO</mark></p></div></p></div></p><p id="4169942b-fa40-4432-801e-dbaa9e4afbee" class=""><mark class="highlight-yellow_background">FINE</mark></p><p id="4018ce8a-65b3-4ae0-9f23-9839bfe162e9" class="">
+</p><p id="8a533173-5cdc-4135-8e05-7cf16ec96469" class=""><mark class="highlight-yellow_background">SE (leggere_nuova_partita_record_partita(partita) = VERO)</mark><div class="indented"><p id="43bc82d0-446b-4769-b3f2-90303af2a414" class=""><mark class="highlight-yellow_background">ALLORA</mark><div class="indented"><p id="c09ec9b7-7ae7-4729-9bd2-b1752859160c" class=""><mark class="highlight-yellow_background">partita = gestire_menu_nuova_partita(NOME_FILE_MENU_NUOVA_PARTITA)</mark></p></div></p></div></p><p id="15a8e99b-3602-4e70-a324-a93b3577e62d" class=""><mark class="highlight-yellow_background">FINE</mark></p><p id="060f28a0-71ba-4a27-a25f-c0df934f362d" class="">
+</p><p id="4b612943-314b-470e-b24a-6dd6bb6344bd" class=""><mark class="highlight-yellow_background">spostare_cursore(PRIMA_COORDINATA_SCHERMO, PRIMA_COORDINATA_SCHERMO)</mark></p><p id="bffe24d0-9df9-40e4-95d6-b215dbee950c" class=""><mark class="highlight-yellow_background">stampare_file_di_testo(NOME_FILE_MENU_PRINCIPALE)</mark></p><p id="52632595-900f-419e-be38-291d628e5945" class=""><mark class="highlight-yellow_background">riga = ottenere_riga_cursore()</mark></p><p id="ab4a2138-9224-4691-b284-a2297e43de8f" class=""><mark class="highlight-yellow_background">scelta = chiedere_intero(MESSAGGIO_SCELTA_AZIONE_MENU, SCELTA_USCIRE_DAL_MENU, SCELTA_MENU_AIUTO, riga, PRIMA_COORDINATA_SCHERMO)</mark></p><p id="cd058ffb-b075-4cab-ab98-331ae977bea5" class="">
+</p><p id="b3230938-4f7b-418f-a4a6-8ed0cbf1b076" class=""><mark class="highlight-yellow_background">SE (scelta = SCELTA_MENU_NUOVA_PARTITA)</mark><div class="indented"><p id="c4d0c63d-1d40-438b-bacd-a67368f3d236" class="">ALLORA<div class="indented"><p id="835677ff-ea13-4dd1-a90f-467567599343" class=""><mark class="highlight-yellow_background">partita = gestire_menu_nuova_partita(NOME_FILE_MENU_NUOVA_PARTITA)</mark></p></div></p><p id="375fd52e-a161-47fc-8fd2-f6fd70694527" class="">ALTRIMENTI<div class="indented"><p id="c3a8b431-0d26-46b4-846d-63c7de53f21e" class=""><mark class="highlight-yellow_background">SE (scelta = SCELTA_MENU_PARTITE_SALVATE)</mark><div class="indented"><p id="dd1ff818-5da0-4dfa-9389-792ae82e3296" class="">ALLORA<div class="indented"><p id="fd2a20a2-7733-4444-930d-7e49f814ff55" class=""><mark class="highlight-yellow_background">salvataggi = gestire_menu_partite_salvate(salvataggi, NOME_FILE_MENU_PARTITE_SALVATE)</mark></p><p id="10a76bd5-c54c-46f1-9f35-d4434ef6423a" class=""><mark class="highlight-yellow_background">SE (leggere_partita_presente_record_partite_salvate(salvataggi) = VERO)</mark><div class="indented"><p id="f3b019ac-eca8-4157-9625-24be9ace56d4" class="">ALLORA<div class="indented"><p id="1af3888d-49b7-4d83-9980-e2d8f83e179c" class=""><mark class="highlight-yellow_background">partita = leggere_partita_opzionale_record_partite_salvate(salvataggi)</mark></p></div></p><p id="7d8fc9e7-6d12-4632-859f-17fac5e5a5cc" class=""><mark class="highlight-yellow_background">      partita_caricata = VERO</mark></p></div></p><p id="c6cb8978-650b-4849-9066-f577b962421c" class="">FINE</p></div></p><p id="361dba20-2347-4d25-9f4c-0a47c43a1c31" class="">ALTRIMENTI<div class="indented"><p id="bd5db918-6489-4028-ab10-d56a6a55e3b7" class=""><mark class="highlight-yellow_background">SE (scelta = SCELTA_MENU_CLASSIFICA)</mark><div class="indented"><p id="72e0f191-9acb-4ea2-a5c7-e17259e1dbe3" class="">ALLORA<div class="indented"><p id="9053323e-9795-4fad-ab61-f0343594ab70" class="">gestire_menu_classifica(NOME_FILE_MENU_CLASSIFICA, NOME_FILE_CLASSIFICA) </p></div></p><p id="2d11982d-9e42-4e48-a7b2-48147f1c2b29" class="">ALTRIMENTI<div class="indented"><p id="451995b0-c460-4715-970b-54e94dfd0baa" class=""><mark class="highlight-yellow_background">SE (scelta = SCELTA_MENU_AIUTO)</mark><div class="indented"><p id="a04c19d9-08b1-4a42-abca-a51521b96195" class="">ALLORA<div class="indented"><p id="445ebe2f-79a5-43ea-939c-93d3a9027e4b" class="">gestire_menu_aiuto(NOME_FILE_MENU_AIUTO, NOME_FILE_REGOLE_GIOCO, NOME_FILE_MANUALE_GIOCO)</p></div></p></div></p><p id="d19dcdfb-da74-4e9e-8f9c-d1e939a87e71" class="">FINE</p></div></p></div></p><p id="87f15a50-d9b9-4b89-8ea3-fda7da54f3b3" class="">FINE</p></div></p></div></p><p id="0beb4d50-97f8-43fc-aea4-f74a862e0f36" class="">FINE</p></div></p></div></p><p id="183b113c-3f54-464b-91d9-b232a2843a7c" class="">FINE</p></div></p><p id="1efccb34-e44c-44ae-b738-7e450f0f80f3" class="">FINCHE (scelta ≠ <mark class="highlight-yellow_background">SCELTA_USCIRE_DAL_MENU</mark>)</p><p id="fdac4c11-2c15-495b-9882-355d5195ccf1" class="">FINE</p></div></p></div></p><p id="357c4114-1643-4e2e-843c-cb3705b0ac76" class=""><mark class="highlight-yellow_background">FINE</mark></p></div></p><p id="97f4e314-dfb3-44cd-b5a0-944841350d55" class="">FINE</p></div></details><hr id="5cd24ffa-d520-46b6-8c67-edeb79bcb5b2"/><p id="79659d97-9f3e-41bc-b466-baf9194f4bb2" class="">
+</p></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>

@@ -1,0 +1,693 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Modulo gestire_classifica</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+	margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(50, 48, 44, 1);
+}
+.highlight-gray {
+	color: rgba(115, 114, 110, 1);
+	fill: rgba(115, 114, 110, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(205, 60, 58, 1);
+	fill: rgba(205, 60, 58, 1);
+}
+.highlight-default_background {
+	color: rgba(50, 48, 44, 1);
+}
+.highlight-gray_background {
+	background: rgba(248, 248, 247, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(248, 243, 252, 1);
+}
+.highlight-pink_background {
+	background: rgba(252, 241, 246, 1);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(115, 114, 110, 1);
+	fill: rgba(115, 114, 110, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(205, 60, 58, 1);
+	fill: rgba(205, 60, 58, 1);
+}
+.block-color-default_background {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray_background {
+	background: rgba(248, 248, 247, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(248, 243, 252, 1);
+}
+.block-color-pink_background {
+	background: rgba(252, 241, 246, 1);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-default { background-color: rgba(84, 72, 49, 0.08); }
+.select-value-color-gray { background-color: rgba(84, 72, 49, 0.15); }
+.select-value-color-brown { background-color: rgba(210, 162, 141, 0.35); }
+.select-value-color-orange { background-color: rgba(224, 124, 57, 0.27); }
+.select-value-color-yellow { background-color: rgba(236, 191, 66, 0.39); }
+.select-value-color-green { background-color: rgba(123, 183, 129, 0.27); }
+.select-value-color-blue { background-color: rgba(93, 165, 206, 0.27); }
+.select-value-color-purple { background-color: rgba(168, 129, 197, 0.27); }
+.select-value-color-pink { background-color: rgba(225, 136, 179, 0.27); }
+.select-value-color-red { background-color: rgba(244, 171, 159, 0.4); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="abd206a7-9073-4ef4-8cf5-40a17a94191e" class="page sans"><header><h1 class="page-title">Modulo gestire_classifica</h1><p class="page-description"></p></header><div class="page-body"><hr id="58c121d8-3eca-4ffd-8f04-4aeccb897813"/><nav id="14b2ae3f-5d78-408c-b283-1469b498707f" class="block-color-gray table_of_contents"><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#4d24dcf7-7576-4a74-a427-0cf80ed0d172">Descrizione</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#ab95d902-ef4f-431f-9a74-bc7762462558">Costanti</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#36e9951d-5274-4150-b640-be86982a7485">Funzione gestire_menu_classifica</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#ab43fc43-8528-4357-9cde-812d63a5d979">Funzione aggiornare_classifica</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#4383e592-18db-4cfb-a23f-b5c057394a7e">Funzione stampare_classifica</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#180e2f2f-f579-49cc-bf39-8b76578106de">Funzione inserire_nome</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#f35ad365-ad12-4d5c-8863-4984a784f42f">Funzione chiedere_nome_giocatore</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#f677072e-23fc-4553-ab14-7288deea2812">Funzione inserire_classificato_in_classifica</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#19e95af5-6584-4a21-b8e6-85e0a37fe26e">Funzione scrivere_vettore_classificati_su_file</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#b0d8b501-4fb7-4063-b2d5-67cfd0cc777d">Funzione inserire_classificato_in_vettore_classificati</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#dc7a5a69-6d8a-420b-8958-537890a0f986">Funzione leggere_vettore_classificati_da_file</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#4e715326-5cd2-4e09-814c-088fe5076715">Funzione leggere_classificato_da_file</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#1a7ad9e0-489e-4652-8ca0-de24c39364d2">Funzione contare_classificati</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#0e1cca3b-4554-4bf9-8052-0dec9928131e">Funzione trovare_punteggio_minimo_ingresso_classifica</a></div></nav><hr id="6f6dd35b-4e20-48b6-9dd7-7a9eaf66a9d0"/><h2 id="4d24dcf7-7576-4a74-a427-0cf80ed0d172" class="">Descrizione</h2><p id="a816a147-afc5-4ab8-9bf1-7df41380e3f2" class="">Gestisce il sottomenù della classifica.</p><hr id="e14404c1-1518-4ea3-a2ae-2fff1302ccc3"/><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0">Costanti</summary><div class="indented"><table id="495eae22-60c8-4d42-8ec2-6a918eb206d0" class="simple-table"><thead class="simple-table-header"><tr id="ca3e1de1-9be6-43a9-950c-c62cc27a0629"><th id="mkY_" class="simple-table-header-color simple-table-header" style="width:399.6533966064453px">Nome</th><th id="_Khg" class="simple-table-header-color simple-table-header" style="width:327.65625px">Valore</th><th id="XSMa" class="simple-table-header-color simple-table-header" style="width:167.64488220214844px">Descrizione</th></tr></thead><tbody><tr id="05e764b0-2b32-446c-b64d-be95854ebc12"><td id="mkY_" class="" style="width:399.6533966064453px">NUMERO_MASSIMO_CLASSIFICATI</td><td id="_Khg" class="" style="width:327.65625px">10</td><td id="XSMa" class="" style="width:167.64488220214844px">numero massimo dei classificati</td></tr><tr id="b077444e-6eb7-4d0e-a6c6-cefaa4325ac5"><td id="mkY_" class="" style="width:399.6533966064453px">SCELTA_STAMPARE_CLASSIFICA</td><td id="_Khg" class="" style="width:327.65625px">1</td><td id="XSMa" class="" style="width:167.64488220214844px">indica il valore da inserire per scegliere la stampa della classifica</td></tr><tr id="8c8560cb-c3d4-4549-aef3-8f4cba06fc2d"><td id="mkY_" class="" style="width:399.6533966064453px">MESSAGGIO_ENTRATO_IN_CLASSIFICA</td><td id="_Khg" class="" style="width:327.65625px">&quot;Sei entrato in classifica!”</td><td id="XSMa" class="" style="width:167.64488220214844px">messaggio che avvisa l’accesso in classifica</td></tr><tr id="b9a40308-f0bc-41db-8d64-92ab65f8a88d"><td id="mkY_" class="" style="width:399.6533966064453px">MESSAGGIO_PUNTEGGIO_NON_SUFFICIENTE_CLASSIFICA</td><td id="_Khg" class="" style="width:327.65625px">&quot;Con il numero di lanci effettuati non puoi entrare in classifica.”</td><td id="XSMa" class="" style="width:167.64488220214844px">messaggio che avvisa l’impossibilità di accedere in classifica</td></tr><tr id="40c251a6-88b2-4e4c-a1a1-4952371798b3"><td id="mkY_" class="" style="width:399.6533966064453px">MESSAGGIO_BORDO_SUPERIORE_INFERIORE_CLASSIFICA</td><td id="_Khg" class="" style="width:327.65625px">&quot;------------------------------------------------------”</td><td id="XSMa" class="" style="width:167.64488220214844px">messaggio che definisce i bordi della classifica</td></tr><tr id="fda159d6-f076-4e6f-a18f-7fef0bd9631b"><td id="mkY_" class="" style="width:399.6533966064453px">MESSAGGIO_PRIMA_RIGA_CLASSIFICA</td><td id="_Khg" class="" style="width:327.65625px">&quot;| Posto in classifica | Nome | Numero di tiri |”</td><td id="XSMa" class="" style="width:167.64488220214844px">prima riga della classifica</td></tr><tr id="35c7f817-ed66-4794-9583-b5f5034f0eef"><td id="mkY_" class="" style="width:399.6533966064453px">MESSAGGIO_CLASSIFICATO</td><td id="_Khg" class="" style="width:327.65625px">&quot;   | | | |   ”</td><td id="XSMa" class="" style="width:167.64488220214844px">stampa i divisori di un classificato</td></tr><tr id="6c8cad1a-e41e-4e52-9fcf-6adc306c6f4d"><td id="mkY_" class="" style="width:399.6533966064453px">MESSAGGIO_CLASSIFICA_VUOTA</td><td id="_Khg" class="" style="width:327.65625px">&quot;La classifica e&#x27; vuota”</td><td id="XSMa" class="" style="width:167.64488220214844px">messaggio di stampa che indica che la classifica è vuota</td></tr><tr id="9b4b6860-cb49-4e61-865f-1d013e2f84de"><td id="mkY_" class="" style="width:399.6533966064453px">MESSAGGIO_RICHIESTA_NOME_CLASSIFICATO</td><td id="_Khg" class="" style="width:327.65625px">&quot;Inserisci il tuo nome in modo da inserito nella classifica (3 caratteri): “</td><td id="XSMa" class="" style="width:167.64488220214844px">messaggio che richiede l’inserimento del nome</td></tr><tr id="bf68c83d-1762-41e2-9a7b-b42d99fb6984"><td id="mkY_" class="" style="width:399.6533966064453px">MESSAGGIO_ERRORE_NOME_VUOTO</td><td id="_Khg" class="" style="width:327.65625px">&quot;Il nome non puo&#x27; essere vuoto, riprova”</td><td id="XSMa" class="" style="width:167.64488220214844px">messaggio che indica che il nome è vuoto</td></tr><tr id="608a2070-5a61-4631-bfa4-d80fde0789d0"><td id="mkY_" class="" style="width:399.6533966064453px">STRINGA_NOME_VUOTO</td><td id="_Khg" class="" style="width:327.65625px">&quot;   “</td><td id="XSMa" class="" style="width:167.64488220214844px">nome vuoto</td></tr><tr id="1836c939-47a4-4822-a01d-5984c62e91a6"><td id="mkY_" class="" style="width:399.6533966064453px">STRINGA_NOME_NON_AMMESSO_1</td><td id="_Khg" class="" style="width:327.65625px">&quot;\n  “</td><td id="XSMa" class="" style="width:167.64488220214844px">nome non ammesso di tipo 1</td></tr><tr id="a6da1377-cf04-4872-87d8-341b0bc613ca"><td id="mkY_" class="" style="width:399.6533966064453px">STRINGA_NOME_NON_AMMESSO_2</td><td id="_Khg" class="" style="width:327.65625px">&quot; \n  “</td><td id="XSMa" class="" style="width:167.64488220214844px">nome non ammesso di tipo 2</td></tr><tr id="03831dc9-646e-4366-8c9d-476dfb776a57"><td id="mkY_" class="" style="width:399.6533966064453px">STRINGA_NOME_NON_AMMESSO_3</td><td id="_Khg" class="" style="width:327.65625px">&quot;  \n”</td><td id="XSMa" class="" style="width:167.64488220214844px">nome non ammesso di tipo 3</td></tr></tbody></table></div></details><hr id="7e7260a5-34e4-4cff-be46-457473cc5df3"/><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0">Funzione gestire_menu_classifica</summary><div class="indented"><p id="809a4e82-0b6f-4d26-b1f0-3e8885878a8f" class="">Gestisce il menu della classifica.</p><h2 id="8246b096-7470-46fd-bcc9-ab3da8d72055" class="">INPUT</h2><table id="4ec7bd9e-dcbe-4120-8c7b-dc1d5c720fda" class="simple-table"><thead class="simple-table-header"></thead><tbody><tr id="27f9b007-64cb-4999-9537-f50f7f147b56"><td id="G\;X" class="" style="width:255.6420440673828px">scelta</td><td id="GR[=" class="" style="width:219.6676025390625px">rappresenta l’azione che l’utente vuole effettuare<br/>0: Esci<br/>1: Stampare la classifica<br/><br/></td><td id="_KQ:" class="" style="width:219.6676025390625px">0≤Intero≤1</td></tr><tr id="a7a5fc64-6491-443a-b1c9-4e317c2571a0"><td id="G\;X" class="" style="width:255.6420440673828px">NOME_FILE_MENU_CLASSIFICA</td><td id="GR[=" class="" style="width:219.6676025390625px">nome del file menu_classifica</td><td id="_KQ:" class="" style="width:219.6676025390625px">array a una dimensione di caratteri</td></tr><tr id="c3d114bb-7621-4c8f-b1a5-933f257c62eb"><td id="G\;X" class="" style="width:255.6420440673828px">NOME_FILE_CLASSIFICA</td><td id="GR[=" class="" style="width:219.6676025390625px">nome del file classifica</td><td id="_KQ:" class="" style="width:219.6676025390625px">array a una dimensione di caratteri</td></tr><tr id="ecceefdd-0c59-4be6-a956-fb5841a48f97"><td id="G\;X" class="" style="width:255.6420440673828px">MESSAGGIO_SCELTA_AZIONE_MENU</td><td id="GR[=" class="" style="width:219.6676025390625px">Indica il messaggio generico da stampare al momento dell’inserimento di una scelta all’interno di un menu</td><td id="_KQ:" class="" style="width:219.6676025390625px">array a una dimensione di caratteri</td></tr><tr id="e55066d3-4b8b-44f2-849a-d62006044fa8"><td id="G\;X" class="" style="width:255.6420440673828px">SCELTA_STAMPARE_CLASSIFICA</td><td id="GR[=" class="" style="width:219.6676025390625px">Scelta di stampare la classifica nel menù classifica</td><td id="_KQ:" class="" style="width:219.6676025390625px">intero</td></tr><tr id="9e3c1df1-362d-457d-b314-d0a4aaa26617"><td id="G\;X" class="" style="width:255.6420440673828px">SCELTA_USCIRE_DAL_MENU</td><td id="GR[=" class="" style="width:219.6676025390625px">Scelta di uscire nel menù stampare classifica</td><td id="_KQ:" class="" style="width:219.6676025390625px">intero</td></tr><tr id="628d650e-2563-43ee-bcd2-59305237ac2e"><td id="G\;X" class="" style="width:255.6420440673828px">PRIMA_COORDINATA_SCHERMO</td><td id="GR[=" class="" style="width:219.6676025390625px">prima coordinata dello schermo</td><td id="_KQ:" class="" style="width:219.6676025390625px">intero</td></tr></tbody></table><h2 id="28c15d08-fdf3-420c-9319-2aec5f3ae903" class="">ALGORITMO</h2><p id="44828376-5e22-4a44-84af-d02c098071d6" class="">INIZIO<div class="indented"><p id="d651e67d-128b-437d-abc1-5c8b5c610627" class="">ESEGUI<div class="indented"><p id="a87ae54d-b9e7-4778-aa47-3f02307604bd" class=""><mark class="highlight-yellow_background">// stampare il menù</mark></p><p id="4e12f0e7-a3ad-4c23-8849-88a660310506" class=""><mark class="highlight-yellow_background">spostare_cursore(PRIMA_COORDINATA_SCHERMO, PRIMA_COORDINATA_SCHERMO)<br/><br/></mark>stampare_file_di_testo(menu_classifica)</p><p id="8a658d00-bf2d-4059-9865-ffd800b74df8" class=""><mark class="highlight-yellow_background">riga = ottenere_riga_cursore()</mark></p><p id="64e29439-efbe-4764-ab47-46b08a0bcf2e" class=""><mark class="highlight-yellow_background">// richiedere l’intero corrispondente alla scelta<br/>scelta = chiedere_intero(MESSAGGIO_SCELTA_AZIONE_MENU, SCELTA_USCIRE_DAL_MENU, SCELTA_STAMPARE_CLASSIFICA, riga, PRIMA_COORDINATA_SCHERMO)<br/></mark></p><p id="0b960dbd-1ebe-4098-93ec-4b06898dd1e5" class="">SE(scelta = SCELTA_STAMPARE_CLASSIFICA)<div class="indented"><p id="b30e6ac6-e530-438f-96f0-800e813dcffc" class="">ALLORA<div class="indented"><p id="6c81062b-9b1b-4673-834a-64336b9f7c67" class=""><mark class="highlight-yellow_background">//stampare a video la classifica</mark></p><p id="12d8c334-a107-4cd5-8c5a-22981861981e" class="">stampare_classifica(<mark class="highlight-yellow_background">NOME_FILE_CLASSIFICA</mark>) </p></div></p></div></p><p id="bc145811-bcc5-4e67-b41e-4500de2493d0" class="">FINE</p></div></p><p id="69de47bc-12de-42f5-9a4f-0860bcab9619" class="">FINCHE (scelta ≠ <mark class="highlight-yellow_background">SCELTA_USCIRE_DAL_MENU</mark>)</p><p id="3ed75a22-0355-4933-af6a-879f17d93ec0" class=""><mark class="highlight-yellow_background">FINE</mark></p></div></p><p id="164b9f04-19a9-4c07-ab54-1aa039b7074f" class="">FINE</p></div></details><hr id="f79a7e9e-5aa0-435c-94bf-9651887e2e7b"/><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0">Funzione aggiornare_classifica</summary><div class="indented"><p id="fded7f5e-4e15-4cb3-8d33-41cf6c40a22f" class="">Inserisce nel file passato in input il nome del giocatore e il suo numero di lanci di dadi nella posizione corretta della classifica.</p><h2 id="9145b511-15a4-4b7e-bdb6-af3d695999ea" class="">INPUT</h2><table id="8b4f4f5f-d7b6-4908-92ee-ec62e9dc165f" class="simple-table"><thead class="simple-table-header"><tr id="0429f768-3111-44dd-9a79-0d04d6815c94"><th id="G\;X" class="simple-table-header-color simple-table-header" style="width:242.65625px">Nome</th><th id="GR[=" class="simple-table-header-color simple-table-header" style="width:219.6676025390625px">Descrizione</th><th id="_KQ:" class="simple-table-header-color simple-table-header" style="width:219.6676025390625px">Tipo/vincoli</th></tr></thead><tbody><tr id="19d3ed77-0729-428b-86a4-bc95d776e694"><td id="G\;X" class="" style="width:242.65625px">partita</td><td id="GR[=" class="" style="width:219.6676025390625px">contiene i dati della partita terminata e le performance da inserire in classifica</td><td id="_KQ:" class="" style="width:219.6676025390625px">record_partita</td></tr><tr id="404bc698-5b10-4966-b477-a80dd0824d32"><td id="G\;X" class="" style="width:242.65625px">indice_giocatore_vincitore</td><td id="GR[=" class="" style="width:219.6676025390625px">posizione del giocatore vincitore</td><td id="_KQ:" class="" style="width:219.6676025390625px">intero</td></tr><tr id="eeb41ca5-f089-4618-ae01-ed2b8d9a36d7"><td id="G\;X" class="" style="width:242.65625px">NOME_FILE_CLASSIFICA</td><td id="GR[=" class="" style="width:219.6676025390625px">nome del file classifica</td><td id="_KQ:" class="" style="width:219.6676025390625px">array a una dimensione di caratteri</td></tr><tr id="ecd0da2e-6336-4480-8d5a-101ac1ca219d"><td id="G\;X" class="" style="width:242.65625px">MESSAGGIO_RICHIESTA_NOME_CLASSIFICATO</td><td id="GR[=" class="" style="width:219.6676025390625px">Messaggio da mostrare per l’inserimento di un nuovo classificato</td><td id="_KQ:" class="" style="width:219.6676025390625px">array a una dimensione di caratteri</td></tr><tr id="ef4ace2f-cd25-4c56-a956-0d987d7eb15b"><td id="G\;X" class="" style="width:242.65625px">NUMERO_COLONNA_MASSIMA</td><td id="GR[=" class="" style="width:219.6676025390625px">indica l’ultima colonna in cui si può stampare</td><td id="_KQ:" class="" style="width:219.6676025390625px">intero</td></tr><tr id="c8b95a26-cca8-4782-8f7c-f8646163231b"><td id="G\;X" class="" style="width:242.65625px">PRIMA_COORDINATA_SCHERMO</td><td id="GR[=" class="" style="width:219.6676025390625px">indica la prima coordinata dello schermo</td><td id="_KQ:" class="" style="width:219.6676025390625px">intero</td></tr><tr id="544cb8e7-1a42-4f1a-bdcb-ccd53e7b6ced"><td id="G\;X" class="" style="width:242.65625px">MESSAGGIO_ENTRATO_IN_CLASSIFICA</td><td id="GR[=" class="" style="width:219.6676025390625px">messaggio che avvisa l’utente vincitore di essere entrato in classifica</td><td id="_KQ:" class="" style="width:219.6676025390625px">array ad una dimensione di caratteri</td></tr><tr id="c46ae258-3c77-453d-858a-5f303f97ecd6"><td id="G\;X" class="" style="width:242.65625px">CARATTERE_NUOVA_RIGA</td><td id="GR[=" class="" style="width:219.6676025390625px">carattere indicante l’inizio di una nuova riga</td><td id="_KQ:" class="" style="width:219.6676025390625px">carattere</td></tr></tbody></table><h2 id="3fe41d27-31c5-44df-97ef-d00c52c6d8c3" class="">OUTPUT</h2><table id="10c0f7e6-1ed6-41f2-86bd-cd71e1ba7792" class="simple-table"><thead class="simple-table-header"><tr id="b7e35c6b-00a7-4631-9621-3011b57606d8"><th id="G\;X" class="simple-table-header-color simple-table-header" style="width:112.65056610107422px">Nome</th><th id="GR[=" class="simple-table-header-color simple-table-header" style="width:219.6676025390625px">Descrizione</th><th id="_KQ:" class="simple-table-header-color simple-table-header" style="width:219.6676025390625px">Tipo/vincoli</th></tr></thead><tbody><tr id="1668e5a2-fbf0-4df4-90fc-708fe485577e"><td id="G\;X" class="" style="width:112.65056610107422px">classifica</td><td id="GR[=" class="" style="width:219.6676025390625px">file binario che contiene la classifica aggiornata</td><td id="_KQ:" class="" style="width:219.6676025390625px"> File binario contenente al massimo:<br/>nome giocatore primo in classifica, numero lancio di dadi giocatore primo in classifica         -                                          nome giocatore secondo in classifica, numero lancio di dadi giocatore secondo in classifica     -                                                nome giocatore terzo in classifica, numero lancio di dadi giocatore terzo in classifica         -                                                nome giocatore quarto in classifica, numero lancio di dadi giocatore quarto in classifica         -                                                nome giocatore quinto in classifica, numero lancio di dadi giocatore quinto in classifica       -                                                nome giocatore sesto in classifica, numero lancio di dadi giocatore sesto in classifica         -                                                nome giocatore settimo in classifica, numero lancio di dadi giocatore settimo in classifica         -                                                nome giocatore ottavo in classifica, numero lancio di dadi giocatore ottavo in classifica         -                                                nome giocatore nono in classifica, numero lancio di dadi giocatore nono in classifica         -                                                nome giocatore decimo in classifica, numero lancio di dadi giocatore decimo in classifica<br/></td></tr></tbody></table><h2 id="5844e946-b20c-4ff1-85e4-058a4b389f6d" class="">LAVORO</h2><table id="3be33d63-f1ef-4eef-896d-0ee8da3df98c" class="simple-table"><thead class="simple-table-header"><tr id="4dd7ccb4-eee8-49f1-bc8e-afc409e919e8"><th id="G\;X" class="simple-table-header-color simple-table-header" style="width:156.63351440429688px">Nome</th><th id="GR[=" class="simple-table-header-color simple-table-header" style="width:219.6676025390625px">Descrizione</th><th id="_KQ:" class="simple-table-header-color simple-table-header" style="width:230.65908813476562px">Tipo/vincoli</th></tr></thead><tbody><tr id="e9f387bd-c0d7-4604-acc9-f78a366ed235"><td id="G\;X" class="" style="width:156.63351440429688px">numero_tiri_vincitore </td><td id="GR[=" class="" style="width:219.6676025390625px">numero di tiri del giocatore potenzialmente classficato</td><td id="_KQ:" class="" style="width:230.65908813476562px">intero&gt;0</td></tr><tr id="aec342e5-5a46-4e27-91ed-d4dbe1b7bb81"><td id="G\;X" class="" style="width:156.63351440429688px">nome_vincitore</td><td id="GR[=" class="" style="width:219.6676025390625px">nome del vincitore</td><td id="_KQ:" class="" style="width:230.65908813476562px">array a una dimensione di caratteri</td></tr><tr id="c25a55e3-3223-471e-97f6-4bcfa85c20d6"><td id="G\;X" class="" style="width:156.63351440429688px">punteggio_ingresso_classifica</td><td id="GR[=" class="" style="width:219.6676025390625px">punteggio di ingresso della classifica</td><td id="_KQ:" class="" style="width:230.65908813476562px">intero</td></tr><tr id="e2ee5cc3-c569-40e6-94bf-019e3f1bfdd0"><td id="G\;X" class="" style="width:156.63351440429688px">riga</td><td id="GR[=" class="" style="width:219.6676025390625px">riga del cursore</td><td id="_KQ:" class="" style="width:230.65908813476562px">intero</td></tr></tbody></table><h2 id="cdb845c6-e05e-466c-91a2-2bb476aab8a7" class="">ALGORITMO</h2><p id="489c8063-b818-4ea7-96b6-576b6378f921" class="">INIZIO<div class="indented"><p id="4fceeaef-3eb5-4e7f-84cf-779c885bea50" class=""><mark class="highlight-yellow_background">// recuperare il numero di tiri del vincitore potenzialmente classificato</mark></p><p id="a724e554-d11e-47d1-b51d-2485a1e99084" class=""><mark class="highlight-yellow_background">giocatore_vincitore = leggere_giocatore_record_vet_giocatori(leggere_vet_giocatori_record_partita(partita), indice_giocatore_vincitore)</mark></p><p id="b2f2d224-395f-4fa3-b7d5-9de0561428bd" class=""><mark class="highlight-yellow_background">numero_tiri_vincitore = leggere_numero_dadi_lanciati_record_giocatore(giocatore_vincitore)</mark></p><p id="02107b9f-6c49-480f-99fa-2c49b21a9192" class="">
+</p><p id="ca051f1b-911a-4d0c-ab9f-ea65ab3c0c17" class=""><mark class="highlight-yellow_background">// controllare se il vincitore ha eseguito un numero di tiri tale che possa entrare nella classifica</mark></p><p id="b7af1a9e-d077-4fc9-86ce-a1746ed34879" class=""><mark class="highlight-yellow_background">punteggio_ingresso_classifica = trovare_punteggio_minimo_ingresso_classifica(PERCORSO_FILE_CLASSIFICA)</mark></p><p id="24128d1a-3edb-46b4-9986-52d00779fa1a" class="">
+</p><p id="bf9b594c-7fcb-4d40-b911-01acaae5b26e" class=""><mark class="highlight-yellow_background">SE(numero_tiri_vincitore &lt; punteggio_ingresso_classifica)</mark><div class="indented"><p id="275d1a0b-d6bc-43d3-bc01-b61fa5e7ba61" class=""><mark class="highlight-yellow_background">ALLORA</mark><div class="indented"><p id="a5bfe299-85e0-4285-af52-20f50ff9a0ec" class=""><mark class="highlight-yellow_background">// chiedere il nome del nuovo classificato</mark></p><p id="5f04aa07-93ab-4c52-a7a7-3a5bd4a13c28" class=""><mark class="highlight-yellow_background">nome_vincitore = chiedere_nome_giocatore(nome_vincitore, MESSAGGIO_RICHIESTA_NOME_CLASSIFICATO)</mark></p><p id="e4e93368-e37a-4de1-aeef-2b0488def950" class="">
+</p><p id="14010b10-970e-4fa8-b022-aeaadc5011b7" class=""><mark class="highlight-yellow_background">// scrivere il giocatore classificato come giocatore</mark></p><p id="6ebb1e58-32bb-409e-9feb-d52a25408961" class="">classificato = scrivere_nome_giocatore_record_classificato(classificato, nome_vincitore)</p><p id="2134159c-f9fc-4f4c-9483-97e8de583154" class="">classificato = scrivere_tiri_record_classificato(classificato, <mark class="highlight-yellow_background">leggere_numero_dadi_lanciati_record_giocatore(giocatore_vincitore)</mark>)</p><p id="5b00b1bc-6364-4293-b76d-1f08f38964d8" class="">
+</p><p id="be4108c3-b62a-47c0-b4a6-04a71d54d2ab" class=""><mark class="highlight-yellow_background">//inserire il giocatore nella classifica</mark></p><p id="f499946e-f233-42a5-963e-4fa28420521a" class=""><mark class="highlight-yellow_background">classifica = inserire_classificato_in_classifica(NOME_FILE_CLASSIFICA, classificato)</mark></p><p id="46dd4ce7-4aef-487e-8129-0cc436ecb16c" class="">
+</p><p id="a741b011-ec2b-46ee-b800-54771f195c8f" class=""><mark class="highlight-yellow_background">//Comunicare al giocatore che è entrato in classifica<br/>riga = ottenere_riga_cursore()<br/>stampare_riga_vuota(riga, NUMERO_COLONNA_MASSIMA)<br/>spostare_cursore(PRIMA_COORDINATA_SCHERMO, riga)<br/></mark></p><p id="44e3d925-157a-450b-8a47-20a8ac58a03c" class=""><mark class="highlight-yellow_background"><br/>stampare_a_video(MESSAGGIO_ENTRATO_IN_CLASSIFICA)<br/>stampare_a_video(CARATTERE_NUOVA_RIGA)<br/></mark></p></div></p></div></p><p id="dd126c70-ebbe-43a3-bf7a-8d07bbb7f8b0" class=""><mark class="highlight-yellow_background">FINE</mark></p></div></p><p id="3a2001c3-a632-45f0-8bb1-5e1317d97cba" class="">FINE</p><p id="beb86836-17f7-47a9-9704-b9efd945b218" class="">
+</p></div></details><hr id="e81f0904-07d5-4f12-b508-0479bf2a0d1f"/><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0">Funzione stampare_classifica</summary><div class="indented"><p id="a28f97b0-ec44-457d-a8e2-bcbbf221a3a0" class="">Stampa la classifica dei migliori giocatori(quelli con meno lanci fatti per vincere).</p><h2 id="f79be578-3d69-459a-b1c3-5e4004786758" class="">INPUT</h2><table id="6c9ee32d-fe62-4305-bbee-0dcb5864ccbb" class="simple-table"><thead class="simple-table-header"></thead><tbody><tr id="c856e6ee-1b7d-41e7-b083-7dbda49277b9"><td id="G\;X" class="" style="width:215.65625px">TITOLO_STAMPA_CLASSIFICA</td><td id="GR[=" class="" style="width:247.65908813476562px">Messaggio di stampa per la classifica</td><td id="_KQ:" class="" style="width:272.6391906738281px">array a una dimensione di caratteri</td></tr><tr id="faca2b45-61cf-46cf-a026-b193c858534d"><td id="G\;X" class="" style="width:215.65625px">NUMERO_POSTO_CLASSIFICA</td><td id="GR[=" class="" style="width:247.65908813476562px">Messaggio di stampa per la classifica</td><td id="_KQ:" class="" style="width:272.6391906738281px">array a una dimensione di caratteri</td></tr><tr id="2ed0b6e5-0855-4765-826d-4f9a21c728c3"><td id="G\;X" class="" style="width:215.65625px">NOME_FILE_TITOLO</td><td id="GR[=" class="" style="width:247.65908813476562px">nome del file di testo del titolo</td><td id="_KQ:" class="" style="width:272.6391906738281px">array a una dimensione di caratteri</td></tr><tr id="d6ce8e74-b246-40e1-9cba-a9cf53970be0"><td id="G\;X" class="" style="width:215.65625px">NOME_FILE_CLASSIFICA</td><td id="GR[=" class="" style="width:247.65908813476562px">nome del file classifica</td><td id="_KQ:" class="" style="width:272.6391906738281px">array a una dimensione di caratteri</td></tr><tr id="dc0c92ec-2ede-458f-8388-c02dabe5edf7"><td id="G\;X" class="" style="width:215.65625px">MESSAGGIO_PRIMA_RIGA_CLASSIFICA</td><td id="GR[=" class="" style="width:247.65908813476562px">prima riga della classfica da stampare</td><td id="_KQ:" class="" style="width:272.6391906738281px">array a una dimensione di caratteri</td></tr><tr id="af89afa3-2386-4483-a10b-0901b208b52a"><td id="G\;X" class="" style="width:215.65625px">CARATTERE_NUOVA_RIGA</td><td id="GR[=" class="" style="width:247.65908813476562px">carattere che indica una nuova riga</td><td id="_KQ:" class="" style="width:272.6391906738281px">carattere</td></tr><tr id="b8776601-1112-4b0c-931c-68c1e81aeb4e"><td id="G\;X" class="" style="width:215.65625px">MESSAGGIO_BORDO_SUPERIORE_INFERIORE_CLASSIFICA</td><td id="GR[=" class="" style="width:247.65908813476562px">messaggio che contiene i bordi inferiore e superiore della classifica</td><td id="_KQ:" class="" style="width:272.6391906738281px">array a una dimensione di caratteri</td></tr><tr id="288b447b-f1d6-4a9c-a1bc-d853e5966f1a"><td id="G\;X" class="" style="width:215.65625px">MESSAGGIO_CLASSIFICA_VUOTA</td><td id="GR[=" class="" style="width:247.65908813476562px">messaggio da stampare se la classifica è vuota</td><td id="_KQ:" class="" style="width:272.6391906738281px">array a una dimensione di caratteri</td></tr></tbody></table><h2 id="4b0a358d-e18b-4c84-bcbd-bcbf7904900a" class="">LAVORO</h2><table id="dad43fef-1fa9-4fba-9af3-f2110e30c1c7" class="simple-table"><thead class="simple-table-header"><tr id="fdb9c8f6-ec8b-4111-8742-9afc22c52966"><th id="yYxM" class="simple-table-header-color simple-table-header">Nome</th><th id="@RBc" class="simple-table-header-color simple-table-header">Descrizione</th><th id="XQXy" class="simple-table-header-color simple-table-header">Tipo/vincoli</th></tr></thead><tbody><tr id="2302e0d8-c0f7-494d-80b6-698b1f1d310f"><td id="yYxM" class="">classificato</td><td id="@RBc" class="">giocatore che si è classificato</td><td id="XQXy" class="">record_classificato</td></tr><tr id="a9c75099-c6bd-45ae-a134-2b4d80add5b1"><td id="yYxM" class="">classificati</td><td id="@RBc" class="">giocatori classificati</td><td id="XQXy" class="">array a una dimensione di record_classificato di dimensione NUMERO_MASSIMO_CLASSIFICATI+ 1</td></tr><tr id="a07ad203-9ecf-4139-9e11-a2d626349181"><td id="yYxM" class="">numero_classificato</td><td id="@RBc" class="">indice per i giocatori classificati</td><td id="XQXy" class="">intero &gt;0</td></tr><tr id="a4a0913d-b470-409a-b9f3-5000ba1d895b"><td id="yYxM" class="">classifica</td><td id="@RBc" class="">file binario che contiene la classifica</td><td id="XQXy" class="">File binario contenente al massimo:<br/>nome giocatore primo in classifica, numero lancio di dadi giocatore primo in classifica                                 -                                                nome giocatore secondo in classifica, numero lancio di dadi giocatore secondo in classifica              -                                                nome giocatore terzo in classifica, numero lancio di dadi giocatore terzo in classifica                              -                                                nome giocatore quarto in classifica, numero lancio di dadi giocatore quarto in classifica                            -                                                nome giocatore quinto in classifica, numero lancio di dadi giocatore quinto in classifica                                  -                                                nome giocatore sesto in classifica, numero lancio di dadi giocatore sesto in classifica                                    -                                                nome giocatore settimo in classifica, numero lancio di dadi giocatore settimo in classifica         -                                                nome giocatore ottavo in classifica, numero lancio di dadi giocatore ottavo in classifica                                   -                                                nome giocatore nono in classifica, numero lancio di dadi giocatore nono in classifica                                -                                                nome giocatore decimo in classifica, numero lancio di dadi giocatore decimo in classifica<br/></td></tr><tr id="5722dcc4-9c60-4a21-838c-4263ee042b32"><td id="yYxM" class="">numero_classificati</td><td id="@RBc" class="">numero di classificati</td><td id="XQXy" class="">0≤intero≤NUMERO_MASSIMO_CLASSIFICATI+ 1</td></tr></tbody></table><h2 id="48befce4-2296-4bbe-a20e-2272f0800b8d" class="">ALGORITMO</h2><p id="08b17edd-5a73-467c-b8db-03d41ee8d1ce" class="">INIZIO<div class="indented"><p id="31cb08b0-3f7b-4353-ae00-e2377fcbc81a" class=""><mark class="highlight-yellow_background">stampare_file_di_testo(PERCORSO_FILE_TITOLO)</mark></p><p id="7c9cdd9d-f425-4b90-844a-78b4e9bb8f6c" class=""><mark class="highlight-yellow_background">classifica = aprire_file(NOME_FILE_CLASSIFICA)</mark></p><p id="f8ec5da5-65df-41ba-80f3-9035f5f4859d" class=""><mark class="highlight-yellow_background">numero_classificato </mark>= PRIMO_INDICE_ARRAY</p><p id="8f736898-cdf8-4e01-af67-27d7a17a1294" class=""><mark class="highlight-yellow_background">//leggere dal file binario il numero di classificati</mark></p><p id="cbecfcdf-aca8-4af4-8cb4-52281850a306" class=""><mark class="highlight-yellow_background">numero_classificati = contare_classificati(NOME_FILE_CLASSIFICA)</mark></p><p id="15d60fc0-32b1-43fe-87f1-921470ec13e3" class="">
+</p><p id="ebfbed78-8ad3-476c-8af3-3477adf15928" class=""><mark class="highlight-yellow_background">MENTRE(numero_classificato ≤ numero_classificati)</mark><div class="indented"><p id="82b8ceab-faca-4f2b-8b03-22cf11b3cdca" class=""><mark class="highlight-yellow_background">//leggere dal file binario un classificato</mark></p><p id="8a2e108e-8a1c-4fb1-a25a-1fda8bfaff0f" class="">classificato = leggere_da_file(classificato, classificato, 1, classifica)</p><p id="d9535e9f-ff7e-415d-a4b3-1159f76e55da" class=""><mark class="highlight-yellow_background">//inserire il classificato nella classifica</mark></p><p id="eecb095f-0a1a-47a8-8ddf-40bc2a91c715" class="">classificati in posizione <mark class="highlight-yellow_background">numero_classificato</mark> = copiare_record_classificato(classificati in posizione <mark class="highlight-yellow_background">numero_classificato</mark>, classificato)</p><p id="ed8c5f76-7040-4e01-866b-daa24eb16b02" class=""><mark class="highlight-yellow_background">numero_classificato</mark> = <mark class="highlight-yellow_background">numero_classificato</mark> + 1</p></div></p><p id="e1653f2e-3362-4ee2-8c7a-462f07a8419c" class="">FINE</p><p id="646491eb-fb90-43f0-9f1d-93d2d0a806e2" class="">
+</p><p id="400b76c4-b832-4ad6-b04e-66664c25a48f" class=""><mark class="highlight-yellow_background">numero_classificato = 0</mark></p><p id="1f6b58fc-c653-4811-b9f8-c45ba3827cfb" class="">
+</p><p id="c4501c7e-3532-4f27-880c-2d08a32097f5" class=""><mark class="highlight-yellow_background">// Stampare titolo della classifica</mark></p><p id="557f8ef0-f9a0-4dbe-a2ee-bb4b6679511a" class=""><mark class="highlight-yellow_background">stampare_a_video(MESSAGGIO_PRIMA_RIGA_CLASSIFICA)<br/>stampare_a_video(CARATTERE_NUOVA_RIGA)<br/>stampare_a_video(MESSAGGIO_BORDO_SUPERIORE_INFERIORE_CLASSIFICA)<br/>stampare_a_video(CARATTERE_NUOVA_RIGA)<br/></mark></p><p id="225a598e-bd99-4066-8a17-8c6f549ab7a4" class="">
+</p><p id="0ff02bb1-d2ea-4163-974b-98a708284129" class=""><mark class="highlight-yellow_background">// Stampare classificati</mark></p><p id="708d8002-6f78-41d8-996c-681717f5677d" class=""><mark class="highlight-yellow_background">MENTRE(numero_classificato ≤ numero_classificati)</mark><div class="indented"><p id="f869bf66-6816-468f-a973-4f8c7d7aa290" class=""><mark class="highlight-yellow_background">// Stampare i dati del classificato</mark></p><p id="3d7bb847-4a5d-418e-b9e5-af862b460bed" class=""><mark class="highlight-yellow_background">nome = leggere_nome_giocatore_record_classificato(classificati in posizione numero_classificato, nome)<br/>numero_tiri = leggere_tiri_record_classificato(classificati in posizione numero_classificato)<br/></mark></p><p id="67b1c8a5-ed56-4045-b076-4333e277a335" class=""><mark class="highlight-yellow_background"><br/>// Stampare i dati del classificato<br/>stampare_a_video(MESSAGGIO_CLASSIFICATO)<br/></mark></p><p id="14ed50d5-0af3-4eb8-8fbe-728b1542fe97" class=""><mark class="highlight-yellow_background">stampare_a_video(numero_classificato)</mark></p><p id="e74fd4fc-6203-4f29-8650-14f00978821f" class=""><mark class="highlight-yellow_background">stampare_a_video(nome)</mark></p><p id="9c3b13b7-f5e2-4b8f-a867-31d38434d3f2" class=""><mark class="highlight-yellow_background">stampare_a_video(numero_tiri)<br/>stampare_a_video(CARATTERE_NUOVA_RIGA)<br/>stampare_a_video(MESSAGGIO_BORDO_SUPERIORE_INFERIORE_CLASSIFICA)<br/>stampare_a_video(CARATTERE_NUOVA_RIGA)<br/></mark></p><p id="cd0db3c0-d39d-42fd-845d-ed2137deb352" class="">
+</p><p id="19b7480e-64c7-4630-a4cb-b2ad66439bf8" class=""><mark class="highlight-yellow_background">numero_classificato = numero_classificato + 1</mark></p></div></p><p id="7b129934-aaff-4410-aee5-b3486aa99f42" class="">FINE</p><p id="3ef37b20-d916-4911-a6aa-777bf1d546e5" class=""><br/><br/><mark class="highlight-yellow_background">SE(numero_classificati = 0)</mark><div class="indented"><p id="4ec739bf-2d0e-4dcb-aa07-772446b7a68b" class=""><mark class="highlight-yellow_background">ALLORA</mark><div class="indented"><p id="03733fae-f909-45d4-ba65-5007647a3811" class=""><mark class="highlight-yellow_background">stampare_a_video(MESSAGGIO_CLASSIFICA_VUOTA)</mark></p><p id="906d62c3-29ba-439b-beba-4a4a5fc27335" class=""><mark class="highlight-yellow_background">stampare_a_video(CARATTERE_NUOVA_RIGA)</mark></p></div></p></div></p><p id="b30501f4-793d-4901-9850-444c726145cc" class=""><mark class="highlight-yellow_background">FINE</mark></p></div></p><p id="be5a32f7-f94f-4432-948e-ddacd6943de0" class="">FINE</p></div></details><hr id="8fa05849-d519-4ca4-85a1-12652c26de46"/><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0">Funzione inserire_nome</summary><div class="indented"><p id="5e6edbd5-1e0d-403c-a5d5-00b2362bfbc5" class="">Trova il punteggio minimo per entrare nella classifica.</p><h2 id="c72bd115-f6ca-42eb-b89a-ffc0b9bac840" class="">INPUT</h2><table id="7fae09be-a252-4868-b123-169a6fcd9ab4" class="simple-table"><thead class="simple-table-header"></thead><tbody><tr id="ae27b590-b315-4375-9ec3-d646de8b7ce7"><td id="G\;X" class="" style="width:309.64488220214844px">nome_vincitore</td><td id="GR[=" class="" style="width:233.65625px">nome del vincitore da inserire in classifica</td><td id="_KQ:" class="" style="width:272.6391906738281px">array a una dimensione di caratteri di dimensione LUNGHEZZA_NOME_CLASSIFICATO + 1 terminato dal CARATTERE_FINE_STRINGA</td></tr><tr id="c7bf8703-d48e-4288-b825-4e6abe0522fb"><td id="G\;X" class="" style="width:309.64488220214844px">MESSAGGIO_RICHIESTA_NOME_CLASSIFICATO</td><td id="GR[=" class="" style="width:233.65625px">messaggio di richiesta di inserimento di un nome per il nuovo classificato</td><td id="_KQ:" class="" style="width:272.6391906738281px">array a una dimensione di caratteri</td></tr><tr id="e96510b7-1212-4d45-a26a-7c2e90b12d02"><td id="G\;X" class="" style="width:309.64488220214844px">LUNGHEZZA_NOME_CLASSIFICATO</td><td id="GR[=" class="" style="width:233.65625px">lunghezza del nome classificato esscluso il carattere terminatore</td><td id="_KQ:" class="" style="width:272.6391906738281px">intero</td></tr><tr id="f06ab685-9459-42f5-829a-17c52c000f60"><td id="G\;X" class="" style="width:309.64488220214844px">CARATTERE_SPAZIO</td><td id="GR[=" class="" style="width:233.65625px">carattere dio spazio</td><td id="_KQ:" class="" style="width:272.6391906738281px">carattere</td></tr><tr id="9d6c8b03-b6e9-42ac-abf7-c47ba552833e"><td id="G\;X" class="" style="width:309.64488220214844px">CARATTERE_FINE_STRINGA</td><td id="GR[=" class="" style="width:233.65625px">carattere che indica òa fine della stringa</td><td id="_KQ:" class="" style="width:272.6391906738281px">carattere</td></tr></tbody></table><h2 id="719503c0-4f0d-4dac-bbfc-8733c4110b22" class="">OUTPUT</h2><table id="4801c92f-b849-4ecb-9474-db7e7efb30f4" class="simple-table"><thead class="simple-table-header"></thead><tbody><tr id="8e49634d-0eaa-4dab-b320-ca6574118869"><td id="G\;X" class="" style="width:156.65908813476562px">nome_vincitore</td><td id="GR[=" class="" style="width:233.65625px">nome del vincitore da inserire in classifica</td><td id="_KQ:" class="" style="width:272.6391906738281px">array a una dimensione di caratteri di dimensione LUNGHEZZA_NOME_CLASSIFICATO + 1 terminato dal CARATTERE_FINE_STRINGA</td></tr></tbody></table><h2 id="3f9cf2dc-ff34-466f-9a18-c182eb09ac23" class="">LAVORO</h2><table id="43a11113-d07e-49d0-9c1c-ecf893f7c662" class="simple-table"><thead class="simple-table-header"></thead><tbody><tr id="3b68478b-0151-49ca-a026-b7124327eae7"><td id="G\;X" class="" style="width:156.65908813476562px">lunghezza_nome</td><td id="GR[=" class="" style="width:233.65625px">lunghezza del nome del nuovo classificato</td><td id="_KQ:" class="" style="width:272.6391906738281px">intero &gt; 0</td></tr><tr id="dd1462e1-012d-43d7-961a-d19ee37bf645"><td id="G\;X" class="" style="width:156.65908813476562px">i</td><td id="GR[=" class="" style="width:233.65625px">dato utilizzato come contatore per la lunghezza del nome</td><td id="_KQ:" class="" style="width:272.6391906738281px">intero &gt; 0</td></tr></tbody></table><h2 id="8043959c-d55b-44ba-ab5f-0237d3421197" class="">ALGORITMO</h2><p id="53054fd4-e8fa-438c-8bfd-bfd3806794dd" class=""><mark class="highlight-yellow_background">INIZIO</mark><div class="indented"><p id="c040a398-bc6c-4443-ac16-138d3159bd7f" class=""><mark class="highlight-yellow_background">stampare_a_video(MESSAGGIO_RICHIESTA_NOME_CLASSIFICATO)</mark></p><p id="203aa716-b0f3-4578-834c-cc4b8d5b1088" class=""><mark class="highlight-yellow_background">nome_vincitore = copiare_stringa(nome_vincitore,STRINGA_NOME_VUOTO)</mark></p><p id="694ee6a9-67c3-4e67-a81a-77eecf0321b8" class=""><mark class="highlight-yellow_background">nome_vincitore = chiedere_stringa(nome_vincitore)</mark></p><p id="79f57e8a-0a22-4029-9845-ab3c0ac819a9" class=""><mark class="highlight-yellow_background">lunghezza_nome = calcolare_lunghezza_stringa(nome_vincitore)</mark></p><p id="ef331fc6-33b0-4d52-865f-6f94c1cddc9e" class=""><mark class="highlight-yellow_background">SE(lunghezza_nome &lt; LUNGHEZZA_NOME_CLASSIFICATO)</mark><div class="indented"><p id="28127599-fdfa-4565-887d-ef2a910eaf02" class=""><mark class="highlight-yellow_background">ALLORA</mark><div class="indented"><p id="cba91b92-cbe2-448e-a435-78ed9f20d08e" class=""><mark class="highlight-yellow_background">i = lunghezza_nome</mark></p><p id="ae888643-ed3b-4c50-98dc-fa4af262afc2" class=""><mark class="highlight-yellow_background">MENTRE(i &lt; LUNGHEZZA_NOME_CLASSIFICATO)</mark><div class="indented"><p id="8a616fe1-06a5-4d80-a0ba-7514e20ebad9" class=""><mark class="highlight-yellow_background">nome_vincitore[i] = CARATTERE_SPAZIO</mark></p><p id="07129e20-3e00-49e5-b74a-9da85a99a4f4" class=""><mark class="highlight-yellow_background">i = i + 1</mark></p></div></p><p id="1b24e915-c362-4568-a377-f23a7a528792" class=""><mark class="highlight-yellow_background">FINE</mark></p></div></p></div></p><p id="cf8378b6-f88d-4db3-b5e9-95954070170f" class=""><mark class="highlight-yellow_background">nome_vincitore[LUNGHEZZA_NOME_CLASSIFICATO] = CARATTERE_FINE_STRINGA</mark></p></div></p><p id="038d3e7b-d3df-4829-b73f-d4e6f4b0c207" class=""><mark class="highlight-yellow_background">FINE</mark></p></div></details><hr id="14cc3035-6b44-4972-b748-e37d9f094b41"/><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0">Funzione chiedere_nome_giocatore</summary><div class="indented"><p id="d15de8d0-4b9d-455e-9f19-f1cccf4fa460" class="">Trova il punteggio minimo per entrare nella classifica.</p><h2 id="f8210b8b-1e4b-45cb-bc37-5099db6e122a" class="">INPUT</h2><table id="a05cf7ea-215f-4ef0-bcb9-735405652302" class="simple-table"><thead class="simple-table-header"></thead><tbody><tr id="222348b6-0f71-4935-9d54-1a6aacb8853e"><td id="G\;X" class="" style="width:180.64488220214844px">nome_vincitore</td><td id="GR[=" class="" style="width:233.65625px">nome del vincitore da inserire in classifica</td><td id="_KQ:" class="" style="width:272.6391906738281px">array a una dimensione di caratteri di dimensione LUNGHEZZA_NOME_CLASSIFICATO + 1 terminato dal CARATTERE_FINE_STRINGA</td></tr><tr id="c049e788-18f8-4e6d-aa2a-c73cb7b5312d"><td id="G\;X" class="" style="width:180.64488220214844px">MESSAGGIO_RICHIESTA_NOME_CLASSIFICATO</td><td id="GR[=" class="" style="width:233.65625px">messaggio di richiesta di inserimento di un nome per il nuovo classificato</td><td id="_KQ:" class="" style="width:272.6391906738281px">array a una dimensione di caratteri</td></tr><tr id="e45fe216-32a9-40fc-9bb1-55155856aaaf"><td id="G\;X" class="" style="width:180.64488220214844px">STRINGA_NOME_VUOTO</td><td id="GR[=" class="" style="width:233.65625px">Stringa che rappresenta il nome vuoto</td><td id="_KQ:" class="" style="width:272.6391906738281px">array a una dimensione di caratteri di dimensione LUNGHEZZA_NOME_CLASSIFICATO + 1</td></tr><tr id="44529fae-0fb0-4a0c-840a-36bb441b6ff8"><td id="G\;X" class="" style="width:180.64488220214844px">STRINGA_NOME_NON_AMMESSO_1</td><td id="GR[=" class="" style="width:233.65625px">Primo caso di stringa non ammesssa</td><td id="_KQ:" class="" style="width:272.6391906738281px">array a una dimensione di caratteri di dimensione LUNGHEZZA_NOME_CLASSIFICATO + 1</td></tr><tr id="e6e8a199-c27d-4f5f-951f-51e95db49e12"><td id="G\;X" class="" style="width:180.64488220214844px">STRINGA_NOME_NON_AMMESSO_2</td><td id="GR[=" class="" style="width:233.65625px">Secondo caso di stringa non ammesssa</td><td id="_KQ:" class="" style="width:272.6391906738281px">array a una dimensione di caratteri di dimensione LUNGHEZZA_NOME_CLASSIFICATO + 1</td></tr><tr id="7c2489fc-4491-4ffe-844b-e88a3882ce69"><td id="G\;X" class="" style="width:180.64488220214844px">STRINGA_NOME_NON_AMMESSO_3</td><td id="GR[=" class="" style="width:233.65625px">Terzo caso di stringa non ammesssa</td><td id="_KQ:" class="" style="width:272.6391906738281px">array a una dimensione di caratteri di dimensione LUNGHEZZA_NOME_CLASSIFICATO + 1</td></tr><tr id="1e3b7d3d-e4ed-4935-a5bf-832fc96d1e3f"><td id="G\;X" class="" style="width:180.64488220214844px">MESSAGGIO_ERRORE_NOME_VUOTO</td><td id="GR[=" class="" style="width:233.65625px">Messaggio da stampare nel caso in cui si inserisca una determinata tipologia di nome vuoto</td><td id="_KQ:" class="" style="width:272.6391906738281px">array a una dimensione di caratteri</td></tr></tbody></table><h2 id="22938bb7-f5bf-4d0f-b760-19c145176a8a" class="">OUTPUT</h2><table id="0a1895ff-3ce2-4b72-a883-c0b62c051d6a" class="simple-table"><thead class="simple-table-header"></thead><tbody><tr id="a6660b56-dd15-4324-bac6-9721539bafa5"><td id="G\;X" class="" style="width:156.65908813476562px">nome_vincitore</td><td id="GR[=" class="" style="width:233.65625px">nome del vincitore da inserire in classifica</td><td id="_KQ:" class="" style="width:272.6391906738281px">array a una dimensione di caratteri di dimensione LUNGHEZZA_NOME_CLASSIFICATO + 1 terminato dal CARATTERE_FINE_STRINGA</td></tr></tbody></table><h2 id="b3fc7b73-549b-4b8c-980a-13e098cda71e" class="">LAVORO</h2><table id="b7a36bdc-eb08-40d5-b062-0d721b5f8589" class="simple-table"><thead class="simple-table-header"></thead><tbody><tr id="7fea5c63-10fc-4eff-8f59-9ecbb6cc997b"><td id="G\;X" class="" style="width:156.65908813476562px">riga</td><td id="GR[=" class="" style="width:233.65625px">numero della riga del cursore</td><td id="_KQ:" class="" style="width:272.6391906738281px">record classificato </td></tr></tbody></table><h2 id="cd7c6b31-9a53-47c3-a566-a5d9af1d305b" class="">ALGORITMO</h2><p id="f4d4d345-5df3-4079-a62a-2bd862efd1db" class=""><mark class="highlight-yellow_background">INIZIO</mark><div class="indented"><p id="dd7d78ce-b513-4a00-b646-70940098e5f9" class=""><mark class="highlight-yellow_background">nome_vincitore = inserire_nome(nome_vincitore, MESSAGGIO_RICHIESTA_NOME_CLASSIFICATO)</mark></p><p id="2be28295-ccd6-4cc3-a2ae-30cec2cb80a3" class=""><mark class="highlight-yellow_background">// Ripeti fino a quando il nome corrisponde ad uno di quelli ammessi</mark></p><p id="ca25effa-2640-433d-af25-68e4d7626be0" class=""><mark class="highlight-yellow_background">MENTRE(comparare_stringa(STRINGA_NOME_VUOTO, nome_vincitore) = 0 </mark></p><p id="58ff2db0-fb11-4020-b8be-e592411c11d4" class=""><mark class="highlight-yellow_background">OR comparare_stringa(STRINGA_NOME_NON_AMMESSO_1, nome_vincitore) = 0</mark></p><p id="d2710982-4ce8-495d-b32a-199bfc7302ac" class=""><mark class="highlight-yellow_background">OR comparare_stringa(STRINGA_NOME_NON_AMMESSO_2, nome_vincitore) = 0</mark></p><p id="ea89ad68-0469-4520-819f-f06b9d7a0f32" class=""><mark class="highlight-yellow_background">OR comparare_stringa(STRINGA_NOME_NON_AMMESSO_3, nome_vincitore) = 0)</mark></p><p id="c1d1cd9c-dad3-47b2-b934-0645f1f2f05b" class=""><div class="indented"><p id="bc8f7a93-4b7d-4e75-8678-f41df1006273" class=""><mark class="highlight-yellow_background">stampare_a_video(MESSAGGIO_ERRORE_NOME_VUOTO)</mark></p><p id="d69cdbaa-9dec-4bf4-8bfd-c0fe0c79a5e9" class=""><mark class="highlight-yellow_background">riga = ottenere_riga_cursore()</mark></p><p id="f423aaf9-27ed-45b6-ac3b-bd6fbf5e6692" class=""><mark class="highlight-yellow_background">spostare_cursore(PRIMA_COORDINATA_SCHERMO, riga-1)</mark></p><p id="3ae1eefc-6cfe-4f96-9221-371710d40be9" class=""><mark class="highlight-yellow_background">inserire_nome(nome_vincitore, messaggio)</mark></p></div></p><p id="8ee3f9f5-6933-464d-9b73-d23d4a87fa80" class=""><mark class="highlight-yellow_background">FINE</mark></p></div></p><p id="5d613aae-a929-42d1-a8ce-4dcd0bbbe242" class=""><mark class="highlight-yellow_background">FINE</mark></p></div></details><hr id="ac3e1a4b-7506-4795-b250-a331dec9a020"/><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0">Funzione inserire_classificato_in_classifica</summary><div class="indented"><p id="6099d756-a3ed-48bc-be64-b59731d3727e" class="">Inserisce il giocatore classificato all’indice indicato all’interno della classifica.</p><h2 id="b41dd3a3-a3a0-4cf1-89c1-ba46e31c62fd" class="">INPUT</h2><table id="c5f0bd24-73c0-4dc0-8272-9ab592aebe41" class="simple-table"><thead class="simple-table-header"><tr id="277a89d4-d05c-49a5-893d-7cbeb9e0f831"><th id="G\;X" class="simple-table-header-color simple-table-header" style="width:247.640625px">Nome</th><th id="GR[=" class="simple-table-header-color simple-table-header" style="width:219.6676025390625px">Descrizione</th><th id="_KQ:" class="simple-table-header-color simple-table-header" style="width:230.65908813476562px">Tipo/vincoli</th></tr></thead><tbody><tr id="91a2364c-9666-4e33-8180-6a1b8aa84a72"><td id="G\;X" class="" style="width:247.640625px">classificato_da_inserire</td><td id="GR[=" class="" style="width:219.6676025390625px">classificato da inserire nella classifica</td><td id="_KQ:" class="" style="width:230.65908813476562px">rercord classificato</td></tr><tr id="24e31df7-5fe4-42ac-9b87-ee8e7189ac7a"><td id="G\;X" class="" style="width:247.640625px">NOME_FILE_CLASSIFICA</td><td id="GR[=" class="" style="width:219.6676025390625px">nome del file della classifica</td><td id="_KQ:" class="" style="width:230.65908813476562px">array ad una dimensione di caratteri</td></tr><tr id="9699def6-5522-4dd9-85fe-15b0b253db42"><td id="G\;X" class="" style="width:247.640625px">NUMERO_MASSIMO_CLASSIFICATI</td><td id="GR[=" class="" style="width:219.6676025390625px">numero massimo possibile di classificati</td><td id="_KQ:" class="" style="width:230.65908813476562px">intero</td></tr></tbody></table><h2 id="07e9e0e9-332b-445e-927c-59392177f038" class="">OUTPUT</h2><table id="24e4f450-50de-4d3c-946a-aca9dfbb2e8e" class="simple-table"><thead class="simple-table-header"><tr id="46aafafe-c33d-4d53-8c4d-b04e48513882"><th id="G\;X" class="simple-table-header-color simple-table-header" style="width:112.64204406738281px">Nome</th><th id="GR[=" class="simple-table-header-color simple-table-header" style="width:219.6676025390625px">Descrizione</th><th id="_KQ:" class="simple-table-header-color simple-table-header" style="width:230.65908813476562px">Tipo/vincoli</th></tr></thead><tbody><tr id="b69c5889-125d-4cb9-8620-8e809eaf7834"><td id="G\;X" class="" style="width:112.64204406738281px">classifica</td><td id="GR[=" class="" style="width:219.6676025390625px">file della classifica</td><td id="_KQ:" class="" style="width:230.65908813476562px">file binario</td></tr></tbody></table><h2 id="59d70ff8-f53e-4588-bc8d-ac599f15d0e3" class="">LAVORO</h2><table id="476aab2a-15dd-40ad-b1ba-48e64716a161" class="simple-table"><thead class="simple-table-header"><tr id="1ce277b6-e01d-4fda-96ab-4c6493bdf058"><th id="G\;X" class="simple-table-header-color simple-table-header" style="width:155.6420440673828px">Nome</th><th id="GR[=" class="simple-table-header-color simple-table-header" style="width:219.6676025390625px">Descrizione</th><th id="_KQ:" class="simple-table-header-color simple-table-header" style="width:230.65908813476562px">Tipo/vincoli</th></tr></thead><tbody><tr id="3b9bb050-5489-4c1f-aadd-e9757228be73"><td id="G\;X" class="" style="width:155.6420440673828px">numero_classificati</td><td id="GR[=" class="" style="width:219.6676025390625px">numero dei classificati</td><td id="_KQ:" class="" style="width:230.65908813476562px">intero</td></tr><tr id="bd5a1870-b3dc-443c-81a4-fdc3b4923feb"><td id="G\;X" class="" style="width:155.6420440673828px">vettore_classificati</td><td id="GR[=" class="" style="width:219.6676025390625px">elenco dei classificati</td><td id="_KQ:" class="" style="width:230.65908813476562px">array a una dimensione di record classificato</td></tr></tbody></table><h2 id="fcf34276-808c-4a15-8392-a5c4908d9b93" class="">ALGORITMO</h2><p id="e7b38742-4383-4b58-9093-f3ce09c735fb" class=""><mark class="highlight-yellow_background">INIZIO</mark><div class="indented"><p id="42caedd5-52e2-4039-9287-20db521d0d9c" class=""><mark class="highlight-yellow_background">// Legge il numero di classificati<br/>numero_classificati = contare_classificati(NOME_FILE_CLASSIFICA)<br/></mark></p><p id="dc7fdedf-d056-44a3-8225-a091d839793f" class="">
+</p><p id="cf885588-f8b8-4317-974d-7f4ee171dcea" class=""><mark class="highlight-yellow_background">// Se il file non è pieno incrementa il numero dei classificati<br/>SE(numero_classificati &lt; NUMERO_MASSIMO_CLASSIFICATI)<br/></mark></p><p id="ad2366d8-34e4-471f-93ed-a4759380665c" class=""><mark class="highlight-yellow_background">    ALLORA<br/>	numero_classificati = numero_classificati + 1<br/>FINE<br/><br/>// Mette i classificati presenti nel file in un vettore<br/>vettore_classificati = leggere_vettore_classificati_da_file(NOME_FILE_CLASSIFICA, vettore_classificati)<br/><br/>// Inserisce il nuovo classificato nel vettore<br/>vettore_classificati  = inserire_classificato_in_vettore_classificati(vettore_classificati, numero_classificati, classificato_da_inserire)<br/><br/>// Scrive il vettore contenente i classificati aggiornati sul file<br/>classifica = scrivere_vettore_classificati_su_file(NOME_FILE_CLASSIFICA, vettore_classificati, numero_classificati)<br/></mark></p></div></p><p id="9a8bf513-3ef2-45c6-80b7-02843c8743e3" class=""><mark class="highlight-yellow_background">FINE</mark></p></div></details><hr id="0b0ddd6a-3cfb-4fad-8a72-4b22419a3dc5"/><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0">Funzione scrivere_vettore_classificati_su_file</summary><div class="indented"><p id="23369de1-c76c-49a5-bd96-fed493b4314f" class="">Scrive il vettore dei classificati sul file classifica.</p><h2 id="0609cb7a-cdee-4d9c-a903-4004aed0b67b" class="">INPUT</h2><table id="1144e227-6450-49fc-9f10-4c150977f701" class="simple-table"><thead class="simple-table-header"><tr id="52f92cfc-158b-457b-88ed-62924d317beb"><th id="G\;X" class="simple-table-header-color simple-table-header" style="width:169.64772033691406px">Nome</th><th id="GR[=" class="simple-table-header-color simple-table-header" style="width:233.65625px">Descrizione</th><th id="_KQ:" class="simple-table-header-color simple-table-header" style="width:272.6391906738281px">Tipo/vincoli</th></tr></thead><tbody><tr id="8ef3be10-152e-4223-9d19-75be6b1f1f0e"><td id="G\;X" class="" style="width:169.64772033691406px">classificati</td><td id="GR[=" class="" style="width:233.65625px">classificati della classifica</td><td id="_KQ:" class="" style="width:272.6391906738281px">array ad una dimensione di record classificati di dimensione numero_classificati</td></tr><tr id="d3c314ca-12bb-49a3-9f6d-415a4ebce3ce"><td id="G\;X" class="" style="width:169.64772033691406px">numero_classificati</td><td id="GR[=" class="" style="width:233.65625px">numero dei classificati in classifica</td><td id="_KQ:" class="" style="width:272.6391906738281px">intero</td></tr><tr id="dae51424-f53b-42cc-b06e-b41c4e3dcbb1"><td id="G\;X" class="" style="width:169.64772033691406px">NOME_FILE_CLASSIFICA</td><td id="GR[=" class="" style="width:233.65625px">nome del file della classifica</td><td id="_KQ:" class="" style="width:272.6391906738281px">intero</td></tr><tr id="58c81d96-5f57-4a86-a81f-f0fe50e6a352"><td id="G\;X" class="" style="width:169.64772033691406px">PRIMO_INDICE_ARRAY</td><td id="GR[=" class="" style="width:233.65625px">primo indice degli array</td><td id="_KQ:" class="" style="width:272.6391906738281px">intero</td></tr></tbody></table><h2 id="ef7e9510-7430-4ccd-8def-b3aad1eda0bb" class="">OUTPUT</h2><table id="be6452be-5933-4487-aeec-1a5644d4fd57" class="simple-table"><thead class="simple-table-header"></thead><tbody><tr id="bb0383f0-d586-423c-a926-04f1a61ed67b"><td id="G\;X" class="" style="width:156.65908813476562px">classifica</td><td id="GR[=" class="" style="width:233.65625px">file contenente la classifica</td><td id="_KQ:" class="" style="width:272.6391906738281px">file binario</td></tr></tbody></table><h2 id="49e7547d-9b7e-4af7-9804-bd74efac3d05" class="">LAVORO</h2><table id="e5d09f5b-5232-407a-8b53-5dff47be834a" class="simple-table"><thead class="simple-table-header"></thead><tbody><tr id="51f892c4-b495-406b-ba08-4c5fc6e38ed8"><td id="G\;X" class="" style="width:156.65908813476562px">i</td><td id="GR[=" class="" style="width:233.65625px">contatore utilizzato per contare i classificati</td><td id="_KQ:" class="" style="width:272.6391906738281px">intero</td></tr></tbody></table><h2 id="03745e94-c0e7-436a-b44f-ee289561c7eb" class="">ALGORITMO</h2><p id="d988a70e-b496-425c-8e2c-f33a07cfa21c" class=""><mark class="highlight-yellow_background">INIZIO</mark><div class="indented"><p id="d0081d61-4511-41b5-a6ab-951aca271c2e" class=""><mark class="highlight-yellow_background">classifica = aprire_file(NOME_FILE_CLASSIFICA)</mark></p><p id="5e6acd1b-3169-4ee5-a86f-9ad35faac818" class=""><mark class="highlight-yellow_background">// Scrivi i record classificati nel file<br/>i = PRIMO_INDICE_ARRAY<br/>MENTRE(i &lt; numero_classificati)<br/>     // Inserisco il classificato i sul file<br/>     classifica = scrivere_su_file_binario(classificati in posizione i)<br/>     i = i + 1<br/>FINE<br/></mark></p></div></p><p id="80021521-2062-4c89-bd7b-a3d001b11781" class=""><mark class="highlight-yellow_background">FINE</mark></p></div></details><hr id="15f2193e-9757-489e-8a45-a0a3b46902da"/><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0">Funzione inserire_classificato_in_vettore_classificati</summary><div class="indented"><p id="28317f20-3672-4720-931c-8a010b19b0ea" class="">Inserisce il classificato nella posizione giusta nel vettore dei classificati.</p><h2 id="8c806116-23d8-4e47-8aa6-047506835cbc" class="">INPUT</h2><table id="de280462-a35d-414c-b239-a8da0156e9ac" class="simple-table"><thead class="simple-table-header"><tr id="0506687c-1fd9-445c-bd24-f810a411db8f"><th id="G\;X" class="simple-table-header-color simple-table-header" style="width:169.64772033691406px">Nome</th><th id="GR[=" class="simple-table-header-color simple-table-header" style="width:233.65625px">Descrizione</th><th id="_KQ:" class="simple-table-header-color simple-table-header" style="width:272.6391906738281px">Tipo/vincoli</th></tr></thead><tbody><tr id="894d503c-0384-400b-b3df-52d8ddab6a53"><td id="G\;X" class="" style="width:169.64772033691406px">vettore_classificati</td><td id="GR[=" class="" style="width:233.65625px">vettore dei classificati della classifica</td><td id="_KQ:" class="" style="width:272.6391906738281px">array ad una dimensione di record classificato</td></tr><tr id="72b23851-aa02-4b8c-ae6f-002ffcd3bc1d"><td id="G\;X" class="" style="width:169.64772033691406px">numero_classificati</td><td id="GR[=" class="" style="width:233.65625px">numero di classificati nella classifica</td><td id="_KQ:" class="" style="width:272.6391906738281px">intero</td></tr><tr id="7f0f306e-30d6-4d12-96d0-4c1543513e08"><td id="G\;X" class="" style="width:169.64772033691406px">classificato_da_inserire</td><td id="GR[=" class="" style="width:233.65625px">classifiato da inserire in classifica</td><td id="_KQ:" class="" style="width:272.6391906738281px">record classificato</td></tr><tr id="06917f63-a9ce-45fb-be33-332da6ecc82c"><td id="G\;X" class="" style="width:169.64772033691406px">PRIMO_INDICE_ARRAY</td><td id="GR[=" class="" style="width:233.65625px">primo indice dell’array</td><td id="_KQ:" class="" style="width:272.6391906738281px">intero</td></tr></tbody></table><h2 id="fe9a310c-2b01-45f8-9efe-d7c618ef0794" class="">OUTPUT</h2><table id="41008fca-de4a-4163-a8a3-04e95b027764" class="simple-table"><thead class="simple-table-header"></thead><tbody><tr id="dbd27408-4ee0-4e13-99f1-13b01570b04d"><td id="G\;X" class="" style="width:156.65908813476562px">vettore_classificati</td><td id="GR[=" class="" style="width:233.65625px">vettore dei classificati della classifica</td><td id="_KQ:" class="" style="width:272.6391906738281px">array ad una dimensione di record classificato</td></tr></tbody></table><h2 id="813183f3-30fc-4b6a-af78-10a478fcd3dc" class="">LAVORO</h2><table id="21299b03-c909-4e09-9e83-3031a108a636" class="simple-table"><thead class="simple-table-header"></thead><tbody><tr id="5ee8dd3f-5f43-44bb-a686-d4fe194ae5a1"><td id="G\;X" class="" style="width:156.65908813476562px">i</td><td id="GR[=" class="" style="width:233.65625px">contatore utilizzato per contare i classificati</td><td id="_KQ:" class="" style="width:272.6391906738281px">intero</td></tr><tr id="0e0377c7-1165-440a-83c4-cc7ec97c4911"><td id="G\;X" class="" style="width:156.65908813476562px">posizione_in_classifica</td><td id="GR[=" class="" style="width:233.65625px">posizione del classificato in classifica</td><td id="_KQ:" class="" style="width:272.6391906738281px">intero</td></tr><tr id="b662a90f-c805-4cf8-9e7f-dc8b85576580"><td id="G\;X" class="" style="width:156.65908813476562px">inserito</td><td id="GR[=" class="" style="width:233.65625px">valore che indica se il classificato è in classifica</td><td id="_KQ:" class="" style="width:272.6391906738281px">booleano</td></tr></tbody></table><h2 id="3f3cf107-2c5b-4e6a-8688-ceaff60c8c63" class="">ALGORITMO</h2><p id="f55900a1-a90a-43fc-b92c-243d04cce371" class=""><mark class="highlight-yellow_background">INIZIO</mark><div class="indented"><p id="728ebe99-9263-4040-b048-d86de8037d80" class=""><mark class="highlight-yellow_background">SE(numero_classificati = 1)</mark></p><p id="14dd17a7-c79c-47f8-8a8a-ae10e7d8e9cf" class=""><mark class="highlight-yellow_background">    ALLORA<br/>        // Inserisci il classificato nella prima posizione dell&#x27;array<br/>        vettore_classificati[PRIMO_INDICE_ARRAY] = classificato_da_inserire<br/></mark></p><p id="670c6023-f091-4a34-8b30-deae51605dce" class=""><mark class="highlight-yellow_background">    // Altrimenti ci sono già dei classificati<br/>    ALTRIMENTI<br/>	posizione_in_classifica = PRIMO_INDICE_ARRAY<br/><br/>	// Inserisci il classificato nel vettore<br/>	MENTRE(posizione_in_classifica &lt; numero_classificati AND inserito = FALSO)<br/>		// Se il numero di tiri del nuovo classificato è minore del numero di tiri del giocatore in classifica preso in esame<br/>		SE(leggere_tiri_record_classificato(classificato_da_inserire) &lt;<br/>		   leggere_tiri_record_classificato(vettore_classificati[posizione_in_classifica]))<br/>                    ALLORA<br/>			// Sposta tutti gli elementi del vettore a destra partendo dal posto in cui verrà inserito il nuovo classificato<br/>			i = posizione_in_classifica + 1<br/>			MENTRE(i &lt; numero_classificati)<br/>				vettore_classificati[i] = vettore_classificati[i-1]<br/>				i = i + 1<br/>			FINE<br/><br/>			// Inserisce il nuovo classificato<br/>			vettore_classificati[posizione_in_classifica] = classificato_da_inserire<br/>			// Imposta la variabile inserito a vero in modo da uscie dal ciclo<br/>			inserito = VERO<br/>		FINE<br/>		posizione_in_classifica = posizione_in_classifica + 1<br/>	FINE<br/>FINE<br/></mark></p></div></p><p id="d0db8a67-e87b-4ab5-bbda-18c2e19dfe0f" class=""><mark class="highlight-yellow_background">FINE</mark></p></div></details><hr id="6cc9f92a-3947-447b-88cb-fec8e7921dc4"/><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0">Funzione leggere_vettore_classificati_da_file</summary><div class="indented"><p id="42f3eb30-2f6b-4948-b473-e920aab6e5ba" class="">Inserisce il classificato nella posizione giusta nel vettore dei classsificati.</p><h2 id="e81812a7-aa7a-462b-81d7-93ac8e3a6e99" class="">INPUT</h2><table id="b5ffa5ea-8579-4a65-9683-559d216ea1ee" class="simple-table"><thead class="simple-table-header"><tr id="8d2f30ae-c0ee-4cdd-8884-f4253a5784fe"><th id="G\;X" class="simple-table-header-color simple-table-header" style="width:169.64772033691406px">Nome</th><th id="GR[=" class="simple-table-header-color simple-table-header" style="width:233.65625px">Descrizione</th><th id="_KQ:" class="simple-table-header-color simple-table-header" style="width:272.6391906738281px">Tipo/vincoli</th></tr></thead><tbody><tr id="ed0063d6-ba91-48b6-a2b2-390b08b7f189"><td id="G\;X" class="" style="width:169.64772033691406px">NOME_FILE_CLASSIFICA</td><td id="GR[=" class="" style="width:233.65625px">nome del file della classificca</td><td id="_KQ:" class="" style="width:272.6391906738281px">array ad una dimensione di caratteri</td></tr><tr id="f21a1a36-8a57-4365-8b50-1be77700fea7"><td id="G\;X" class="" style="width:169.64772033691406px">vettore_classificati</td><td id="GR[=" class="" style="width:233.65625px">vettore dei classificati della classifica</td><td id="_KQ:" class="" style="width:272.6391906738281px">array ad una dimensione di record classificato</td></tr></tbody></table><h2 id="08e8c103-b2ee-487f-8a59-3bd7028928d0" class="">OUTPUT</h2><table id="1b91f450-a5be-4248-8ff4-fa584c7e4ee1" class="simple-table"><thead class="simple-table-header"></thead><tbody><tr id="ec9d203e-034a-48af-b5c0-e914c8fb76d0"><td id="G\;X" class="" style="width:156.65908813476562px">vettore_classificati</td><td id="GR[=" class="" style="width:233.65625px">vettore dei classificati della classifica</td><td id="_KQ:" class="" style="width:272.6391906738281px">array ad una dimensione di record classificato</td></tr></tbody></table><h2 id="dab65763-cc68-42e1-9a5f-af3100fa6008" class="">LAVORO</h2><table id="d8eb2030-f324-4f5f-8f8e-27e8f9bd4519" class="simple-table"><thead class="simple-table-header"></thead><tbody><tr id="57245c3f-dc0d-48a9-83f4-7ff45dbf50cd"><td id="G\;X" class="" style="width:156.65908813476562px">classifica</td><td id="GR[=" class="" style="width:233.65625px">file della classifica</td><td id="_KQ:" class="" style="width:272.6391906738281px">file binario</td></tr></tbody></table><h2 id="c877240b-ae14-403a-bf94-17b4e617b6b6" class="">ALGORITMO</h2><p id="29a3d565-56f2-4824-8ad7-7812b4418836" class=""><mark class="highlight-yellow_background">INIZIO</mark><div class="indented"><p id="f8efdfb0-56ab-4c18-8699-24d5b0b7cd90" class=""><mark class="highlight-yellow_background">// Apri il file</mark></p><p id="2af067a8-5b81-451a-8b45-12598c7c1c09" class=""><mark class="highlight-yellow_background">classifica = aprire_file(NOME_FILE_CLASSIFICA)</mark></p><p id="79c07425-9f7e-4e57-9720-ccca75d858dc" class=""><mark class="highlight-yellow_background">// Conta i classificati all&#x27;interno della classifica</mark></p><p id="23ebe766-fda6-408a-a4c1-605c46708a64" class=""><mark class="highlight-yellow_background">numero_classificati = contare_classificati(NOME_FILE_CLASSIFICA)</mark></p><p id="a46899a2-ecf6-42bf-8d7e-48ffb10f41af" class=""><mark class="highlight-yellow_background">// Leggi i record classificati dal file</mark></p><p id="b5cc0cba-fc79-4c19-9107-66dc7e0d1f5e" class=""><mark class="highlight-yellow_background">vettore_classificati = leggere_da_file(vettore_classificati, record_classificato, numero_classificati, classifica)</mark></p></div></p><p id="601e5385-02f0-4ebe-8d2a-838b332cd278" class=""><mark class="highlight-yellow_background">FINE</mark></p></div></details><hr id="54c15ff8-bd30-41d7-9dcf-6d77967886bf"/><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0">Funzione leggere_classificato_da_file</summary><div class="indented"><p id="430a0876-7962-4628-a7f9-783a8de54654" class="">Legge un classificato del file.</p><h2 id="e4084c91-dd95-4f08-9018-f27119e15a3b" class="">INPUT</h2><table id="f5442805-6275-4a2b-80ed-0cd25fefd558" class="simple-table"><thead class="simple-table-header"><tr id="20c11fda-9e21-415f-a442-5bd875dd641e"><th id="G\;X" class="simple-table-header-color simple-table-header" style="width:169.64772033691406px">Nome</th><th id="GR[=" class="simple-table-header-color simple-table-header" style="width:233.65625px">Descrizione</th><th id="_KQ:" class="simple-table-header-color simple-table-header" style="width:272.6391906738281px">Tipo/vincoli</th></tr></thead><tbody><tr id="21ba50cc-f79c-42bd-a82a-02bec947a91e"><td id="G\;X" class="" style="width:169.64772033691406px">NOME_FILE_CLASSIFICA</td><td id="GR[=" class="" style="width:233.65625px">nome del file della classificca</td><td id="_KQ:" class="" style="width:272.6391906738281px">array ad una dimensione di caratteri</td></tr><tr id="420c93d0-66c4-40af-b414-dc8d11a8e166"><td id="G\;X" class="" style="width:169.64772033691406px">indice_classificato</td><td id="GR[=" class="" style="width:233.65625px">indice del classificato nella classifica</td><td id="_KQ:" class="" style="width:272.6391906738281px">intero</td></tr></tbody></table><h2 id="adfdd575-0f71-467a-b0a5-394758cb2b8c" class="">OUTPUT</h2><table id="02f2ae27-f3b2-47f3-a93b-9a1a59274383" class="simple-table"><thead class="simple-table-header"></thead><tbody><tr id="b3460c8b-722a-4b8e-a33f-14d6d96f42b2"><td id="G\;X" class="" style="width:156.65908813476562px">classificato</td><td id="GR[=" class="" style="width:233.65625px">classificato dalla classifica</td><td id="_KQ:" class="" style="width:272.6391906738281px">record classificato</td></tr></tbody></table><h2 id="2a0f4e55-1c54-48e2-8118-4165b60cfb2d" class="">LAVORO</h2><table id="ae652b2e-47a9-40a0-be2a-4624fa262786" class="simple-table"><thead class="simple-table-header"></thead><tbody><tr id="d9e7ec9a-6929-447a-b748-3fd8f496eb5f"><td id="G\;X" class="" style="width:156.65908813476562px">classifica</td><td id="GR[=" class="" style="width:233.65625px">file della classifica</td><td id="_KQ:" class="" style="width:272.6391906738281px">file binario</td></tr></tbody></table><h2 id="82d4b57a-c662-4a5b-91f7-89460290cb2a" class="">ALGORITMO</h2><p id="c49df3b6-fe43-4258-849b-88376ed7c214" class=""><mark class="highlight-yellow_background">INIZIO</mark><div class="indented"><p id="e578bd7e-5ffd-457c-8efa-a8074b6937e8" class=""><mark class="highlight-yellow_background">// Apri il file</mark></p><p id="bb5fb5d3-4749-413e-a5a2-fd9df5cd5002" class=""><mark class="highlight-yellow_background">classifica = aprire_file(NOME_FILE_CLASSIFICA)</mark></p><p id="4e7c3d87-38cd-4dde-a661-274fea498e66" class=""><mark class="highlight-yellow_background">// Sposta il cursore nella posizione del classificato ricchiesto</mark></p><p id="f62935a4-7c08-4f47-b002-5b50a5170723" class=""><mark class="highlight-yellow_background">classifica = spostare_su_file(NOME_FILE_CLASSIFICA)</mark></p><p id="cfd85008-520e-498d-9b30-0d6a88879a68" class=""><mark class="highlight-yellow_background">// Leggi il record classificato dal file</mark></p><p id="e8aadac1-783e-4f2a-be14-483266006316" class=""><mark class="highlight-yellow_background">classificato= leggere_da_file(classificato, classificato, 1, NOME_FILE_CLASSIFICA)</mark></p></div></p><p id="6804f592-8a2b-4edc-8798-2840cbcbc3dd" class=""><mark class="highlight-yellow_background">FINE</mark></p></div></details><hr id="2780325e-61a7-4e69-a7cc-b4d4d058b324"/><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0">Funzione contare_classificati</summary><div class="indented"><p id="37f60779-4e6b-4a2d-b34f-817f1b02d569" class="">Conta il numero di classificati.</p><h2 id="432f46b0-bc0e-445e-84d6-7408b5af531b" class="">INPUT</h2><table id="fb4a355b-7e2d-4ae8-9b5a-b72fba2e7edc" class="simple-table"><thead class="simple-table-header"><tr id="4140205c-2730-4b85-996c-941cd2095fe5"><th id="G\;X" class="simple-table-header-color simple-table-header" style="width:169.64772033691406px">Nome</th><th id="GR[=" class="simple-table-header-color simple-table-header" style="width:233.65625px">Descrizione</th><th id="_KQ:" class="simple-table-header-color simple-table-header" style="width:272.6391906738281px">Tipo/vincoli</th></tr></thead><tbody><tr id="13081be5-87c5-435d-bfd6-bb4b2ba2ea52"><td id="G\;X" class="" style="width:169.64772033691406px">NOME_FILE_CLASSIFICA</td><td id="GR[=" class="" style="width:233.65625px">nome del file della classificca</td><td id="_KQ:" class="" style="width:272.6391906738281px">array ad una dimensione di caratteri</td></tr></tbody></table><h2 id="9f06e179-dcb2-4ea3-8c1c-71eb8ddd925a" class="">OUTPUT</h2><table id="9992fb80-9abb-428c-bdd6-b18e6353b658" class="simple-table"><thead class="simple-table-header"></thead><tbody><tr id="1464a225-97a2-460e-a38c-7428bf7b176d"><td id="G\;X" class="" style="width:156.65908813476562px">numero_classificati</td><td id="GR[=" class="" style="width:233.65625px">numero di clasificati in classifica</td><td id="_KQ:" class="" style="width:272.6391906738281px">0≤ intero ≤ 10</td></tr></tbody></table><h2 id="b239d364-59ce-4ac5-bbed-61cee854d0a2" class="">LAVORO</h2><table id="b8c92772-3324-48cd-8a0c-805706c6f281" class="simple-table"><thead class="simple-table-header"></thead><tbody><tr id="111ee800-f8ca-4b48-9340-6f2852c463c3"><td id="G\;X" class="" style="width:156.65908813476562px">classifica</td><td id="GR[=" class="" style="width:233.65625px">file della classifica</td><td id="_KQ:" class="" style="width:272.6391906738281px">file binario</td></tr></tbody></table></div></details><hr id="413876e8-a7ed-43a6-9579-633b7579afa8"/><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0">Funzione trovare_punteggio_minimo_ingresso_classifica</summary><div class="indented"><p id="346ebb46-6246-4bcd-b7cc-3d9a2bdbd625" class="">Trova il punteggio minimo per entrare nella classifica.</p><h2 id="3819c80c-119d-49df-bee7-f258ecc2747e" class="">INPUT</h2><table id="cda1a055-af90-4e05-a462-fa308bef8539" class="simple-table"><thead class="simple-table-header"></thead><tbody><tr id="89e304fd-5d03-4d9f-ae62-31b174d9299a"><td id="G\;X" class="" style="width:169.64772033691406px">NOME_FILE_CLASSIFICA</td><td id="GR[=" class="" style="width:233.65625px">nome del file della classifica</td><td id="_KQ:" class="" style="width:272.6391906738281px">intero</td></tr><tr id="bdc54455-455a-44c6-9a19-2bfd881fb31b"><td id="G\;X" class="" style="width:169.64772033691406px">VALORE_ELEVATO</td><td id="GR[=" class="" style="width:233.65625px">valore molto grande</td><td id="_KQ:" class="" style="width:272.6391906738281px">intero</td></tr></tbody></table><h2 id="dd8a5a24-bc43-45fe-b862-209c42e34c2b" class="">OUTPUT</h2><table id="563b6495-113f-443e-8e6b-0e562e3f0764" class="simple-table"><thead class="simple-table-header"></thead><tbody><tr id="c116c4ab-cebe-41a8-85fb-9c4b88405bba"><td id="G\;X" class="" style="width:156.65908813476562px">punteggio_minimo</td><td id="GR[=" class="" style="width:233.65625px">punteggio minimo per entrare nella classifica</td><td id="_KQ:" class="" style="width:272.6391906738281px">intero</td></tr></tbody></table><h2 id="03d18a6c-c164-41e9-9e53-636c94ce3c75" class="">LAVORO</h2><table id="995aec07-2107-4092-aaaf-1aeabe0ed561" class="simple-table"><thead class="simple-table-header"></thead><tbody><tr id="6d36a184-53f6-4a73-8b1b-087eeb2d116c"><td id="G\;X" class="" style="width:156.65908813476562px">ultimo_classificato</td><td id="GR[=" class="" style="width:233.65625px">ultimo classificato della classifica</td><td id="_KQ:" class="" style="width:272.6391906738281px">record classificato</td></tr><tr id="65e84eb5-31e5-443a-a44e-7182f2844590"><td id="G\;X" class="" style="width:156.65908813476562px">punteggio_minimo</td><td id="GR[=" class="" style="width:233.65625px">numero di tiri maggiore nella classifica</td><td id="_KQ:" class="" style="width:272.6391906738281px">intero</td></tr><tr id="9beca129-a47c-48bf-9657-91c3736cfa59"><td id="G\;X" class="" style="width:156.65908813476562px">numero_classificati</td><td id="GR[=" class="" style="width:233.65625px">numero dei classificati</td><td id="_KQ:" class="" style="width:272.6391906738281px">intero</td></tr></tbody></table><h2 id="8b46348a-9d83-488a-b96c-c2db98d8cc02" class="">ALGORITMO</h2><p id="01bdbd89-2b7a-4b6d-aa90-aed804dfe1a2" class=""><mark class="highlight-yellow_background">INIZIO</mark></p><p id="268fbf2f-1654-46df-b2dc-84e4815aee17" class=""><mark class="highlight-yellow_background">        numero_classificati = contare_classificati(NOME_FILE_CLASSIFICA)<br/><br/>	// Se la classifica è piena<br/>	SE(numero_classificati = NUMERO_MASSIMO_CLASSIFICATI)<br/>            ALLORA<br/>	        // Legge l&#x27;ultimo giocatore dalla classifica<br/>	        ultimo_classificato = leggere_classificato_da_file(NOME_FILE_CLASSIFICA, numero_classificati)<br/><br/>	        // Imposta il puntegio minimo per entrare in classifica pari al punteggio dell&#x27;ultimo giocatore in classifica<br/>	        punteggio_minimo = leggere_tiri_record_classificato(ultimo_classificato)<br/><br/>	        // Altrimenti la classifica non è piena<br/>	        ALTRIMENTI<br/>		    // Imposta il punteggio minimo per entrare in classifica a un valore elevato in modo che chiunque possa entrare in classifica<br/>		    punteggio_minimo = +<br/></mark><mark class="highlight-yellow_background"><strong>∞</strong></mark><mark class="highlight-yellow_background"><br/>	FINE<br/></mark></p><p id="a85cbca3-fb05-4df7-b538-228f89cc76b8" class=""><mark class="highlight-yellow_background">FINE</mark></p></div></details><hr id="7ba67072-23cd-4e02-8246-9d62ae0a6eb3"/><p id="a966023f-68fe-46b4-8910-bc4a1feef605" class="">
+</p></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>
